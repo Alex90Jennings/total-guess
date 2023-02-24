@@ -34,7 +34,8 @@ h1 {
 }
 
 .form input[type="email"],
-.form input[type="password"] {
+.form input[type="password"],
+.form input[type="text"] {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -57,4 +58,21 @@ h1 {
 
 .form button[type="submit"]:hover {
   background-color: #005693;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.switch-text {
+  color: #0070c0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.switch-text:hover {
+  color: #004d99;
 }

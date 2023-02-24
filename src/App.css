@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.vertical-align {
+  vertical-align: middle;
+}
+
+.three-rows-expand-one-three {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+}
