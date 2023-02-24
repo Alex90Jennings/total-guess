@@ -41,3 +41,12 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
 }
+
+.vertical-align {
+  vertical-align: middle;
+}
+
+.three-rows-expand-one-three {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+}

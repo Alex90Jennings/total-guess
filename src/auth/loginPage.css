@@ -1,0 +1,78 @@
+.form-container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.form {
+  display: grid;
+  width: 400px;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  justify-items: center;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #0070c0;
+}
+
+.form label {
+  margin-bottom: 20px;
+}
+
+.login-inputs {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form button[type="submit"] {
+  display: block;
+  margin: 20px auto;
+  width: 120px;
+  padding: 10px;
+  background-color: #0070c0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.form button[type="submit"]:hover {
+  background-color: #005693;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.switch-text {
+  color: #0070c0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.switch-text:hover {
+  color: #004d99;
+}

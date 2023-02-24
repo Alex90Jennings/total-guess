@@ -1,14 +1,123 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './loginPage.css'
 
 function LoginPage({ setIsAuthenticated }) {
-    const handleLogin = () => {
-        setIsAuthenticated(true)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isRegistered, setIsRegistered] = useState(true);
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handlePasswordConfirmChange = (event) => {
+        setConfirmPassword(event.target.value);
+    };
+
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
+    };
+
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
+
+    const handleSwitch = () => {
+        setIsRegistered(!isRegistered);
+    };
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+        // IN FUTURE THIS WILL BE THE API CALL FOR THE JWT TOKEN
+        if(isRegistered) {
+            signInUser()
+        } else {
+            registerUser()
+        }
+    };
+
+    const signInUser = () => {
+        const jwtToken = password
+        console.log(email, password);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('jwtToken', jwtToken);
+        setIsAuthenticated(true);
+    }
+
+    const registerUser = () => {
+        const jwtToken = password
+        console.log(email, firstName, lastName, password, confirmPassword);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('jwtToken', jwtToken);
+        setIsAuthenticated(true);
     }
 
     return (
-        <div>
-            <h1>Login Page</h1>
-            <button onClick={handleLogin}>Login</button>
+        <div className='form-container'>
+            <form className='form' onSubmit={handleLogin}>
+                <h1 className="title">CANTAB</h1>
+                <label className='login-inputs'>
+                    <div className="label-container">
+                        <span className='bold'>Email:</span>
+                    </div>
+                    <div className="input-container">
+                        <input type="email" value={email} onChange={handleEmailChange} required />
+                    </div>
+                </label>
+                {!isRegistered && (
+                    <>
+                        <label className='login-inputs' >
+                            <div className="label-container">
+                                <span className='bold'>First Name:</span>
+                            </div>
+                            <div className="input-container">
+                                <input type="text" onChange={handleFirstNameChange} required />
+                            </div>
+                        </label>
+                        <label className='login-inputs'>
+                            <div className="label-container">
+                                <span className='bold'>Last Name:</span>
+                            </div>
+                            <div className="input-container">
+                                <input type="text" onChange={handleLastNameChange} required />
+                            </div>
+                        </label>
+                    </>
+                )}
+                <label className='login-inputs'>
+                    <div className="label-container">
+                        <span className='bold'>Password:</span>
+                    </div>
+                    <div className="input-container">
+                        <input type="password" value={password} onChange={handlePasswordChange} required />
+                    </div>
+                </label>
+                {!isRegistered && (
+                    <>
+                        <label className='login-inputs'>
+                            <div className="label-container">
+                                <span className='bold'>Confirm Password:</span>
+                            </div>
+                            <div className="input-container">
+                                <input type="password" onChange={handlePasswordConfirmChange} required />
+                            </div>
+                        </label>
+                    </>
+                )}
+                <div className="switch-container">
+                    <span className="switch-text" onClick={handleSwitch}>
+                        {isRegistered ? "Need to register?" : "Already registered?"}
+                    </span>
+                </div>
+                <button type="submit" className="btn">{isRegistered ? 'Login' : 'Register'}</button>
+            </form>
         </div>
     );
 }
