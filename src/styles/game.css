@@ -82,6 +82,14 @@ h2 {
     place-content: center;
 }
 
+.icon--inst {}
+
+.icon--linked {}
+
+.icon--twitter {}
+
+.icon--facebook {}
+
 .footer--bottom {
     display: grid;
     grid-template-rows: auto;

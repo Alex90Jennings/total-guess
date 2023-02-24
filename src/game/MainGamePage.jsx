@@ -1,5 +1,9 @@
 import React from 'react';
 import '../styles/game.css'
+// import image1 from '/public/icons/image1insta.png';
+// import image2 from '/public/icons/image2linkedin.png';
+// import image3 from '/public/icons/image3twitter.png';
+// import image4 from '/public/icons/image4facebook.png';
 
 function MainGamePage() {
     return (
@@ -24,10 +28,26 @@ function MainGamePage() {
             <footer id="footer">
                 <div className="footer--layout">
                     <div className="footer--top">
-                        <div className="icon--in"></div>
-                        <div className="icon--cam"></div>
-                        <div className="icon--twitter"></div>
-                        <div className="icon--facebook"></div>
+                        <div className="icon--inst">
+                            <div>
+                                <img src="/icons/image1insta.png" alt="instagram icon"/>
+                            </div>
+                        </div>
+                        <div className="icon--linked">
+                             <div>
+                                <img src={'icons/image2linkedin.png'} alt="linkedin icon"/>
+                            </div>
+                        </div>
+                        <div className="icon--twitter">
+                            <div>
+                                <img src={'icons/image3twitter.png'} alt="twitter icon"/>
+                            </div>
+                        </div>
+                        <div className="icon--facebook">
+                            <div>
+                                <img src={'icons/image4facebook.png'} alt="facebook icon"/>
+                            </div>
+                        </div>
                     </div>
                     <div className="footer--bottom">
                         <div className="contact">Contact</div>
