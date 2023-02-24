@@ -142,9 +142,6 @@ h2 {
 .icon--facebook {}
 
 .footer--bottom {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    place-content: center;
     background-color: #3F3F3F;
     height: 200px;
     padding-left: 50px;
@@ -168,5 +165,6 @@ h2 {
 }
 
 .footer-icon {
+    margin: auto 0px;
     justify-self: end;
 }

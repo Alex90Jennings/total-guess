@@ -76,16 +76,18 @@ function MainGamePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="footer--bottom">
+                    <div className='three-columns-expand-one-three footer--bottom'>
+                        <div></div>
                         <div className="footer--list">
-                        <div class="contact">Contact</div>
-                        <div class="footer-row">About Us</div>
-                        <div class="footer-row">FAQ</div>
-                        <div class="footer-row">Advertise with us</div>
+                            <div class="contact">Contact</div>
+                            <div class="footer-row">About Us</div>
+                            <div class="footer-row">FAQ</div>
+                            <div class="footer-row">Advertise with us</div>
                         </div>
                         <div class="footer-icon">
-                            <img src="/icons/basket.png" alt='basket image'/></div>              
-                        </div> 
+                            <img src="/icons/basket.png" alt='basket image'/>
+                        </div>              
+                    </div>
                 </div>
             </footer>
             
