@@ -5,6 +5,9 @@ function LoginPage({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isRegistered, setIsRegistered] = useState(true);
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -14,6 +17,18 @@ function LoginPage({ setIsAuthenticated }) {
         setPassword(event.target.value);
     };
 
+    const handlePasswordConfirmChange = (event) => {
+        setConfirmPassword(event.target.value);
+    };
+
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
+    };
+
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
+
     const handleSwitch = () => {
         setIsRegistered(!isRegistered);
     };
@@ -21,12 +36,28 @@ function LoginPage({ setIsAuthenticated }) {
     const handleLogin = (event) => {
         event.preventDefault();
         // IN FUTURE THIS WILL BE THE API CALL FOR THE JWT TOKEN
+        if(isRegistered) {
+            signInUser()
+        } else {
+            registerUser()
+        }
+    };
+
+    const signInUser = () => {
         const jwtToken = password
         console.log(email, password);
         localStorage.setItem('userEmail', email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
-    };
+    }
+
+    const registerUser = () => {
+        const jwtToken = password
+        console.log(email, firstName, lastName, password, confirmPassword);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('jwtToken', jwtToken);
+        setIsAuthenticated(true);
+    }
 
     return (
         <div className='form-container'>
@@ -42,12 +73,12 @@ function LoginPage({ setIsAuthenticated }) {
                 </label>
                 {!isRegistered && (
                     <>
-                        <label className='login-inputs'>
+                        <label className='login-inputs' >
                             <div className="label-container">
                                 <span className='bold'>First Name:</span>
                             </div>
                             <div className="input-container">
-                                <input type="text" required />
+                                <input type="text" onChange={handleFirstNameChange} required />
                             </div>
                         </label>
                         <label className='login-inputs'>
@@ -55,7 +86,7 @@ function LoginPage({ setIsAuthenticated }) {
                                 <span className='bold'>Last Name:</span>
                             </div>
                             <div className="input-container">
-                                <input type="text" required />
+                                <input type="text" onChange={handleLastNameChange} required />
                             </div>
                         </label>
                     </>
@@ -75,7 +106,7 @@ function LoginPage({ setIsAuthenticated }) {
                                 <span className='bold'>Confirm Password:</span>
                             </div>
                             <div className="input-container">
-                                <input type="password" required />
+                                <input type="password" onChange={handlePasswordConfirmChange} required />
                             </div>
                         </label>
                     </>
