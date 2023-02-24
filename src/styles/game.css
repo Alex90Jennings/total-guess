@@ -12,74 +12,125 @@ h2 {
 #header {
     height: 10vh;
     padding: 1rem;
-
-    background-color: #1f4fe2;
+    background-color: #0070C0;
     color: #f7f7f7;
 }
 
 .header--layout {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-gap: 1rem;
-    justify-content: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.signin--out {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+.header-left {
+    display: flex;
+    gap: 15px;
+    font-size: 30px;
+}
+
+.signup .signin {
+    padding: 5px;
+}
+
+.header-middle {
+    padding: 5px;
     font-size: 50px;
 }
 
-.cantab--name {
-    font-size: 50px;
+.header-right {
+    display: flex;
+    /* font-size: 50px; */
 }
 
-.right--icons {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    font-size: 50px;
+.icon1, .icon2, .icon3 {
+    padding: 5px;
 }
 
 /* Main */
 
 #main {
-    height: 40vh;
+    height: 55vh;
     padding: 1rem;
-
+    overflow-y: scroll;
     background-color: #f7f7f7;
 }
 
 .main--layout {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-rows: repeat(10, 1fr);
     place-content: center;
-    border: 2px solid rgb(223, 137, 10);
-    height: 300px;
     margin: 50px;
     }
 
-.main--layout li {
-    display: grid;
-    place-items: center;
-    grid-row-gap: 0.5rem;
+.box {
+    border: 2px solid #f18213;
+    padding: 20px;
+    text-align: center;
+    height: 450px;
+    width: 1300px;
+    margin: 20px;
 }
+
+ .box-1 {
+    
+ }
+
+ .box-2 {
+    
+ }
+
+ .box-3 {
+     }
+
+ .box-4 {
+    
+ }
+
+ .box-5 {
+    
+ }
+
+ .box-6 {
+    
+ }
+
+ .box-7 {
+    
+ }
+
+ .box-8 {
+    
+ }
+
+ .box-9 {
+    
+ }
+
+ .box-10 {
+    
+ }
 
 /* Footer */
 
 #footer {
-    height: 25vh;
+    /* height: 10vh; */
     padding: 1rem;
-    background-color: #464345;
 }
 
 .footer--layout {
+    display: grid;
+    grid-template-rows: auto auto;
     justify-content: center;
 }
 
 .footer--top {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto auto auto auto;
+    width: 1700px;
+    height: 50px;
+    gap: 10px;
     place-content: center;
+    background-color: #0070C0;
 }
 
 .icon--inst {}
@@ -92,22 +143,30 @@ h2 {
 
 .footer--bottom {
     display: grid;
-    grid-template-rows: auto;
+    grid-template-columns: auto 1fr;
     place-content: center;
+    background-color: #3F3F3F;
+    height: 200px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.footer--list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact {
-    color: #1f4fe2;
+    color: #0070C0;
 }
 
-.about-us {
+.footer-row {
+    padding: 5px 0;
     color: #f7f7f7;
 }
 
-.faq {
-    color: #f7f7f7;
-}
-
-.advertise {
-    color: #f7f7f7;
+.footer-icon {
+    justify-self: end;
 }
