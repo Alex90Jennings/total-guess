@@ -27,16 +27,14 @@ function LoginPage({ setIsAuthenticated }) {
     <div className='form-container'>
       <form className='form' onSubmit={handleLogin}>
         <h1>CANTAB</h1>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={handleEmailChange} required />
+        <label className='login-inputs'>
+            <span className='bold'>Email:</span>
+            <input className='inline' type="email" value={email} onChange={handleEmailChange} required />
         </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} required />
+        <label className='login-inputs'>
+            <span className='bold'>Password:</span>
+            <input className='full-width' type="password" value={password} onChange={handlePasswordChange} required />
         </label>
-        <br />
         <button type="submit">Login</button>
       </form>
     </div>
