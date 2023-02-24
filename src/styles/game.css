@@ -1,0 +1,105 @@
+body {
+    font-family: "Trebuchet MS", "Lucida Sans", Arial, sans-serif;
+}
+
+h1,
+h2 {
+    margin-bottom: 1rem;
+}
+
+/* Header */
+
+#header {
+    height: 10vh;
+    padding: 1rem;
+
+    background-color: #1f4fe2;
+    color: #f7f7f7;
+}
+
+.header--layout {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 1rem;
+    justify-content: stretch;
+}
+
+.signin--out {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    font-size: 50px;
+}
+
+.cantab--name {
+    font-size: 50px;
+}
+
+.right--icons {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    font-size: 50px;
+}
+
+/* Main */
+
+#main {
+    height: 40vh;
+    padding: 1rem;
+
+    background-color: #f7f7f7;
+}
+
+.main--layout {
+    display: grid;
+    grid-template-columns: auto;
+    place-content: center;
+    border: 2px solid rgb(223, 137, 10);
+    height: 300px;
+    margin: 50px;
+    }
+
+.main--layout li {
+    display: grid;
+    place-items: center;
+    grid-row-gap: 0.5rem;
+}
+
+/* Footer */
+
+#footer {
+    height: 25vh;
+    padding: 1rem;
+    background-color: #464345;
+}
+
+.footer--layout {
+    justify-content: center;
+}
+
+.footer--top {
+    display: grid;
+    grid-template-columns: auto;
+    place-content: center;
+}
+
+.footer--bottom {
+    display: grid;
+    grid-template-rows: auto;
+    place-content: center;
+}
+
+.contact {
+    color: #1f4fe2;
+}
+
+.about-us {
+    color: #f7f7f7;
+}
+
+.faq {
+    color: #f7f7f7;
+}
+
+.advertise {
+    color: #f7f7f7;
+}
