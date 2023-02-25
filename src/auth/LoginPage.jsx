@@ -50,32 +50,32 @@ function LoginPage({ setIsAuthenticated }) {
                     <span className="label-container bold">Email:</span>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                 </label>
-
-                {!formData.isRegistered && (
-                    <>
-                        <label className='login-inputs' >
-                            <span className="label-container bold">First Name:</span>
-                            <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                        </label>
-                        <label className='login-inputs'>
-                            <span className="label-container bold">Last Name:</span>
-                            <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                        </label>
-                    </>
-                )}
-
+                {
+                    !formData.isRegistered && (
+                        <>
+                            <label className='login-inputs' >
+                                <span className="label-container bold">First Name:</span>
+                                <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                            </label>
+                            <label className='login-inputs'>
+                                <span className="label-container bold">Last Name:</span>
+                                <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                            </label>
+                        </>
+                    )
+                }
                 <label className='login-inputs'>
                     <span className="label-container bold">Password:</span>
                     <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
                 </label>
-
-                {!formData.isRegistered && (
-                    <label className='login-inputs'>
-                        <span className="label-container bold">Confirm Password:</span>
-                        <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-                    </label>
-                )}
-                
+                {
+                    !formData.isRegistered && (
+                        <label className='login-inputs'>
+                            <span className="label-container bold">Confirm Password:</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+                        </label>
+                    )
+                }
                 <div className="switch-container">
                     <span className="switch-text" onClick={() => setFormData({ ...formData, isRegistered: !formData.isRegistered })}>
                         {formData.isRegistered ? "Need to register?" : "Already registered?"}
