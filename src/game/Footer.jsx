@@ -40,7 +40,7 @@ function Footer() {
                             <div class="footer-row">Advertise with us</div>
                         </div>
                         <div class="footer-icon">
-                            <img src="/icons/basket.png" alt='basket image'/>
+                            <img src="/icons/basket.png" alt='basket'/>
                         </div>              
                     </div>
                 </div>
