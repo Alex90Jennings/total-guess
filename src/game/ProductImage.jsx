@@ -1,10 +1,14 @@
 import React from 'react';
 import '../styles/game.css';
 
-function ProductImage(props) {
+function ProductImage({ currentProduct, currentImage }) {
+  const imagePath = currentImage;
+
   return (
-    <img src="/groceries/apples.jpg" alt="Product" className="product-image" />
+    <img src={imagePath} alt="Product" className="product-image" />
   );
 }
 
 export default ProductImage;
+
+

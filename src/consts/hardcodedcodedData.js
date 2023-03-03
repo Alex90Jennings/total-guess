@@ -1,22 +1,58 @@
 class Grocery {
-  constructor(id, name, shop, price, description) {
+  constructor(id, shop, description, image, price) {
     this.id = id;
-    this.name = name;
     this.shop = shop;
-    this.price = price;
     this.description = description;
+    this.image = image;
+    this.price = price;
   }
 }
 
 export const groceries = [
-  new Grocery("0", "milk", "Tesco", 1.5, "milk is good"),
-  new Grocery("1", "bread", "Sainsbury's", 1.2, "bread is carbs"),
-  new Grocery("2", "eggs", "Asda", 2.0, "eggs smell funny"),
-  new Grocery("3", "cheese", "Morrisons", 2.5, "cheese also smells"),
-  new Grocery("4", "butter", "Waitrose", 1.8, "butter is sexy"),
-  new Grocery("5", "chicken", "Aldi", 4.0, "chicken is not sexy"),
-  new Grocery("6", "apples", "Lidl", 0.8, "apples grow on trees"),
-  new Grocery("7", "carrots", "Co-op", 1.0, "carrots grow underground"),
-  new Grocery("8", "bananas", "Iceland", 1.2, "bananas look like penis"),
-  new Grocery("9", "yogurt", "M&S", 1.5, "yogurt is yogurt"),
+  new Grocery("0", "Milk", "Tesco", 1.5, "milk is good", "/groceries/milk.jpg"),
+  new Grocery(
+    "1",
+    "Sainsbury's",
+    "bread is carbs",
+    "/groceries/bread.jpg",
+    1.2
+  ),
+  new Grocery("2", "Asda", "eggs smell funny", "/groceries/eggs.jpg", 2.0),
+  new Grocery(
+    "3",
+    "Morrisons",
+    "cheese also smells",
+    "/groceries/cheese.jpg",
+    2.5
+  ),
+  new Grocery("4", "Waitrose", "butter is sexy", "/groceries/butter.jpg", 1.8),
+  new Grocery(
+    "5",
+    "Aldi",
+    "chicken is not sexy",
+    "/groceries/chicken.jpg",
+    4.0
+  ),
+  new Grocery(
+    "6",
+    "Lidl",
+    "apples grow on trees",
+    "/groceries/apples.jpg",
+    0.8
+  ),
+  new Grocery(
+    "7",
+    "Co-op",
+    "carrots grow underground",
+    "/groceries/carrots.jpg",
+    1.0
+  ),
+  new Grocery(
+    "8",
+    "Iceland",
+    "bananas look like penis",
+    "/groceries/bananas.jpg",
+    1.2
+  ),
+  new Grocery("9", "M&S", "yogurt is yogurt", "/groceries/yogurt.jpg", 1.5),
 ];

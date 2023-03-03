@@ -8,6 +8,8 @@ import { groceries } from '../consts/hardcodedcodedData';
 function Product(props) {
   const [currentShopIndex, setCurrentShopIndex] = useState(0);
   const currentShop = groceries[currentShopIndex].shop;
+  const currentDescription = groceries[currentShopIndex].description;
+  const currentImage = groceries[currentShopIndex].image;
 
   const handleNextShop = () => {
     setCurrentShopIndex((currentShopIndex + 1) % groceries.length);
@@ -22,9 +24,10 @@ function Product(props) {
       <div className="box box-1">
         <img src="/icons/ArrowL.png" alt="Arrow Left" className="icon arrow-l" onClick={handlePrevShop} />
         <h2>{currentShop}</h2>
+        <p>{currentDescription}</p>
         <img src="/icons/ArrowR.png" alt="Arrow Right" className="icon arrow-r" onClick={handleNextShop} />
         <p>The Best Supermarket Ever!</p>
-        <ProductImage />
+        <ProductImage currentProduct={groceries[currentShopIndex]} currentImage={currentImage} />
         <Timer />
         <ImageCount />
       </div>
@@ -33,6 +36,8 @@ function Product(props) {
 }
 
 export default Product;
+
+
 
 
 
