@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './loginPage.css'
+import './landingPage.css'
 
-function LoginPage({ setIsAuthenticated }) {
+function LoginPage({ setIsAuthenticated, setShowLoginPage }) {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -32,6 +32,7 @@ function LoginPage({ setIsAuthenticated }) {
         localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
+        setShowLoginPage(false);
     }
 
     const registerUser = () => {
@@ -40,12 +41,13 @@ function LoginPage({ setIsAuthenticated }) {
         localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
+        setShowLoginPage(false);
     }
 
     return (
-        <div className='form-container'>
-            <form className='form' onSubmit={handleSubmit}>
-                <h1 className="title">CANTAB</h1>
+        <div className='form'>
+            <button onClick={() => setShowLoginPage(false)} className="btn">Return to menu</button>
+            <form onSubmit={handleSubmit}>
                 <label className='login-inputs'>
                     <span className="label-container bold">Email:</span>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
@@ -81,8 +83,11 @@ function LoginPage({ setIsAuthenticated }) {
                         {formData.isRegistered ? "Need to register?" : "Already registered?"}
                     </span>
                 </div>
-                <button type="submit" className="btn">{formData.isRegistered ? 'Login' : 'Register'}</button>
+                <div>
+                    <button type="submit" className="btn">{formData.isRegistered ? 'Login' : 'Register'}</button>
+                </div>
             </form>
+        
         </div>
     );
 }
