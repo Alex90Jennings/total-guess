@@ -1,9 +1,13 @@
 import React from 'react';
 import '../styles/game.css';
+import NumberImage from './NumberImage';
 
 function ImageCount(props) {
+  const { currentShopIndex } = props;
   return (
-    <div className="image-number">Image Number</div>
+    <div className="timer">
+      <NumberImage number={currentShopIndex + 1} />
+    </div>
   );
 }
 

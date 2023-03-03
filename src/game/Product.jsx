@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
-import Timer from './Timer';
+import Timer from './Timer'; 
 import ImageCount from './ImageCount';
 import { groceries } from '../consts/hardcodedcodedData';
 
 function Product(props) {
   const [currentShopIndex, setCurrentShopIndex] = useState(0);
-  const currentShop = groceries[currentShopIndex].shop;
-  const currentDescription = groceries[currentShopIndex].description;
+  const currentProduct = groceries[currentShopIndex]; // update to get the current product object
+  const currentShop = currentProduct.shop;
+  const currentDescription = currentProduct.description;
   const currentImage = groceries[currentShopIndex].image;
 
   const handleNextShop = () => {
@@ -26,10 +27,9 @@ function Product(props) {
         <h2>{currentShop}</h2>
         <p>{currentDescription}</p>
         <img src="/icons/ArrowR.png" alt="Arrow Right" className="icon arrow-r" onClick={handleNextShop} />
-        <p>The Best Supermarket Ever!</p>
         <ProductImage currentProduct={groceries[currentShopIndex]} currentImage={currentImage} />
         <Timer />
-        <ImageCount />
+        <ImageCount currentShopIndex={currentShopIndex} />
       </div>
     </div>
   );

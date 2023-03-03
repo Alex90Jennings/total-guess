@@ -10,5 +10,3 @@ function ProductImage({ currentProduct, currentImage }) {
 }
 
 export default ProductImage;
-
-
