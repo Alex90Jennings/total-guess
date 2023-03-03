@@ -262,3 +262,9 @@ input[type='text'] {
     margin: auto 0px;
     justify-self: end;
 }
+
+.result {
+    margin: 0;
+    font-size: 18px;
+    color: #f00;
+}
