@@ -34,12 +34,12 @@ function Footer() {
                     <div className='three-columns-expand-one-three footer--bottom'>
                         <div></div>
                         <div className="footer--list">
-                            <div class="contact">Contact</div>
-                            <div class="footer-row">About Us</div>
-                            <div class="footer-row">FAQ</div>
-                            <div class="footer-row">Advertise with us</div>
+                            <div className="contact">Contact</div>
+                            <div className="footer-row">About Us</div>
+                            <div className="footer-row">FAQ</div>
+                            <div className="footer-row">Advertise with us</div>
                         </div>
-                        <div class="footer-icon">
+                        <div className="footer-icon">
                             <img src="/icons/basket.png" alt='basket'/>
                         </div>              
                     </div>

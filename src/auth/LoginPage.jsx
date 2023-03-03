@@ -2,121 +2,86 @@ import React, { useState } from 'react';
 import './loginPage.css'
 
 function LoginPage({ setIsAuthenticated }) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isRegistered, setIsRegistered] = useState(true);
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        isRegistered: true,
+        firstName: '',
+        lastName: '',
+        confirmPassword: ''
+    });
+      
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const handlePasswordConfirmChange = (event) => {
-        setConfirmPassword(event.target.value);
-    };
-
-    const handleFirstNameChange = (event) => {
-        setFirstName(event.target.value);
-    };
-
-    const handleLastNameChange = (event) => {
-        setLastName(event.target.value);
-    };
-
-    const handleSwitch = () => {
-        setIsRegistered(!isRegistered);
-    };
-
-    const handleLogin = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        // IN FUTURE THIS WILL BE THE API CALL FOR THE JWT TOKEN
-        if(isRegistered) {
-            signInUser()
+        if (formData.isRegistered) {
+          signInUser();
         } else {
-            registerUser()
+          registerUser();
         }
     };
 
     const signInUser = () => {
-        const jwtToken = password
-        console.log(email, password);
-        localStorage.setItem('userEmail', email);
+        const jwtToken = formData.password
+        console.log(formData.email, formData.password);
+        localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
     }
 
     const registerUser = () => {
-        const jwtToken = password
-        console.log(email, firstName, lastName, password, confirmPassword);
-        localStorage.setItem('userEmail', email);
+        const jwtToken = formData.password
+        console.log(formData.email, formData.firstName, formData.lastName, formData.password, formData.confirmPassword);
+        localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
     }
 
     return (
         <div className='form-container'>
-            <form className='form' onSubmit={handleLogin}>
+            <form className='form' onSubmit={handleSubmit}>
                 <h1 className="title">CANTAB</h1>
                 <label className='login-inputs'>
-                    <div className="label-container">
-                        <span className='bold'>Email:</span>
-                    </div>
-                    <div className="input-container">
-                        <input type="email" value={email} onChange={handleEmailChange} required />
-                    </div>
+                    <span className="label-container bold">Email:</span>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                 </label>
-                {!isRegistered && (
-                    <>
-                        <label className='login-inputs' >
-                            <div className="label-container">
-                                <span className='bold'>First Name:</span>
-                            </div>
-                            <div className="input-container">
-                                <input type="text" onChange={handleFirstNameChange} required />
-                            </div>
-                        </label>
-                        <label className='login-inputs'>
-                            <div className="label-container">
-                                <span className='bold'>Last Name:</span>
-                            </div>
-                            <div className="input-container">
-                                <input type="text" onChange={handleLastNameChange} required />
-                            </div>
-                        </label>
-                    </>
-                )}
+                {
+                    !formData.isRegistered && (
+                        <>
+                            <label className='login-inputs' >
+                                <span className="label-container bold">First Name:</span>
+                                <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                            </label>
+                            <label className='login-inputs'>
+                                <span className="label-container bold">Last Name:</span>
+                                <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                            </label>
+                        </>
+                    )
+                }
                 <label className='login-inputs'>
-                    <div className="label-container">
-                        <span className='bold'>Password:</span>
-                    </div>
-                    <div className="input-container">
-                        <input type="password" value={password} onChange={handlePasswordChange} required />
-                    </div>
+                    <span className="label-container bold">Password:</span>
+                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
                 </label>
-                {!isRegistered && (
-                    <>
+                {
+                    !formData.isRegistered && (
                         <label className='login-inputs'>
-                            <div className="label-container">
-                                <span className='bold'>Confirm Password:</span>
-                            </div>
-                            <div className="input-container">
-                                <input type="password" onChange={handlePasswordConfirmChange} required />
-                            </div>
+                            <span className="label-container bold">Confirm Password:</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
                         </label>
-                    </>
-                )}
+                    )
+                }
                 <div className="switch-container">
-                    <span className="switch-text" onClick={handleSwitch}>
-                        {isRegistered ? "Need to register?" : "Already registered?"}
+                    <span className="switch-text" onClick={() => setFormData({ ...formData, isRegistered: !formData.isRegistered })}>
+                        {formData.isRegistered ? "Need to register?" : "Already registered?"}
                     </span>
                 </div>
-                <button type="submit" className="btn">{isRegistered ? 'Login' : 'Register'}</button>
+                <button type="submit" className="btn">{formData.isRegistered ? 'Login' : 'Register'}</button>
             </form>
         </div>
     );
