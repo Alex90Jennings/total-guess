@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
 import Timer from './Timer'; 
@@ -7,7 +7,22 @@ import { groceries } from '../consts/hardcodedcodedData';
 
 function Product(props) {
   const [currentShopIndex, setCurrentShopIndex] = useState(0);
-  const currentProduct = groceries[currentShopIndex]; // update to get the current product object
+  const [timer, setTimer] = useState(6);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    }, 1000);
+
+    if (timer === 0) {
+      handleNextShop();
+      setTimer(6);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [timer]);
+
+  const currentProduct = groceries[currentShopIndex];
   const currentShop = currentProduct.shop;
   const currentDescription = currentProduct.description;
   const currentImage = groceries[currentShopIndex].image;
@@ -20,15 +35,15 @@ function Product(props) {
     setCurrentShopIndex((currentShopIndex - 1 + groceries.length) % groceries.length);
   };
 
-  return (
+ return (
     <div className="main--layout">
       <div className="box box-1">
-        <img src="/icons/ArrowL.png" alt="Arrow Left" className="icon arrow-l" onClick={handlePrevShop} />
+        <div className="arrow-l" onClick={handlePrevShop}></div>
         <h2>{currentShop}</h2>
         <p>{currentDescription}</p>
-        <img src="/icons/ArrowR.png" alt="Arrow Right" className="icon arrow-r" onClick={handleNextShop} />
+        <div className="arrow-r" onClick={handleNextShop}></div>
         <ProductImage currentProduct={groceries[currentShopIndex]} currentImage={currentImage} />
-        <Timer />
+        <Timer timer={timer} />
         <ImageCount currentShopIndex={currentShopIndex} />
       </div>
     </div>
@@ -36,9 +51,3 @@ function Product(props) {
 }
 
 export default Product;
-
-
-
-
-
-
