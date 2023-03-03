@@ -156,9 +156,53 @@ h2 {
     width: 50px;
 }
 
-/* Product */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 
+.input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 60px;
+    width: 150px;
+    height: 180px;
+    background-color: #f18213;
+    margin-right: 10px;
+}
 
+input[type='text'] {
+    width: 150px;
+    height: 155px;
+    font-size: 80px;
+    font-weight: 800;
+    padding: 10px;
+    border: 2px solid #f18213;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 240px;
+    margin-top: 20px;;
+}
+
+.submit-button {
+    width: 200px;
+    height: 80px;
+    font-size: 40px;
+    padding: 10px 20px;
+    background-color: #f18213;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 
 /* Footer */
 
