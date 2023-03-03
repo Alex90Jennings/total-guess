@@ -10,7 +10,7 @@ h2 {
 /* Header */
 
 #header {
-    height: 10vh;
+    height: 8vh;
     padding: 1rem;
     background-color: #0070C0;
     color: #f7f7f7;
@@ -49,7 +49,7 @@ h2 {
 /* Main */
 
 #main {
-    height: 55vh;
+    height: 60vh;
     padding: 1rem;
     background-color: #f7f7f7;
 }
@@ -162,7 +162,7 @@ h2 {
 
 .footer--bottom {
     background-color: #3F3F3F;
-    height: 200px;
+    height: 150px;
     padding-left: 50px;
     padding-right: 50px;
 }
