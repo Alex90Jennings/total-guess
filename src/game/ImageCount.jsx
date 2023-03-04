@@ -6,7 +6,6 @@ function ImageCount(props) {
   const [images, setImages] = useState([ '1.png', ...new Array(9).fill('10.png') ]);
 
   useEffect(() => {
-    // Calculate the current image for each box based on the current shop index
     const newImages = images.map((image, i) => {
       if (currentShopIndex === 0 && i === 0) {
         return '1.png';

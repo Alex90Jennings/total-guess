@@ -100,9 +100,7 @@ function Product(props) {
                         <div className="arrow-r" onClick={handleNextShop}></div>
                         <ProductImage currentProduct={groceries[currentShopIndex]} currentImage={currentImage} />
                         <Timer timer={timer} />
-                        <ImageCount currentShopIndex={currentShopIndex} 
-                        totalAmount={totalAmount} 
-                        />
+                        <ImageCount currentShopIndex={currentShopIndex} totalAmount={totalAmount} />
                     </div>
                     )
                 }
