@@ -95,12 +95,14 @@ function Product(props) {
                         </div>
                     ) : (
                     <div>
-                        <h2>{currentShop}</h2>
-                        <p>{currentDescription}</p>
+                        <h2 className='shop--css'>{currentShop}</h2>
+                        <p className='description--css'>{currentDescription}</p>
                         <div className="arrow-r" onClick={handleNextShop}></div>
                         <ProductImage currentProduct={groceries[currentShopIndex]} currentImage={currentImage} />
                         <Timer timer={timer} />
-                        <ImageCount currentShopIndex={currentShopIndex} totalAmount={totalAmount} />
+                        <ImageCount currentShopIndex={currentShopIndex} 
+                        totalAmount={totalAmount} 
+                        />
                     </div>
                     )
                 }
@@ -110,6 +112,3 @@ function Product(props) {
 }
 
 export default Product;
-
-
-
