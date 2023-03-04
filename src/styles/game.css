@@ -10,7 +10,7 @@ h2 {
 /* Header */
 
 #header {
-    height: 10vh;
+    height: 8vh;
     padding: 1rem;
     background-color: #0070C0;
     color: #f7f7f7;
@@ -49,24 +49,243 @@ h2 {
 /* Main */
 
 #main {
-    height: 55vh;
+    height: 60vh;
     padding: 1rem;
-    overflow-y: scroll;
     background-color: #f7f7f7;
 }
 
 .main--layout {
     display: grid;
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     place-content: center;
-    margin: 50px;
-    }
+}
+
+.arrow-l {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.arrow-l::before {
+    content: '';
+    display: inline-block;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 20px solid #f18213;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+}
+
+.arrow-r {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.arrow-r::before {
+    content: '';
+    display: inline-block;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #f18213;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+
+.shop--css {
+    background-color: #f18213;
+    color: #fff;
+    padding: 10px;
+    border: 2px solid #f18213;
+}
+
+.description--css {
+color: #f18213;
+}
 
 .box {
     border: 2px solid #f18213;
     padding: 20px;
     text-align: center;
-    height: 450px;
-    width: 1300px;
-    margin: 20px;
+    height: 550px;
+    width: 750px;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-row-gap: 20px;
+    position: relative;
+}
+
+.product-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.box h2 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.box p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.box img {
+    max-height: 300px;
+    max-width: 100%;
+}
+
+.box-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer {
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #f18213;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto;
+}
+
+
+.image-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 25px;;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 60px;
+    width: 150px;
+    height: 180px;
+    background-color: #f18213;
+    margin-right: 10px;
+}
+
+input[type='text'] {
+    width: 150px;
+    height: 155px;
+    font-size: 80px;
+    font-weight: 800;
+    padding: 10px;
+    border: 2px solid #f18213;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 240px;
+    margin-top: 20px;;
+}
+
+.submit-button {
+    width: 200px;
+    height: 80px;
+    font-size: 40px;
+    padding: 10px 20px;
+    background-color: #f18213;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+
+#footer {
+    /* height: 10vh; */
+    padding: 1rem;
+}
+
+.footer--layout {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-content: center;
+}
+
+.footer--top {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    width: 1700px;
+    height: 50px;
+    gap: 10px;
+    place-content: center;
+    background-color: #0070C0;
+}
+
+.icon--inst {}
+
+.icon--linked {}
+
+.icon--twitter {}
+
+.icon--facebook {}
+
+.footer--bottom {
+    background-color: #3F3F3F;
+    height: 150px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.footer--list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact {
+    color: #0070C0;
+}
+
+.footer-row {
+    padding: 5px 0;
+    color: #f7f7f7;
+}
+
+.footer-icon {
+    margin: auto 0px;
+    justify-self: end;
+}
+
+.result {
+    margin: 0;
+    font-size: 18px;
+    color: #f00;
 }
