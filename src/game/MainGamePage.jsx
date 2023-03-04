@@ -1,12 +1,9 @@
 import React from 'react';
 import '../styles/game.css'
-import Header from './Header';
-import Footer from './Footer';
 
 function MainGamePage() {
     return (
         <div>
-            <Header />
             <main id="main">
                 <div className="main--layout">
                     <div className="box box-1">Sainsbury's</div>
@@ -20,8 +17,7 @@ function MainGamePage() {
                     <div className="box box-9">MS</div>
                     <div className="box box-10">Lidl</div>
                 </div>
-            </main>
-            <Footer />          
+            </main>          
         </div>
     );
 }

@@ -4,6 +4,8 @@ import MainGamePage from './game/MainGamePage.jsx'
 import GameInstructions from './game/GameInstructions';
 import Modal from 'react-modal';
 import { useState } from 'react';
+import Header from './game/Header';
+import Footer from './game/Footer';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -14,6 +16,7 @@ function App() {
 
     return (
         <div>
+            <Header />
             {
                 startGame && isAuthenticated ? (
                     <MainGamePage />
@@ -28,6 +31,7 @@ function App() {
                     </Modal>
                 )
             }
+            <Footer />
         </div>
     );
 }
