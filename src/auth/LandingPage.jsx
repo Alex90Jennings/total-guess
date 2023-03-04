@@ -8,7 +8,7 @@ function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setSta
     const [showLoginPage, setShowLoginPage] = useState(false)
 
     return (
-        <div className='form-container'>
+        <div className='landing-page'>
             <LandingPageHeader />
             {
                 !showLoginPage && (

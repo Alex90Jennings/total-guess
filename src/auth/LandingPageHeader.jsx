@@ -4,8 +4,16 @@ import './landingPage.css'
 function LandingPageHeader() {
     return (
         <div>
-            <img src="/icons/basket.png" alt="basket" />
-            <h1>Cantab</h1>
+            <div className='three-columns-expand-one-three mt-m'>
+                <div></div>
+                <img className='center-wrapper' src="/icons/basket.png" alt="basket" />
+                <div></div>
+            </div>
+            <div className='three-columns-expand-one-three'>
+                <div></div>
+                <h1>CANTAB</h1>
+                <div></div>
+            </div>
         </div>
     );
 }
