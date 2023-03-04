@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './landingPage.css'
+import '../styles/landingPage.css'
 import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
 import LoginForm from './LoginForm';

@@ -1,3 +1,13 @@
+:root {
+	--primary-colour-blue: #0070C0;
+	--primary-colour-grey: #f0ebf8;
+	--primary-colour-orange: #f18213;
+	--primary-colour-off-white: #f7f7f7;
+  --primary-colour-white: #fff;
+	--primary-colour-blue-hover: #5eeac5;
+	--primary-colour-grey-hover: #303443;
+}
+
 .App {
   text-align: center;
 }

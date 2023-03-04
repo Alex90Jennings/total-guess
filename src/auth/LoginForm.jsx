@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './landingPage.css'
+import '../styles/landingPage.css'
 
 function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
     const [formData, setFormData] = useState({

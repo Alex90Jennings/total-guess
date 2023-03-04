@@ -1,5 +1,5 @@
 import React from 'react';
-import './landingPage.css'
+import '../styles/landingPage.css'
 
 function LandingPageMenu({ setShowLoginPage, setShowModal, setStartGame, isAuthenticated }) {
     const handleStartGameSubmit = () => {
