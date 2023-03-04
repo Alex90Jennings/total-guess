@@ -95,8 +95,8 @@ function Product(props) {
                         </div>
                     ) : (
                     <div>
-                        <h2>{currentShop}</h2>
-                        <p>{currentDescription}</p>
+                        <h2 className='shop--css'>{currentShop}</h2>
+                        <p className='description--css'>{currentDescription}</p>
                         <div className="arrow-r" onClick={handleNextShop}></div>
                         <ProductImage currentProduct={groceries[currentShopIndex]} currentImage={currentImage} />
                         <Timer timer={timer} />
@@ -110,6 +110,3 @@ function Product(props) {
 }
 
 export default Product;
-
-
-
