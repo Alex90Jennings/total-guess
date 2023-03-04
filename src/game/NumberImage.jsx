@@ -12,5 +12,4 @@ function NumberImage(props) {
   return <img src={imagePath} alt={number} />;
 }
 
-
 export default NumberImage;
