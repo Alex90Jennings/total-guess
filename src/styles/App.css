@@ -104,6 +104,10 @@ body::-webkit-scrollbar {
 }
 
 /*GRIDS*/
+.two-columns-expand-one {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
 
 .three-columns-expand-one-three {
   display: grid;
@@ -125,10 +129,26 @@ body::-webkit-scrollbar {
   padding-left: 0;
 }
 
+.pl-m {
+  padding-left: 16px;
+}
+
+.pl-l {
+  padding-left: 24px;
+}
+
+.pr-l {
+  padding-right: 24px;
+}
+
 .mt-m {
   margin-top: 16px;
 }
 
 .mb-m {
   margin-bottom: 16px;
+}
+
+.mb-xxl {
+  margin-bottom: 46px;
 }

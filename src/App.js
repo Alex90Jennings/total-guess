@@ -1,4 +1,5 @@
-import './App.css';
+import './styles/App.css';
+import './styles/modal.css'
 import LandingPage from './auth/LandingPage.jsx'
 import MainGamePage from './game/MainGamePage.jsx'
 import GameInstructions from './game/GameInstructions';
@@ -26,11 +27,11 @@ function App() {
             }
             {
                 showModal && (
-                    <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
+                    <Modal className={'modal'} isOpen={showModal} onRequestClose={handleCloseModal}>
                         <GameInstructions onClose={handleCloseModal}/>
                     </Modal>
                 )
-            }
+            }  
             <Footer />
         </div>
     );
