@@ -2,22 +2,22 @@
   place-items: center;
   border: 2px solid #0070c0;
   margin: 50px auto;
-  max-width: 400px;
+  width: 400px;
   padding: 30px;
 }
 
 .form {
   display: grid;
-  padding: 50px;
   background-color: #fff;
   border-radius: 10px;
   justify-items: center;
   align-items: center;
 }
 
-h1 {
+.landing-page h1 {
   font-size: 3rem;
   color: #0070c0;
+  margin-top: 8px;
 }
 
 .form label {
@@ -40,19 +40,6 @@ h1 {
   border: 1px solid #ccc;
   width: 100%;
   box-sizing: border-box;
-}
-
-.form button[type="submit"] {
-  display: block;
-  margin: 20px auto;
-  width: 120px;
-  padding: 10px;
-  background-color: #0070c0;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
 .form button[type="submit"]:hover {
@@ -82,8 +69,11 @@ h1 {
   margin-top: 8px
 }
 
-#landing-page-menu button {
-  padding: 20px;
+#landing-page-menu button,
+.form button {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 16px;
   font-size: 1rem;
   min-width: 150px;
   border-radius: 10px;
@@ -91,7 +81,13 @@ h1 {
   color: #fff;
 }
 
-.play-btn {
+#landing-page-menu button:hover,
+.form button:hover {
+  background-color: #005693;
+}
+
+.play-btn,
+.login-btn {
   font-weight: bold;
   background-color: #0070c0;
 }

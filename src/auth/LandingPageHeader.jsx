@@ -4,7 +4,7 @@ import './landingPage.css'
 function LandingPageHeader() {
     return (
         <div>
-            <div className='three-columns-expand-one-three mt-m'>
+            <div className='three-columns-expand-one-three'>
                 <div></div>
                 <img className='center-wrapper' src="/icons/basket.png" alt="basket" />
                 <div></div>

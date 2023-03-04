@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './landingPage.css'
 import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
-import LoginPage from './LoginPage';
+import LoginForm from './LoginForm';
 
 function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setStartGame }) {
     const [showLoginPage, setShowLoginPage] = useState(false)
@@ -17,7 +17,7 @@ function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setSta
             }
             {
                 showLoginPage && (
-                    <LoginPage setIsAuthenticated={setIsAuthenticated} setShowLoginPage={setShowLoginPage}/>
+                    <LoginForm setIsAuthenticated={setIsAuthenticated} setShowLoginPage={setShowLoginPage}/>
                 )
             }
         </div>
