@@ -12,7 +12,13 @@ function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setSta
             <LandingPageHeader />
             {
                 !showLoginPage && (
-                    <LandingPageMenu isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setShowLoginPage={setShowLoginPage} setShowModal={setShowModal} setStartGame={setStartGame}/> 
+                    <LandingPageMenu 
+                        isAuthenticated={isAuthenticated} 
+                        setIsAuthenticated={setIsAuthenticated} 
+                        setShowLoginPage={setShowLoginPage} 
+                        setShowModal={setShowModal} 
+                        setStartGame={setStartGame}
+                    /> 
                 )
             }
             {

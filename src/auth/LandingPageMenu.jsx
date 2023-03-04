@@ -1,13 +1,18 @@
 import React from 'react';
 import '../styles/landingPage.css'
 
-function LandingPageMenu({ setShowLoginPage, setShowModal, setStartGame, isAuthenticated }) {
+function LandingPageMenu({ setShowLoginPage, setShowModal, setStartGame, setIsAuthenticated, isAuthenticated }) {
     const handleStartGameSubmit = () => {
         if(isAuthenticated) {
             setStartGame(true)
         } else {
             setShowLoginPage(true)
         }
+    }
+
+    const handlePracticeGameSubmit = () => {
+        setIsAuthenticated(true)
+        setStartGame(true)
     }
 
     return (
@@ -21,6 +26,11 @@ function LandingPageMenu({ setShowLoginPage, setShowModal, setStartGame, isAuthe
                 <li className='three-columns-expand-one-three mb-m'>
                     <div></div>
                     <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
+                    <div></div>
+                </li>
+                <li className='three-columns-expand-one-three mb-m'>
+                    <div></div>
+                    <button className='landing-page-menu-btn play-btn' onClick={handlePracticeGameSubmit}>Practice</button>
                     <div></div>
                 </li>
                 <li className='three-columns-expand-one-three mb-m'>
