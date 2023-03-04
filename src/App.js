@@ -15,7 +15,7 @@ function App() {
     const handleCloseModal = () => setShowModal(false);
 
     return (
-        <div>
+        <div className='app'>
             <Header />
             {
                 startGame && isAuthenticated ? (
