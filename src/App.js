@@ -1,5 +1,5 @@
 import './styles/App.css';
-import './styles/modal.css'
+import './styles/modal.css';
 import LandingPage from './auth/LandingPage.jsx'
 import MainGamePage from './game/MainGamePage.jsx'
 import GameInstructions from './game/GameInstructions';

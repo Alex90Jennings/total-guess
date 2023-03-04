@@ -225,65 +225,6 @@ input[type='text'] {
     margin-bottom: 20px;
 }
 
-/* Footer */
-
-#footer {
-    /* height: 10vh; */
-    padding: 1rem;
-}
-
-.footer--layout {
-    display: grid;
-    grid-template-rows: auto auto;
-    justify-content: center;
-}
-
-.footer--top {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    width: 1700px;
-    height: 50px;
-    gap: 10px;
-    place-content: center;
-    background-color: #0070C0;
-}
-
-.icon--inst {}
-
-.icon--linked {}
-
-.icon--twitter {}
-
-.icon--facebook {}
-
-.footer--bottom {
-    background-color: #3F3F3F;
-    height: 150px;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-.footer--list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact {
-    color: #0070C0;
-}
-
-.footer-row {
-    padding: 5px 0;
-    color: #f7f7f7;
-}
-
-.footer-icon {
-    margin: auto 0px;
-    justify-self: end;
-}
-
 .result {
     margin: 0;
     font-size: 18px;
