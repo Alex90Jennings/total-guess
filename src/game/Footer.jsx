@@ -8,26 +8,26 @@ function Footer() {
                     <div></div>
                     <div className="icon--inst">
                         <div>
-                            <img src="/icons/image1insta.png" alt="instagram icon"
+                            <img src="/icons/insta.png" alt="instagram icon"
                             height="35px" width="35px"
                             />
                         </div>
                     </div>
                     <div className="icon--linked">
                             <div>
-                            <img src={'icons/image2linkedin.png'} alt="linkedin icon"
+                            <img src={'icons/linkedin.png'} alt="linkedin icon"
                             height="35px" width="35px"/>
                         </div>
                     </div>
                     <div className="icon--twitter">
                         <div>
-                            <img src={'icons/image3twitter.png'} alt="twitter icon"
+                            <img src={'icons/twitter.png'} alt="twitter icon"
                             height="35px" width="35px"/>
                         </div>
                     </div>
                     <div className="icon--facebook">
                         <div>
-                            <img src={'icons/image4facebook.png'} alt="facebook icon"
+                            <img src={'icons/facebook.png'} alt="facebook icon"
                             height="35px" width="35px"/>
                         </div>
                     </div>
