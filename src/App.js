@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import { useState } from 'react';
 import Header from './game/Header';
 import Footer from './game/Footer';
+import ContactUs from './ContactUs';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -16,23 +17,26 @@ function App() {
     const handleCloseModal = () => setShowModal(false);
 
     return (
-        <div className='app'>
-            <Header />
-            {
-                startGame && isAuthenticated ? (
-                    <MainGamePage />
-                ) : (
-                    <LandingPage isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setShowModal={setShowModal} setStartGame={setStartGame} />
-                )
-            }
-            {
-                showModal && (
-                    <Modal className={'modal'} isOpen={showModal} onRequestClose={handleCloseModal}>
-                        <GameInstructions onClose={handleCloseModal}/>
-                    </Modal>
-                )
-            }  
-            <Footer />
+        <div>
+            <div className='app'>
+                <Header />
+                {
+                    startGame && isAuthenticated ? (
+                        <MainGamePage />
+                    ) : (
+                        <LandingPage isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setShowModal={setShowModal} setStartGame={setStartGame} />
+                    )
+                }
+                {
+                    showModal && (
+                        <Modal className={'modal'} isOpen={showModal} onRequestClose={handleCloseModal}>
+                            <GameInstructions onClose={handleCloseModal}/>
+                        </Modal>
+                    )
+                }  
+                <Footer />
+            </div>
+            <ContactUs />
         </div>
     );
 }

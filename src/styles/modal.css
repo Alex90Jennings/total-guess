@@ -3,12 +3,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #0070c0;
-    color: #fff;
+    color: #0070c0;
+    background-color: #fff;
     width: 500px;
     max-height: 80vh;
-    overflow-y: auto; 
+    overflow-y: auto;
     border-radius: 24px;
+    border: 2px solid #0070c0;
 }
 
 .close-btn {

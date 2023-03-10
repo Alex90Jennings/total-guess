@@ -3,9 +3,7 @@ body {
 }
 
 h1,
-h2 {
-
-}
+h2 {}
 
 /* Header */
 
@@ -227,7 +225,7 @@ h2 {
     margin-right: 10px;
 }
 
-input[type='text'] {
+.box input[type='text'] {
     width: 150px;
     height: 155px;
     font-size: 80px;
@@ -239,7 +237,7 @@ input[type='text'] {
     text-align: center;
     width: 100%;
     max-width: 240px;
-    margin-top: 20px;;
+    margin-top: 20px;
 }
 
 .submit-button {
