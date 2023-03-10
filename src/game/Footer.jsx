@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <footer className='footer--layout three-rows-expand-one-three'>
+        <footer className='footer--layout'>
             <div className="footer--top">
                 <div></div>
                 <div className="icon--inst">
