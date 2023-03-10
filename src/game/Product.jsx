@@ -53,6 +53,7 @@ function Product(props) {
     return (
   <div className="main--layout">
     <div className="arrow-l" onClick={handlePrevShop}></div>
+    <div className="box">
     <div className="content">
       {showInput ? (
         <div className="input-container">
@@ -99,6 +100,7 @@ function Product(props) {
         </div>
       )}
     </div>
+  </div>
     <div className="arrow-r" onClick={handleNextShop}></div>
   </div>
 );
