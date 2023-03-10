@@ -1,9 +1,10 @@
 .landing-page {
   place-items: center;
   border: 2px solid #0070c0;
-  margin: 50px auto;
+  margin: auto;
   width: 400px;
   padding: 30px;
+  height: 600px;
 }
 
 .form {
@@ -11,25 +12,17 @@
   background-color: #fff;
   border-radius: 10px;
   justify-items: center;
-  align-items: center;
 }
 
 .landing-page h1 {
   font-size: 3rem;
   color: #0070c0;
   margin-top: 8px;
+  height: 80%;
 }
 
 .form label {
   margin-bottom: 20px;
-}
-
-.login-inputs {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  grid-template-rows: auto;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
 .form input[type="email"],
@@ -40,6 +33,7 @@
   border: 1px solid #ccc;
   width: 100%;
   box-sizing: border-box;
+  height: 24px
 }
 
 .form button[type="submit"]:hover {
@@ -63,10 +57,10 @@
   color: #004d99;
 }
 
-#landing-page-menu h2 {
+#login-header h2 {
   font-size: 2.4rem;
   text-align: center;
-  margin-top: 8px
+  margin-top: 8px;
 }
 
 #landing-page-menu button,

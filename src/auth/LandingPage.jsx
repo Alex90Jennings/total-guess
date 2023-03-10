@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../styles/landingPage.css'
 import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
@@ -6,10 +6,14 @@ import LoginForm from './LoginForm';
 
 function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setStartGame }) {
     const [showLoginPage, setShowLoginPage] = useState(false)
+    const [hideHeaders, setHideHeaders] = useState(false)
 
     return (
-        <div className='landing-page'>
-            <LandingPageHeader />
+        <div className='landing-page three-rows-expand-two'>
+            <LandingPageHeader 
+                hideHeaders={hideHeaders}
+            />
+            <div></div>
             {
                 !showLoginPage && (
                     <LandingPageMenu 
@@ -23,7 +27,12 @@ function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setSta
             }
             {
                 showLoginPage && (
-                    <LoginForm setIsAuthenticated={setIsAuthenticated} setShowLoginPage={setShowLoginPage}/>
+                    <LoginForm 
+                        setIsAuthenticated={setIsAuthenticated} 
+                        setShowLoginPage={setShowLoginPage}
+                        hideHeaders={hideHeaders}
+                        setHideHeaders={setHideHeaders}
+                    />
                 )
             }
         </div>

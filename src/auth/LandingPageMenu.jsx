@@ -17,11 +17,7 @@ function LandingPageMenu({ setShowLoginPage, setShowModal, setStartGame, setIsAu
 
     return (
         <div id='landing-page-menu'>
-            <div className='three-columns-expand-one-three'>
-                <div></div>
-                <h2>Guess the total cost of the groceries</h2>
-                <div></div>
-            </div>
+            <div></div>
             <ul className='list-reset pl-none'>
                 <li className='three-columns-expand-one-three mb-m'>
                     <div></div>

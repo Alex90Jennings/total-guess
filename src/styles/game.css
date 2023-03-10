@@ -42,7 +42,9 @@ h2 {
     /* font-size: 50px; */
 }
 
-.icon1, .icon2, .icon3 {
+.icon1,
+.icon2,
+.icon3 {
     padding: 5px;
 }
 
@@ -110,7 +112,7 @@ h2 {
 }
 
 .description--css {
-color: #f18213;
+    color: #f18213;
 }
 
 .box {
@@ -174,7 +176,8 @@ color: #f18213;
     height: 50px;
     width: 100%;
     max-width: 600px;
-    margin-top: 25px;;
+    margin-top: 25px;
+    ;
 }
 
 .input-container {
@@ -197,7 +200,7 @@ color: #f18213;
     margin-right: 10px;
 }
 
-input[type='text'] {
+.box input[type='text'] {
     width: 150px;
     height: 155px;
     font-size: 80px;
@@ -209,7 +212,7 @@ input[type='text'] {
     text-align: center;
     width: 100%;
     max-width: 240px;
-    margin-top: 20px;;
+    margin-top: 20px;
 }
 
 .submit-button {
