@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
 // import Timer from './Timer';
@@ -7,9 +7,9 @@ import { groceries } from '../consts/hardcodedcodedData';
 
 function Product(props) {
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
-    const [timer, setTimer] = useState(6);
-    const [showInput, setShowInput] = useState(false);
-    const [totalAmount, setTotalAmount] = useState(0);
+    // const [timer, setTimer] = useState(6);
+    const showInput = false;
+    const totalAmount = 0;
     const [answer, setAnswer] = useState(null);
     const currentProduct = groceries[currentShopIndex];
     const currentShop = currentProduct.shop;
