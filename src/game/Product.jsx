@@ -32,23 +32,22 @@ function Product(props) {
         setCurrentShopIndex((currentShopIndex - 1 + groceries.length) % groceries.length);
     }, [currentShopIndex]);
 
-    useEffect(() => {
-        const total = groceries.reduce((acc, curr) => acc + curr.price, 0);
-        setTotalAmount(total);
-        const intervalId = setInterval(() => {
-            setTimer((prevTimer) => prevTimer - 1);
-        }, 1000);
+    // useEffect(() => {
+    //     const total = groceries.reduce((acc, curr) => acc + curr.price, 0);
+    //     setTotalAmount(total);
+    //     const intervalId = setInterval(() => {
+    //         setTimer((prevTimer) => prevTimer - 1);
+    //     }, 1000);
 
-        if (timer === 0 && currentShopIndex === groceries.length - 1) {
-            setShowInput(true);
-        } else if (timer === 0) {
-            handleNextShop();
-            setTimer(6);
-        }
+    //     if (timer === 0 && currentShopIndex === groceries.length - 1) {
+    //         setShowInput(true);
+    //     } else if (timer === 0) {
+    //         handleNextShop();
+    //         setTimer(6);
+    //     }
 
-        return () => clearInterval(intervalId);
-    }, [timer, currentShopIndex, handleNextShop]);
-
+    //     return () => clearInterval(intervalId);
+    // }, [timer, currentShopIndex, handleNextShop]);
 
     return (
   <div className="main--layout">

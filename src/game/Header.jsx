@@ -12,7 +12,7 @@ function Header() {
         <div className="icon1">
           <div>
             <img
-              src={"/icons/i icon.png"}
+              src={"/icons/iicon.png"}
               alt="i icon"
               height="50px"
               width="50px"
@@ -22,7 +22,7 @@ function Header() {
         <div className="icon2">
           <div>
             <img
-              src={"/icons/settings icon.png"}
+              src={"/icons/settingsicon.png"}
               alt="settings icon"
               height="50px"
               width="50px"
@@ -32,7 +32,7 @@ function Header() {
         <div className="icon3">
           <div>
             <img
-              src={"/icons/fav icon.png"}
+              src={"/icons/favicon.png"}
               alt="fav icon"
               height="50px"
               width="50px"
