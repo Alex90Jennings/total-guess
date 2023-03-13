@@ -142,6 +142,7 @@ h2 {
 }
 
 .box {
+    margin-top: 10px;
     border: 2px solid #f18213;
     height: 550px;
     width: 400px;
