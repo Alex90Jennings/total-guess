@@ -54,8 +54,8 @@ function Product(props) {
           </div>
         </div>
       <div className="buttons">
-        <button onClick={() => handleSwipe('right')}>Next Product!</button>
-        <button onClick={() => handleSwipe('left')}>Previous Product!</button>
+        <button onClick={() => handleSwipe('right')}>Previous Product!</button>
+        <button onClick={() => handleSwipe('left')}>Next Product!</button>
       </div>
       </TinderCard>
     </div>
