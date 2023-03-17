@@ -30,34 +30,38 @@ function Product(props) {
   );
 
   return (
-    <div className="main--layout">
-      <TinderCard
-        className="tinder--card"
-        preventSwipe={['up', 'down']}
-        onSwipe={(dir) => handleSwipe(dir)}
-        key={currentShopIndex}
-      >
-        <div className="box">
-          <div className="content">
-            <div>
-              <h2 className="shop--css">{currentShop}</h2>
-              <p className="description--css">{currentDescription}</p>
-              <ProductImage
-                currentProduct={groceries[currentShopIndex]}
-                currentImage={currentImage}
-              />
-              <ImageCount
-                currentShopIndex={currentShopIndex}
-                totalAmount={totalAmount}
-              />
+    <div className='three-rows-expand-one-three'>
+      <div></div>
+        <div className="main--layout">
+          <TinderCard
+            className="tinder--card"
+            preventSwipe={['up', 'down']}
+            onSwipe={(dir) => handleSwipe(dir)}
+            key={currentShopIndex}
+          >
+            <div className="box">
+              <div className="content">
+                <div>
+                  <h2 className="shop--css">{currentShop}</h2>
+                  <p className="description--css">{currentDescription}</p>
+                  <ProductImage
+                    currentProduct={groceries[currentShopIndex]}
+                    currentImage={currentImage}
+                  />
+                  <ImageCount
+                    currentShopIndex={currentShopIndex}
+                    totalAmount={totalAmount}
+                  />
+                </div>
+              </div>
             </div>
+          <div className="buttons">
+            <button onClick={() => handleSwipe('right')}>Previous Product!</button>
+            <button onClick={() => handleSwipe('left')}>Next Product!</button>
           </div>
+          </TinderCard>
         </div>
-      <div className="buttons">
-        <button onClick={() => handleSwipe('right')}>Previous Product!</button>
-        <button onClick={() => handleSwipe('left')}>Next Product!</button>
-      </div>
-      </TinderCard>
+      <div></div>
     </div>
   );
 }
