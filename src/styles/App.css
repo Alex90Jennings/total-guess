@@ -171,6 +171,10 @@ body::-webkit-scrollbar {
   padding-right: 24px;
 }
 
+.pd-m {
+  padding: 16px;
+}
+
 .mt-m {
   margin-top: 16px;
 }
@@ -187,6 +191,6 @@ body::-webkit-scrollbar {
   margin-top: 8px;
 }
 
-.pd-m {
-  padding: 16px;
+.mg-m {
+  margin: 16px;
 }

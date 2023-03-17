@@ -25,7 +25,7 @@ function ImageCount(props) {
   return (
     <div className='three-columns-expand-one-three'>
       <div></div>
-      <div className="image-counter mb-m">
+      <div className="image-counter mg-m">
         {numberImages.map((image, i) => (
           <div key={i} className="number-box">
             <img src={`/Numbers/${image}`} alt={`${i + 1}`} />
