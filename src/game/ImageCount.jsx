@@ -23,12 +23,16 @@ function ImageCount(props) {
   }, [currentShopIndex]);
 
   return (
-    <div className="image-counter">
-      {numberImages.map((image, i) => (
-        <div key={i} className="number-box">
-          <img src={`/Numbers/${image}`} alt={`${i + 1}`} />
-        </div>
-      ))}
+    <div className='three-columns-expand-one-three'>
+      <div></div>
+      <div className="image-counter mb-m">
+        {numberImages.map((image, i) => (
+          <div key={i} className="number-box">
+            <img src={`/Numbers/${image}`} alt={`${i + 1}`} />
+          </div>
+        ))}
+      </div>
+      <div></div>
     </div>
   );
 }

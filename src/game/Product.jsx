@@ -39,13 +39,11 @@ function Product(props) {
             onSwipe={(dir) => handleSwipe(dir)}
             key={currentShopIndex}
           >
-            <div className="box">
-              <div className="content">
+            <div className="box content">
                 <div>
                   <h2 className="shop--css">{currentShop}</h2>
-                  <p className="description--css">{currentDescription}</p>
+                  <p className="description--css mt-s">{currentDescription}</p>
                   <ProductImage
-                    currentProduct={groceries[currentShopIndex]}
                     currentImage={currentImage}
                   />
                   <ImageCount
@@ -53,7 +51,6 @@ function Product(props) {
                     totalAmount={totalAmount}
                   />
                 </div>
-              </div>
             </div>
           <div className="buttons">
             <button onClick={() => handleSwipe('right')}>Previous Product!</button>

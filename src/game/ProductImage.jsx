@@ -1,11 +1,15 @@
 import React from 'react';
 import '../styles/game.css';
 
-function ProductImage({ currentProduct, currentImage }) {
+function ProductImage({ currentImage }) {
   const imagePath = currentImage;
 
   return (
-    <img src={imagePath} alt="Product" className="product-image" />
+    <div className='three-columns-expand-one-three'>
+      <div></div>
+      <img src={imagePath} alt="product" className="product-image pd-m" />
+      <div></div>
+    </div>
   );
 }
 

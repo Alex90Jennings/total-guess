@@ -182,3 +182,11 @@ body::-webkit-scrollbar {
 .mb-xxl {
   margin-bottom: 46px;
 }
+
+.mt-s {
+  margin-top: 8px;
+}
+
+.pd-m {
+  padding: 16px;
+}
