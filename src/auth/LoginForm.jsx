@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../styles/landingPage.css'
 
-function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
+function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideHeaders}) {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -10,8 +10,6 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
         lastName: '',
         confirmPassword: ''
     });
-      
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -28,7 +26,6 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
 
     const signInUser = () => {
         const jwtToken = formData.password
-        console.log(formData.email, formData.password);
         localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
@@ -37,16 +34,20 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
 
     const registerUser = () => {
         const jwtToken = formData.password
-        console.log(formData.email, formData.firstName, formData.lastName, formData.password, formData.confirmPassword);
         localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('jwtToken', jwtToken);
         setIsAuthenticated(true);
         setShowLoginPage(false);
     }
 
+    const handleIsRegisteredClick = () => {
+        setHideHeaders(!hideHeaders)
+        setFormData({ ...formData, isRegistered: !formData.isRegistered })
+    }
+
     return (
         <div className='form'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={`${formData.isRegistered ? 'five-rows-expand-three' : 'eight-rows-expand-six'}`}>
                 <label>
                     <div className='three-columns-expand-one-three'>
                         <div></div>
@@ -57,24 +58,26 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
                 </label>
                 {
                     !formData.isRegistered && (
-                        <>
-                            <label>
-                                <div className='three-columns-expand-one-three'>
-                                    <div></div>
-                                    <span className="label-container bold">First Name:</span>
-                                    <div></div>
-                                </div>
-                                <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                            </label>
-                            <label>
-                                <div className='three-columns-expand-one-three'>
-                                    <div></div>
-                                    <span className="label-container bold">Last Name:</span>
-                                    <div></div>
-                                </div>
-                                <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                            </label>
-                        </>
+                        <label>
+                            <div className='three-columns-expand-one-three'>
+                                <div></div>
+                                <span className="label-container bold">First Name:</span>
+                                <div></div>
+                            </div>
+                            <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                        </label>
+                    )
+                }
+                {
+                    !formData.isRegistered && (
+                        <label>
+                            <div className='three-columns-expand-one-three'>
+                                <div></div>
+                                <span className="label-container bold">Last Name:</span>
+                                <div></div>
+                            </div>
+                            <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                        </label>
                     )
                 }
                 <label>
@@ -97,8 +100,9 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
                         </label>
                     )
                 }
+                <div></div>
                 <div className="switch-container">
-                    <span className="switch-text" onClick={() => setFormData({ ...formData, isRegistered: !formData.isRegistered })}>
+                    <span className="switch-text" onClick={handleIsRegisteredClick}>
                         {formData.isRegistered ? "Need to register?" : "Already registered?"}
                     </span>
                 </div>
@@ -109,9 +113,9 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage }) {
                 </div>
             </form>
             <div className='three-columns-expand-one-three mt-m'>
-                    <div></div>
-                    <button className="other-btn" onClick={() => setShowLoginPage(false)}>Return to menu</button>
-                    <div></div>
+                <div></div>
+                <button className="other-btn" onClick={() => setShowLoginPage(false)}>Return to menu</button>
+                <div></div>
             </div>
         </div>
     );
