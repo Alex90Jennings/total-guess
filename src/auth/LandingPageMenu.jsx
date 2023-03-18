@@ -1,18 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css'
 
-function LandingPageMenu({ setShowLoginPage, setShowModal, setStartGame, setIsAuthenticated, isAuthenticated }) {
+function LandingPageMenu({ setShowLoginPage, setShowModal, setIsAuthenticated, isAuthenticated }) {
+    const navigate = useNavigate();
+
     const handleStartGameSubmit = () => {
         if(isAuthenticated) {
-            setStartGame(true)
+            navigate('/play');
         } else {
-            setShowLoginPage(true)
+            setShowLoginPage(true);
         }
     }
 
     const handlePracticeGameSubmit = () => {
-        setIsAuthenticated(true)
-        setStartGame(true)
+        setIsAuthenticated(true);
+        navigate('/play');
     }
 
     return (
