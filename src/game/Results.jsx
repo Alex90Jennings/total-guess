@@ -3,25 +3,33 @@ import '../styles/game.css';
 
 function Results({ guess }) {
     const correctPrice = 45.65
-    const [error, setError] = useState()
-    const [percentageError, setPercentageError] = useState()
+    const [error, setError] = useState({
+        difference: undefined,
+        percentageError: undefined
+    })
 
     useEffect(() => {
         if(correctPrice > guess) {
             const difference = correctPrice - guess
             const percentage = (difference / correctPrice) * 100
-            setError(difference)
-            setPercentageError(percentage)
+            setError({
+                difference: difference,
+                percentageError: percentage
+            })
         }
         if(correctPrice < guess) {
             const difference = guess - correctPrice
             const percentage = (difference / correctPrice) * 100
-            setError(difference)
-            setPercentageError(percentage)
+            setError({
+                difference: difference,
+                percentageError: percentage
+            })
         }
         if(correctPrice === guess) {
-            setError(0)
-            setPercentageError(0)
+            setError({
+                difference: 0,
+                percentageError: 0
+            })
         }
     }, [guess]);
     
@@ -33,18 +41,18 @@ function Results({ guess }) {
                 </div>
                 <div className="guess-results">
                     <div className="guessed-box">£</div>
-                    <p>£{correctPrice.toFixed(2)}</p>
+                    <p>£{correctPrice?.toFixed(2)}</p>
                 </div>
                 <div className="error-results">
                     <div className="error-box">ERROR</div>
-                    <p>£{error.toFixed(2)}</p>
+                    <p>£{error.difference?.toFixed(2)}</p>
                 </div>
                 <div className="percentile-results">
                     <div className="percentile-box">PERCENTILE</div>
-                    <p>{percentageError.toFixed(0)}%</p>
+                    <p>{error.percentageError?.toFixed(0)}%</p>
                 </div>
                 <div className="statistics-results">
-                    <a className='statistics-button-styling' href="/results">Statistics</a>
+                    <a className='statistics-button-styling' href="/statistics">Statistics</a>
                 </div>
                 <div className="share-results">
                     <a className='share-button-styling' href="/share">Share</a>
