@@ -39,36 +39,36 @@ function Product({ setReadyToSubmit }) {
         <div className='three-rows-expand-one-three'>
             <div></div>
                 <div className="main--layout">
-                <TinderCard
-                    className="tinder--card"
-                    preventSwipe={['up', 'down']}
-                    onSwipe={(dir) => handleSwipe(dir)}
-                    key={currentShopIndex}
-                >
-                    <div className="box content">
-                        <div>
-                        <h2 className="shop--css">{currentShop}</h2>
-                        <p className="description--css mt-s">{currentDescription}</p>
-                        <ProductImage
-                            currentImage={currentImage}
-                        />
-                        <ImageCount
-                            currentShopIndex={currentShopIndex}
-                            totalAmount={totalAmount}
-                        />
+                    <TinderCard
+                        className="tinder--card"
+                        preventSwipe={['up', 'down']}
+                        onSwipe={(dir) => handleSwipe(dir)}
+                        key={currentShopIndex}
+                    >
+                        <div className="box content">
+                            <div>
+                            <h2 className="shop--css">{currentShop}</h2>
+                                <p className="description--css mt-s">{currentDescription}</p>
+                                <ProductImage
+                                    currentImage={currentImage}
+                                />
+                                <ImageCount
+                                    currentShopIndex={currentShopIndex}
+                                    totalAmount={totalAmount}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="buttons">
-                    <button onClick={() => handleSwipe('right')}>Previous Product!</button>
-                    {
-                        isLastProduct ? (
-                            <button onClick={handleSubmit}>Submit Guess</button>
-                        ) : (
-                            <button onClick={() => handleSwipe('left')}>Next Product!</button>
-                        )
-                    }
-                    </div>
-                </TinderCard>
+                        <div className="buttons">
+                            <button onClick={() => handleSwipe('right')}>Previous Product!</button>
+                            {
+                                isLastProduct ? (
+                                    <button onClick={handleSubmit}>Submit Guess</button>
+                                ) : (
+                                    <button onClick={() => handleSwipe('left')}>Next Product!</button>
+                                )
+                            }
+                        </div>
+                    </TinderCard>
                 </div>
             <div></div>
         </div>
