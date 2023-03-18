@@ -4,7 +4,7 @@ import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
 import LoginForm from './LoginForm';
 
-function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setStartGame }) {
+function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal }) {
     const [showLoginPage, setShowLoginPage] = useState(false)
     const [hideHeaders, setHideHeaders] = useState(false)
 
@@ -21,7 +21,6 @@ function LandingPage({ isAuthenticated, setIsAuthenticated, setShowModal, setSta
                         setIsAuthenticated={setIsAuthenticated} 
                         setShowLoginPage={setShowLoginPage} 
                         setShowModal={setShowModal} 
-                        setStartGame={setStartGame}
                     /> 
                 )
             }

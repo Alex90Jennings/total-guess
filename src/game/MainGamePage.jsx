@@ -1,13 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/game.css'
 import Product from './Product';
+import Submit from './Submit'
 
 
-function MainGamePage() {
+function MainGamePage({ setGuess }) {
+    const [readyToSubmit, setReadyToSubmit] = useState(false)
+
     return (
         <main id="main">
-            <Product />
+            {
+                readyToSubmit ?
+                    <Submit setGuess={setGuess}/> :
+                    <Product setReadyToSubmit={setReadyToSubmit}/>
+            }
         </main>        
     );
 }
