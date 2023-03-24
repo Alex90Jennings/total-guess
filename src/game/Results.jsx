@@ -45,11 +45,11 @@ function Results({ guess }) {
                 </div>
                 <div className="error-results">
                     <div className="error-box">ERROR</div>
-                    <p>£{error.difference?.toFixed(2)}</p>
+                    <p>{error.difference?.toFixed(2)}1.3%</p>
                 </div>
                 <div className="percentile-results">
-                    <div className="percentile-box">PERCENTILE</div>
-                    <p>{error.percentageError?.toFixed(0)}%</p>
+                    <div className="percentile-box">RANK</div>
+                    <p>{error.percentageError?.toFixed(0)}5</p>
                 </div>
                 <div className="statistics-results">
                     <a className='statistics-button-styling' href="/statistics">Statistics</a>
