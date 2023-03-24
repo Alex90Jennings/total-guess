@@ -270,9 +270,10 @@ h2 {}
 
 .main--layout--submit {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 83vh;
+    height: 90%;
 }
 
 .h1-submit {
@@ -301,12 +302,24 @@ h2 {}
     text-align: center;
 }
 
+.blue-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
 .guess-amount>.blue-box {
     background-color: #0070c0;
     color: white;
     font-size: 4rem;
     height: 100px;
-    width: 120px;    
+    width: 120px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -318,7 +331,7 @@ h2 {}
     justify-content: center;
     align-items: center;
     background-color: #0070c0;
-    color: #fff;
+    color: #ffffff;
     height: 100px;
     width: 300px;
     border-radius: 8%;
@@ -332,9 +345,11 @@ h2 {}
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F7F7F7;
+    background-color: #0070c0;
     padding: 0;
+    margin-top: 30px;
 }
+
 /* Results Section */
 
 .box-results {
@@ -391,14 +406,24 @@ h2 {}
     margin-bottom: 5px;
 }
 
-.guess-results>input {
-    height: 94px;
+.guess-results>p {
+    height: 96px;
     width: 150px;
     border-color: #0070c0;
     color: black;
     font-size: 2.5rem;
     justify-content: center;
     text-align: center;
+    margin: 0;
+    border: 2px solid #0070c0;
+}
+
+.guess-results p,
+.error-results p,
+.percentile-results p {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 .guess-results>.guessed-box {
@@ -412,6 +437,7 @@ h2 {}
     justify-content: center;
     align-items: center;
 }
+
 .error-results {
     display: flex;
     justify-content: center;
@@ -421,14 +447,16 @@ h2 {}
     margin-bottom: 5px;
 }
 
-.error-results>input {
-    height: 94px;
+.error-results>p {
+    height: 96px;
     width: 150px;
     border-color: #0070c0;
     color: black;
     font-size: 2.5rem;
     justify-content: center;
     text-align: center;
+    margin: 0;
+    border: 2px solid #0070c0;
 }
 
 .error-results>.error-box {
@@ -451,14 +479,16 @@ h2 {}
     grid-column: 1;
 }
 
-.percentile-results>input {
-    height: 94px;
+.percentile-results>p {
+    height: 96px;
     width: 150px;
     border-color: #0070c0;
     color: black;
     font-size: 2.5rem;
     justify-content: center;
     text-align: center;
+    margin: 0;
+    border: 2px solid #0070c0;
 }
 
 .percentile-results>.percentile-box {
@@ -487,11 +517,11 @@ h2 {}
     text-align: center;
     text-decoration: none;
 }
+
 .statistics-results {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F7F7F7;
     padding: 0;
 }
 
@@ -514,7 +544,6 @@ h2 {}
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F7F7F7;
     padding: 0;
 }
 
@@ -537,6 +566,5 @@ h2 {}
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F7F7F7;
     padding: 0;
 }
