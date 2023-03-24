@@ -8,7 +8,7 @@ function Share() {
         <div className="box-share">
           <h1 className="h1-share">Share</h1>
           <div className="buttons-share-container">
-            <img src="/ShareImages/email.svg" alt="Email Button" className="email-button share-image" />
+            <img src="/ShareImages/emailbutton.svg" alt="Email Button" className="email-button share-image" />
             <img src="/ShareImages/instabutton.svg" alt="Instagram Button" className="instabutton share-image" />
             <img src="/ShareImages/facebookbutton.svg" alt="Facebook Button" className="facebook-button share-image" />
             <img src="/ShareImages/whatsappbutton.svg" alt="Whatsapp Button" className="whatsapp-button share-image" />

@@ -6,9 +6,8 @@
 }
 
 .box-share {
-    margin-top: 10px;
     border: 2px solid #0070c0;
-    height: 700px;
+    height: 740px;
     width: 550px;
     align-items: center;
     text-align: center;
@@ -19,49 +18,55 @@
     text-align: left !important;
     margin-left: 20px;
     font-size: 3rem;
+    margin-bottom: 10px;
 }
 
 .share-image {
     display: block;
     margin: 0 auto;
-    height: 80px;
-    width: 80px;
 }
 
 .buttons-share-container {
     display: grid;
     grid-template-rows: repeat(7, 1fr);
-    gap: 2px;
 }
 
 .email-button {
-    height: 75px;
+    height: 90px;
     width: 300px;
 }
 
 .instabutton {
-    height: 75px;
+    height: 90px;
     width: 300px;
 }
 
 .facebook-button {
-    height: 80px;
-    width: 250px;
+    height: 60px;
+    width: 195px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .whatsapp-button {
-    height: 80px;
-    width: 250px;
+    height: 60px;
+    width: 195px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .twitter-button {
-    height: 80px;
-    width: 250px;
+    height: 60px;
+    width: 195px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .reddit-button {
-    height: 80px;
-    width: 250px;
+    height: 60px;
+    width: 195px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .feedback-button-share {
@@ -70,13 +75,13 @@
     align-items: center;
     background-color: #262829;
     color: #fff;
-    height: 75px;
-    width: 200px;
     border-radius: 8%;
     font-size: 2rem;
     margin: 0 auto;
     text-align: center;
     text-decoration: none;
-    height: 80px;
-    width: 250px;
+    height: 60px;
+    width: 195px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
