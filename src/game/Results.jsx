@@ -11,9 +11,13 @@ function Results() {
   useEffect(() => {
     let difference;
     const numericGuess = parseFloat(guess);
-    correctPrice >= numericGuess ? difference = correctPrice - numericGuess : difference = numericGuess - correctPrice;
-    const percentage = (difference / correctPrice) * 100;
-    setError({ difference: difference, percentageError: percentage });
+    if (correctPrice >= numericGuess) {
+      difference = numericGuess - correctPrice;
+      setError({ difference: difference, percentageError: -1 * (difference / correctPrice) * 100 });
+    } else {
+      difference = numericGuess - correctPrice;
+      setError({ difference: difference, percentageError: (difference / correctPrice) * 100 });
+    }
   }, [guess, correctPrice]);
 
   return (
@@ -28,7 +32,7 @@ function Results() {
         </div>
         <div className="error-results">
           <div className="error-box">ERROR</div>
-          <p>{error.percentageError?.toFixed(2)}%</p>
+          <p>{error.percentageError ? (guess > correctPrice ? '+' : '-') : ''}{Math.abs(error.percentageError)?.toFixed(1)}%</p>
         </div>
         <div className="percentile-results">
           <div className="percentile-box">RANK</div>
