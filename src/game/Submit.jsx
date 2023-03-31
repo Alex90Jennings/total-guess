@@ -8,27 +8,28 @@ function Submit({ setGuess, correctPrice }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [inputValid, setInputValid] = useState(false);
 
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    if (/^\d*(\.\d{0,2})?$/.test(inputValue)) {
-      setGuessValue(inputValue);
-      setInputValid(true);
-      setErrorMessage('');
+const handleInputChange = (event) => {
+  const inputValue = event.target.value;
+  if (/^\d*(\.\d{0,2})?$/.test(inputValue)) {
+    setGuessValue(inputValue);
+    setInputValid(true);
+    setErrorMessage('');
+  } else {
+    setInputValid(false);
+    if (inputValue !== '') {
+      setErrorMessage('Please enter a valid number with at most two decimal places');
     } else {
-      setInputValid(false);
-      if (inputValue !== '') {
-        setErrorMessage('Please enter a valid number with at most two decimal places');
-      } else {
-        setErrorMessage('');
-      }
+      setErrorMessage('');
     }
-  };
+  }
+};
 
-  const handleGuessSubmit = () => {
-    const numericGuess = parseFloat(guessValue);
-    setGuess(numericGuess);
-    navigate('/results', { state: { guess: numericGuess, correctPrice: correctPrice } });
-  };
+ const handleGuessSubmit = () => {
+  const numericGuess = parseFloat(guessValue).toFixed(2);
+  setGuess(numericGuess);
+  navigate('/results', { state: { guess: numericGuess, correctPrice: correctPrice } });
+};
+
 
   return (
     <div className="main--layout--submit box-submit">
@@ -38,12 +39,10 @@ function Submit({ setGuess, correctPrice }) {
       <div className="guess-amount">
         <div className="blue-box">£</div>
         <input
-          type="number"
-          step="0.01"
-          min="0"
+          type="text"
           value={guessValue}
           onChange={handleInputChange}
-          title="Please enter a valid number with exactly two decimal places"
+          title="Please enter a valid number with at most two decimal places"
         />
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}

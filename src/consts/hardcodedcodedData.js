@@ -81,6 +81,6 @@ export const groceries = [
     "Smell the cheese you mother!",
     "/groceries/cheese.jpg",
     1.5,
-    0
+    10
   ),
 ];
