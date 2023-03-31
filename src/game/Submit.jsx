@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/game.css';
 import { useNavigate } from 'react-router-dom';
 
-function Submit({ setGuess }) {
+function Submit({ setGuess, totalPrice }) {
     const navigate = useNavigate();
     const [guessValue, setGuessValue] = useState('');
   
@@ -12,8 +12,8 @@ function Submit({ setGuess }) {
   
 
     const handleGuessSubmit = () => {
-        setGuess(guessValue)
-        navigate('/results');
+        setGuess(guessValue);
+        navigate('/results', { state: { correctPrice: totalPrice } });
     }
 
 

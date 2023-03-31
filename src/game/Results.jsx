@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../styles/game.css';
 
 function Results({ guess }) {
-    const correctPrice = 45.65
+    const location = useLocation();
+    const correctPrice = location.state.correctPrice;
     const [error, setError] = useState({ difference: undefined, percentageError: undefined })
 
     useEffect(() => {

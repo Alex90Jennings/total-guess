@@ -6,7 +6,7 @@ import ImageCount from './ImageCount';
 import { groceries } from '../consts/hardcodedcodedData';
 import '../styles/buttons.css';
 
-function Product({ setReadyToSubmit }) {
+function Product({ setReadyToSubmit, setTotalPrice }) {
   const [currentShopIndex, setCurrentShopIndex] = useState(0);
   const totalAmount = 0;
   const currentProduct = groceries[currentShopIndex];
@@ -32,8 +32,10 @@ function Product({ setReadyToSubmit }) {
     const isLastProduct = currentShopIndex === groceries.length - 1;
 
     const handleSubmit = () => {
-        setReadyToSubmit(true)
-    };
+    const totalPrice = groceries.reduce((acc, item) => acc + item.price, 0);
+    setTotalPrice(totalPrice);
+    setReadyToSubmit(true);
+  };
 
     return (
         <div className='three-rows-expand-one-three'>
