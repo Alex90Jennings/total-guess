@@ -9,18 +9,25 @@ function Submit({ setGuess, correctPrice }) {
   const [inputValid, setInputValid] = useState(false);
 
   const handleInputChange = (event) => {
-    setGuessValue(event.target.value);
-    setInputValid(/^\d+(\.\d{2})?$/.test(event.target.value));
+    const inputValue = event.target.value;
+    if (/^\d*(\.\d{0,2})?$/.test(inputValue)) {
+      setGuessValue(inputValue);
+      setInputValid(true);
+      setErrorMessage('');
+    } else {
+      setInputValid(false);
+      if (inputValue !== '') {
+        setErrorMessage('Please enter a valid number with at most two decimal places');
+      } else {
+        setErrorMessage('');
+      }
+    }
   };
 
   const handleGuessSubmit = () => {
-    const regex = /^\d+(\.\d{2})?$/;
-    if (regex.test(guessValue)) {
-      setGuess(parseFloat(guessValue));
-      navigate('/results', { state: { guess: parseFloat(guessValue), correctPrice: correctPrice } });
-    } else {
-      setErrorMessage("Please enter a valid number with exactly two decimal places");
-    }
+    const numericGuess = parseFloat(guessValue);
+    setGuess(numericGuess);
+    navigate('/results', { state: { guess: numericGuess, correctPrice: correctPrice } });
   };
 
   return (
@@ -31,18 +38,16 @@ function Submit({ setGuess, correctPrice }) {
       <div className="guess-amount">
         <div className="blue-box">£</div>
         <input
-          type="text"
-          pattern="\d+(\.\d{2})?"
+          type="number"
+          step="0.01"
+          min="0"
           value={guessValue}
           onChange={handleInputChange}
           title="Please enter a valid number with exactly two decimal places"
         />
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <button
-                className={`submit-button sub-button-styling ${inputValid ? 'valid-input' : ''}`}
-        onClick={handleGuessSubmit}
-      >
+      <button className={`submit-button sub-button-styling ${inputValid ? 'valid-input' : ''}`} onClick={handleGuessSubmit} disabled={!inputValid}>
         Submit
       </button>
     </div>
