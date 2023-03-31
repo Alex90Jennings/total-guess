@@ -10,63 +10,77 @@ class Grocery {
 }
 
 export const groceries = [
-  new Grocery("0", "Tesco", "milk is good", "/groceries/milk.jpg", 1.5, 1),
+  new Grocery(
+    "0",
+    "Tesco",
+    "Mmmm Cornflakes",
+    "/groceries/kelloggs.jpg",
+    1.5,
+    1
+  ),
   new Grocery(
     "1",
     "Sainsbury's",
-    "bread is carbs",
-    "/groceries/bread.jpg",
+    "Krispy Squares OMG",
+    "/groceries/krispysquares.jpg",
     1.2,
     2
   ),
-  new Grocery("2", "Asda", "eggs smell funny", "/groceries/eggs.jpg", 2.0, 3),
+  new Grocery(
+    "2",
+    "Asda",
+    "Lurpak is ace, spread the word",
+    "/groceries/lurpak.jpg",
+    2.0,
+    3
+  ),
   new Grocery(
     "3",
     "Morrisons",
-    "cheese also smells",
-    "/groceries/cheese.jpg",
+    "Persil just Persil",
+    "/groceries/persil.jpg",
     2.5,
     4
   ),
   new Grocery(
     "4",
     "Waitrose",
-    "butter is sexy",
-    "/groceries/butter.jpg",
+    "SOUPerb effort... out you go!",
+    "/groceries/soup.jpg",
     1.8,
     5
   ),
-  new Grocery(
-    "5",
-    "Aldi",
-    "chicken is not sexy",
-    "/groceries/chicken.jpg",
-    4.0,
-    6
-  ),
+  new Grocery("5", "Aldi", "Water", "/groceries/water.jpg", 4.0, 6),
   new Grocery(
     "6",
     "Lidl",
-    "apples grow on trees",
-    "/groceries/apples.jpg",
+    "For shits and giggles",
+    "/groceries/andrex.jpg",
     0.8,
     7
   ),
   new Grocery(
     "7",
     "Co-op",
-    "carrots grow underground",
-    "/groceries/carrots.jpg",
+    "Beans Beans good for your heart...",
+    "/groceries/beans.jpg",
     1.0,
     8
   ),
   new Grocery(
     "8",
     "Iceland",
-    "bananas look like penis",
-    "/groceries/bananas.jpg",
+    "Great bowling Shane... that's a Jaffa!",
+    "/groceries/jaffacakes.jpg",
     1.2,
     9
   ),
-  new Grocery("9", "M&S", "yogurt is yogurt", "/groceries/yogurt.jpg", 1.5, 0),
+  new Grocery(
+    "9",
+    "M&S",
+    "Smell the cheese you mother!",
+    "/groceries/cheese.jpg",
+    1.5,
+    0
+  ),
 ];

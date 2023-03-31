@@ -230,17 +230,34 @@ h2 {}
     margin-top: 20px;
 }
 
-.submit-button {
+.prev-product-button {
     width: 200px;
     height: 80px;
-    font-size: 40px;
+    font-size: 30px;
     padding: 10px 20px;
     background-color: #f18213;
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
+}
+
+.next-product-button {
+    width: 200px;
+    height: 80px;
+    font-size: 30px;
+    padding: 10px 20px;
+    background-color: #f18213;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px
+}
+
+.submit-guess-button {
+    background-color: rgb(5, 175, 5);
 }
 
 .result {
