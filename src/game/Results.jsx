@@ -45,7 +45,7 @@ function Results({ guess }) {
                 </div>
                 <div className="error-results">
                     <div className="error-box">ERROR</div>
-                    <p>{error.difference?.toFixed(2)}1.3%</p>
+                    <p>{error.difference?.toFixed(2)}</p>
                 </div>
                 <div className="percentile-results">
                     <div className="percentile-box">RANK</div>
