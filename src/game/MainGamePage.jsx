@@ -11,7 +11,7 @@ function MainGamePage({ setGuess }) {
         <main id="main">
             {
                 readyToSubmit ?
-                    <Submit setGuess={setGuess} totalPrice={totalPrice}/> :
+                    <Submit setGuess={setGuess} correctPrice={totalPrice}/> :
                     <Product setReadyToSubmit={setReadyToSubmit} setTotalPrice={setTotalPrice}/>
             }
         </main>        
