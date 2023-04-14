@@ -1,16 +1,17 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./styles/App.css";
 import "./styles/modal.css";
 import LandingPage from "./auth/LandingPage.jsx";
 import MainGamePage from "./game/MainGamePage.jsx";
 import GameInstructions from "./game/GameInstructions";
 import Modal from "react-modal";
-import { useState } from "react";
 import Header from "./game/Header";
 import Footer from "./game/Footer";
 import ContactUs from "./ContactUs";
 import Results from "./game/Results";
 import Share from "./game/Share.jsx";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,30 +20,35 @@ function App() {
 
   const handleCloseModal = () => setShowModal(false);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("config", "G-Z2ZGZWWPSJ", {
+        page_path: location.pathname + location.search,
+      });
+    }
+  }, [location]);
+
   return (
     <div>
       <div className="app">
         <Header />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <LandingPage
-                  isAuthenticated={isAuthenticated}
-                  setIsAuthenticated={setIsAuthenticated}
-                  setShowModal={setShowModal}
-                />
-              }
-            />
-            <Route
-              path="/play"
-              element={<MainGamePage setGuess={setGuess} />}
-            />
-            <Route path="/results" element={<Results guess={guess} />} />
-            <Route path="/share" element={<Share />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage
+                isAuthenticated={isAuthenticated}
+                setIsAuthenticated={setIsAuthenticated}
+                setShowModal={setShowModal}
+              />
+            }
+          />
+          <Route path="/play" element={<MainGamePage setGuess={setGuess} />} />
+          <Route path="/results" element={<Results guess={guess} />} />
+          <Route path="/share" element={<Share />} />
+        </Routes>
         {showModal && (
           <Modal
             className={"modal"}
