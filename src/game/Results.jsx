@@ -36,7 +36,7 @@ function Results() {
         </div>
         <div className="percentile-results">
           <div className="percentile-box">RANK</div>
-          <p>{error.percentageError?.toFixed(0)}%</p>
+          <p>{error.percentageError?.toFixed(0)}</p>
         </div>
         <div className="statistics-results">
           <a className='statistics-button-styling' href="/statistics">Statistics</a>
