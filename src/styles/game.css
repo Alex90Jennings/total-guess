@@ -11,7 +11,7 @@ h2 {}
     height: 8vh;
     padding: 1rem;
     background-color: #0070c0;
-    color: #f7f7f7;
+    color: #FFFFFF;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
@@ -22,21 +22,27 @@ h2 {}
     display: flex;
     align-items: center;
     gap: 15px;
-    font-size: 21px;
+    font-size: 26px;
     grid-area: header-left;
     grid-column-start: 1;
     grid-column-end: 2;
-    width: 150px;
+    width: 180px;
     margin-left: 10px;
 }
 
-.signup .signin {
+.signup,
+.signin {
+    cursor: pointer;
 }
 
 .header-middle {
     padding: 5px;
     font-size: 50px;
     grid-area: header-middle;
+    grid-column-start: 2;
+    /* Updated */
+    grid-column-end: 3;
+    /* Updated */
     justify-self: center;
 }
 
@@ -46,20 +52,69 @@ h2 {}
     grid-area: header-right;
     grid-column-start: 3;
     grid-column-end: 4;
-    width: 150px;
-    margin-right: 20px;
+    width: 180px;
+    margin-right: 30px;
 }
 
-.icon1,
-.icon2,
+.icon1 {}
+
+.icon2 {
+    margin-right: 10px;
+}
+
 .icon3 {
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 28px;
+    grid-area: header-left;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 200px;
+    margin-left: 10px;
+}
+
+.signup, .signin {
+    cursor: pointer;
+}
+
+.header-middle {
     padding: 5px;
+    font-size: 50px;
+    grid-area: header-middle;
+    grid-column-start: 2; 
+    grid-column-end: 3;
+    justify-self: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    grid-area: header-right;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    width: 200px;
+}
+
+.icon1 {
+
+}
+
+.icon2 {
+    margin-right: 15px;
+}
+
+.icon3 {
+    margin-right: 35px;
 }
 
 /* Main */
 
 #main {
-    background-color: #f7f7f7;
+    background-color: #FFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,49 +124,21 @@ h2 {}
     display: grid;
     grid-template-columns: auto 1fr auto;
     place-content: center;
-    background-color: #f7f7f7;
+    background-color: #FFFFFF;
     justify-content: center;
     align-items: center;
 }
 
-.arrow-l {
-    grid-column: 1;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    position: relative;
+.arrow-icon {
+
 }
 
-.arrow-l::before {
-    content: '';
-    display: inline-block;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 20px solid #f18213;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 10px;
+.arrow-left {
+margin-right: 100px;
 }
 
-.arrow-r {
-    grid-column: 3;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    position: relative;
-}
-
-.arrow-r::before {
-    content: '';
-    display: inline-block;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 20px solid #f18213;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
+.arrow-right {
+margin-left: 100px;
 }
 
 .content {
@@ -120,29 +147,44 @@ h2 {}
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 650px;
+    width: 1350px;
 }
 
 .shop--css {
     background-color: #f18213;
-    color: #fff;
+    color: #FFFFFF;
     text-align: center;
     width: 100%;
+    height: 80px;
+    margin: 0;
+    font-size: 55px;
+    padding: 8px 0;
+    font-family: "Century Gothic", "Arial", sans-serif;
 }
 
 .description--css {
-    color: #000000;
+    color: #f18213;
     text-align: center;
+    margin: 0;
+    font-size: 32px;
+    padding: 8px 0;
+    margin-top: 30px;
 }
+
 
 .box {
     border: 2px solid #f18213;
+    width: 1300px;
+    height: 74%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .product-image {
     display: block;
     margin: 0 auto;
     height: 400px;
-    margin-top: 10px;
 }
 
 .box h2 {
@@ -154,11 +196,11 @@ h2 {}
 .box p {
     margin: 0;
     margin-top: 24px;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .box img {
-    max-height: 400px;
+    max-height: 350px;
 }
 
 .box-1 {
@@ -166,6 +208,41 @@ h2 {}
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.info-column.store {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: calc(50% - 55px);
+}
+
+.info-column {
+    width: 50%;
+    margin: 10px;
+}
+
+.date {
+    text-align: left;
+    color: #f18213;
+}
+
+.store {
+    text-align: center;
+    color: #f18213;
+    width: 680px;
+}
+
+.game {
+    text-align: right;
+    color: #f18213;
 }
 
 .timer {
@@ -180,8 +257,16 @@ h2 {}
     margin: 0 auto;
 }
 
-.image-counter {
-    display: flex;
+.img-count-left {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin-top: 15px;
+}
+
+.img-count-right {
+    display: inline-block;
     justify-content: center;
     align-items: center;
     max-width: 600px;
@@ -189,44 +274,37 @@ h2 {}
 }
 
 .image-counter img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 0 5px;
 }
 
-.input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.input-box {
+.image-row {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: 60px;
-    width: 150px;
-    height: 180px;
-    background-color: #f18213;
-    margin-right: 10px;
 }
 
-.box input[type='text'] {
-    width: 150px;
-    height: 155px;
-    font-size: 80px;
-    font-weight: 800;
-    padding: 10px;
-    border: 2px solid #f18213;
-    border-bottom: 2px solid black;
-    margin-bottom: 20px;
-    text-align: center;
-    width: 100%;
-    max-width: 240px;
-    margin-top: 20px;
+.space1 {
+    width: 100px;
+}
+
+.space2 {
+    width: 100px;
+}
+
+.space3 {
+    width: 200px;
+}
+
+.space4 {
+    width: 200px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
 }
 
 .prev-product-button {

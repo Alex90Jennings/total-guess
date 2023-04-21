@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import '../styles/game.css';
 
 function ImageCount(props) {
-  const { currentShopIndex } = props;
+  const { currentShopIndex, start, end } = props;
   const [numberImages, setNumberImages] = useState([]);
 
   useEffect(() => {
     const generateNumberImages = () => {
-      const newImages = ['1.png', ...new Array(9).fill('11.png')].map((image, i) => {
-        if (currentShopIndex === 0 && i === 0) {
+      const newImages = [...new Array(end - start + 1).fill('11.png')].map((image, i) => {
+        const index = start + i - 1;
+        if (currentShopIndex === 0 && index === 0) {
           return '1.png';
-        } else if (i <= currentShopIndex) {
-          return `${i + 1}.png`;
+        } else if (index <= currentShopIndex) {
+          return `${index + 1}.png`;
         } else {
           return '11.png';
         }
@@ -20,19 +21,15 @@ function ImageCount(props) {
     };
 
     generateNumberImages();
-  }, [currentShopIndex]);
+  }, [currentShopIndex, start, end]);
 
   return (
-    <div className='three-columns-expand-one-three'>
-      <div></div>
-      <div className="image-counter mg-m">
-        {numberImages.map((image, i) => (
-          <div key={i} className="number-box">
-            <img src={`/Numbers/${image}`} alt={`${i + 1}`} />
-          </div>
-        ))}
-      </div>
-      <div></div>
+    <div className="image-counter mg-m">
+      {numberImages.map((image, i) => (
+        <div key={i} className="number-box">
+          <img src={`/Numbers/${image}`} alt={`${start + i}`} />
+        </div>
+      ))}
     </div>
   );
 }

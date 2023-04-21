@@ -12,27 +12,27 @@ function Header() {
             <div className="icon1">
             <div>
                 <img
-                src={"/icons/iicon.png"}
+                src={"/icons/iicon.svg"}
                 alt="i icon"
-                height="50px"
-                width="50px"
+                height="80px"
+                width="80px"
                 />
             </div>
             </div>
             <div className="icon2">
             <div>
                 <img
-                src={"/icons/settingsicon.png"}
+                src={"/icons/settingsicon.svg"}
                 alt="settings icon"
-                height="50px"
-                width="50px"
+                height="80px"
+                width="80px"
                 />
             </div>
             </div>
             <div className="icon3">
             <div>
                 <img
-                src={"/icons/favicon.png"}
+                src={"/icons/statisticsicon.svg"}
                 alt="fav icon"
                 height="50px"
                 width="50px"
