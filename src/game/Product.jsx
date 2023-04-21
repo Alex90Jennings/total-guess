@@ -54,8 +54,8 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         >
          <div className="box content">
   
-    <h2 className="shop--css">{currentShop}</h2>
-    <h2 className="description--css mt-s">{currentDescription}</h2>
+    <div className="shop--css">{currentShop}</div>
+    <div className="description--css mt-s">{currentDescription}</div>
     <div className="image-row">
       <ImageCount
         currentShopIndex={currentShopIndex}

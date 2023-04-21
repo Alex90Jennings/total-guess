@@ -21,7 +21,7 @@ export const groceries = [
     1.5,
     1,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -32,7 +32,7 @@ export const groceries = [
     1.2,
     2,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -43,7 +43,7 @@ export const groceries = [
     2.0,
     3,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -54,7 +54,7 @@ export const groceries = [
     2.5,
     4,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -65,7 +65,7 @@ export const groceries = [
     1.8,
     5,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -76,7 +76,7 @@ export const groceries = [
     4.0,
     6,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -87,7 +87,7 @@ export const groceries = [
     0.8,
     7,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -98,7 +98,7 @@ export const groceries = [
     1.0,
     8,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -109,7 +109,7 @@ export const groceries = [
     1.2,
     9,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
   new Grocery(
@@ -120,7 +120,7 @@ export const groceries = [
     1.5,
     10,
     "06.01.2023",
-    "Sainsbury's SuperStore Farlington, Portsmouth, Hampshire",
+    "Sainsbury's Superstore Farlington, Portsmouth, Hampshire",
     1
   ),
 ];

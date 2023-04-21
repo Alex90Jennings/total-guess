@@ -5,7 +5,7 @@ import Submit from './Submit';
 
 function MainGamePage({ setGuess }) {
     const [readyToSubmit, setReadyToSubmit] = useState(false);
-    const [totalPrice, setTotalPrice] = useState(0); // Add this line
+    const [totalPrice, setTotalPrice] = useState(0); 
 
     return (
         <main id="main">
