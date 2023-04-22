@@ -6,8 +6,8 @@
     color: #FFFFFF;
     background-color: #0070c0;
     width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
+    max-height: 82vh;
+    /* overflow-y: auto; */
     border-radius: 24px;
     border: 2px solid #FFFFFF;
 }
@@ -40,4 +40,41 @@
 
 .modal ul {
     list-style-type: disc;
+}
+
+.contact-button {
+    background-color: #FFFFFF;
+    color: #0070c0;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    margin-top: 20px;
+}
+
+.feedback-submit-button {
+    background-color: #FFFFFF;
+    color: #0070c0;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    margin-top: 20px;
+}
+
+.feedback-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    resize: vertical;
 }
