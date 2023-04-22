@@ -6,7 +6,7 @@ function LandingPageHeader({hideHeaders}) {
         <div id='login-header'>
             <div className='three-columns-expand-one-three'>
                 <div></div>
-                <img className='center-wrapper' src="/icons/basket.png" alt="basket" />
+                <img className='center-wrapper' src="/icons/trolley.svg" alt="basket" />
                 <div></div>
             </div>
             {
