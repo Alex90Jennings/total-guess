@@ -3,13 +3,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #0070c0;
-    background-color: #fff;
+    color: #FFFFFF;
+    background-color: #0070c0;
     width: 500px;
     max-height: 80vh;
     overflow-y: auto;
     border-radius: 24px;
-    border: 2px solid #0070c0;
+    border: 2px solid #FFFFFF;
 }
 
 .close-btn {
@@ -30,4 +30,14 @@
     font-size: 1.2rem;
     padding-bottom: 8px;
     border-bottom: 2px solid #fff;
+}
+
+.white-line {
+    border-top: 1px solid #fff;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.modal ul {
+    list-style-type: disc;
 }
