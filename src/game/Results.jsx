@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../styles/game.css';
+import Feedback from './Feedback';
+import Modal from "react-modal";
 
 function Results() {
   const location = useLocation();
   const correctPrice = location.state.correctPrice;
   const guess = location.state.guess;
   const [error, setError] = useState({ difference: undefined, percentageError: undefined });
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+
+  const handleFeedbackClick = (e) => {
+    e.preventDefault();
+  setShowFeedbackModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowFeedbackModal(false)
+  };
 
   useEffect(() => {
     let difference;
@@ -45,7 +57,16 @@ function Results() {
           <a className='share-button-styling' href="/share">Share</a>
         </div>
         <div className="feedback-results">
-          <a className='feedback-button-styling' href="/feedback">Feedback</a>
+          {showFeedbackModal && (
+        <Modal
+          className={"modal"}
+          isOpen={showFeedbackModal}
+          onRequestClose={handleCloseModal}
+        >
+          <Feedback onClose={handleCloseModal} />
+        </Modal>
+      )}
+          <a className='feedback-button-styling' onClick={handleFeedbackClick} href="/feedback">Feedback</a>
         </div>
       </div>
     </div>
