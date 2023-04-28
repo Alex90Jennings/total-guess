@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import '../styles/landingPage.css'
+import '../styles/landingPage.css';
+import { clientApi } from '../api/clientApi';
 
 function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideHeaders}) {
     const [formData, setFormData] = useState({
@@ -25,19 +26,25 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
     };
 
     const signInUser = () => {
-        const jwtToken = formData.password
-        localStorage.setItem('userEmail', formData.email);
-        localStorage.setItem('jwtToken', jwtToken);
-        setIsAuthenticated(true);
-        setShowLoginPage(false);
+        try {
+            const response = clientApi.login(formData.email, formData.password)
+            localStorage.setItem('jwtToken', response.jwtToken);
+            setIsAuthenticated(true);
+            setShowLoginPage(false);
+        } catch(err) {
+            console.log(err)
+        }
     }
-
+    
     const registerUser = () => {
-        const jwtToken = formData.password
-        localStorage.setItem('userEmail', formData.email);
-        localStorage.setItem('jwtToken', jwtToken);
-        setIsAuthenticated(true);
-        setShowLoginPage(false);
+        try {
+            const response = clientApi.register(formData.email, formData.firstName, formData.lastName, formData.password)
+            localStorage.setItem('jwtToken', response.jwtToken);
+            setIsAuthenticated(true);
+            setShowLoginPage(false);
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     const handleIsRegisteredClick = () => {
