@@ -1,5 +1,5 @@
 import { authClient } from "./authClient";
-//import { client } from "./client";
+import { client } from "./client";
 
 const login = async (email, password) => {
     const route = '/auth/login'
@@ -11,7 +11,13 @@ const register = async (email, firstName, lastName, password) => {
     return await authClient.post(route, { email, firstName, lastName, password })
 }
 
+const fetchGame = async () => {
+    const route = '/game'
+    return await client.get(route)
+}
+
 export const clientApi = {
     login,
-    register
+    register,
+    fetchGame
 }
