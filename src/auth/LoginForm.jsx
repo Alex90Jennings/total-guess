@@ -25,9 +25,9 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
         }
     };
 
-    const signInUser = () => {
+    const signInUser = async () => {
         try {
-            const response = clientApi.login(formData.email, formData.password)
+            const response = await clientApi.login(formData.email, formData.password)
             localStorage.setItem('jwtToken', response.jwtToken);
             setIsAuthenticated(true);
             setShowLoginPage(false);
@@ -36,9 +36,9 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
         }
     }
     
-    const registerUser = () => {
+    const registerUser = async () => {
         try {
-            const response = clientApi.register(formData.email, formData.firstName, formData.lastName, formData.password)
+            const response = await clientApi.register(formData.email, formData.firstName, formData.lastName, formData.password)
             localStorage.setItem('jwtToken', response.jwtToken);
             setIsAuthenticated(true);
             setShowLoginPage(false);
