@@ -17,6 +17,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [guess, setGuess] = useState(undefined);
+  const [firstName, setFirstName] = useState("");
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -33,7 +34,7 @@ function App() {
   return (
     <div>
       <div className="app">
-        <Header />
+        <Header isAuthenticated={isAuthenticated} firstName={firstName} />
         <Routes>
           <Route
             path="/"
@@ -42,6 +43,8 @@ function App() {
                 isAuthenticated={isAuthenticated}
                 setIsAuthenticated={setIsAuthenticated}
                 setShowModal={setShowModal}
+                setFirstName={setFirstName}
+                firstName={firstName}
               />
             }
           />

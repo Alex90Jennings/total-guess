@@ -3,8 +3,9 @@ import Instructions from "../game/Instructions";
 import { useState } from "react";
 import Modal from "react-modal";
 import "../styles/modal.css";
+import "../styles/landingPage.css"
 
-function Header() {
+function Header({ isAuthenticated, firstName }) {
   const [showModal, setShowModal] = useState(false);
 
   const handleImageClick = () => {
@@ -18,8 +19,17 @@ function Header() {
   return (
     <header id="header">
       <div className="header-left">
-        <div className="signup">Sign up</div>
-        <div className="signin">Sign in</div>
+        {!isAuthenticated ? (
+          <>
+            <div className="signup">Sign up</div>
+            <div className="signin">Sign in</div>
+          </>
+        ) : (
+          <>
+            <img src="/icons/userwhite.svg" alt="User icon" />
+            <div className="users-first-name">{firstName}</div>
+          </>
+        )}
       </div>
       <div className="header-middle">CANTAB</div>
       <div className="header-right">
@@ -71,5 +81,4 @@ function Header() {
 }
 
 export default Header;
-
 
