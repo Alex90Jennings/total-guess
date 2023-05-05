@@ -1,20 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import '../styles/landingPage.css'
 
-function LandingPageMenu({ setShowLoginPage, setShowModal, setIsAuthenticated, isAuthenticated }) {
+function LandingPageMenu({ isAuthenticated, setIsAuthenticated, setShowLoginPage, setShowLandingPageContent, setShowModal, setFirstName, isGuest, setIsGuest }) {
     const navigate = useNavigate();
 
     const handleStartGameSubmit = () => {
-        if(isAuthenticated) {
+        if (isAuthenticated || isGuest) {
             navigate('/play');
         } else {
+            setShowLandingPageContent(false);
             setShowLoginPage(true);
         }
-    }
+    };
 
     const handlePracticeGameSubmit = () => {
-        setIsAuthenticated(true);
+        setIsGuest(true);
         navigate('/play');
     }
 
@@ -39,7 +41,10 @@ function LandingPageMenu({ setShowLoginPage, setShowModal, setIsAuthenticated, i
                 </li>
                 <li className='three-columns-expand-one-three'>
                     <div></div>
-                    <button className='landing-page-menu-btn other-btn' onClick={() => setShowLoginPage(true)}>Sign In</button>
+                    <button className='landing-page-menu-btn other-btn' onClick={() => {
+                        setShowLandingPageContent(false);
+                        setShowLoginPage(true);
+                    }}>Sign In</button>
                     <div></div>
                 </li>
             </ul>

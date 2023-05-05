@@ -2,7 +2,8 @@ import { useState } from 'react';
 import '../styles/landingPage.css';
 import { clientApi } from '../api/clientApi';
 
-function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideHeaders}) {
+function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideHeaders,  setFirstName, isAuthenticated, isGuest, setIsGuest}) {
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -25,27 +26,38 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
         }
     };
 
-    const signInUser = async () => {
+        const signInUser = async () => {
+            try {
+                const response = await clientApi.login(formData.email, formData.password);
+                localStorage.setItem("jwtToken", response.jwtToken);
+                setIsAuthenticated(true);
+                setFirstName(response.data.user.firstName);
+                setShowLoginPage(false);                
+            } catch (err) {
+                console.log(err);
+                setError('Error signing in. Please check your email and password.'); 
+            }
+            };
+
+
+          async function registerUser() {
         try {
-            const response = await clientApi.login(formData.email, formData.password)
-            localStorage.setItem('jwtToken', response.jwtToken);
+            const response = await clientApi.register(
+                formData.email,
+                formData.firstName,
+                formData.lastName,
+                formData.password
+            );
+            localStorage.setItem("jwtToken", response.token);
             setIsAuthenticated(true);
+            setFirstName(response.data.user.firstName);
             setShowLoginPage(false);
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            console.log(err);
+            setError('Error registering user. Please check your information.'); 
         }
     }
-    
-    const registerUser = async () => {
-        try {
-            const response = await clientApi.register(formData.email, formData.firstName, formData.lastName, formData.password)
-            localStorage.setItem('jwtToken', response.jwtToken);
-            setIsAuthenticated(true);
-            setShowLoginPage(false);
-        } catch(err) {
-            console.log(err)
-        }
-    }
+
 
     const handleIsRegisteredClick = () => {
         setHideHeaders(!hideHeaders)
@@ -53,9 +65,11 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
     }
 
     return (
+    !isAuthenticated && (
         <div className='form'>
             <form onSubmit={handleSubmit} className={`${formData.isRegistered ? 'five-rows-expand-three' : 'eight-rows-expand-six'}`}>
                 <label>
+                    {error && <p className="error">{error}</p>}
                     <div className='three-columns-expand-one-three'>
                         <div></div>
                         <span className="label-container bold">Email:</span>
@@ -125,7 +139,8 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
                 <div></div>
             </div>
         </div>
-    );
+    )
+);
 }
 
 export default LoginForm;
