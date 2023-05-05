@@ -31,7 +31,9 @@ function Header({ isAuthenticated, firstName }) {
           </>
         )}
       </div>
-      <div className="header-middle">CANTAB</div>
+       <div className="header-middle">
+        <img src="/Logo/Logo.png" alt="logo" />
+      </div>
       <div className="header-right">
         <div>
           <div className="icon1">
