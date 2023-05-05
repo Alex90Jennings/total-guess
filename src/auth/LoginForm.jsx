@@ -18,7 +18,6 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
     };
 
     const handleSubmit = (event) => {
-        console.log("form data", formData)
         event.preventDefault();
         if (formData.isRegistered) {
           signInUser();
@@ -31,7 +30,6 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
             try {
                 const response = await clientApi.login(formData.email, formData.password);
                 if (response.data.user) {
-                    console.log("hello world")
                 localStorage.setItem("jwtToken", response.jwtToken);
                 setIsAuthenticated(true);
                 setFirstName(response.data.user.firstName);
