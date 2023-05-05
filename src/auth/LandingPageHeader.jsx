@@ -12,18 +12,17 @@ function LandingPageHeader({ hideHeaders, isAuthenticated, firstName }) {
       </div>
       {
         !hideHeaders && (
+          <div>
           <div className='three-columns-expand-one-three'>
             <div></div>
             <h1>CANTAB</h1>
           </div>
-        )
-      }
-      {
-        !hideHeaders && (
+ 
           <div className='three-columns-expand-one-three'>
             <div></div>
             <h2>Guess the total cost of the groceries</h2>
             <div></div>
+          </div>
           </div>
         )
       }

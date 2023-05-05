@@ -29,12 +29,10 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
         const signInUser = async () => {
             try {
                 const response = await clientApi.login(formData.email, formData.password);
-                if (response.data.user) {
                 localStorage.setItem("jwtToken", response.jwtToken);
                 setIsAuthenticated(true);
                 setFirstName(response.data.user.firstName);
-                setShowLoginPage(false);
-                }
+                setShowLoginPage(false);                
             } catch (err) {
                 console.log(err);
                 setError('Error signing in. Please check your email and password.'); 
@@ -52,7 +50,7 @@ function LoginForm({ setIsAuthenticated, setShowLoginPage, hideHeaders, setHideH
             );
             localStorage.setItem("jwtToken", response.token);
             setIsAuthenticated(true);
-            setFirstName(response.user.firstName);
+            setFirstName(response.data.user.firstName);
             setShowLoginPage(false);
         } catch (err) {
             console.log(err);
