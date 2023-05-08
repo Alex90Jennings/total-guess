@@ -4,6 +4,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import "../styles/modal.css";
 import "../styles/landingPage.css"
+import "../styles/game.css"
 
 function Header({ isAuthenticated, firstName, setShowLoginPage, setHideHeaders }) {
   const [showModal, setShowModal] = useState(false);
@@ -37,7 +38,7 @@ function Header({ isAuthenticated, firstName, setShowLoginPage, setHideHeaders }
         )}
       </div>
       <div className="header-middle logo">
-          Total-Guess
+          Total🤷‍♂️GuEss
       </div>
       <div className="header-right">
         <div>
