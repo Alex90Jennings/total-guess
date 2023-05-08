@@ -7,7 +7,7 @@ import ImageCount from './ImageCount';
 function Product({ setReadyToSubmit, setTotalPrice }) {
   const [groceries, setGroceries] = useState([]);
   const [currentShopIndex, setCurrentShopIndex] = useState(0);
-  const [audio] = useState(new Audio('/Sounds/swooshnew.mp3'));
+  const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
   const totalAmount = 0;
 
   useEffect(() => {

@@ -36,8 +36,8 @@ function Header({ isAuthenticated, firstName, setShowLoginPage, setHideHeaders }
           </>
         )}
       </div>
-      <div className="header-middle">
-        <img src="/Logo/Logo.png" alt="logo" />
+      <div className="header-middle logo">
+          Total-Guess
       </div>
       <div className="header-right">
         <div>

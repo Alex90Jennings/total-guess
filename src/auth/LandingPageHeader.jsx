@@ -15,7 +15,7 @@ function LandingPageHeader({ hideHeaders, isAuthenticated, firstName }) {
           <div>
           <div className='three-columns-expand-one-three'>
             <div></div>
-            <h1>CANTAB</h1>
+            <div className='logo-landing'>Total-Guess</div>
           </div>
  
           <div className='three-columns-expand-one-three'>

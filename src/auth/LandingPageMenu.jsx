@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/landingPage.css'
+import '../styles/landingPage.css';
 
 function LandingPageMenu({ isAuthenticated, setIsAuthenticated, setShowLoginPage, setShowLandingPageContent, setShowModal, setFirstName, isGuest, setIsGuest }) {
     const navigate = useNavigate();
+      const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const handleStartGameSubmit = () => {
         if (isAuthenticated || isGuest) {
@@ -12,12 +13,14 @@ function LandingPageMenu({ isAuthenticated, setIsAuthenticated, setShowLoginPage
             setShowLandingPageContent(false);
             setShowLoginPage(true);
         }
-    };
+        audio.play();
+        };
 
     const handlePracticeGameSubmit = () => {
         setIsGuest(true);
         navigate('/play');
-    }
+            audio.play();
+        };
 
     return (
         <div id='landing-page-menu'>
@@ -52,3 +55,4 @@ function LandingPageMenu({ isAuthenticated, setIsAuthenticated, setShowLoginPage
 }
 
 export default LandingPageMenu;
+

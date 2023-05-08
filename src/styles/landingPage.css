@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
 .landing-page {
   place-items: center;
   border: 2px solid #0070c0;
@@ -98,4 +100,11 @@
   color: #fff;
   margin-left: 15px;
   font-size: 40px;
+}
+
+.logo-landing {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 60px !important;
+  color: #0070c0;
+  text-shadow: 2px 2px 4px #000000;
 }
