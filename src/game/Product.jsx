@@ -7,14 +7,15 @@ import ImageCount from './ImageCount';
 function Product({ setReadyToSubmit, setTotalPrice }) {
   const [groceries, setGroceries] = useState([]);
   const [currentShopIndex, setCurrentShopIndex] = useState(0);
+  const [audio] = useState(new Audio('/Sounds/Swoosh.mp3'));
   const totalAmount = 0;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_DB_URL}item`);
+        const response = await fetch(`${process.env.REACT_APP_DB_URL}game`);
         const data = await response.json();
-        setGroceries(data);
+        setGroceries(data[0].items);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -42,6 +43,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     }
     if (newIndex >= 0 && newIndex < groceries.length) {
       setCurrentShopIndex(newIndex);
+      audio.play();
     }
   };
 

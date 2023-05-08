@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import '../styles/landingPage.css'
 
 function LandingPageMenu({ isAuthenticated, setIsAuthenticated, setShowLoginPage, setShowLandingPageContent, setShowModal, setFirstName, isGuest, setIsGuest }) {
