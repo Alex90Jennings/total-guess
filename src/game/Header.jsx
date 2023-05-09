@@ -4,8 +4,9 @@ import { useState } from "react";
 import Modal from "react-modal";
 import "../styles/modal.css";
 import "../styles/landingPage.css"
+import "../styles/game.css"
 
-function Header({ isAuthenticated, firstName }) {
+function Header({ isAuthenticated, firstName, setShowLoginPage, setHideHeaders }) {
   const [showModal, setShowModal] = useState(false);
 
   const handleImageClick = () => {
@@ -16,12 +17,17 @@ function Header({ isAuthenticated, firstName }) {
     setShowModal(false);
   };
 
+  const handleSignUpClick = () => {
+    setShowLoginPage(true);
+    setHideHeaders(true);
+  };
+
   return (
     <header id="header">
       <div className="header-left">
         {!isAuthenticated ? (
           <>
-            <div className="signup">Sign up</div>
+            <div className="signup" onClick={handleSignUpClick}>Sign up</div>
             <div className="signin">Sign in</div>
           </>
         ) : (
@@ -31,7 +37,9 @@ function Header({ isAuthenticated, firstName }) {
           </>
         )}
       </div>
-      <div className="header-middle">CANTAB</div>
+      <div className="header-middle logo">
+          Total🤷‍♂️GuEss
+      </div>
       <div className="header-right">
         <div>
           <div className="icon1">
@@ -81,4 +89,3 @@ function Header({ isAuthenticated, firstName }) {
 }
 
 export default Header;
-
