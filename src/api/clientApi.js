@@ -11,7 +11,7 @@ const register = async (email, firstName, lastName, password) => {
     return await authClient.post(route, { email, firstName, lastName, password })
 }
 
-const fetchGame = async () => {
+const fetchTodayGame = async () => {
     const route = '/game'
     return await client.get(route)
 }
@@ -19,5 +19,5 @@ const fetchGame = async () => {
 export const clientApi = {
     login,
     register,
-    fetchGame
+    fetchTodayGame
 }

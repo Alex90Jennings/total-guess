@@ -25,10 +25,12 @@ function Instructions({ onClose }) {
             </ul>
             <hr className='white-line' />
             <div className='list-reset pl-m'>
-             <p>A new basket of groceries is released every day at midnight. You can sign up for our daily reminder email.</p></div>
-             <hr className='white-line' />
-             <div className='list-reset pl-m'>
-             <p>Send us feedback at admin@cantab.com</p></div>
+                <p>A new basket of groceries is released every day at midnight. You can sign up for our daily reminder email.</p>
+            </div>
+            <hr className='white-line' />
+            <div className='list-reset pl-m'>
+                <p>Send us feedback at admin@cantab.com</p>
+            </div>
         </div>
     );
 }

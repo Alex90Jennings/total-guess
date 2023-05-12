@@ -5,6 +5,7 @@ import Submit from './Submit';
 import { clientApi } from '../api/clientApi';
 
 function MainGamePage({ setGuess }) {
+    
     const [readyToSubmit, setReadyToSubmit] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0); 
     const [game, setGame] = useState({});
@@ -24,8 +25,6 @@ function MainGamePage({ setGuess }) {
         }, 
         [],
     );
-
-    console.log(game)
 
     return (
         <main id="main">
