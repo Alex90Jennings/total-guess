@@ -1,7 +1,5 @@
 import { groceries } from '../consts/hardcodedcodedData';
 
-//TODO: whats the difference between ImageCount and NumberImage?
-
 function NumberImage({ number, currentShopIndex }) {
 
     const imagePath =

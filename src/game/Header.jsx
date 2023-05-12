@@ -49,20 +49,15 @@ function Header({ setShowLoginPage }) {
             </div>
             <div className="header-right">
                 <img
-                    src={"/icons/iicon.svg"}
+                    src={"/icons/iiconnew.svg"}
                     alt="i icon"
                     className="icon"
                     onClick={handleImageClick}
                 />
                 <img
-                    src={"/icons/settingsicon.svg"}
-                    alt="settings icon"
-                    className="icon mr-s"
-                />
-                <img
-                    src={"/icons/statisticsicon.svg"}
-                    alt="fav icon"
-                    className="icon"
+                    src={"icons/statsicon.svg"}
+                    alt="stats icon"
+                    className="stats-icon"
                 />
             </div>
             {

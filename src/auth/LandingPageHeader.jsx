@@ -4,7 +4,7 @@ import { AppContext } from '../hooks/context';
 
 function LandingPageHeader() {
 
-    const { isAuthenticated, hideHeaders } = useContext(AppContext);
+    const { hideHeaders } = useContext(AppContext);
 
     return (
         <div id='login-header'>
@@ -28,15 +28,6 @@ function LandingPageHeader() {
                         <h2>Guess the total cost of the groceries</h2>
                         <div></div>
                     </div>
-                </div>
-            )
-        }
-        {/*TODO: what is this for?*/}
-        {
-            isAuthenticated && (
-                <div className='three-columns-expand-one-three'>
-                    <div></div>
-                    <div></div>
                 </div>
             )
         }
