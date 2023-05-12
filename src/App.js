@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./styles/App.css";
 import "./styles/modal.css";
 import LandingPage from "./auth/LandingPage.jsx";
