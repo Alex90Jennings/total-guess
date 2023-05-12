@@ -5,7 +5,7 @@ import { AppContext } from '../hooks/context';
 
 function LoginForm({ setShowLoginPage }) {
 
-    const { isAuthenticated, setIsAuthenticated, hideHeaders, setHideHeaders } = useContext(AppContext);
+    const { isAuthenticated, setIsAuthenticated, hideHeaders, setHideHeaders, setLoggedInUser } = useContext(AppContext);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         email: '',
@@ -33,7 +33,8 @@ function LoginForm({ setShowLoginPage }) {
     const signInUser = async () => {
         try {
             const response = await clientApi.login(formData.email, formData.password);
-            localStorage.setItem("jwtToken", response.jwtToken);
+            localStorage.setItem("jwtToken", response.data.jwtToken);
+            setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);                
         } catch (err) {
@@ -51,7 +52,8 @@ function LoginForm({ setShowLoginPage }) {
                 formData.lastName,
                 formData.password
             );
-            localStorage.setItem("jwtToken", response.token);
+            localStorage.setItem("jwtToken", response.data.jwtToken);
+            setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);
         } catch (err) {

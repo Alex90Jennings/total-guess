@@ -12,7 +12,7 @@ function MainGamePage({ setGuess }) {
 
     const fetchGame = async () => {
         try {
-            const response = await clientApi.fetchGame();
+            const response = await clientApi.fetchTodayGame();
             setGame(response.data);
         } catch (error) {
             console.error('Error fetching game:', error);

@@ -19,6 +19,8 @@ export const AppProvider = ({ children }) => {
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ hideHeaders, setHideHeaders ] = useState(false)
 
+    console.log("loggedInUser: ", loggedInUser)
+
     const value = {
         loggedInUser,
         setLoggedInUser,
