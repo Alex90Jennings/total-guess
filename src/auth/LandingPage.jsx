@@ -20,7 +20,7 @@ function LandingPage({ setShowModal }) {
                 setHideHeaders(false)
             }
         }, 
-        [isAuthenticated]
+        [isAuthenticated, setHideHeaders]
     );
 
     return (
