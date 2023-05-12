@@ -5,9 +5,6 @@ body {
     margin: 0;
 }
 
-h1,
-h2 {}
-
 /* Header */
 
 #header {
@@ -64,13 +61,8 @@ h2 {}
     margin-right: 30px;
 }
 
-.icon1 {}
-
-.icon2 {
+.icon {
     margin-right: 10px;
-}
-
-.icon3 {
 }
 
 .header-left {
@@ -107,18 +99,6 @@ h2 {}
     width: 200px;
 }
 
-.icon1 {
-
-}
-
-.icon2 {
-    margin-right: 15px;
-}
-
-.icon3 {
-    margin-right: 35px;
-}
-
 /* Main */
 
 #main {
@@ -135,10 +115,6 @@ h2 {}
     background-color: #FFFFFF;
     justify-content: center;
     align-items: center;
-}
-
-.arrow-icon {
-
 }
 
 .arrow-left {

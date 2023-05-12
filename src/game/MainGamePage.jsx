@@ -5,13 +5,14 @@ import Submit from './Submit';
 import { clientApi } from '../api/clientApi';
 
 function MainGamePage({ setGuess }) {
+    
     const [readyToSubmit, setReadyToSubmit] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0); 
     const [game, setGame] = useState({});
 
     const fetchGame = async () => {
         try {
-            const response = await clientApi.fetchGame();
+            const response = await clientApi.fetchTodayGame();
             setGame(response.data);
         } catch (error) {
             console.error('Error fetching game:', error);
@@ -24,8 +25,6 @@ function MainGamePage({ setGuess }) {
         }, 
         [],
     );
-
-    console.log(game)
 
     return (
         <main id="main">

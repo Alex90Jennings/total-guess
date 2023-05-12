@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/modal.css'
 
 function GameInstructions({ onClose }) {
+    
     return (
         <div className='pl-l pr-l'>
             <div className='two-columns-expand-one'>
