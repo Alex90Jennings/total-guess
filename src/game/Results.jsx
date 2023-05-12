@@ -36,41 +36,43 @@ function Results() {
     );
 
     return (
-        <div className="main--layout--results box-results">
-            <div className="h1-results">
-                <h1>The actual cost of the groceries</h1>
-            </div>
-            <div className="guess-results">
-                <div className="guessed-box">£</div>
-                <p>£{correctPrice?.toFixed(2)}</p>
-            </div>
-            <div className="error-results">
-                <div className="error-box">ERROR</div>
-                <p>{error.percentageError ? (guess > correctPrice ? '+' : '-') : ''}{Math.abs(error.percentageError)?.toFixed(1)}%</p>
-            </div>
-            <div className="percentile-results">
-                <div className="percentile-box">RANK</div>
-                <p>{error.percentageError?.toFixed(0)}</p>
-            </div>
-            <div className="statistics-results">
-                <a className='statistics-button-styling' href="/statistics">Statistics</a>
-            </div>
-            <div className="share-results">
-                <a className='share-button-styling' href="/share">Share</a>
-            </div>
-            <div className="feedback-results">
-                {
-                    showFeedbackModal && (
-                        <Modal
-                            className={"modal"}
-                            isOpen={showFeedbackModal}
-                            onRequestClose={handleCloseModal}
-                        >
-                            <Feedback onClose={handleCloseModal} />
-                        </Modal>
-                    )
-                }
-                <a className='feedback-button-styling' onClick={handleFeedbackClick} href="/feedback">Feedback</a>
+        <div className="main--layout--results">
+            <div className="box-results">
+                <div className="h1-results">
+                    <h1>The actual cost of the groceries</h1>
+                </div>
+                <div className="guess-results">
+                    <div className="guessed-box">£</div>
+                    <p>£{correctPrice?.toFixed(2)}</p>
+                </div>
+                <div className="error-results">
+                    <div className="error-box">ERROR</div>
+                    <p>{error.percentageError ? (guess > correctPrice ? '+' : '-') : ''}{Math.abs(error.percentageError)?.toFixed(1)}%</p>
+                </div>
+                <div className="percentile-results">
+                    <div className="percentile-box">RANK</div>
+                    <p>{error.percentageError?.toFixed(0)}</p>
+                </div>
+                <div className="statistics-results">
+                    <a className='statistics-button-styling' href="/statistics">Statistics</a>
+                </div>
+                <div className="share-results">
+                    <a className='share-button-styling' href="/share">Share</a>
+                </div>
+                <div className="feedback-results">
+                    {
+                        showFeedbackModal && (
+                            <Modal
+                                className={"modal"}
+                                isOpen={showFeedbackModal}
+                                onRequestClose={handleCloseModal}
+                            >
+                                <Feedback onClose={handleCloseModal} />
+                            </Modal>
+                        )
+                    }
+                    <a className='feedback-button-styling' onClick={handleFeedbackClick} href="/feedback">Feedback</a>
+                </div>
             </div>
         </div>
     );
