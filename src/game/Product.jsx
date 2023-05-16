@@ -10,6 +10,8 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
+    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+
     const totalAmount = 0;
 
     useEffect(() => {
@@ -54,6 +56,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         setTotalPrice(totalPrice);
 
         setReadyToSubmit(true);
+        audioCoins.play()
         } else {
         handleSwipe('left');
         }

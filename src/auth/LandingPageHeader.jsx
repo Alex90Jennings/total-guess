@@ -11,8 +11,8 @@ function LandingPageHeader() {
         <div className='three-columns-expand-one-three'>
             <div></div>
             {/* <img className='trolley-image' src="/icons/trolley.svg" alt="basket" /> */}
-            <img className='trolley-image2' src="/Logo/shruggif.gif" alt="trolley-man" />
-            {/* <div className='basket-icon'>🛒</div> */}
+            {/* <img className='trolley-image2' src="/Logo/shruggif.gif" alt="trolley-man" /> */}
+            <img className='basket-icon'src="/Logo/basketsvg.svg" alt="basket"/>
             <div></div>
         </div>
         {
@@ -20,7 +20,7 @@ function LandingPageHeader() {
                 <div>
                     <div className='three-columns-expand-one-three'>
                         <div></div>
-                        <div className='logo-landing'>Total-Guess!</div>
+                        <div className='logo-landing'>Total-GuEss!</div>
                         <div></div>
                     </div>
                     <div className='three-columns-expand-one-three'>

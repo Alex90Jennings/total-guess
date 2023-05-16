@@ -7,22 +7,28 @@ import "../styles/landingPage.css"
 import "../styles/game.css"
 import { AppContext } from "../hooks/context";
 
-function Header({ setShowLoginPage }) {
+function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
 
     const { loggedInUser, isAuthenticated, setHideHeaders } = useContext(AppContext);
-
-    const [showModal, setShowModal] = useState(false);
     const firstName = loggedInUser.firstName || ' '
+    const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const handleImageClick = () => {
+        audio.play();
         setShowModal(true);
     };
 
+    const playSound = () => {
+        audio.play().catch(error => console.log(error));
+    };
+
     const handleCloseModal = () => {
-        setShowModal(false);
+        audio.play();
+        onClose();
     };
 
     const handleSignUpClick = () => {
+        audio.play();
         setShowLoginPage(true);
         setHideHeaders(true);
     };
@@ -49,13 +55,13 @@ function Header({ setShowLoginPage }) {
             </div>
             <div className="header-right">
                 <img
-                    src={"/icons/iiconnew.svg"}
+                    src={"/icons/instructionsnew.svg"}
                     alt="i icon"
                     className="icon"
                     onClick={handleImageClick}
                 />
                 <img
-                    src={"icons/statsicon.svg"}
+                    src={"/icons/statsnew.svg"}
                     alt="stats icon"
                     className="stats-icon"
                 />
@@ -67,7 +73,7 @@ function Header({ setShowLoginPage }) {
                         isOpen={showModal}
                         onRequestClose={handleCloseModal}
                     >
-                    <Instructions onClose={handleCloseModal} />
+                    <Instructions onClose={handleCloseModal} playSound={playSound}/>
                     </Modal>
                 )
             }

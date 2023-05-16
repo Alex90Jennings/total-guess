@@ -2,26 +2,48 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
+import Instructions from '../game/Instructions';
 
-function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal }) {
-
+function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
     const { isAuthenticated } = useContext(AppContext);
     const navigate = useNavigate();
+    const [showModal, setModalState] = useState(false); 
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
+    const playSound = () => {
+    console.log('Trying to play sound, readyState:', audio.readyState);
+    audio.play().then(() => {
+        console.log('Sound played successfully');
+    }).catch(error => {
+        console.log('Error playing sound:', error);
+    });
+};
+
+
     const handleStartGameSubmit = () => {
+        playSound();
         if (isAuthenticated) {
             navigate('/play');
         } else {
             setShowLandingPageContent(false);
             setShowLoginPage(true);
         }
-        audio.play();
     };
 
     const handlePracticeGameSubmit = () => {
+        playSound();
         navigate('/play');
-        audio.play();
+    };
+
+    const handleCloseModal = () => {
+    playSound().catch(error => console.log('Error playing sound:', error));
+    onClose();
+};
+
+    const handleModalOpen = () => {
+        playSound();
+        setModalState(true); 
+        setShowModal(true); 
     };
 
     return (
@@ -40,12 +62,13 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
                 </li>
                 <li className='three-columns-expand-one-three mb-m'>
                     <div></div>
-                    <button className='landing-page-menu-btn other-btn' onClick={() => setShowModal(true)}>Instructions</button>
+                    <button className='landing-page-menu-btn other-btn' onClick={handleModalOpen}>Instructions</button>
                     <div></div>
                 </li>
                 <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn other-btn' onClick={() => {
+                        playSound();
                         setShowLandingPageContent(false);
                         setShowLoginPage(true);
                     }}>
@@ -54,6 +77,9 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
                     <div></div>
                 </li>
             </ul>
+            {showModal && (
+                <Instructions onClose={handleCloseModal} playSound={playSound} />
+            )}
         </div>
     );
 }

@@ -8,8 +8,8 @@ body {
 /* Header */
 
 #header {
-    height: 100px;
-    padding: 1rem;
+    height: 100%;
+    padding: 0.5rem;
     background-color: #0070c0;
     color: #FFFFFF;
     display: grid;
@@ -26,12 +26,12 @@ body {
     grid-area: header-left;
     grid-column-start: 1;
     grid-column-end: 2;
-    width: 180px;
+    width: 250px;
     margin-left: 10px;
     font-family: 'Luckiest Guy', cursive;
-    font-size: 25px !important;
+    font-size: 26px !important;
     color: #FFFFFF;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 1px 1px 2px #000000;
 }
 
 .signup,
@@ -45,7 +45,10 @@ body {
     grid-area: header-middle;
     grid-column-start: 2;
     grid-column-end: 3;
-    justify-self: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .logo {
@@ -58,39 +61,67 @@ body {
 .header-right {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     grid-area: header-right;
     grid-column-start: 3;
     grid-column-end: 4;
-    width: 180px;
+    width: 250px;
+    margin-right: 5px;
 }
 
 .icon {
     margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border: 2px solid #FFFFFF; 
-    padding: 10px;
+    height: 70x;
+    width: 70px;
     border-radius: 30%;
 }
 
+.icon:hover {
+    background-color: #d8dbde;
+}
+
 .stats-icon {
-    height: 60px;
-    width: 60px;
-    border: 2px solid #FFFFFF;
-    padding: 5px;
+    height: 70px;
+    width: 70px;
     border-radius: 30%;
+}
+
+.stats-icon:hover {
+    background-color: #d8dbde;
 }
 
 .header-left {
     display: flex;
     align-items: center;
     gap: 15px;
-    font-size: 28px;
+    font-size: 24px;
     grid-area: header-left;
     grid-column-start: 1;
     grid-column-end: 2;
-    width: 200px;
+    width: 250px;
     margin-left: 10px;
+}
+
+.signup {
+    border: 2px solid #FFFFFF;
+    padding: 12px;
+    border-radius: 30%;
+}
+
+.signup:hover {
+    background-color: #d8dbde;
+    color: #0070c0;
+}
+
+.signin {
+    border: 2px solid #FFFFFF;
+    padding: 12px;
+    border-radius: 30%;
+}
+
+.signin:hover {
+    background-color: #d8dbde;
+    color: #0070c0;
 }
 
 .signup, .signin {
@@ -112,7 +143,7 @@ body {
     grid-area: header-right;
     grid-column-start: 3;
     grid-column-end: 4;
-    width: 200px;
+    width: 250px;
 }
 
 /* Main */
@@ -459,7 +490,7 @@ input[type='number']::-webkit-outer-spin-button {
 .box-results {
     margin-top: 10px;
     border: 2px solid #0070c0;
-    height: 720px;
+    height: 730px;
     width: 550px;
     display: grid;
     grid-template-rows: repeat(7, 1fr);
@@ -646,6 +677,7 @@ input[type='number']::-webkit-outer-spin-button {
     margin: 0 auto;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 5px;
 }
 
 .share-button-styling:hover {
@@ -672,6 +704,7 @@ input[type='number']::-webkit-outer-spin-button {
     margin: 0 auto;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 10px;
 }
 
 .feedback-button-styling:hover {
