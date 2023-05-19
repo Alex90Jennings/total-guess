@@ -8,13 +8,11 @@ body {
 /* Header */
 
 #header {
-    height: 100px;
     padding: 1rem;
     background-color: #0070c0;
     color: #FFFFFF;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr;
     grid-template-areas: "header-left header-middle header-right";
     align-items: center;
     justify-content: center;
@@ -37,21 +35,18 @@ body {
 
 .header-middle {
     padding: 0;
-    font-size: 40px;
+    font-size: 70px;
     grid-area: header-middle;
     grid-column-start: 2;
     grid-column-end: 3;
     justify-self: center; 
 }
 
-.logo {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 70px !important;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 4px #000000;
+.header-right-narrow-screen{
+    display: none;
 }
 
-.header-right {
+.header-right-wide-screen {
     display: flex;
     align-items: center;
     grid-area: header-right;
@@ -88,15 +83,6 @@ body {
     grid-column-start: 2; 
     grid-column-end: 3;
     justify-self: center;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    grid-area: header-right;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    width: 200px;
 }
 
 /* Main */
@@ -655,4 +641,93 @@ input[type='number']::-webkit-outer-spin-button {
     justify-content: center;
     align-items: center;
     padding: 0;
+}
+
+
+.logo {
+    font-family: 'Luckiest Guy', cursive;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.dropdown-icon {
+    height: 30px;
+    border: 2px solid white;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+/*MEDIA QUERIES*/
+@media screen and (max-width: 850px) {
+    .logo {
+      font-size: 40px !important;
+    }
+
+    .header-left {
+        gap: 10px;
+        font-size: 20px;
+        width: 140px;
+    }
+    
+    .header-right-wide-screen {
+        width: 140px;
+    }
+
+    .icon {
+        height: 60px !important;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .logo {
+      font-size: 30px !important;
+    }
+
+    .header-left {
+        gap: 10px;
+        font-size: 14px;
+        width: 120px;
+    }
+    
+    .header-right-wide-screen {
+        width: 120px;
+    }
+
+    .icon {
+        height: 40px !important;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    #login-header {
+        max-width: 280px !important;
+    }
+
+    #login-header h2 {
+        font-size: 20px !important;
+    }
+
+    .header-right-wide-screen {
+        display: none;
+    }
+
+    .header-right-narrow-screen {
+        display: grid;
+        width: 40px;
+        grid-area: header-right;
+    }
+
+    .landing-page {
+        width: 300px;
+    }
+
+    .header-left {
+        visibility: hidden;
+        width: 40px;
+        grid-area: header-left;
+    }
+
+    .logo-landing {
+      font-size: 40px !important;
+    }
 }

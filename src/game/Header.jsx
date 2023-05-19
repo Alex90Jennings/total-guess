@@ -47,7 +47,7 @@ function Header({ setShowLoginPage }) {
             <div className="header-middle logo">
                 Total🤷‍♂️GuEss
             </div>
-            <div className="header-right">
+            <div className="header-right-wide-screen">
                 <img
                     src={"/icons/iicon.svg"}
                     alt="i icon"
@@ -59,11 +59,10 @@ function Header({ setShowLoginPage }) {
                     alt="settings icon"
                     className="icon mr-s"
                 />
-                <img
-                    src={"/icons/statisticsicon.svg"}
-                    alt="fav icon"
-                    className="icon"
-                />
+            </div>
+            <div className="header-right-narrow-screen two-columns-expand-one">
+                <div></div>
+                <img src="/icons/dropdown.png" alt="dropdown" className="vertical-align dropdown-icon" />
             </div>
             {
                 showModal && (
