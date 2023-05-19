@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
-import Instructions from '../game/Instructions';
+import GameInstructions from '../game/GameInstructions';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
     const { isAuthenticated } = useContext(AppContext);
@@ -11,14 +11,8 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const playSound = () => {
-    console.log('Trying to play sound, readyState:', audio.readyState);
-    audio.play().then(() => {
-        console.log('Sound played successfully');
-    }).catch(error => {
-        console.log('Error playing sound:', error);
-    });
+    audio.play()
 };
-
 
     const handleStartGameSubmit = () => {
         playSound();
@@ -45,6 +39,12 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
         setModalState(true); 
         setShowModal(true); 
     };
+
+    useEffect(() => {
+        if (!showModal) {
+            audio.play();
+        }
+    }, [showModal]);
 
     return (
         <div id='landing-page-menu'>
@@ -78,7 +78,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
                 </li>
             </ul>
             {showModal && (
-                <Instructions onClose={handleCloseModal} playSound={playSound} />
+                <GameInstructions onClose={handleCloseModal} playSound={playSound} />
             )}
         </div>
     );

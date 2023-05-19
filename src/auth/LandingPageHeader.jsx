@@ -12,7 +12,7 @@ function LandingPageHeader() {
             <div></div>
             {/* <img className='trolley-image' src="/icons/trolley.svg" alt="basket" /> */}
             {/* <img className='trolley-image2' src="/Logo/shruggif.gif" alt="trolley-man" /> */}
-            <img className='basket-icon'src="/Logo/basketsvg.svg" alt="basket"/>
+            <img className='trolley-icon'src="/Logo/trolley.svg" alt="trolley"/>
             <div></div>
         </div>
         {

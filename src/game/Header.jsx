@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import Instructions from "../game/Instructions";
-import { useState } from "react";
+import GameInstructions from "./GameInstructions";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/modal.css";
 import "../styles/landingPage.css"
@@ -32,6 +32,12 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
         setShowLoginPage(true);
         setHideHeaders(true);
     };
+
+    useEffect(() => {
+        if (!showModal) {
+            audio.play();
+        }
+    }, [showModal]);
 
     return (
         <header id="header">
@@ -73,7 +79,7 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
                         isOpen={showModal}
                         onRequestClose={handleCloseModal}
                     >
-                    <Instructions onClose={handleCloseModal} playSound={playSound}/>
+                    <GameInstructions onClose={handleCloseModal} playSound={playSound}/>
                     </Modal>
                 )
             }
