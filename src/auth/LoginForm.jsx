@@ -131,13 +131,13 @@ function LoginForm({ setShowLoginPage }) {
                             {formData.isRegistered ? "Need to register?" : "Already registered?"}
                         </span>
                     </div>
-                    <div className='three-columns-expand-one-three mt-m'>
+                    <div className='three-columns-expand-one-three'>
                         <div></div>
                         <button type="submit" className="play-btn">{formData.isRegistered ? 'Login' : 'Register'}</button>
                         <div></div>
                     </div>
                 </form>
-                <div className='three-columns-expand-one-three mt-m'>
+                <div className='three-columns-expand-one-three'>
                     <div></div>
                     <button className="other-btn" onClick={() => setShowLoginPage(false)}>Return to menu</button>
                     <div></div>

@@ -75,6 +75,8 @@
   border-radius: 10px;
   border: none;
   color: #fff;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 #landing-page-menu button:hover,
@@ -118,4 +120,30 @@
 
 .basket-icon {
   font-size: 50px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .landing-page {
+    padding: 10px;
+  }
+
+  .eight-rows-expand-six,
+  .five-rows-expand-three {
+    display: block;
+  }
+}
+@media screen and (max-height: 700px) {
+  .landing-page {
+    margin: 10px auto;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  #landing-page-menu button, 
+  .form button {
+    padding: 8px;
+    margin-bottom: 8px !important;
+    margin-top: 8px !important;
+  }
 }

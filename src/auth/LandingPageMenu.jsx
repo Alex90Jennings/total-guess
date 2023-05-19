@@ -28,17 +28,17 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
         <div id='landing-page-menu'>
             <div></div>
             <ul className='list-reset pl-none'>
-                <li className='three-columns-expand-one-three mb-m'>
+                <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
                     <div></div>
                 </li>
-                <li className='three-columns-expand-one-three mb-m'>
+                <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn play-btn' onClick={handlePracticeGameSubmit}>Practice</button>
                     <div></div>
                 </li>
-                <li className='three-columns-expand-one-three mb-m'>
+                <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn other-btn' onClick={() => setShowModal(true)}>Instructions</button>
                     <div></div>
