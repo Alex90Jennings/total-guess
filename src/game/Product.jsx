@@ -61,65 +61,93 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
 
     return (
         <div className="three-rows-expand-one-three">
-        <div></div>
-        <div className="main--layout">
-            <img
-            src="/icons/arrowleftorange.svg"
-            alt="Arrow Left"
-            className="arrow-icon arrow-left"
-            onClick={() => handleSwipe('right')}
-            />
-            {currentProduct && (
-            <TinderCard
-                className="tinder--card"
-                preventSwipe={['up', 'down']}
-                onSwipe={(dir) => handleSwipe(dir)}
-                key={currentShopIndex}
-            >
-                <div className="box content">
-                <div className="shop--css">{currentShop}</div>
-                <div className="description--css mt-s">{currentDescription}</div>
-                <div className="image-row">
-                    <ImageCount
-                    currentShopIndex={currentShopIndex}
-                    totalAmount={totalAmount}
-                    start={1}
-                    end={5}
-                    />
-                    <div className='space1'></div>
-                    <ProductImage currentImage={currentImage} />
-                    <div className='space2'></div>
-                    <ImageCount
-                    currentShopIndex={currentShopIndex}
-                    totalAmount={totalAmount}
-                    start={6}
-                    end={10}
-                    />
-                </div>
-                <div className="info-container">
-                    <div className="info-column">
-                    <p className="date">{currentProduct.date}</p>
+            <div></div>
+            <div className="main--layout">
+                <img
+                src="/icons/arrowleftorange.svg"
+                alt="Arrow Left"
+                className="arrow-icon arrow-left wide-screen-arrows"
+                onClick={() => handleSwipe('right')}
+                />
+                {currentProduct && (
+                <TinderCard
+                    className="tinder--card"
+                    preventSwipe={['up', 'down']}
+                    onSwipe={(dir) => handleSwipe(dir)}
+                    key={currentShopIndex}
+                >
+                    <div className="box content">
+                        <div className="shop--css">{currentShop}</div>
+                        <div className="description--css mt-s">{currentDescription}</div>
+                        <div className="image-row">
+                            <img
+                            src="/icons/arrowleftorange.svg"
+                            alt="Arrow Left"
+                            className="arrow-icon arrow-left narrow-screen-arrows"
+                            onClick={() => handleSwipe('right')}
+                            />
+                            <div className='wide-screen-count'>
+                                <ImageCount
+                                currentShopIndex={currentShopIndex}
+                                totalAmount={totalAmount}
+                                start={1}
+                                end={5}
+                                />
+                            </div>
+                            <div className='space1'></div>
+                            <ProductImage currentImage={currentImage} />
+                            <div className='space2'></div>
+                            <div className='wide-screen-count'>
+                                <ImageCount
+                                className='wide-screen-count'
+                                currentShopIndex={currentShopIndex}
+                                totalAmount={totalAmount}
+                                start={6}
+                                end={10}
+                                />
+                            </div>
+                            <img
+                            src="/icons/arrowrightorange.svg"
+                            alt="Arrow Right"
+                            className="arrow-icon arrow-right narrow-screen-arrows"
+                            onClick={handleArrowRightClick}
+                            />
+                        </div>
+                        <div className='narrow-screen-count three-columns-expand-one-three'>
+                            <div></div>
+                            <ImageCount
+                                currentShopIndex={currentShopIndex}
+                                alignment={"horizontal"}
+                                totalAmount={totalAmount}
+                                start={1}
+                                end={10}
+                            />
+                            <div></div>
+                        </div>
+                        <div className="info-container">
+                            <div className="info-column">
+                            <p className="date">{currentProduct.date}</p>
+                            </div>
+                            <div className='space3'></div>
+                            <div className="info-column text-center">
+                            <p className="store">{currentProduct.store}</p>
+                            </div>
+                            <div className='space4'></div>
+                            <div className="info-column text-right">
+                            <p className="game">#{currentProduct.game}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className='space3'></div>
-                    <div className="info-column text-center">
-                    <p className="store">{currentProduct.store}</p>
-                    </div>
-                    <div className='space4'></div>
-                    <div className="info-column text-right">
-                    <p className="game">#{currentProduct.game}</p>
-                    </div>
-                </div>
-                </div>
-            </TinderCard>
-            )}
-            <img
-            src="/icons/arrowrightorange.svg"
-            alt="Arrow Right"
-            className="arrow-icon arrow-right"
-            onClick={handleArrowRightClick}
-            />
-        </div>
-        <div></div>
+                </TinderCard>
+                )}
+                <img
+                src="/icons/arrowrightorange.svg"
+                alt="Arrow Right"
+                className="arrow-icon arrow-right wide-screen-arrows"
+                onClick={handleArrowRightClick}
+                />
+            </div>
+            <div></div>
         </div>
     );
 }
