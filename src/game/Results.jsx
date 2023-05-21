@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import '../styles/game.css';
 import Feedback from './Feedback';
 import Modal from "react-modal";
@@ -72,6 +72,9 @@ function Results() {
                         )
                     }
                     <a className='feedback-button-styling' onClick={handleFeedbackClick} href="/feedback">Feedback</a>
+                    </div>
+                    <div className="home-button-results">
+                        <Link to="/" className='home-button-styling'>Home Page</Link>
                 </div>
             </div>
         </div>

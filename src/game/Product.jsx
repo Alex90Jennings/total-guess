@@ -10,6 +10,8 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
+    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+
     const totalAmount = 0;
 
     useEffect(() => {
@@ -54,10 +56,19 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         setTotalPrice(totalPrice);
 
         setReadyToSubmit(true);
+        audioCoins.play()
         } else {
         handleSwipe('left');
         }
     };
+
+    function getDateString(date) {
+        const d = new Date(date);
+        const day = ("0" + d.getDate()).slice(-2);
+        const month = ("0" + (d.getMonth() + 1)).slice(-2);
+        const year = d.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
 
     return (
         <div className="three-rows-expand-one-three">
@@ -98,7 +109,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                 </div>
                 <div className="info-container">
                     <div className="info-column">
-                    <p className="date">{currentProduct.date}</p>
+                    <p className="date">{getDateString(currentProduct.date)}</p>
                     </div>
                     <div className='space3'></div>
                     <div className="info-column text-center">
@@ -106,7 +117,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                     </div>
                     <div className='space4'></div>
                     <div className="info-column text-right">
-                    <p className="game">#{currentProduct.game}</p>
+                    <p className="game">#1{currentProduct.game}</p>
                     </div>
                 </div>
                 </div>

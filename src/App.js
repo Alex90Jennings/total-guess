@@ -13,7 +13,6 @@ import Results from "./game/Results";
 import Share from "./game/Share.jsx";
 
 function App() {
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [guess, setGuess] = useState(undefined);
@@ -21,42 +20,49 @@ function App() {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-        <div>
-            <div className="app">
-                <Header isAuthenticated={isAuthenticated} />
-                <BrowserRouter>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                            <LandingPage
-                                isAuthenticated={isAuthenticated}
-                                setIsAuthenticated={setIsAuthenticated}
-                                setShowModal={setShowModal}
-                            />
-                            }
-                        />
-                        <Route path="/play" element={<MainGamePage setGuess={setGuess} />} />
-                        <Route path="/results" element={<Results guess={guess} />} />
-                        <Route path="/share" element={<Share />} />
-                    </Routes>
-                </BrowserRouter>
-                {
-                    showModal && (
-                        <Modal
-                            className={"modal"}
-                            isOpen={showModal}
-                            onRequestClose={handleCloseModal}
-                        >
-                            <GameInstructions onClose={handleCloseModal} />
-                        </Modal>
-                    )
-                }
-                <Footer />
-            </div>
-            <ContactUs />
-        </div>
-    );
+    <div>
+      <div className="app">
+        <Header
+          isAuthenticated={isAuthenticated}
+          onClose={handleCloseModal}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <LandingPage
+                  isAuthenticated={isAuthenticated}
+                  setIsAuthenticated={setIsAuthenticated}
+                  setShowModal={setShowModal}
+                  onClose={handleCloseModal}
+                />
+              }
+            />
+            <Route
+              path="/play"
+              element={<MainGamePage setGuess={setGuess} />}
+            />
+            <Route path="/results" element={<Results guess={guess} />} />
+            <Route path="/share" element={<Share />} />
+          </Routes>
+        </BrowserRouter>
+        {showModal && (
+          <Modal
+            className={"modal"}
+            isOpen={showModal}
+            onRequestClose={handleCloseModal}
+          >
+            <GameInstructions onClose={handleCloseModal} />
+          </Modal>
+        )}
+        <Footer />
+      </div>
+      <ContactUs />
+    </div>
+  );
 }
 
 export default App;
