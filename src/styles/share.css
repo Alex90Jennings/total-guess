@@ -85,3 +85,7 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+.feedback-button-share:hover {
+    background-color: #0070c0;
+}
