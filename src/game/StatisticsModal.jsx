@@ -19,19 +19,19 @@ const StatisticsModal = ({ isOpen, onClose }) => {
       onRequestClose={onClose}
     >
       <div className="pl-l pr-l">
-        <h1>Statistics</h1>
+        <div className="h1-statistics">Statistics</div>
 
         <div className="grid-container">
           <div className="grid-item">
-            <div>198</div>
+            <div className="gp-number">198</div>
             <div className='games-played'>GAMES PLAYED</div>
           </div>
           <div className="grid-item">
-            <div>4</div>
+            <div className="cs-number">4</div>
             <div className='current-streak'>CURRENT STREAK</div>
           </div>
           <div className="grid-item">
-            <div>27</div>
+            <div className="bs-number">27</div>
             <div className='best-streak'>BEST STREAK</div>
           </div>
         </div>

@@ -112,44 +112,65 @@
     margin-bottom: 30px;
 }
 
+.h1-statistics {
+    font-weight: bold;
+    font-size: 45px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .grid-item {
     padding: 10px;
     font-weight: bold;
 }
 
 .games-played {
+    font-size: 13px;
     margin-top: 10px;
+}
+
+.gp-number {
+    font-size: 30px;
 }
 
 .current-streak {
+    font-size: 13px;
     margin-top: 10px;
 }
 
+.cs-number {
+    font-size: 30px;
+}
+
 .best-streak {
+    font-size: 13px;
     margin-top: 10px;
-    color: #0070c0;
+}
+
+.bs-number {
+    font-size: 30px;
 }
 
 .grid-container2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
+    height: 120px;
 }
 
 .grid-item2 {
     padding: 15px;
-    margin-bottom: 20px;
     font-weight: bold;
 }
 
 .best-guess {
+    font-size: 13px;
     margin-top: 10px;
-    color: #0070c0;
 }
 
 .average-guess {
+    font-size: 13px;
     margin-top: 10px;
-    color: #0070c0;
 }
 
 .pl-l {
@@ -160,13 +181,13 @@
 }
 
 .bg-number {
+    font-size: 30px;
     margin-top: 5px;
-    color: #0070c0;
 }
 
 .ag-number {
+    font-size: 30px;
     margin-top: 5px;
-    color: #0070c0;
 }
 
 .grid-container3 {
@@ -176,26 +197,27 @@
 }
 
 .grid-item3 {
-    padding: 15px;
     font-weight: bold;
 }
 
 .ranking {
     margin-top: 10px;
-    color: #0070c0;
+    font-size: 13px;
     margin-bottom: 10px;
 }
 
 .players {
     margin-top: 10px;
-    color: #0070c0;
-    margin-bottom: 10px;
+    font-size: 13px;
+    margin-bottom: 20px;
 }
 
 .rank-number {
+    font-size: 30px;
     color: #0070c0;
 }
 
 .players-number {
+    font-size: 30px;
     color: #0070c0;
 }
