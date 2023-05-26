@@ -3,33 +3,27 @@ import '../styles/modal.css'
 
 function GameInstructions({ onClose }) {
     
-    return (
+return (
         <div className='pl-l pr-l'>
             <div className='two-columns-expand-one'>
                 <div></div>
-                <button className='close-btn' onClick={onClose}>X</button>
+                <button className="close-btn" onClick={() => {
+    onClose();
+}}>X</button>
             </div>
-            <h1>HOW TO PLAY</h1>
-            <h2>SIGNING UP</h2>
+            <h1>Instructions</h1>
+            <h2>GUESS THE TOTAL COST OF THE BASKET OF GROCERIES</h2>
             <ul className='list-reset pl-m'>
-                <li>Navigate to the menu</li>
-                <li>Press sign in</li>
-                <li>Enter your details</li>
-                <li>Click sign up</li>
+                <li>There is a virtual basket of ten grocery items, all from a single supermarket.</li>
+                <li>Take a moment to consider the cost of each grocery item individually.</li>
+                <li>Make your best guess for the cost of each individual grocery item.</li>
+                <li>Keep track of all your guesses and add them up however you like.</li>
+                <li>Submit your total guess.</li>
             </ul>
-            <h2>PLAYING THE GAME</h2>
+            <h2>ASSESSING YOUR PERFORMANCE</h2>
             <ul className='list-reset pl-m'>
-                <li>Navigate to the menu</li>
-                <li>Press play</li>
-                <li>Watch the shopping items as they appear and estimate their cost</li>
-                <li>After 10 items, submit your guess</li>
-            </ul>
-            <h2>HOW DID I DO?</h2>
-            <ul className='list-reset pl-m mb-xxl'>
-                <li>In the top right, click the statistics</li>
-                <li>Here you will find all the results from your previous guesses</li>
-                <li>The lower you percentage difference the better</li>
-                <li>Return everyday to submit new guesses</li>
+                <li>After submitting your total guess, your score will be displayed as a percentage error.</li>
+                <li>A histogram and summary statistics can be accessed, providing you an overview of your play history.</li>
             </ul>
         </div>
     );

@@ -8,6 +8,7 @@ function Submit({ setGuess, correctPrice }) {
     const [guessValue, setGuessValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [inputValid, setInputValid] = useState(false);
+    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
 
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
@@ -28,6 +29,7 @@ function Submit({ setGuess, correctPrice }) {
     const handleGuessSubmit = () => {
         const numericGuess = parseFloat(guessValue).toFixed(2);
         setGuess(numericGuess);
+        audioCoins.play()
         navigate('/results', { state: { guess: numericGuess, correctPrice: correctPrice } });
     };
 

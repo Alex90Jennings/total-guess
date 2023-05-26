@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useState } from "react"
 
-// TODO: make pageFound a useRef
-
 export const AppContext = createContext({
     loggedInUser: {},
     setLoggedInUser: () => {},
@@ -18,8 +16,6 @@ export const AppProvider = ({ children }) => {
     const [ loggedInUser, setLoggedInUser ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ hideHeaders, setHideHeaders ] = useState(false)
-
-    console.log("loggedInUser: ", loggedInUser)
 
     const value = {
         loggedInUser,

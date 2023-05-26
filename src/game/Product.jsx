@@ -10,6 +10,8 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
+    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+
     const totalAmount = 0;
 
     useEffect(() => {
@@ -54,10 +56,19 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         setTotalPrice(totalPrice);
 
         setReadyToSubmit(true);
+        audioCoins.play()
         } else {
         handleSwipe('left');
         }
     };
+
+    function getDateString(date) {
+        const d = new Date(date);
+        const day = ("0" + d.getDate()).slice(-2);
+        const month = ("0" + (d.getMonth() + 1)).slice(-2);
+        const year = d.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
 
     return (
         <div className="three-rows-expand-one-three">

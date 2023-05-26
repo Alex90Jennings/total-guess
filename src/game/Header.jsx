@@ -1,31 +1,43 @@
 import React, { useContext } from "react";
-import Instructions from "../game/Instructions";
-import { useState } from "react";
+import GameInstructions from "./GameInstructions";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/modal.css";
 import "../styles/landingPage.css"
 import "../styles/game.css"
 import { AppContext } from "../hooks/context";
 
-function Header({ setShowLoginPage }) {
+function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
 
     const { loggedInUser, isAuthenticated, setHideHeaders } = useContext(AppContext);
-
-    const [showModal, setShowModal] = useState(false);
     const firstName = loggedInUser.firstName || ' '
+    const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const handleImageClick = () => {
+        audio.play();
         setShowModal(true);
     };
 
+    const playSound = () => {
+        audio.play().catch(error => console.log(error));
+    };
+
     const handleCloseModal = () => {
-        setShowModal(false);
+        audio.play();
+        onClose();
     };
 
     const handleSignUpClick = () => {
+        audio.play();
         setShowLoginPage(true);
         setHideHeaders(true);
     };
+
+    useEffect(() => {
+        if (!showModal) {
+            audio.play();
+        }
+    }, [showModal]);
 
     return (
         <header id="header">
@@ -49,20 +61,16 @@ function Header({ setShowLoginPage }) {
             </div>
             <div className="header-right-wide-screen">
                 <img
-                    src={"/icons/iicon.svg"}
+                    src={"/icons/instructionsnew.svg"}
                     alt="i icon"
                     className="icon"
                     onClick={handleImageClick}
                 />
                 <img
-                    src={"/icons/settingsicon.svg"}
-                    alt="settings icon"
-                    className="icon mr-s"
+                    src={"/icons/statsnew.svg"}
+                    alt="stats icon"
+                    className="stats-icon"
                 />
-            </div>
-            <div className="header-right-narrow-screen two-columns-expand-one">
-                <div></div>
-                <img src="/icons/dropdown.png" alt="dropdown" className="vertical-align dropdown-icon" />
             </div>
             {
                 showModal && (
@@ -71,7 +79,7 @@ function Header({ setShowLoginPage }) {
                         isOpen={showModal}
                         onRequestClose={handleCloseModal}
                     >
-                    <Instructions onClose={handleCloseModal} />
+                    <GameInstructions onClose={handleCloseModal} playSound={playSound}/>
                     </Modal>
                 )
             }
