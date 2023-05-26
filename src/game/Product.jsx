@@ -137,7 +137,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                         </div>
                         <div className="info-container">
                             <div className="info-column">
-                            <p className="date">{currentProduct.date}</p>
+                            <p className="date">{getDateString(currentProduct.date)}</p>
                             </div>
                             <div className='space3'></div>
                             <div className="info-column text-center">

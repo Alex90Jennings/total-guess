@@ -72,6 +72,13 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
                     className="stats-icon"
                 />
             </div>
+            <div className="header-right-narrow-screen">
+                <img
+                    src={"/icons/dropdown.png"}
+                    alt="dropdown"
+                    className="mr-m dropdown-icon"
+                />
+            </div>
             {
                 showModal && (
                     <Modal
