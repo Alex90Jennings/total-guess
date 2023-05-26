@@ -130,7 +130,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                             </div>
                             <div className='space3'></div>
                             <div className="info-column text-center">
-                            <p className="store">{currentProduct.store}</p>
+                            <p className="store">{currentProduct.store[0]}</p>
                             </div>
                             <div className='space4'></div>
                             <div className="info-column text-right">

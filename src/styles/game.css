@@ -117,7 +117,6 @@ margin-left: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 650px;
     width: 1350px;
 }
 
@@ -182,7 +181,6 @@ margin-left: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
 }
 
 .info-column.store {
@@ -205,7 +203,6 @@ margin-left: 100px;
 .store {
     text-align: center;
     color: #f18213;
-    width: 680px;
 }
 
 .game {
@@ -708,6 +705,24 @@ input[type='number']::-webkit-outer-spin-button {
     .icon {
         height: 60px !important;
     }
+
+    .content,
+    .info-container {
+        width: 650px;
+    }
+
+    .image-row {
+        width: 600px;
+    }
+
+    .box img {
+        max-height: 200px;
+    }
+
+    .image-counter img {
+        height: 40px;
+        width: 40px;
+    }
 }
 
 @media screen and (max-width: 650px) {
@@ -761,6 +776,15 @@ input[type='number']::-webkit-outer-spin-button {
 
     .h1-submit {
         font-size: 1.5em !important;
+    }
+
+    .content,
+    .info-container {
+        width: 530px;
+    }
+
+    .image-row {
+        width: 500px;
     }
 }
 
@@ -862,5 +886,42 @@ input[type='number']::-webkit-outer-spin-button {
 
     .main--layout--results h1 {
         font-size: 1.5rem;
+    }
+
+    .content,
+    .info-container {
+        width: 375px;
+    }
+
+    .image-row {
+        width: 350px;
+    }
+
+    .box img {
+        max-height: 150px;
+    }
+
+    .image-counter img {
+        height: 25px;
+        width: 25px;
+    }
+
+    .arrow-right {
+        margin-left: 30px;
+    }
+
+    .arrow-left {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-height: 1050px) {
+    .shop--css {
+        height: auto;
+        font-size: 30px;
+    }
+
+    .description--css {
+        margin-top: 15px;
     }
 }
