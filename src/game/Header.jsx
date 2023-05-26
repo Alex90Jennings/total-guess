@@ -49,7 +49,7 @@ function Header({
   const handleCloseStatisticsModal = () => {
     audio.play();
     setShowStatisticsModal(false);
-  }; // Define handleCloseStatisticsModal
+  }; 
 
   useEffect(() => {
     if (!showModal) {

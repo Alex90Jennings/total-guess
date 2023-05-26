@@ -737,3 +737,9 @@ input[type='number']::-webkit-outer-spin-button {
 .home-button-styling:hover {
     background-color: #0070c0;
 }
+
+.submit-image {
+    height: 100px;
+    width: 100px;
+    margin-left: 35px;
+}
