@@ -513,7 +513,6 @@ input[type='number']::-webkit-outer-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 83vh;
     margin: auto;
 }
 
@@ -649,6 +648,26 @@ input[type='number']::-webkit-outer-spin-button {
     background-color: #262829;
 }
 
+.home-button-styling {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #262829;
+    color: #fff;
+    height: 55px;
+    width: 200px;
+    border-radius: 8%;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.home-button-styling:hover {
+    background-color: #0070c0;
+}
+
 .statistics-results {
     display: flex;
     justify-content: center;
@@ -702,10 +721,9 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .feedback-results {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 
@@ -993,5 +1011,9 @@ input[type='number']::-webkit-outer-spin-button {
 
     .description--css {
         margin-top: 15px;
+    }
+
+    #header {
+        padding: 0 1rem;
     }
 }
