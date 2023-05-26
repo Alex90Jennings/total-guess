@@ -107,21 +107,21 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                             </div>
                             <div className='space1'></div>
                             <ProductImage currentImage={currentImage} />
-                            <div className='space2'></div>
+                        <div className='space2'></div>
                             <div className='wide-screen-count'>
                                 <ImageCount
-                                className='wide-screen-count'
-                                currentShopIndex={currentShopIndex}
-                                totalAmount={totalAmount}
-                                start={6}
-                                end={10}
+                                    className='wide-screen-count'
+                                    currentShopIndex={currentShopIndex}
+                                    totalAmount={totalAmount}
+                                    start={6}
+                                    end={10}
                                 />
                             </div>
                             <img
-                            src="/icons/arrowrightorange.svg"
-                            alt="Arrow Right"
-                            className="arrow-icon arrow-right narrow-screen-arrows"
-                            onClick={handleArrowRightClick}
+                                src="/icons/arrowrightorange.svg"
+                                alt="Arrow Right"
+                                className="arrow-icon arrow-right narrow-screen-arrows"
+                                onClick={handleArrowRightClick}
                             />
                         </div>
                         <div className='narrow-screen-count three-columns-expand-one-three'>
@@ -137,25 +137,25 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                         </div>
                         <div className="info-container">
                             <div className="info-column">
-                            <p className="date">{getDateString(currentProduct.date)}</p>
+                                <p className="date">{getDateString(currentProduct.date)}</p>
                             </div>
                             <div className='space3'></div>
-                            <div className="info-column text-center">
-                            <p className="store">{currentProduct.store[0]}</p>
+                                <div className="info-column text-center">
+                                <p className="store">{currentProduct.store}</p>
                             </div>
                             <div className='space4'></div>
-                            <div className="info-column text-right">
-                            <p className="game">#{currentProduct.game}</p>
+                                <div className="info-column text-right">
+                                <p className="game">#{currentProduct.game}</p>
                             </div>
                         </div>
                     </div>
                 </TinderCard>
                 )}
                 <img
-                src="/icons/arrowrightorange.svg"
-                alt="Arrow Right"
-                className="arrow-icon arrow-right wide-screen-arrows"
-                onClick={handleArrowRightClick}
+                    src="/icons/arrowrightorange.svg"
+                    alt="Arrow Right"
+                    className="arrow-icon arrow-right wide-screen-arrows"
+                    onClick={handleArrowRightClick}
                 />
             </div>
             <div></div>
