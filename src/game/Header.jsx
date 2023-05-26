@@ -42,7 +42,7 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
     return (
         <header id="header">
             <div className="header-left">
-                {
+                {/* {
                     !isAuthenticated ? (
                         <>
                             <div className="signup" onClick={handleSignUpClick}>Sign up</div>
@@ -54,7 +54,7 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
                             <div className="users-first-name">{firstName}</div>
                         </>
                     )
-                }
+                } */}
             </div>
             <div className="header-middle logo">
                 Total🤷‍♂️GuEss

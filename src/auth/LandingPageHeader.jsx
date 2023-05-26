@@ -10,8 +10,6 @@ function LandingPageHeader() {
         <div id='login-header'>
         <div className='three-columns-expand-one-three'>
             <div></div>
-            {/* <img className='trolley-image' src="/icons/trolley.svg" alt="basket" /> */}
-            {/* <img className='trolley-image2' src="/Logo/shruggif.gif" alt="trolley-man" /> */}
             <img className='trolley-icon'src="/Logo/trolley.svg" alt="trolley"/>
             <div></div>
         </div>
