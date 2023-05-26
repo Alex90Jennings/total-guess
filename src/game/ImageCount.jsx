@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/game.css';
 
-function ImageCount({ currentShopIndex, start, end }) {
+function ImageCount({ currentShopIndex, start, end, alignment }) {
 
     const [numberImages, setNumberImages] = useState([]);
 
@@ -26,8 +26,10 @@ function ImageCount({ currentShopIndex, start, end }) {
         [currentShopIndex, start, end]
     );
 
+    const className = alignment === 'horizontal' ? 'image-counter mg-m ten-columns' : 'image-counter mg-m'
+
     return (
-        <div className="image-counter mg-m">
+        <div className={`${className}`}>
             {
                 numberImages.map(
                     (image, i) => (

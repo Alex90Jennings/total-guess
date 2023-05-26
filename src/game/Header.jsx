@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext } from "react";
 import GameInstructions from "./GameInstructions";
 import { useState, useEffect } from "react";
@@ -59,7 +60,7 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
             <div className="header-middle logo">
                 Total🤷‍♂️GuEss
             </div>
-            <div className="header-right">
+            <div className="header-right-wide-screen">
                 <img
                     src={"/icons/instructionsnew.svg"}
                     alt="i icon"
@@ -70,6 +71,13 @@ function Header({ setShowLoginPage, onClose, showModal, setShowModal }) {
                     src={"/icons/statsnew.svg"}
                     alt="stats icon"
                     className="stats-icon"
+                />
+            </div>
+            <div className="header-right-narrow-screen">
+                <img
+                    src={"/icons/dropdown.png"}
+                    alt="dropdown"
+                    className="mr-m dropdown-icon"
                 />
             </div>
             {

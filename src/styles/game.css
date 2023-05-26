@@ -8,13 +8,11 @@ body {
 /* Header */
 
 #header {
-    height: 100%;
-    padding: 0.5rem;
+    padding: 1rem;
     background-color: #0070c0;
     color: #FFFFFF;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr;
     grid-template-areas: "header-left header-middle header-right";
     align-items: center;
     justify-content: center;
@@ -41,7 +39,7 @@ body {
 
 .header-middle {
     padding: 0;
-    font-size: 40px;
+    font-size: 70px;
     grid-area: header-middle;
     grid-column-start: 2;
     grid-column-end: 3;
@@ -51,14 +49,11 @@ body {
     height: 100%;
 }
 
-.logo {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 70px !important;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 4px #000000;
+.header-right-narrow-screen{
+    display: none;
 }
 
-.header-right {
+.header-right-wide-screen {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -178,7 +173,6 @@ margin-left: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 650px;
     width: 1350px;
 }
 
@@ -206,8 +200,6 @@ margin-left: 100px;
 
 .box {
     border: 2px solid #f18213;
-    width: 1300px;
-    height: 74%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -245,7 +237,6 @@ margin-left: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
 }
 
 .info-column.store {
@@ -268,7 +259,6 @@ margin-left: 100px;
 .store {
     text-align: center;
     color: #f18213;
-    width: 680px;
 }
 
 .game {
@@ -365,6 +355,7 @@ margin-left: 100px;
 }
 
 .submit-guess-button {
+    margin-top: 8px;
     background-color: rgb(5, 175, 5);
 }
 
@@ -375,10 +366,9 @@ margin-left: 100px;
 }
 
 .box-submit {
-    margin-top: 10px;
+    margin: 10px;
     border: 2px solid #0070c0;
-    height: 700px;
-    width: 550px;
+    padding: 20px;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     justify-content: center;
@@ -398,7 +388,7 @@ margin-left: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90%;
+    min-width: 500px;
 }
 
 .h1-submit {
@@ -415,6 +405,7 @@ margin-left: 100px;
     align-items: center;
     grid-row: 2;
     grid-column: 1;
+    margin-bottom: 10px;
 }
 
 .guess-amount>input {
@@ -488,12 +479,9 @@ input[type='number']::-webkit-outer-spin-button {
 /* Results Section */
 
 .box-results {
-    margin-top: 10px;
+    margin: 10px;
     border: 2px solid #0070c0;
-    height: 730px;
-    width: 550px;
     display: grid;
-    grid-template-rows: repeat(7, 1fr);
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -501,9 +489,16 @@ input[type='number']::-webkit-outer-spin-button {
 
 .guess-results,
 .error-results,
-.percentile-results {
-    grid-row: auto;
-    grid-column: 1;
+.percentile-results,
+.statistics-results,
+.share-results,
+.feedback-results {
+    padding: 4px;
+}
+
+.error-message {
+    font-weight: bold;
+    margin: 24px;
 }
 
 .h1-results,
@@ -512,14 +507,13 @@ input[type='number']::-webkit-outer-spin-button {
 .percentile-results,
 .statistics-results {
     max-width: 400px;
-    width: 100%;
 }
 
 .main--layout--results {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 81vh;
+    margin: auto;
 }
 
 .h1-results {
@@ -538,7 +532,6 @@ input[type='number']::-webkit-outer-spin-button {
     align-items: center;
     grid-row: 2;
     grid-column: 1;
-    margin-bottom: 5px;
 }
 
 .guess-results>p {
@@ -610,8 +603,6 @@ input[type='number']::-webkit-outer-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-row: 4;
-    grid-column: 1;
 }
 
 .percentile-results>p {
@@ -657,11 +648,30 @@ input[type='number']::-webkit-outer-spin-button {
     background-color: #262829;
 }
 
+.home-button-styling {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #262829;
+    color: #fff;
+    height: 55px;
+    width: 200px;
+    border-radius: 8%;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.home-button-styling:hover {
+    background-color: #0070c0;
+}
+
 .statistics-results {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
 }
 
 .share-button-styling {
@@ -688,7 +698,6 @@ input[type='number']::-webkit-outer-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
 }
 
 .feedback-button-styling {
@@ -712,28 +721,299 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .feedback-results {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
-    padding: 0;
 }
 
-.home-button-styling {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #262829;
-    color: #fff;
-    height: 55px;
-    width: 200px;
-    border-radius: 8%;
-    font-size: 1.5rem;
-    margin: 0 auto;
-    text-align: center;
-    text-decoration: none;
-    margin-bottom: 5px;
+
+.logo {
+    font-family: 'Luckiest Guy', cursive;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px #000000;
 }
 
-.home-button-styling:hover {
-    background-color: #0070c0;
+.dropdown-icon {
+    height: 30px;
+    border: 2px solid white;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.narrow-screen-arrows,
+.narrow-screen-count {
+    display: none;
+}
+
+/*MEDIA QUERIES*/
+@media screen and (max-width: 1600px) {
+    .narrow-screen-arrows {
+        display: grid;
+    }
+
+    .wide-screen-arrows {
+        display: none;
+    }
+
+    .content,
+    .info-container {
+        width: 1100px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .box img {
+        max-height: 250px;
+    }
+
+    .narrow-screen-count{
+        display: grid;
+        grid-template-columns: repeat(10, auto);
+    }
+
+    .wide-screen-count{
+        display: none;
+    }
+
+    .content,
+    .info-container {
+        width: 850px;
+    }
+
+    .info-container p {
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .logo {
+      font-size: 40px !important;
+    }
+
+    .icon {
+        height: 60px !important;
+    }
+
+    .content,
+    .info-container {
+        width: 650px;
+    }
+
+    .image-row {
+        width: 600px;
+    }
+
+    .box img {
+        max-height: 200px;
+    }
+
+    .image-counter img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .logo {
+      font-size: 30px !important;
+    }
+
+    .h1-submit {
+        max-width: 250px;
+    }
+
+    .header-left {
+        gap: 10px;
+        font-size: 14px;
+        width: 120px;
+    }
+    
+    .header-right-wide-screen {
+        width: 120px;
+    }
+
+    .icon {
+        height: 40px !important;
+    }
+
+    .guess-amount>.blue-box {
+        height: 50px;
+        width: 70px;
+        font-size: 2rem;
+    }
+
+    .guess-amount>input {
+        height: auto;
+    }
+
+    .box-submit {
+        padding: 0px;
+    }
+
+    .sub-button-styling {
+        height: 60px;
+        width: 200px;
+        border-radius: 15px;
+        font-size: 2rem;
+    }
+
+    .submit-button {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .h1-submit {
+        font-size: 1.5em !important;
+    }
+
+    .content,
+    .info-container {
+        width: 530px;
+    }
+
+    .image-row {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    #login-header {
+        max-width: 280px !important;
+    }
+
+    #login-header h2 {
+        font-size: 20px !important;
+    }
+
+    .header-right-wide-screen {
+        display: none;
+    }
+
+    .header-right-narrow-screen {
+        display: grid;
+        width: 40px;
+        grid-area: header-right;
+    }
+
+    .landing-page {
+        width: 300px;
+    }
+
+    .header-left {
+        visibility: hidden;
+        width: 40px;
+        grid-area: header-left;
+        margin-left: 0px;
+    }
+
+    .logo-landing {
+      font-size: 40px !important;
+    }
+
+    .guess-amount>.blue-box {
+        height: 50px;
+        width: 70px;
+        font-size: 2rem;
+    }
+
+    .guess-amount>input {
+        height: auto;
+    }
+
+    .box-submit {
+        padding: 0px;
+    }
+
+    .sub-button-styling {
+        height: 60px;
+        width: 200px;
+        border-radius: 15px;
+        font-size: 2rem;
+    }
+
+    .submit-button {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .h1-submit {
+        font-size: 1.5em !important;
+    }
+
+    .main--layout--submit {
+        min-width: 350px;
+    }
+
+    .guess-results>.guessed-box,
+    .error-results>.error-box,
+    .percentile-results>.percentile-box {
+        font-size: 2rem;
+        height: 60px;
+        width: 120px;
+    }
+
+    .guess-results>p,
+    .error-results>p,
+    .percentile-results>p {
+        font-size: 2rem;
+        height: 56px;
+        width: 120px
+    }
+
+    .feedback-button-styling,
+    .share-button-styling,
+    .statistics-button-styling {
+        height: 50px;
+        width: 180px;
+        font-size: 1.5rem;
+    }
+
+    .footer-icon {
+        display: none;
+    }
+
+    .main--layout--results h1 {
+        font-size: 1.5rem;
+    }
+
+    .content,
+    .info-container {
+        width: 375px;
+    }
+
+    .image-row {
+        width: 350px;
+    }
+
+    .box img {
+        max-height: 150px;
+    }
+
+    .image-counter img {
+        height: 25px;
+        width: 25px;
+    }
+
+    .arrow-right {
+        margin-left: 30px;
+    }
+
+    .arrow-left {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-height: 1050px) {
+    .shop--css {
+        height: auto;
+        font-size: 30px;
+    }
+
+    .description--css {
+        margin-top: 15px;
+    }
+
+    #header {
+        padding: 0 1rem;
+    }
 }
