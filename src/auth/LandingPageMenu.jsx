@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
@@ -50,17 +51,19 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
         <div id='landing-page-menu'>
             <div></div>
             <ul className='list-reset pl-none'>
-                <li className='three-columns-expand-one-three mb-m'>
+                <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
                     <div></div>
                 </li>
-                <li className='three-columns-expand-one-three mb-m'>
+                {/*
+                <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn play-btn' onClick={handlePracticeGameSubmit}>Practice</button>
                     <div></div>
                 </li>
-                <li className='three-columns-expand-one-three mb-m'>
+                */}
+                <li className='three-columns-expand-one-three'>
                     <div></div>
                     <button className='landing-page-menu-btn other-btn' onClick={handleModalOpen}>Instructions</button>
                     <div></div>

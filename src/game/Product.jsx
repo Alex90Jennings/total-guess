@@ -9,9 +9,16 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
-    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+    //const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+    const brand = 'tesco' //!TODO: does not need to be it's own state, use groceries.store
+    const shouldBeBold = ['asda', 'tesco', 'morrisons']
+    const shouldBeAllCaps = ['asda', 'tesco']
 
     const totalAmount = 0;
+
+    const getBrandClassname = (classNames) => {
+        return classNames.replace('{brand}', brand);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +39,14 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         return <div>Loading...</div>;
     }
 
-    const currentShop = currentProduct.shop;
+    const correctShopName = (brand) => {
+        const shopName = brand.brand
+        let nameToReturn = shouldBeAllCaps.includes(shopName) ? shopName.toUpperCase() : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase()
+        if (shopName === 'sainsbury') nameToReturn += `'s`
+        return nameToReturn
+    }
+
+    //const currentShop = currentProduct.shop;
     const currentDescription = currentProduct.description;
     const currentImage = groceries[currentShopIndex].image;
     const isLastItem = currentShopIndex === groceries.length - 1;
@@ -50,6 +64,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         }
     };
 
+    /*
     const handleArrowRightClick = () => {
         if (isLastItem) {
             const totalPrice = groceries.reduce((sum, item) => sum + item.price, 0);
@@ -60,6 +75,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
             handleSwipe('left');
         }
     };
+    */
 
     function getDateString(date) {
         const d = new Date(date);
@@ -73,70 +89,112 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         <div className="three-rows-expand-one-three">
             <div></div>
             <div className="main--layout">
-                <img
-                    src="/icons/arrowleftorange.svg"
-                    alt="Arrow Left"
-                    className="arrow-icon arrow-left"
-                    onClick={() => handleSwipe('right')}
-                />
+                <div className='three-rows-expand-one-three'>
+                    <div></div>
+                    <button className={getBrandClassname("arrow-left wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
+                        {`<`}
+                    </button>
+                    <div></div>
+                </div>
                 {currentProduct && (
-                    <TinderCard
-                        className="tinder--card"
-                        preventSwipe={['up', 'down']}
-                        onSwipe={(dir) => handleSwipe(dir)}
-                        key={currentShopIndex}
-                    >
-                        <div className="box content">
-                            <div className="shop--css">{currentShop}</div>
-                            <div className="description--css mt-s">{currentDescription}</div>
-                            <div className="image-row">
+                <TinderCard
+                    className="tinder--card"
+                    preventSwipe={['up', 'down']}
+                    onSwipe={(dir) => handleSwipe(dir)}
+                    key={currentShopIndex}
+                >
+                    <div className={getBrandClassname("box {brand}-box-css")}>
+                        <div className={getBrandClassname("shop--css {brand}-header-css three-rows-expand-one-three")}>
+                            <div></div>
+                            <h1 className={shouldBeBold.includes(brand) ? 'bold' : 'normal-font'}>{correctShopName({brand})}</h1>
+                            <div></div>
+                        </div>
+                        <div className={getBrandClassname("description--css {brand}-description-css mt-s")}>{currentDescription}</div>
+                        <div className="image-row">
+                            <div className='three-rows-expand-one-three'>
+                                <div></div>
+                                <button className={getBrandClassname("arrow-left narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
+                                    {`<`}
+                                </button>
+                                <div></div>
+                            </div>
+                            <div className='wide-screen-count'>
                                 <ImageCount
                                     currentShopIndex={currentShopIndex}
                                     totalAmount={totalAmount}
+                                    getBrandClassname={getBrandClassname}
                                     start={1}
                                     end={5}
                                 />
-                                <div className="space1"></div>
-                                <ProductImage currentImage={currentImage} />
-                                <div className="space2"></div>
+                            </div>
+                            <div className='space1'></div>
+                            <ProductImage currentImage={currentImage} />
+                        <div className='space2'></div>
+                            <div className='wide-screen-count'>
                                 <ImageCount
+                                    className='wide-screen-count'
                                     currentShopIndex={currentShopIndex}
                                     totalAmount={totalAmount}
+                                    getBrandClassname={getBrandClassname}
                                     start={6}
                                     end={10}
                                 />
                             </div>
-                            <div className="info-container">
-                                <div className="info-column">
-                                    <p className="date">{getDateString(currentProduct.date)}</p>
+                            <div className='three-rows-expand-one-three'>
+                                <div></div>
+                                <div className='three-rows-expand-one-three'>
+                                    <div></div>
+                                    <button className={getBrandClassname("arrow-right narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                                        {`>`}
+                                    </button>
+                                    <div></div>
                                 </div>
-                                <div className="space3"></div>
-                                <div className="info-column text-center">
-                                    <p className="store">{currentProduct.store}</p>
-                                </div>
-                                <div className="space4"></div>
-                                <div className="info-column text-right">
-                                    <p className="game">#{currentProduct.game}</p>
-                                </div>
+                                <div></div>
                             </div>
                         </div>
-                    </TinderCard>
+                        <div className='narrow-screen-count three-columns-expand-one-three'>
+                            <div></div>
+                            <ImageCount
+                                currentShopIndex={currentShopIndex}
+                                alignment={"horizontal"}
+                                totalAmount={totalAmount}
+                                getBrandClassname={getBrandClassname}
+                                start={1}
+                                end={10}
+                            />
+                            <div></div>
+                        </div>
+                        <div className={getBrandClassname("info-container {brand}-info")}>
+                            <div className="info-column">
+                                <p className="date">{getDateString(currentProduct.date)}</p>
+                            </div>
+                            <div className='space3'></div>
+                                <div className="info-column text-center">
+                                <p className="store">{currentProduct.store}</p>
+                            </div>
+                            <div className='space4'></div>
+                                <div className="info-column text-right">
+                                <p className="game">#{currentProduct.game}</p>
+                            </div>
+                        </div>
+                    </div>
+                </TinderCard>
                 )}
-                {isLastItem ? (
-                    <img
-                        src="/icons/arrowrightgreen.svg"
-                        alt="Submit"
-                        className="submit-image"
-                        onClick={handleArrowRightClick}
-                    />
-                ) : (
-                    <img
-                        src="/icons/arrowrightorange.svg"
-                        alt="Arrow Right"
-                        className="arrow-icon arrow-right"
-                        onClick={handleArrowRightClick}
-                    />
-                )}
+                <div className='three-rows-expand-one-three'>
+                    <div></div>
+                    <div className='three-rows-expand-one-three'>
+                                <div></div>
+                                <div className='three-rows-expand-one-three'>
+                                    <div></div>
+                                    <button className={getBrandClassname("arrow-right wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                                        {`>`}
+                                    </button>
+                                    <div></div>
+                                </div>
+                                <div></div>
+                            </div>
+                    <div></div>
+                </div>
             </div>
             <div></div>
         </div>

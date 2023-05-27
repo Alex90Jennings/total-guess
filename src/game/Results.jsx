@@ -56,9 +56,11 @@ function Results() {
                 <div className="statistics-results">
                     <a className='statistics-button-styling' href="/statistics">Statistics</a>
                 </div>
+                {/*
                 <div className="share-results">
                     <a className='share-button-styling' href="/share">Share</a>
                 </div>
+                */}
                 <div className="feedback-results">
                     {
                         showFeedbackModal && (
@@ -72,9 +74,7 @@ function Results() {
                         )
                     }
                     <a className='feedback-button-styling' onClick={handleFeedbackClick} href="/feedback">Feedback</a>
-                    </div>
-                    <div className="home-button-results">
-                        <Link to="/" className='home-button-styling'>Home Page</Link>
+                    <Link to="/" className='feedback-button-styling'>Home Page</Link>
                 </div>
             </div>
         </div>
