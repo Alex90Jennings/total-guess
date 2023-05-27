@@ -130,7 +130,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                             </div>
                             <div className='space1'></div>
                             <ProductImage currentImage={currentImage} />
-                            <div className='space2'></div>
+                        <div className='space2'></div>
                             <div className='wide-screen-count'>
                                 <ImageCount
                                     className='wide-screen-count'
