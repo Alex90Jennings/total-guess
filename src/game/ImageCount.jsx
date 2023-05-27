@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from 'react';
+import { toRoman } from 'roman-numerals';
 import '../styles/game.css';
 
-function ImageCount({ currentShopIndex, start, end, alignment }) {
+function ImageCount({ currentShopIndex, start, end, alignment, getBrandClassname }) {
 
-    const [numberImages, setNumberImages] = useState([]);
+    const [romanNumeralsToDisplay, setRomanNumeralsToDisplay] = useState([]);
 
     useEffect(
         () => {
-            const generateNumberImages = () => {
-                const newImages = [...new Array(end - start + 1).fill('11.png')].map((image, i) => {
-                    const index = start + i - 1;
-                    if (currentShopIndex === 0 && index === 0) {
-                        return '1.png';
-                    } else if (index <= currentShopIndex) {
-                        return `${index + 1}.png`;
-                    } else {
-                        return '11.png';
-                    }
-                });
-                setNumberImages(newImages);
-            };
-
-            generateNumberImages();
-        }, 
-        [currentShopIndex, start, end]
-    );
+            const generateRomanNumerals = () => {
+            const numerals = [];
+            for (let i = start; i <= end; i++) {
+                numerals.push(toRoman(i));
+            }
+            setRomanNumeralsToDisplay(numerals);
+        };
+      
+        generateRomanNumerals();
+    }, [start, end]);
 
     const className = alignment === 'horizontal' ? 'image-counter mg-m ten-columns' : 'image-counter mg-m'
 
     return (
-        <div className={`${className}`}>
+        <div className={className}>
             {
-                numberImages.map(
-                    (image, i) => (
-                        <div key={i} className="number-box">
-                            <img src={`/Numbers/${image}`} alt={`${start + i}`} />
+                romanNumeralsToDisplay.map(
+                    (numeral, index) => (
+                        <div key={index} className={
+                                start + index - 1 <= currentShopIndex ?
+                                    getBrandClassname("number-box {brand}-roman-numeral-after three-columns-expand-one-three") :
+                                    getBrandClassname("number-box {brand}-roman-numeral-before three-columns-expand-one-three") 
+                            }>
+                            <div></div>
+                            <p className='roman-numerals vertical-align'>{numeral}</p>
+                            <div></div>
                         </div>
                     )
                 )
