@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@font-face {
+    font-family: 'MT Bold Arial Rounded';
+    src: url('/public/fonts/mt-bold-arial-rounded.ttf') format('truetype');
+}
 
 body {
     font-family: "Trebuchet MS", "Lucida Sans", Arial, sans-serif;
@@ -160,32 +164,24 @@ body {
 }
 
 .arrow-left {
-margin-right: 100px;
+    margin-right: 80px;
 }
 
 .arrow-right {
-margin-left: 100px;
+    margin-left: 80px;
 }
 
-.content {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 1350px;
+.arrow-left,
+.arrow-right {
+    font-weight: bold;
+    font-size: 100px;
 }
 
 .shop--css {
-    background-color: #f18213;
-    color: #FFFFFF;
+    height: 80px;
     text-align: center;
     width: 100%;
-    height: 80px;
-    margin: 0;
-    font-size: 55px;
     padding: 8px 0;
-    font-family: "Century Gothic", "Arial", sans-serif;
 }
 
 .description--css {
@@ -199,9 +195,19 @@ margin-left: 100px;
 
 
 .box {
-    border: 2px solid #f18213;
     margin-top: 20px;
     margin-bottom: 20px;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1350px;
+}
+
+.clear-button {
+    background-color: inherit;
+    border: none;
 }
 
 .product-image {
@@ -216,7 +222,7 @@ margin-left: 100px;
     padding: 8px 0;
 }
 
-.box p {
+.info-container p {
     margin: 0;
     margin-top: 24px;
     font-size: 25px;
@@ -224,13 +230,6 @@ margin-left: 100px;
 
 .box img {
     max-height: 350px;
-}
-
-.box-1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .info-container {
@@ -253,17 +252,14 @@ margin-left: 100px;
 
 .date {
     text-align: left;
-    color: #f18213;
 }
 
 .store {
     text-align: center;
-    color: #f18213;
 }
 
 .game {
     text-align: right;
-    color: #f18213;
 }
 
 .timer {
@@ -674,6 +670,30 @@ input[type='number']::-webkit-outer-spin-button {
     align-items: center;
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.normal-font {
+    font-weight: normal;
+}
+
+.main--layout h1 {
+    font-size: 55px;
+    margin: 0;
+}
+
+.number-box {
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+}
+
+.roman-numerals {
+    font-weight: bolder;
+    margin: 0;
+}
+
 .share-button-styling {
     display: flex;
     justify-content: center;
@@ -745,6 +765,172 @@ input[type='number']::-webkit-outer-spin-button {
     display: none;
 }
 
+/*BRANDS*/
+/*SAINSBURY*/
+.sainsbury-header-css {
+    background-color: #f18213;
+    color: #FFFFFF;
+    font-family: "Century Gothic", "Arial", sans-serif;
+}
+
+.sainsbury-info,
+.sainsbury-arrow {
+    color: #f18213;
+}
+
+.sainsbury-box-css {
+    border: 2px solid #f18213;
+}
+
+.sainsbury-description-css {
+    color: #f18213;
+}
+
+.sainsbury-roman-numeral-before {
+    border: 6px solid #f18213;
+    color: #f18213;
+    margin: 3px;
+}
+
+.sainsbury-roman-numeral-after {
+    border: 6px solid #f18213;
+    color: white;
+    background-color: #f18213;
+    margin: 3px;
+}
+
+/*TESCO*/
+.tesco-header-css {
+    background-color: #00539F;
+    color: #EE1C2E;
+    font-family: "Candara Bold", "Arial", sans-serif;
+}
+
+.tesco-info,
+.tesco-arrow {
+    color: #00539F;
+}
+
+.tesco-box-css {
+    border: 2px solid #00539F;
+}
+
+.tesco-description-css {
+    color: #00539F;
+}
+
+.tesco-roman-numeral-before {
+    border: 6px solid #00539F;
+    color: #00539F;
+    margin: 3px;
+}
+
+.tesco-roman-numeral-after {
+    border: 6px solid #00539F;
+    color: #EE1C2E;
+    background-color: #00539F;
+    margin: 3px;
+}
+
+/*ASDA*/
+.asda-header-css {
+    background-color: #68a51c;
+    color: white;
+    font-family: "Century Gothic", "Arial", sans-serif;
+}
+
+.asda-info,
+.asda-arrow {
+    color: #68a51c;
+}
+
+.asda-box-css {
+    border: 2px solid #68a51c;
+}
+
+.asda-description-css {
+    color: #68a51c;
+}
+
+.asda-roman-numeral-before {
+    border: 6px solid #68a51c;
+    color: #68a51c;
+    margin: 3px;
+}
+
+.asda-roman-numeral-after {
+    border: 6px solid #68a51c;
+    color: white;
+    background-color: #68a51c;
+    margin: 3px;
+}
+
+/*WAITROSE*/
+.waitrose-header-css {
+    background-color: #68a51c;
+    color: white;
+    font-family: "Century Gothic", "Arial", sans-serif;
+}
+
+.waitrose-info,
+.waitrose-arrow {
+    color: #5C8018;
+}
+
+.waitrose-box-css {
+    border: 2px solid #5C8018;
+}
+
+.waitrose-description-css {
+    color: #5C8018;
+}
+
+.waitrose-roman-numeral-before {
+    border: 6px solid #5C8018;
+    color: #5C8018;
+    margin: 3px;
+}
+
+.waitrose-roman-numeral-after {
+    border: 6px solid #5C8018;
+    color: white;
+    background-color: #5C8018;
+    margin: 3px;
+}
+
+/*MORRISONS*/
+.morrisons-header-css {
+    background-color: #00762D;
+    color:  #FCBD00;
+    font-family: 'MT Bold Arial Rounded', Arial, sans-serif;
+}
+
+.morrisons-info,
+.morrisons-arrow {
+    color: #00762D;
+}
+
+.morrisons-box-css {
+    border: 2px solid #00762D;
+}
+
+.morrisons-description-css {
+    color: #00762D;
+}
+
+.morrisons-roman-numeral-before {
+    border: 6px solid #00762D;
+    color: #00762D;
+    margin: 3px;
+}
+
+.morrisons-roman-numeral-after {
+    border: 6px solid #00762D;
+    color:  #FCBD00;
+    background-color: #00762D;
+    margin: 3px;
+}
+
 /*MEDIA QUERIES*/
 @media screen and (max-width: 1600px) {
     .narrow-screen-arrows {
@@ -755,7 +941,7 @@ input[type='number']::-webkit-outer-spin-button {
         display: none;
     }
 
-    .content,
+    .box,
     .info-container {
         width: 1100px;
     }
@@ -775,7 +961,7 @@ input[type='number']::-webkit-outer-spin-button {
         display: none;
     }
 
-    .content,
+    .box,
     .info-container {
         width: 850px;
     }
@@ -794,7 +980,7 @@ input[type='number']::-webkit-outer-spin-button {
         height: 60px !important;
     }
 
-    .content,
+    .box,
     .info-container {
         width: 650px;
     }
@@ -820,6 +1006,11 @@ input[type='number']::-webkit-outer-spin-button {
 
     .h1-submit {
         max-width: 250px;
+    }
+
+    .main--layout h1 {
+        font-size: 40px;
+        margin: 0;
     }
 
     .header-left {
@@ -866,13 +1057,21 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 1.5em !important;
     }
 
-    .content,
+    .box,
     .info-container {
         width: 530px;
     }
 
     .image-row {
         width: 500px;
+    }
+
+    .arrow-right {
+        margin-left: 30px;
+    }
+
+    .arrow-left {
+        margin-right: 30px;
     }
 }
 
@@ -976,7 +1175,7 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 1.5rem;
     }
 
-    .content,
+    .box,
     .info-container {
         width: 375px;
     }
@@ -993,20 +1192,12 @@ input[type='number']::-webkit-outer-spin-button {
         height: 25px;
         width: 25px;
     }
-
-    .arrow-right {
-        margin-left: 30px;
-    }
-
-    .arrow-left {
-        margin-right: 30px;
-    }
 }
 
-@media screen and (max-height: 1050px) {
+@media screen and (max-height: 850px) {
     .shop--css {
-        height: auto;
         font-size: 30px;
+        height: auto;
     }
 
     .description--css {
