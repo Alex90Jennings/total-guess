@@ -705,8 +705,9 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .number-box {
-    height: 20px;
-    width: 20px;
+    height: 40px;
+    width: 40px;
+    font-size: 24px;
     border-radius: 5px;
 }
 
@@ -1186,6 +1187,12 @@ input[type='number']::-webkit-outer-spin-button {
         height: 40px;
         width: 40px;
     }
+
+    .number-box {
+        height: 26px;
+        width: 26px;
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width: 650px) {
@@ -1380,6 +1387,79 @@ input[type='number']::-webkit-outer-spin-button {
     .image-counter img {
         height: 25px;
         width: 25px;
+    }
+
+    .number-box {
+        height: 20px;
+        width: 20px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .logo {
+      font-size: 25px !important;
+    }
+
+    .h1-submit {
+        max-width: 200px;
+    }
+
+    .main--layout h1 {
+        font-size: 30px;
+    }
+
+    .header-left {
+        gap: 10px;
+        font-size: 12px;
+        width: 100px;
+    }
+    
+    .header-right-wide-screen {
+        width: 100px;
+    }
+
+    .icon {
+        height: 30px !important;
+    }
+
+    .guess-amount>.blue-box {
+        height: 40px;
+        width: 60px;
+        font-size: 1.8rem;
+    }
+
+    .sub-button-styling {
+        height: 50px;
+        width: 180px;
+        font-size: 1.8rem;
+    }
+
+    .h1-submit {
+        font-size: 1.2em !important;
+    }
+
+    .box,
+    .info-container {
+        width: 350px;
+    }
+
+    .image-row {
+        width: 350px;
+    }
+
+    .arrow-right {
+        margin-left: 20px;
+    }
+
+    .arrow-left {
+        margin-right: 20px;
+    }
+
+    .number-box {
+        height: 16px;
+        width: 16px;
+        font-size: 11px;
     }
 }
 
