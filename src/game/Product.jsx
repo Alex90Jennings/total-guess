@@ -10,10 +10,10 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
-    //const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
-    const brand = 'tesco' //!TODO: does not need to be it's own state, use groceries.store
-    const shouldBeBold = ['asda', 'tesco', 'morrisons']
-    const shouldBeAllCaps = ['asda', 'tesco']
+    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+    const brand = 'coop' //!TODO: does not need to be it's own state, use groceries.store
+    const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
+    const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
 
     const totalAmount = 0;
 
@@ -42,8 +42,10 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
 
     const correctShopName = (brand) => {
         const shopName = brand.brand
+        if (shopName === 'coop') return shopName
         let nameToReturn = shouldBeAllCaps.includes(shopName) ? shopName.toUpperCase() : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase()
         if (shopName === 'sainsbury') nameToReturn += `'s`
+        if (shopName === 'mands') nameToReturn = 'M&S'
         return nameToReturn
     }
 
@@ -64,7 +66,6 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         }
     };
 
-    /*
     const handleArrowRightClick = () => {
         if (currentShopIndex === groceries.length - 1) {
         const totalPrice = groceries.reduce((sum, item) => sum + item.price, 0);
@@ -76,7 +77,6 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         handleSwipe('left');
         }
     };
-    */
 
     function getDateString(date) {
         const d = new Date(date);
@@ -145,7 +145,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                                    <button className={getBrandClassname("arrow-right narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
                                         {`>`}
                                     </button>
                                     <div></div>
@@ -187,7 +187,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                                    <button className={getBrandClassname("arrow-right wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
                                         {`>`}
                                     </button>
                                     <div></div>

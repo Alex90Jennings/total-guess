@@ -3,6 +3,27 @@
     font-family: 'MT Bold Arial Rounded';
     src: url('/public/fonts/mt-bold-arial-rounded.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Nunito Bold';
+    src: url('/public/fonts/Nunito-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Nedian Bold';
+    src: url('/public/fonts/Nedian-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Overpass ExtraLight';
+    src: url('/public/fonts/Overpass-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Gold Magnum';
+    src: url('/public/fonts/Gold-Magnum.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('/public/fonts/Avenir-Next.ttc') format('truetype');
+}
+
 
 body {
     font-family: "Trebuchet MS", "Lucida Sans", Arial, sans-serif;
@@ -930,6 +951,174 @@ input[type='number']::-webkit-outer-spin-button {
     background-color: #00762D;
     margin: 3px;
 }
+
+/*ALDI*/
+.aldi-header-css {
+    background-color: #14215a;
+    color:  white;
+    font-family: "Nunito Bold", "Arial", sans-serif;
+}
+
+.aldi-info,
+.aldi-arrow {
+    color: #14215a;
+}
+
+.aldi-box-css {
+    box-shadow: inset 0 0 0 3px #fdc300, inset 0 0 0 6px #ef7701, inset 0 0 0 9px #da0812;
+    outline: 2px solid transparent;
+    padding: 9px;
+}
+
+.aldi-description-css {
+    color: #14215a;
+}
+
+.aldi-roman-numeral-before {
+    border: 6px solid #14215a;
+    color: #14215a;
+    margin: 3px;
+}
+
+.aldi-roman-numeral-after {
+    border: 6px solid #14215a;
+    color:  white;
+    background-color: #14215a;
+    margin: 3px;
+}
+
+/*SPAR*/
+.spar-header-css {
+    background-color: red;
+    color:  white;
+    font-family: "Nedian Bold", "Arial", sans-serif;
+}
+
+.spar-info,
+.spar-arrow {
+    color: red;
+}
+
+.spar-box-css {
+    border: 2px solid red;
+}
+
+.spar-description-css {
+    color: red;
+}
+
+.spar-roman-numeral-before {
+    border: 6px solid red;
+    color: white;
+    margin: 3px;
+}
+
+.spar-roman-numeral-after {
+    border: 6px solid red;
+    color:  white;
+    background-color: red;
+    margin: 3px;
+}
+
+/*M&S*/
+.mands-header-css {
+    background-color: white;
+    color: black;
+    font-family: "Overpass ExtraLight", "Arial", sans-serif;
+}
+
+.mands-info,
+.mands-arrow {
+    color: black;
+}
+
+.mands-box-css {
+    border: 2px solid black;
+}
+
+.mands-description-css {
+    color: black;
+}
+
+.mands-roman-numeral-before {
+    border: 6px solid black;
+    color: white;
+    margin: 3px;
+}
+
+.mands-roman-numeral-after {
+    border: 6px solid black;
+    color:  white;
+    background-color: black;
+    margin: 3px;
+}
+
+/*LIDL*/
+.lidl-header-css {
+    background-color: #e8e838;
+    color: #1a2e91;
+    font-family: "Gold Magnum", "Arial", sans-serif;
+}
+
+.lidl-info,
+.lidl-arrow {
+    color: #e8e838;
+}
+
+.lidl-box-css {
+    border: 2px solid #e8e838;
+}
+
+.lidl-description-css {
+    color: #e8e838;
+}
+
+.lidl-roman-numeral-before {
+    border: 6px solid #e8e838;
+    color: #e8e838;
+    margin: 3px;
+}
+
+.lidl-roman-numeral-after {
+    border: 6px solid #e8e838;
+    color: #1a2e91;
+    background-color: #e8e838;
+    margin: 3px;
+}
+
+/*COOP*/
+.coop-header-css {
+    background-color: #0ba7db;
+    color: white;
+    font-family: "Avenir Next", "Arial", sans-serif;
+}
+
+.coop-info,
+.coop-arrow {
+    color: #0ba7db;
+}
+
+.coop-box-css {
+    border: 2px solid #0ba7db;
+}
+
+.coop-description-css {
+    color: #0ba7db;
+}
+
+.coop-roman-numeral-before {
+    border: 6px solid #0ba7db;
+    color: #0ba7db;
+    margin: 3px;
+}
+
+.coop-roman-numeral-after {
+    border: 6px solid #0ba7db;
+    color: white;
+    background-color: #0ba7db;
+    margin: 3px;
+}
+
 
 /*MEDIA QUERIES*/
 @media screen and (max-width: 1600px) {
