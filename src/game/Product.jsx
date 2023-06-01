@@ -6,13 +6,14 @@ import ImageCount from './ImageCount';
 import { clientApi } from '../api/clientApi';
 
 function Product({ setReadyToSubmit, setTotalPrice }) {
+
     const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
-    //const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
-    const brand = 'tesco' //!TODO: does not need to be it's own state, use groceries.store
-    const shouldBeBold = ['asda', 'tesco', 'morrisons']
-    const shouldBeAllCaps = ['asda', 'tesco']
+    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+    const brand = 'asda' //!TODO: does not need to be it's own state, use groceries.store
+    const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
+    const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
 
     const totalAmount = 0;
 
@@ -22,65 +23,65 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await clientApi.fetchTodayGame();
-                setGroceries(response.data[0].items);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+        try {
+            const response = await clientApi.fetchTodayGame()
+            setGroceries(response.data[0].items);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
         };
 
         fetchData();
     }, []);
 
     const currentProduct = groceries[currentShopIndex];
-
+    
     if (!currentProduct) {
         return <div>Loading...</div>;
     }
 
     const correctShopName = (brand) => {
         const shopName = brand.brand
+        if (shopName === 'coop') return shopName
         let nameToReturn = shouldBeAllCaps.includes(shopName) ? shopName.toUpperCase() : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase()
         if (shopName === 'sainsbury') nameToReturn += `'s`
+        if (shopName === 'mands') nameToReturn = 'M&S'
         return nameToReturn
     }
 
     //const currentShop = currentProduct.shop;
     const currentDescription = currentProduct.description;
     const currentImage = groceries[currentShopIndex].image;
-    const isLastItem = currentShopIndex === groceries.length - 1;
 
     const handleSwipe = (direction) => {
         let newIndex;
         if (direction === 'left') {
-            newIndex = currentShopIndex + 1;
+        newIndex = currentShopIndex + 1;
         } else if (direction === 'right') {
-            newIndex = currentShopIndex - 1;
+        newIndex = currentShopIndex - 1;
         }
         if (newIndex >= 0 && newIndex < groceries.length) {
-            setCurrentShopIndex(newIndex);
-            audio.play();
+        setCurrentShopIndex(newIndex);
+        audio.play();
         }
     };
 
-    /*
     const handleArrowRightClick = () => {
-        if (isLastItem) {
-            const totalPrice = groceries.reduce((sum, item) => sum + item.price, 0);
-            setTotalPrice(totalPrice);
-            setReadyToSubmit(true);
-            audioCoins.play();
+        if (currentShopIndex === groceries.length - 1) {
+        const totalPrice = groceries.reduce((sum, item) => sum + item.price, 0);
+        setTotalPrice(totalPrice);
+
+        setReadyToSubmit(true);
+        audioCoins.play()
         } else {
-            handleSwipe('left');
+        handleSwipe('left');
         }
     };
-    */
 
     function getDateString(date) {
         const d = new Date(date);
-        const day = ('0' + d.getDate()).slice(-2);
-        const month = ('0' + (d.getMonth() + 1)).slice(-2);
+        const day = ("0" + d.getDate()).slice(-2);
+        const month = ("0" + (d.getMonth() + 1)).slice(-2);
         const year = d.getFullYear();
         return `${day}.${month}.${year}`;
     }
@@ -144,7 +145,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                                    <button className={getBrandClassname("arrow-right narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
                                         {`>`}
                                     </button>
                                     <div></div>
@@ -186,7 +187,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                                    <button className={getBrandClassname("arrow-right wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
                                         {`>`}
                                     </button>
                                     <div></div>

@@ -41,7 +41,7 @@ function ContactUs() {
                 <div className="footer-row" onClick={handleAdvertiseClick}>Advertise with us</div>
             </div>
             <div className="footer-icon">
-                <img src="/icons/basket.png" alt='basket'/>
+                <img src="/icons/trolleywhite.svg" alt='trolley'/>
             </div>
             {
                 showAboutUsModal && (
