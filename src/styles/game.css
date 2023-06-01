@@ -139,9 +139,11 @@ body {
 .header-right {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     grid-area: header-right;
     grid-column-start: 3;
     grid-column-end: 4;
+    flex-grow: 1;
     width: 250px;
 }
 
