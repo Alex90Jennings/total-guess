@@ -175,11 +175,13 @@ body {
 .arrow-left {
     border-width: 10px 10px 0 0;
     transform: rotate(220deg);
+    margin-right: 80px;
 }
 
 .arrow-right {
     border-width: 0 10px 10px 0;
     transform: rotate(320deg); 
+    margin-left: 80px;
 }
 
 .arrow-left,
