@@ -32,7 +32,11 @@ function ImageCount({ currentShopIndex, start, end, alignment, getBrandClassname
                                     getBrandClassname("number-box {brand}-roman-numeral-before three-columns-expand-one-three") 
                             }>
                             <div></div>
-                            <p className='roman-numerals vertical-align'>{numeral}</p>
+                            <div className='three-rows-expand-one-three'>
+                                <div></div>
+                                <p className='roman-numerals vertical-align'>{numeral}</p>
+                                <div></div>
+                            </div>
                             <div></div>
                         </div>
                     )
