@@ -11,7 +11,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
-    const brand = 'aldi' //!TODO: does not need to be it's own state, use groceries.store
+    const brand = 'asda' //!TODO: does not need to be it's own state, use groceries.store
     const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
     const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
 
@@ -92,9 +92,10 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
             <div className="main--layout">
                 <div className='three-rows-expand-one-three'>
                     <div></div>
-                    <button className={getBrandClassname("arrow-left wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
-                        {`<`}
-                    </button>
+                 <div
+  className={`arrow arrow-left ${getBrandClassname('arrow-left')}`}
+  onClick={() => handleSwipe('right')}
+></div>
                     <div></div>
                 </div>
                 {currentProduct && (

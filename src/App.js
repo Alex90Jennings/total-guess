@@ -11,13 +11,16 @@ import Footer from "./game/Footer";
 import ContactUs from "./ContactUs";
 import Results from "./game/Results";
 import Share from "./game/Share.jsx";
+import StatisticsModal from "./game/StatisticsModal";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [guess, setGuess] = useState(undefined);
+  const [showStatisticsModal, setShowStatisticsModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
+  const handleCloseStatisticsModal = () => setShowStatisticsModal(false);
 
   return (
     <div>
@@ -27,6 +30,7 @@ function App() {
           onClose={handleCloseModal}
           showModal={showModal}
           setShowModal={setShowModal}
+          setShowStatisticsModal={setShowStatisticsModal}
         />
         <BrowserRouter>
           <Routes>
@@ -37,7 +41,9 @@ function App() {
                   isAuthenticated={isAuthenticated}
                   setIsAuthenticated={setIsAuthenticated}
                   setShowModal={setShowModal}
+                  setShowStatisticsModal={setShowStatisticsModal}
                   onClose={handleCloseModal}
+                  onCloseStatisticsModal={handleCloseStatisticsModal}
                 />
               }
             />
@@ -56,6 +62,15 @@ function App() {
             onRequestClose={handleCloseModal}
           >
             <GameInstructions onClose={handleCloseModal} />
+          </Modal>
+        )}
+        {showStatisticsModal && (
+          <Modal
+            className={"modal"}
+            isOpen={showStatisticsModal}
+            onRequestClose={handleCloseStatisticsModal}
+          >
+            <StatisticsModal onClose={handleCloseStatisticsModal} />
           </Modal>
         )}
         <Footer />

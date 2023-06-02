@@ -160,9 +160,11 @@ body {
 .header-right {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     grid-area: header-right;
     grid-column-start: 3;
     grid-column-end: 4;
+    flex-grow: 1;
     width: 250px;
 }
 
@@ -184,11 +186,22 @@ body {
     align-items: center;
 }
 
+.arrow {
+    height: 30px;
+    width: 30px;
+    border: 5px solid tomato;
+    border-width: 10px 10px 0 0;
+}
+
 .arrow-left {
+    border-width: 10px 10px 0 0;
+    transform: rotate(220deg);
     margin-right: 80px;
 }
 
 .arrow-right {
+    border-width: 0 10px 10px 0;
+    transform: rotate(320deg); 
     margin-left: 80px;
 }
 
