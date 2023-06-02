@@ -92,9 +92,10 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
             <div className="main--layout">
                 <div className='three-rows-expand-one-three'>
                     <div></div>
-                    <button className={getBrandClassname("arrow-left wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
-                        {`<`}
-                    </button>
+                 <div
+  className={`arrow arrow-left ${getBrandClassname('arrow-left')}`}
+  onClick={() => handleSwipe('right')}
+></div>
                     <div></div>
                 </div>
                 {currentProduct && (
@@ -141,17 +142,6 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                     end={10}
                                 />
                             </div>
-                            <div className='three-rows-expand-one-three'>
-                                <div></div>
-                                <div className='three-rows-expand-one-three'>
-                                    <div></div>
-                                    <button className={getBrandClassname("arrow-right narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
-                                        {`>`}
-                                    </button>
-                                    <div></div>
-                                </div>
-                                <div></div>
-                            </div>
                         </div>
                         <div className='narrow-screen-count three-columns-expand-one-three'>
                             <div></div>
@@ -187,9 +177,10 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
-                                        {`>`}
-                                    </button>
+                                 <div
+  className={`arrow arrow-right ${getBrandClassname('arrow-right')}`}
+  onClick={() => handleArrowRightClick()}
+></div>
                                     <div></div>
                                 </div>
                                 <div></div>

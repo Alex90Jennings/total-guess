@@ -66,7 +66,7 @@ const Statistics = () => {
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    layout: {  // Here's where you add the layout and padding
+    layout: {  
       padding: {
         top: 30 
       }
