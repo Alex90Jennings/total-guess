@@ -189,8 +189,7 @@ body {
 .arrow {
     height: 30px;
     width: 30px;
-    border: 5px solid tomato;
-    border-width: 10px 10px 0 0;
+    background: none;
 }
 
 .arrow-left {
@@ -203,12 +202,6 @@ body {
     border-width: 0 10px 10px 0;
     transform: rotate(320deg); 
     margin-left: 80px;
-}
-
-.arrow-left,
-.arrow-right {
-    font-weight: bold;
-    font-size: 100px;
 }
 
 .shop--css {
@@ -808,9 +801,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Century Gothic", "Arial", sans-serif;
 }
 
-.sainsbury-info,
-.sainsbury-arrow {
+.sainsbury-info {
     color: #f18213;
+}
+
+.sainsbury-arrow {
+    border-color: #f18213;
 }
 
 .sainsbury-box-css {
@@ -841,9 +837,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Candara Bold", "Arial", sans-serif;
 }
 
-.tesco-info,
-.tesco-arrow {
+.tesco-info {
     color: #00539F;
+}
+
+.tesco-arrow {
+    border-color: #00539F;
 }
 
 .tesco-box-css {
@@ -874,9 +873,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Century Gothic", "Arial", sans-serif;
 }
 
-.asda-info,
-.asda-arrow {
+.asda-info {
     color: #68a51c;
+}
+
+.asda-arrow {
+    border-color: #68a51c;
 }
 
 .asda-box-css {
@@ -907,9 +909,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Century Gothic", "Arial", sans-serif;
 }
 
-.waitrose-info,
-.waitrose-arrow {
+.waitrose-info {
     color: #5C8018;
+}
+
+.waitrose-arrow {
+    border-color: #5C8018;
 }
 
 .waitrose-box-css {
@@ -940,9 +945,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: 'MT Bold Arial Rounded', Arial, sans-serif;
 }
 
-.morrisons-info,
-.morrisons-arrow {
+.morrisons-info {
     color: #00762D;
+}
+
+.morrisons-arrow {
+    border-color: #00762D;
 }
 
 .morrisons-box-css {
@@ -973,9 +981,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Nunito Bold", "Arial", sans-serif;
 }
 
-.aldi-info,
-.aldi-arrow {
+.aldi-info {
     color: #14215a;
+}
+
+.aldi-arrow {
+    border-color: #14215a;
 }
 
 .aldi-box-css {
@@ -1008,9 +1019,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Nedian Bold", "Arial", sans-serif;
 }
 
-.spar-info,
-.spar-arrow {
+.spar-info{
     color: red;
+}
+
+.spar-arrow {
+    border-color:red;
 }
 
 .spar-box-css {
@@ -1041,9 +1055,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Overpass ExtraLight", "Arial", sans-serif;
 }
 
-.mands-info,
-.mands-arrow {
+.mands-info {
     color: black;
+}
+
+.mands-arrow {
+    border-color: black;
 }
 
 .mands-box-css {
@@ -1051,6 +1068,10 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .mands-description-css {
+    color: black;
+}
+
+.mands-accent-css {
     color: black;
 }
 
@@ -1074,9 +1095,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Gold Magnum", "Arial", sans-serif;
 }
 
-.lidl-info,
-.lidl-arrow {
+.lidl-info {
     color: #e8e838;
+}
+
+.lidl-arrow {
+    border-color: #e8e838;
 }
 
 .lidl-box-css {
@@ -1107,9 +1131,12 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Avenir Next", "Arial", sans-serif;
 }
 
-.coop-info,
-.coop-arrow {
+.coop-info {
     color: #0ba7db;
+}
+
+.coop-arrow {
+    border-color: #0ba7db;
 }
 
 .coop-box-css {
