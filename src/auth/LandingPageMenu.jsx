@@ -4,16 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import GameInstructions from '../game/GameInstructions';
+import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
+
     const { isAuthenticated } = useContext(AppContext);
+    const hasPlayedDaily = true //TODO! replace with user.hasPlayedDaily
     const navigate = useNavigate();
     const [showModal, setModalState] = useState(false); 
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const playSound = () => {
-    audio.play()
-};
+        audio.play()
+    };
 
     const handleStartGameSubmit = () => {
         playSound();
@@ -31,9 +34,9 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
     };
 
     const handleCloseModal = () => {
-    playSound().catch(error => console.log('Error playing sound:', error));
-    onClose();
-};
+        playSound().catch(error => console.log('Error playing sound:', error));
+        onClose();
+    };
 
     const handleModalOpen = () => {
         playSound();
@@ -51,11 +54,16 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
         <div id='landing-page-menu'>
             <div></div>
             <ul className='list-reset pl-none'>
-                <li className='three-columns-expand-one-three'>
-                    <div></div>
-                    <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
-                    <div></div>
-                </li>
+                {
+                    hasPlayedDaily ? 
+                        <TimerToUkMidnight />
+                        :
+                        <li className='three-columns-expand-one-three'>
+                            <div></div>
+                            <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
+                            <div></div>
+                        </li>
+                }
                 {/*
                 <li className='three-columns-expand-one-three'>
                     <div></div>
