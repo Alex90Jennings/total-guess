@@ -109,6 +109,18 @@ body::-webkit-scrollbar {
   color: #0070C0;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.timer-to-midnight {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0070C0;
+  margin-bottom: 6px;
+}
+
 .footer-row {
   padding: 5px 0;
   color: #f7f7f7;
