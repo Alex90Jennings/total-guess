@@ -99,7 +99,13 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                         </div>
                     */
                 }
-
+                <div className='three-rows-expand-one-three'>
+                    <div></div>
+                    <button className={getBrandClassname("arrow-left nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
+                        {`<`}
+                    </button>
+                    <div></div>
+                </div>
                 {currentProduct && (
                 <TinderCard
                     className="tinder--card"
@@ -124,6 +130,13 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                     </div>
                                 */
                             }
+                            <div className='three-rows-expand-one-three'>
+                                <div></div>
+                                <button className={getBrandClassname("arrow-left nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
+                                    {`<`}
+                                </button>
+                                <div></div>
+                            </div>
                             <div className='wide-screen-count'>
                                 <ImageCount
                                     currentShopIndex={currentShopIndex}
@@ -155,6 +168,17 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                         </div>
                                     */
                                 }
+                            <div className='three-rows-expand-one-three'>
+                                <div></div>
+                                <div className='three-rows-expand-one-three'>
+                                    <div></div>
+                                    <button className={getBrandClassname("arrow-right nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
+                                        {`>`}
+                                    </button>
+                                    <div></div>
+                                </div>
+                                <div></div>
+                            </div>
                         </div>
                         <div className='narrow-screen-count three-columns-expand-one-three'>
                             <div></div>
@@ -195,6 +219,13 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                             </div>
                         */
                     }
+                    <div className='three-rows-expand-one-three'>
+                        <div></div>
+                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                            {`>`}
+                        </button>
+                        <div></div>
+                    </div>
                     <div></div>
                 </div>
             </div>
