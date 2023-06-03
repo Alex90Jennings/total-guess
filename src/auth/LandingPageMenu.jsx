@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import GameInstructions from '../game/GameInstructions';
-import TimerToUkMidnight from '../game/TimerToUkMidnight';
+import TimerToUkMidnight from '../game/timerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
 
     const { isAuthenticated } = useContext(AppContext);
-    const hasPlayedDaily = true //TODO! replace with user.hasPlayedDaily
+    const hasPlayedDaily = false //TODO! replace with user.hasPlayedDaily
     const navigate = useNavigate();
     const [showModal, setModalState] = useState(false); 
     const [audio] = useState(new Audio('/Sounds/click.wav'));

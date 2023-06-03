@@ -11,7 +11,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
-    const brand = 'spar' //!TODO: does not need to be it's own state, use groceries.store
+    const brand = 'mands' //!TODO: does not need to be it's own state, use groceries.store
     const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
     const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
 
@@ -224,7 +224,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                     }
                     <div className='three-rows-expand-one-three'>
                         <div></div>
-                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('left')}>
+                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
                             {`>`}
                         </button>
                         <div></div>
