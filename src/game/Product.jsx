@@ -11,7 +11,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
-    const brand = 'asda' //!TODO: does not need to be it's own state, use groceries.store
+    const brand = 'spar' //!TODO: does not need to be it's own state, use groceries.store
     const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
     const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
 
@@ -90,11 +90,16 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         <div className="three-rows-expand-one-three">
             <div></div>
             <div className="main--layout">
-                <div className='three-rows-expand-one-three'>
-                    <div></div>
-                    <button className={getBrandClassname(`arrow arrow-left {brand}-arrow wide-screen-arrows`)} onClick={() => handleSwipe('right')}></button>
-                    <div></div>
-                </div>
+                {
+                    /*
+                        <div className='three-rows-expand-one-three'>
+                            <div></div>
+                            <button className={getBrandClassname(`arrow arrow-left {brand}-arrow wide-screen-arrows`)} onClick={() => handleSwipe('right')}></button>
+                            <div></div>
+                        </div>
+                    */
+                }
+
                 {currentProduct && (
                 <TinderCard
                     className="tinder--card"
@@ -110,11 +115,15 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                         </div>
                         <div className={getBrandClassname("description--css {brand}-description-css mt-s")}>{currentDescription}</div>
                         <div className="image-row">
-                            <div className='three-rows-expand-one-three'>
-                                <div></div>
-                                <button className={getBrandClassname(`arrow arrow-left {brand}-arrow narrow-screen-arrows`)} onClick={() => handleSwipe('right')}></button>
-                                <div></div>
-                            </div>
+                            {
+                                /*
+                                    <div className='three-rows-expand-one-three'>
+                                        <div></div>
+                                        <button className={getBrandClassname(`arrow arrow-left {brand}-arrow narrow-screen-arrows`)} onClick={() => handleSwipe('right')}></button>
+                                        <div></div>
+                                    </div>
+                                */
+                            }
                             <div className='wide-screen-count'>
                                 <ImageCount
                                     currentShopIndex={currentShopIndex}
@@ -137,15 +146,15 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                                     end={10}
                                 />
                             </div>
-                            <div className='three-rows-expand-one-three'>
-                                <div></div>
-                                <div className='three-rows-expand-one-three'>
-                                    <div></div>
-                                    <button className={getBrandClassname(`arrow arrow-right {brand}-arrow narrow-screen-arrows`)} onClick={() => handleArrowRightClick()}></button>
-                                    <div></div>
-                                </div>
-                                <div></div>
-                            </div>
+                                {
+                                    /*
+                                        <div className='three-rows-expand-one-three'>
+                                            <div></div>
+                                            <button className={getBrandClassname(`arrow arrow-right {brand}-arrow narrow-screen-arrows`)} onClick={() => handleArrowRightClick()}></button>
+                                            <div></div>
+                                        </div>
+                                    */
+                                }
                         </div>
                         <div className='narrow-screen-count three-columns-expand-one-three'>
                             <div></div>
@@ -177,15 +186,15 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                 )}
                 <div className='three-rows-expand-one-three'>
                     <div></div>
-                    <div className='three-rows-expand-one-three'>
+                    {
+                        /*
+                            <div className='three-rows-expand-one-three'>
                                 <div></div>
-                                <div className='three-rows-expand-one-three'>
-                                    <div></div>
-                                    <button className={getBrandClassname(`arrow arrow-right {brand}-arrow wide-screen-arrows`)} onClick={() => handleArrowRightClick()}></button>
-                                    <div></div>
-                                </div>
+                                <button className={getBrandClassname(`arrow arrow-right {brand}-arrow wide-screen-arrows`)} onClick={() => handleArrowRightClick()}></button>
                                 <div></div>
                             </div>
+                        */
+                    }
                     <div></div>
                 </div>
             </div>
