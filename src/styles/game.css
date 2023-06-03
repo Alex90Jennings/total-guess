@@ -1155,6 +1155,21 @@ input[type='number']::-webkit-outer-spin-button {
         max-height: 250px;
     }
 
+    .header-left {
+        width: 40px;
+        visibility: hidden;
+    }
+
+    .header-right-wide-screen {
+        display: none;
+    }
+
+    .header-right-narrow-screen {
+        display: grid;
+        width: 40px;
+        grid-area: header-right;
+    }
+
     .narrow-screen-count{
         display: grid;
         grid-template-columns: repeat(10, auto);
@@ -1222,15 +1237,6 @@ input[type='number']::-webkit-outer-spin-button {
         margin: 0;
     }
 
-    .header-left {
-        visibility: hidden;
-        width: 120px;
-    }
-    
-    .header-right-wide-screen {
-        width: 120px;
-    }
-
     .icon {
         height: 40px !important;
     }
@@ -1292,24 +1298,8 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 20px !important;
     }
 
-    .header-right-wide-screen {
-        display: none;
-    }
-
-    .header-right-narrow-screen {
-        display: grid;
-        width: 40px;
-        grid-area: header-right;
-    }
-
     .landing-page {
         width: 300px;
-    }
-
-    .header-left {
-        width: 40px !important;
-        grid-area: header-left;
-        margin-left: 0px;
     }
 
     .logo-landing {
@@ -1418,16 +1408,6 @@ input[type='number']::-webkit-outer-spin-button {
 
     .main--layout h1 {
         font-size: 30px;
-    }
-
-    .header-left {
-        gap: 10px;
-        font-size: 12px;
-        width: 100px;
-    }
-    
-    .header-right-wide-screen {
-        width: 100px;
     }
 
     .icon {
