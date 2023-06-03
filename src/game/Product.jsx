@@ -45,7 +45,6 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         if (shopName === 'coop') return shopName
         let nameToReturn = shouldBeAllCaps.includes(shopName) ? shopName.toUpperCase() : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase()
         if (shopName === 'sainsbury') nameToReturn += `'s`
-        if (shopName === 'mands') nameToReturn = 'M&S'
         return nameToReturn
     }
 
@@ -108,7 +107,11 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                     <div className={getBrandClassname("box {brand}-box-css")}>
                         <div className={getBrandClassname("shop--css {brand}-header-css three-rows-expand-one-three")}>
                             <div></div>
-                            <h1 className={shouldBeBold.includes(brand) ? 'bold' : 'normal-font'}>{correctShopName({brand})}</h1>
+                            {
+                                brand === "mands" ?
+                                <h1 className='normal-font'>M<span className='mands-accent-css'>&</span>S</h1> :
+                                <h1 className={shouldBeBold.includes(brand) ? 'bold' : 'normal-font'}>{correctShopName({brand})}</h1>
+                            }
                             <div></div>
                         </div>
                         <div className={getBrandClassname("description--css {brand}-description-css mt-s")}>{currentDescription}</div>
