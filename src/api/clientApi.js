@@ -12,7 +12,7 @@ const register = async (email, firstName, lastName, password) => {
 }
 
 const fetchTodayGame = async () => {
-    const route = '/game'
+    const route = '/games/all'
     return await client.get(route)
 }
 

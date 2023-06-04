@@ -11,14 +11,13 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
-    const brand = 'mands' //!TODO: does not need to be it's own state, use groceries.store
     const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
     const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
-
+    const currentProduct = groceries[currentShopIndex];
     const totalAmount = 0;
 
     const getBrandClassname = (classNames) => {
-        return classNames.replace('{brand}', brand);
+        return classNames.replace('{brand}', currentProduct.store);
     };
 
     useEffect(() => {
@@ -33,15 +32,12 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
 
         fetchData();
     }, []);
-
-    const currentProduct = groceries[currentShopIndex];
     
     if (!currentProduct) {
         return <div>Loading...</div>;
     }
 
-    const correctShopName = (brand) => {
-        const shopName = brand.brand
+    const correctShopName = (shopName) => {
         if (shopName === 'coop') return shopName
         let nameToReturn = shouldBeAllCaps.includes(shopName) ? shopName.toUpperCase() : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase()
         if (shopName === 'sainsbury') nameToReturn += `'s`
@@ -116,9 +112,9 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                         <div className={getBrandClassname("shop--css {brand}-header-css three-rows-expand-one-three")}>
                             <div></div>
                             {
-                                brand === "mands" ?
-                                <h1 className='normal-font'>M<span className='mands-accent-css'>&</span>S</h1> :
-                                <h1 className={shouldBeBold.includes(brand) ? 'bold' : 'normal-font'}>{correctShopName({brand})}</h1>
+                                currentProduct.store === "mands" ?
+                                    <h1 className='normal-font'>M<span className='mands-accent-css'>&</span>S</h1> :
+                                    <h1 className={shouldBeBold.includes(currentProduct.store) ? 'bold' : 'normal-font'}>{correctShopName(`${currentProduct.store}`)}</h1>
                             }
                             <div></div>
                         </div>
@@ -201,7 +197,7 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                             </div>
                             <div className='space3'></div>
                                 <div className="info-column text-center">
-                                <p className="store">{currentProduct.store}</p>
+                                <p className="store">{currentProduct.city}, {currentProduct.postcode}</p>
                             </div>
                             <div className='space4'></div>
                                 <div className="info-column text-right">
