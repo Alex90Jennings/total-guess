@@ -7,10 +7,10 @@ import { AppContext } from '../hooks/context';
 
 function LandingPage({ setShowModal }) {
 
-    const { isAuthenticated, setHideHeaders } = useContext(AppContext);
-
-    const [showLoginPage, setShowLoginPage] = useState(false);
-    const [showLandingPageContent, setShowLandingPageContent] = useState(true); 
+    const { isAuthenticated, setHideHeaders, loggedInUser } = useContext(AppContext);
+    const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false);
+    const [ showLoginPage, setShowLoginPage ] = useState(false);
+    const [ showLandingPageContent, setShowLandingPageContent ] = useState(true); 
 
     useEffect(
         () => {
@@ -23,6 +23,17 @@ function LandingPage({ setShowModal }) {
         [isAuthenticated, setHideHeaders]
     );
 
+    useEffect(
+        () => {
+            const today = new Date();
+            today.setUTCHours(0, 0, 0, 0);
+            const formattedToday = today.toISOString();
+            const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
+            setHasPlayedDaily(isGameAlreadyInArray);
+        }, 
+        [loggedInUser?.gamesPlayed],
+    );
+    
     return (
         <div className='landing-page three-rows-expand-two'>
             <LandingPageHeader 
@@ -36,6 +47,7 @@ function LandingPage({ setShowModal }) {
                         setShowLoginPage={setShowLoginPage}
                         setShowLandingPageContent={setShowLandingPageContent}
                         setShowModal={setShowModal}
+                        hasPlayedDaily={hasPlayedDaily}
                     />
                 )
             }

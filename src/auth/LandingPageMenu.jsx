@@ -7,11 +7,10 @@ import { AppContext } from '../hooks/context';
 import GameInstructions from '../game/GameInstructions';
 import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
-function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
+function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose, hasPlayedDaily }) {
 
-    const { isAuthenticated, loggedInUser } = useContext(AppContext);
+    const { isAuthenticated } = useContext(AppContext);
     const navigate = useNavigate();
-    const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false);
     const [showModal, setModalState] = useState(false); 
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
@@ -31,21 +30,6 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
             setShowLoginPage(true);
         }
     };
-
-    useEffect(() => {
-        const today = new Date();
-        const hasPlayed = loggedInUser?.games?.some(
-            gameDate => {
-                const gameDateObj = new Date(gameDate);
-                return (
-                    gameDateObj.getUTCDate() === today.getUTCDate() &&
-                    gameDateObj.getUTCMonth() === today.getUTCMonth() &&
-                    gameDateObj.getUTCFullYear() === today.getUTCFullYear()
-                );
-            }
-        );
-        setHasPlayedDaily(hasPlayed);
-    }, [loggedInUser.games]);
 
     const handlePracticeGameSubmit = () => {
         playSound();
