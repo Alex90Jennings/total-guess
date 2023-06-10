@@ -11,23 +11,32 @@ function ContactUs() {
     const [showAboutUsModal, setShowAboutUsModal] = useState(false);
     const [showFAQModal, setShowFAQModal] = useState(false);
     const [showAdvertiseModal, setShowAdvertiseModal] = useState(false);
+    const [audio] = useState(new Audio("/Sounds/click.wav"));
 
     const handleAboutUsClick = () => {
+        audio.play();
         setShowAboutUsModal(true);
     };
 
     const handleFAQClick = () => {
+        audio.play();
         setShowFAQModal(true);
     };
 
     const handleAdvertiseClick = () => {
+        audio.play();
         setShowAdvertiseModal(true);
     };
 
     const handleCloseModal = () => {
+        audio.play();
         setShowAboutUsModal(false);
         setShowFAQModal(false);
         setShowAdvertiseModal(false);
+    };
+
+    const playSound = () => {
+        audio.play().catch((error) => console.log(error));
     };
 
     return (
@@ -49,8 +58,9 @@ function ContactUs() {
                         className={"modal"}
                         isOpen={showAboutUsModal}
                         onRequestClose={handleCloseModal}
+                        playSound={playSound}
                     >
-                        <AboutUs onClose={handleCloseModal} />
+                        <AboutUs onClose={handleCloseModal} playSound={playSound}/>
                     </Modal>
                 )
             }
@@ -60,8 +70,9 @@ function ContactUs() {
                         className={"modal"}
                         isOpen={showFAQModal}
                         onRequestClose={handleCloseModal}
+                        playSound={playSound}
                     >
-                        <FAQ onClose={handleCloseModal} />
+                        <FAQ onClose={handleCloseModal} playSound={playSound}/>
                     </Modal>
                 )
             }
@@ -71,8 +82,9 @@ function ContactUs() {
                         className={"modal"}
                         isOpen={showAdvertiseModal}
                         onRequestClose={handleCloseModal}
+                        playSound={playSound}
                     >
-                        <Advertise onClose={handleCloseModal} />
+                        <Advertise onClose={handleCloseModal} playSound={playSound}/>
                     </Modal>
                 )
             }

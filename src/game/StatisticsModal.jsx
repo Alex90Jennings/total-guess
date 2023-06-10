@@ -51,12 +51,12 @@ const StatisticsModal = ({ isOpen, onClose }) => {
 
         <div className="grid-container3">
           <div className="grid-item3">
-            <div className='rank-number'>#565</div>
-            <div className='ranking'>RANKING</div>
+            {/* <div className='rank-number'>#565</div> */}
+            {/* <div className='ranking'>RANKING</div> */}
           </div>
           <div className="grid-item3">
-            <div className='players-number'>15,855</div>
-            <div className='players'>PLAYERS</div>
+            {/* <div className='players-number'>15,855</div> */}
+            {/* <div className='players'>PLAYERS</div> */}
           </div>
         </div>
         <a className='share-button-styling' href="/share">Share</a>

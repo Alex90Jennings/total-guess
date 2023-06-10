@@ -11,7 +11,7 @@ function FAQ({ onClose }) {
             </div>
             <h1>Frequently-asked questions</h1>
             <div className='list-reset pl-m'>
-                <h2>What is Cantab</h2>
+                <h2>What is Cantab?</h2>
                 <p>Easy! It's a simple skill game that rates your guessing ability of grocery prices and adding up.</p></div>
             <div className='list-reset pl-m'>
                 <h2>How many grocery items are there?</h2>
@@ -22,7 +22,7 @@ function FAQ({ onClose }) {
                 <p>Good question! Any discounts will be stated clearly in the game.</p>
                 </div>
             <div className='list-reset pl-m'>
-                <h2>Are local price variations included</h2>
+                <h2>Are local price variations included?</h2>
                 <p>Yes, of course! The locality will be stated clearly in the game.</p>
                 </div>
             <div className='list-reset pl-m'>

@@ -8,26 +8,48 @@ const Statistics = () => {
 
   useEffect(() => {
     const binCount = 14;
-    const dataMin = -50.0;
-    const dataMax = 50.0;
-    const binSize = (dataMax - dataMin) / binCount;
+    // const dataMin = -50.0;
+    // const dataMax = 50.0;
+    // const binSize = (dataMax - dataMin) / binCount;
     const bins = Array(binCount).fill(0);
 
     dummyData.forEach((percentage) => {
-      let binIndex;
-      if (percentage >= 50) {
-        binIndex = binCount - 1;
-      } else if (percentage <= -50) {
-        binIndex = 0;
-      } else {
-        binIndex = Math.floor((percentage - dataMin) / binSize);
-      }
+  let binIndex;
+  if (percentage > 30) {
+    binIndex = binCount - 1;
+  } else if (percentage > 20) {
+    binIndex = binCount - 2;
+  } else if (percentage > 10) {
+    binIndex = binCount - 3;
+  } else if (percentage > 5) {
+    binIndex = binCount - 4;
+  } else if (percentage > 2) {
+    binIndex = binCount - 5;
+  } else if (percentage > 1) {
+    binIndex = binCount - 6;
+  } else if (percentage > 0) {
+    binIndex = binCount - 7;
+  } else if (percentage > -1) {
+    binIndex = binCount - 8;
+  } else if (percentage > -2) {
+    binIndex = binCount - 9;
+  } else if (percentage > -5) {
+    binIndex = binCount - 10;
+  } else if (percentage > -10) {
+    binIndex = binCount - 11;
+  } else if (percentage > -20) {
+    binIndex = binCount - 12;
+  } else if (percentage > -30) {
+    binIndex = binCount - 13;
+  } else {
+    binIndex = 0;
+  }
 
-      bins[binIndex]++;
-    });
+  bins[binIndex]++;
+});
 
     const binLabels = [
-      '-50%',
+      '-50%+',
       '-30%',
       '-20%',
       '-10%',
@@ -40,7 +62,7 @@ const Statistics = () => {
       '10%',
       '20%',
       '30%',
-      '50%',
+      '50%+',
     ];
 
     const chartData = {
