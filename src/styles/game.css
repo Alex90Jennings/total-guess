@@ -801,32 +801,32 @@ input[type='number']::-webkit-outer-spin-button {
 
 /*BRANDS*/
 /*SAINSBURY*/
-.sainsbury-header-css {
+.sainsburys-header-css {
     background-color: #f18213;
     color: #FFFFFF;
     font-family: "Century Gothic", "Arial", sans-serif;
 }
 
-.sainsbury-info,
-.sainsbury-arrow {
+.sainsburys-info,
+.sainsburys-arrow {
     color: #f18213;
 }
 
-.sainsbury-box-css {
+.sainsburys-box-css {
     border: 2px solid #f18213;
 }
 
-.sainsbury-description-css {
+.sainsburys-description-css {
     color: #f18213;
 }
 
-.sainsbury-roman-numeral-before {
+.sainsburys-roman-numeral-before {
     border: 6px solid #f18213;
     color: #f18213;
     margin: 3px;
 }
 
-.sainsbury-roman-numeral-after {
+.sainsburys-roman-numeral-after {
     border: 6px solid #f18213;
     color: white;
     background-color: #f18213;

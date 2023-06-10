@@ -1,75 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TinderCard from 'react-tinder-card';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
 import ImageCount from './ImageCount';
-import { clientApi } from '../api/clientApi';
 
-function Product({ setReadyToSubmit, setTotalPrice }) {
+function Product({ setReadyToSubmit, setTotalPrice, products, date }) {
 
-    const [groceries, setGroceries] = useState([]);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+
+    if (!products) {
+        return <div>Loading...</div>;
+    }
+    
     const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop']
     const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl']
-    const currentProduct = groceries[currentShopIndex];
+    const currentProduct = products[currentShopIndex];
     const totalAmount = 0;
 
     const getBrandClassname = (classNames) => {
         return classNames.replace('{brand}', currentProduct.store);
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-        try {
-            const response = await clientApi.fetchTodayGame()
-            setGroceries(response.data[0].items);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-        };
-
-        fetchData();
-    }, []);
-    
-    if (!currentProduct) {
-        return <div>Loading...</div>;
-    }
 
     const correctShopName = (shopName) => {
         if (shopName === 'coop') return shopName
+        if (shopName === 'sainsburys') return "Sainsbury's"
         let nameToReturn = shouldBeAllCaps.includes(shopName) ? shopName.toUpperCase() : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase()
-        if (shopName === 'sainsbury') nameToReturn += `'s`
         return nameToReturn
     }
 
-    //const currentShop = currentProduct.shop;
+    const currentShop = currentProduct.store;
     const currentDescription = currentProduct.description;
-    const currentImage = groceries[currentShopIndex].image;
+    const currentImage = currentProduct.image;
 
     const handleSwipe = (direction) => {
         let newIndex;
         if (direction === 'left') {
-        newIndex = currentShopIndex + 1;
+            newIndex = currentShopIndex + 1;
         } else if (direction === 'right') {
-        newIndex = currentShopIndex - 1;
+            newIndex = currentShopIndex - 1;
         }
-        if (newIndex >= 0 && newIndex < groceries.length) {
-        setCurrentShopIndex(newIndex);
-        audio.play();
+        if (newIndex >= 0 && newIndex < products.length) {
+            setCurrentShopIndex(newIndex);
+            audio.play();
         }
     };
 
     const handleArrowRightClick = () => {
-        if (currentShopIndex === groceries.length - 1) {
-        const totalPrice = groceries.reduce((sum, item) => sum + item.price, 0);
-        setTotalPrice(totalPrice);
-
-        setReadyToSubmit(true);
-        audioCoins.play()
+        if (currentShopIndex === products.length - 1) {
+            const totalPrice = products.reduce((sum, item) => sum + item.price, 0);
+            setTotalPrice(totalPrice);
+            setReadyToSubmit(true);
+            audioCoins.play()
         } else {
-        handleSwipe('left');
+            handleSwipe('left');
         }
     };
 
@@ -79,6 +65,19 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
         const month = ("0" + (d.getMonth() + 1)).slice(-2);
         const year = d.getFullYear();
         return `${day}.${month}.${year}`;
+    }
+
+    function getDaysSince() {
+        const targetDate = new Date('2023-06-09');
+        const givenDate = new Date(date);
+        
+        if (isNaN(givenDate)) {
+          throw new Error("Invalid date format. Cannot calculate days since.");
+        }
+        
+        const timeDiff = Math.abs(givenDate.getTime() - targetDate.getTime());
+        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        return daysDiff;
     }
 
     return (
@@ -112,9 +111,9 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                         <div className={getBrandClassname("shop--css {brand}-header-css three-rows-expand-one-three")}>
                             <div></div>
                             {
-                                currentProduct.store === "mands" ?
+                                currentShop === "mands" ?
                                     <h1 className='normal-font'>M<span className='mands-accent-css'>&</span>S</h1> :
-                                    <h1 className={shouldBeBold.includes(currentProduct.store) ? 'bold' : 'normal-font'}>{correctShopName(`${currentProduct.store}`)}</h1>
+                                    <h1 className={shouldBeBold.includes(currentShop) ? 'bold' : 'normal-font'}>{correctShopName(`${currentShop}`)}</h1>
                             }
                             <div></div>
                         </div>
@@ -197,11 +196,11 @@ function Product({ setReadyToSubmit, setTotalPrice }) {
                             </div>
                             <div className='space3'></div>
                                 <div className="info-column text-center">
-                                <p className="store">{currentProduct.city}, {currentProduct.postcode}</p>
+                                <p className="store">Portsmouth</p>
                             </div>
                             <div className='space4'></div>
                                 <div className="info-column text-right">
-                                <p className="game">#{currentProduct.game}</p>
+                                <p className="game">#{getDaysSince()}</p>
                             </div>
                         </div>
                     </div>

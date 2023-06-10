@@ -12,7 +12,9 @@ function MainGamePage({ setGuess }) {
 
     const fetchGame = async () => {
         try {
-            const response = await clientApi.fetchTodayGame();
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('/').join('-');
+            const response = await clientApi.fetchTodayGame(formattedDate);
             setGame(response.data);
         } catch (error) {
             console.error('Error fetching game:', error);
@@ -31,7 +33,7 @@ function MainGamePage({ setGuess }) {
             {
                 readyToSubmit ?
                     <Submit setGuess={setGuess} correctPrice={totalPrice} /> :
-                    <Product products={game.items} setReadyToSubmit={setReadyToSubmit} setTotalPrice={setTotalPrice} /> 
+                    <Product products={game.items} date={game.date} setReadyToSubmit={setReadyToSubmit} setTotalPrice={setTotalPrice} /> 
             }
         </main>        
     );
