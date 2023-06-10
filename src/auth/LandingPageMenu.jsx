@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import GameInstructions from '../game/GameInstructions';
-import TimerToUkMidnight from '../game/timerToUkMidnight';
+import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
 
