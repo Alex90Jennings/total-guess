@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/game.css';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../hooks/context';
+import { clientApi } from '../api/clientApi';
 
 function Submit({ setGuess, correctPrice }) {
 
@@ -8,6 +10,7 @@ function Submit({ setGuess, correctPrice }) {
     const [guessValue, setGuessValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [inputValid, setInputValid] = useState(false);
+    const { loggedInUser, setLoggedInUser, gameDate } = useContext(AppContext);
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
 
     const handleInputChange = (event) => {
@@ -27,10 +30,17 @@ function Submit({ setGuess, correctPrice }) {
     };
 
     const handleGuessSubmit = () => {
+        let difference;
         const numericGuess = parseFloat(guessValue).toFixed(2);
-        setGuess(numericGuess);
-        audioCoins.play()
-        navigate('/results', { state: { guess: numericGuess, correctPrice: correctPrice } });
+        const percentageError = correctPrice >= numericGuess ? 
+            -(difference / correctPrice) * 100 : 
+            (difference / correctPrice) * 100 
+        if (loggedInUser) {
+            const updatedUser = clientApi.submitResult(loggedInUser.email, gameDate, percentageError)
+            setLoggedInUser(updatedUser)
+            audioCoins.play()
+        }
+        navigate('/results', { state: { difference, percentageError } });
     };
 
 
