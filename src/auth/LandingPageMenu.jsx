@@ -7,10 +7,9 @@ import { AppContext } from '../hooks/context';
 import GameInstructions from '../game/GameInstructions';
 import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
-function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose }) {
+function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose, hasPlayedDaily }) {
 
     const { isAuthenticated } = useContext(AppContext);
-    const hasPlayedDaily = false //TODO! replace with user.hasPlayedDaily
     const navigate = useNavigate();
     const [showModal, setModalState] = useState(false); 
     const [audio] = useState(new Audio('/Sounds/click.wav'));
@@ -21,6 +20,9 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
 
     const handleStartGameSubmit = () => {
         playSound();
+        if(hasPlayedDaily) {
+            return
+        }
         if (isAuthenticated) {
             navigate('/play');
         } else {

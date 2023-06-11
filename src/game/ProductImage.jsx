@@ -1,6 +1,8 @@
 import React from 'react';
 import '../styles/game.css';
 
+//TODO: Add loading spinning for when product is loading, make the same height and width as the image
+
 function ProductImage({ currentImage }) {
 
     return (

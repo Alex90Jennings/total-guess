@@ -1,20 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../styles/game.css';
 import Feedback from './Feedback';
 import Modal from "react-modal";
-import { client } from '../api/client';
-import { AppContext } from '../hooks/context';
 
 function Results() {
     
     const location = useLocation();
     const correctPrice = location.state.correctPrice;
     const guess = location.state.guess;
-    const [error, setError] = useState({ difference: undefined, percentageError: undefined });
+    const [error, setError] = useState({ difference: 0, percentageError: 0 });
     const [showFeedbackModal, setShowFeedbackModal] = useState(false);
-    const { loggedInUser } = useContext(AppContext);
 
     const handleFeedbackClick = (e) => {
         e.preventDefault();
@@ -34,15 +31,9 @@ function Results() {
                 -(difference / correctPrice) * 100 : 
                 (difference / correctPrice) * 100 
             setError({ difference, percentageError });
-            if (loggedInUser) {
-                client.submitResult(loggedInUser.email, loggedInUser.gameDate, percentageError)
-            } else {
-                setError('Please login and play again')
-            }
         },
         [],
     );
-
     return (
         <div className="main--layout--results">
             <div className="box-results">

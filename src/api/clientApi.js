@@ -18,7 +18,7 @@ const fetchTodayGame = async (date) => {
 
 const submitResult = async (email, date, result) => {
     const reqBody = {email, date, result}
-    const route = `/users/submitResult`
+    const route = `/user/submitResult`
     return await client.post(route, reqBody)
 }
 
