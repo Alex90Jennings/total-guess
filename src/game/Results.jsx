@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../styles/game.css';
 import Feedback from './Feedback';
@@ -8,9 +8,9 @@ import Modal from "react-modal";
 function Results() {
     
     const location = useLocation();
+    const difference = location.state.difference;
+    const percentageError = location.state.percentageError;
     const correctPrice = location.state.correctPrice;
-    const guess = location.state.guess;
-    const [error, setError] = useState({ difference: 0, percentageError: 0 });
     const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
     const handleFeedbackClick = (e) => {
@@ -22,18 +22,6 @@ function Results() {
         setShowFeedbackModal(false)
     };
 
-    useEffect(
-        () => {
-            let difference;
-            const numericGuess = parseFloat(guess);
-            difference = numericGuess - correctPrice;
-            const percentageError = correctPrice >= numericGuess ? 
-                -(difference / correctPrice) * 100 : 
-                (difference / correctPrice) * 100 
-            setError({ difference, percentageError });
-        },
-        [],
-    );
     return (
         <div className="main--layout--results">
             <div className="box-results">
@@ -44,13 +32,13 @@ function Results() {
                     <div className="guessed-box">£</div>
                     <p>£{correctPrice?.toFixed(2)}</p>
                 </div>
+                <div className="percentile-results">
+                    <div className="percentile-box">DIFFERENCE</div>
+                    <p>£{difference.toFixed(2)}</p>
+                </div>
                 <div className="error-results">
                     <div className="error-box">ERROR</div>
-                    <p>{error.percentageError ? (guess > correctPrice ? '+' : '-') : ''}{Math.abs(error.percentageError)?.toFixed(1)}%</p>
-                </div>
-                <div className="percentile-results">
-                    <div className="percentile-box">RANK</div>
-                    <p>{error.percentageError?.toFixed(0)}</p>
+                    <p>{percentageError.toFixed(1)}%</p>
                 </div>
                 <div className="statistics-results">
                     <a className='statistics-button-styling' href="/statistics">Statistics</a>

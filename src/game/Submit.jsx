@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../hooks/context';
 import { clientApi } from '../api/clientApi';
 
-function Submit({ setGuess, correctPrice }) {
+function Submit({ guess, setGuess, correctPrice }) {
 
     const navigate = useNavigate();
-    const [guessValue, setGuessValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [inputValid, setInputValid] = useState(false);
     const { loggedInUser, setLoggedInUser, gameDate } = useContext(AppContext);
@@ -16,7 +15,7 @@ function Submit({ setGuess, correctPrice }) {
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
         if (/^\d*(\.\d{0,2})?$/.test(inputValue)) {
-            setGuessValue(inputValue);
+            setGuess(inputValue);
             setInputValid(true);
             setErrorMessage('');
         } else {
@@ -30,8 +29,8 @@ function Submit({ setGuess, correctPrice }) {
     };
 
     const handleGuessSubmit = () => {
-        let difference;
-        const numericGuess = parseFloat(guessValue).toFixed(2);
+        const numericGuess = parseFloat(guess).toFixed(2);
+        const difference = correctPrice - numericGuess;
         const percentageError = correctPrice >= numericGuess ? 
             -(difference / correctPrice) * 100 : 
             (difference / correctPrice) * 100 
@@ -40,9 +39,8 @@ function Submit({ setGuess, correctPrice }) {
             setLoggedInUser(updatedUser)
             audioCoins.play()
         }
-        navigate('/results', { state: { difference, percentageError } });
+        navigate('/results', { state: { difference, percentageError, correctPrice } });
     };
-
 
     return (
         <div className="main--layout--submit box-submit">
@@ -53,7 +51,7 @@ function Submit({ setGuess, correctPrice }) {
                 <div className="blue-box">£</div>
                 <input
                     type="text"
-                    value={guessValue}
+                    value={guess}
                     onChange={handleInputChange}
                     title="Please enter a valid number with at most two decimal places"
                 />

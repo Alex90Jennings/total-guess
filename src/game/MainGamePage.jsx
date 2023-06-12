@@ -6,12 +6,12 @@ import Submit from './Submit';
 import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 
-function MainGamePage({ setGuess }) {
+function MainGamePage({ guess, setGuess }) {
     
     const { setGameDate } = useContext(AppContext);
-    const [readyToSubmit, setReadyToSubmit] = useState(false);
-    const [totalPrice, setTotalPrice] = useState(0); 
+    const [readyToSubmit, setReadyToSubmit] = useState(false); 
     const [game, setGame] = useState({});
+    const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
 
     const fetchGame = async () => {
         try {
@@ -36,8 +36,8 @@ function MainGamePage({ setGuess }) {
         <main id="main">
             {
                 readyToSubmit ?
-                    <Submit setGuess={setGuess} correctPrice={totalPrice} /> :
-                    <Product products={game.items} date={game.date} setReadyToSubmit={setReadyToSubmit} setTotalPrice={setTotalPrice} /> 
+                    <Submit guess={guess} setGuess={setGuess} correctPrice={correctPrice} /> :
+                    <Product products={game.items} date={game.date} setReadyToSubmit={setReadyToSubmit} /> 
             }
         </main>        
     );

@@ -4,7 +4,7 @@ import '../styles/game.css';
 import ProductImage from './ProductImage';
 import ImageCount from './ImageCount';
 
-function Product({ setReadyToSubmit, setTotalPrice, products, date }) {
+function Product({ setReadyToSubmit, products, date }) {
 
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
@@ -50,8 +50,6 @@ function Product({ setReadyToSubmit, setTotalPrice, products, date }) {
 
     const handleArrowRightClick = () => {
         if (currentShopIndex === products.length - 1) {
-            const totalPrice = products.reduce((sum, item) => sum + item.price, 0);
-            setTotalPrice(totalPrice);
             setReadyToSubmit(true);
             audioCoins.play()
         } else {
@@ -119,15 +117,6 @@ function Product({ setReadyToSubmit, setTotalPrice, products, date }) {
                         </div>
                         <div className={getBrandClassname("description--css {brand}-description-css mt-s")}>{currentDescription}</div>
                         <div className="image-row">
-                            {
-                                /*
-                                    <div className='three-rows-expand-one-three'>
-                                        <div></div>
-                                        <button className={getBrandClassname(`arrow arrow-left {brand}-arrow narrow-screen-arrows`)} onClick={() => handleSwipe('right')}></button>
-                                        <div></div>
-                                    </div>
-                                */
-                            }
                             <div className='three-rows-expand-one-three'>
                                 <div></div>
                                 <button className={getBrandClassname("arrow-left nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
@@ -157,15 +146,6 @@ function Product({ setReadyToSubmit, setTotalPrice, products, date }) {
                                     end={10}
                                 />
                             </div>
-                                {
-                                    /*
-                                        <div className='three-rows-expand-one-three'>
-                                            <div></div>
-                                            <button className={getBrandClassname(`arrow arrow-right {brand}-arrow narrow-screen-arrows`)} onClick={() => handleArrowRightClick()}></button>
-                                            <div></div>
-                                        </div>
-                                    */
-                                }
                             <div className='three-rows-expand-one-three'>
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
@@ -208,15 +188,6 @@ function Product({ setReadyToSubmit, setTotalPrice, products, date }) {
                 )}
                 <div className='three-rows-expand-one-three'>
                     <div></div>
-                    {
-                        /*
-                            <div className='three-rows-expand-one-three'>
-                                <div></div>
-                                <button className={getBrandClassname(`arrow arrow-right {brand}-arrow wide-screen-arrows`)} onClick={() => handleArrowRightClick()}></button>
-                                <div></div>
-                            </div>
-                        */
-                    }
                     <div className='three-rows-expand-one-three'>
                         <div></div>
                         <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>

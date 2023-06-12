@@ -14,9 +14,10 @@ import Share from "./game/Share.jsx";
 import StatisticsModal from "./game/StatisticsModal";
 
 function App() {
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [guess, setGuess] = useState(undefined);
+  const [guess, setGuess] = useState(0);
   const [showStatisticsModal, setShowStatisticsModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
@@ -49,7 +50,7 @@ function App() {
             />
             <Route
               path="/play"
-              element={<MainGamePage setGuess={setGuess} />}
+              element={<MainGamePage guess={guess} setGuess={setGuess} />}
             />
             <Route path="/results" element={<Results guess={guess} />} />
             <Route path="/share" element={<Share />} />
