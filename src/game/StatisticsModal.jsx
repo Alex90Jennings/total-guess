@@ -64,7 +64,7 @@ const StatisticsModal = ({ isOpen, onClose }) => {
                         <div className='best-guess'>BEST GUESS</div>
                     </div>
                     <div className="grid-item2">
-                        <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? loggedInUser.scores.reduce((total, score) => total + score, 0).toFixed(2) : 'N/A'}</div>
+                        <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + score, 0)/loggedInUser.scores.length).toFixed(2) : 'N/A'}</div>
                         <div className='average-guess'>AVERAGE GUESS</div>
                     </div>
                 </div>
