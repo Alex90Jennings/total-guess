@@ -85,11 +85,12 @@
 
 .play-btn,
 .login-btn {
-  font-weight: bold;
+  font-family: 'Luckiest Guy', cursive;
   background-color: #0070c0;
 }
 
 .other-btn {
+  font-family: 'Luckiest Guy', cursive;
   background-color: #3f3f3f;
 }
 
