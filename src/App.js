@@ -52,7 +52,7 @@ function App() {
               path="/play"
               element={<MainGamePage guess={guess} setGuess={setGuess} />}
             />
-            <Route path="/results" element={<Results guess={guess} />} />
+            <Route path="/results" element={<Results guess={guess} setShowStatisticsModal={setShowStatisticsModal} />} />
             <Route path="/share" element={<Share />} />
           </Routes>
         </BrowserRouter>

@@ -5,7 +5,7 @@ import '../styles/game.css';
 import Feedback from './Feedback';
 import Modal from "react-modal";
 
-function Results() {
+function Results({ setShowStatisticsModal }) {
     
     const location = useLocation();
     const difference = location.state.difference;
@@ -41,7 +41,7 @@ function Results() {
                     <p>{percentageError.toFixed(1)}%</p>
                 </div>
                 <div className="statistics-results">
-                    <a className='statistics-button-styling' href="/statistics">Statistics</a>
+                    <button className='statistics-button-styling' onClick={() => setShowStatisticsModal(true)}>Statistics</button>
                 </div>
                 {/*
                 <div className="share-results">

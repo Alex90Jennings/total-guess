@@ -41,7 +41,7 @@ function ContactUs() {
 
     return (
 
-        <div className='three-columns-expand-one-three footer--bottom header-right-wide-screen'>
+        <div className='three-columns-expand-one-three footer--bottom footer-wide-screen'>
             <div></div>
             <div className="footer--list">
                 <div className="contact">Contact</div>
