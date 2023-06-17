@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 
 export const AppContext = createContext({
     loggedInUser: {},
@@ -16,6 +16,18 @@ export const AppProvider = ({ children }) => {
     const [ loggedInUser, setLoggedInUser ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ gameDate, setGameDate ] = useState('')
+
+    useEffect(
+        () => {
+            const jwtToken = localStorage.getItem("tgJwtToken")
+            if (!loggedInUser?._id && jwtToken) {
+                console.log("hi")
+
+            }
+        }, 
+        [loggedInUser?._id]
+    );
+
 
     const value = {
         loggedInUser,

@@ -33,7 +33,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
     const signInUser = async () => {
         try {
             const response = await clientApi.login(formData.email, formData.password);
-            localStorage.setItem("jwtToken", response.data.jwtToken);
+            localStorage.setItem("tgJwtToken", response.data.jwtToken);
             setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);                
@@ -52,7 +52,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                 formData.lastName,
                 formData.password
             );
-            localStorage.setItem("jwtToken", response.data.jwtToken);
+            localStorage.setItem("tgJwtToken", response.data.jwtToken);
             setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);
