@@ -28,15 +28,15 @@ function Submit({ guess, setGuess, correctPrice }) {
         }
     };
 
-    const handleGuessSubmit = () => {
+    const handleGuessSubmit = async () => {
         const numericGuess = parseFloat(guess).toFixed(2);
         const difference = correctPrice - numericGuess;
         const percentageError = correctPrice >= numericGuess ? 
             -(difference / correctPrice) * 100 : 
             (difference / correctPrice) * 100 
         if (loggedInUser) {
-            const updatedUser = clientApi.submitResult(loggedInUser.email, gameDate, percentageError)
-            setLoggedInUser(updatedUser)
+            const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError)
+            setLoggedInUser(response.data)
             audioCoins.play()
         }
         navigate('/results', { state: { difference, percentageError, correctPrice } });
