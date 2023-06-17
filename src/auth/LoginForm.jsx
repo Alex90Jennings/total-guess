@@ -3,7 +3,7 @@ import '../styles/landingPage.css';
 import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 
-function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders, }) {
+function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders }) {
 
     const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
     const [error, setError] = useState(null);
@@ -37,8 +37,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
             setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);                
-        } catch (err) {
-            console.log(err);
+        } catch {
             setError('Error signing in. Please check your email and password.'); 
         }
     };
@@ -56,8 +55,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
             setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);
-        } catch (err) {
-            console.log(err);
+        } catch {
             setError('Error registering user. Please check your information.'); 
         }
     }

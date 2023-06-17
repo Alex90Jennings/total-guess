@@ -22,9 +22,15 @@ const submitResult = async (email, date, result) => {
     return await client.post(route, reqBody)
 }
 
+const getUser = async () => {
+    const route = '/user'
+    return await client.get(route)
+}
+
 export const clientApi = {
     login,
     register,
     fetchTodayGame,
-    submitResult
+    submitResult,
+    getUser
 }

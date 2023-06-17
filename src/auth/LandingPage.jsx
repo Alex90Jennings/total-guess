@@ -5,11 +5,10 @@ import LandingPageMenu from './LandingPageMenu';
 import LoginForm from './LoginForm';
 import { AppContext } from '../hooks/context';
 
-function LandingPage({ setShowModal }) {
+function LandingPage() {
 
-    const { isAuthenticated, loggedInUser } = useContext(AppContext);
+    const { isAuthenticated } = useContext(AppContext);
     const [ hideHeaders, setHideHeaders ] = useState(false)
-    const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false);
     const [ showLoginPage, setShowLoginPage ] = useState(false);
     const [ showLandingPageContent, setShowLandingPageContent ] = useState(true); 
 
@@ -22,17 +21,6 @@ function LandingPage({ setShowModal }) {
             }
         }, 
         [isAuthenticated, setHideHeaders]
-    );
-
-    useEffect(
-        () => {
-            const today = new Date();
-            today.setUTCHours(0, 0, 0, 0);
-            const formattedToday = today.toISOString();
-            const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
-            setHasPlayedDaily(isGameAlreadyInArray);
-        }, 
-        [loggedInUser?.gamesPlayed],
     );
     
     return (
@@ -48,8 +36,6 @@ function LandingPage({ setShowModal }) {
                     <LandingPageMenu
                         setShowLoginPage={setShowLoginPage}
                         setShowLandingPageContent={setShowLandingPageContent}
-                        setShowModal={setShowModal}
-                        hasPlayedDaily={hasPlayedDaily}
                     />
                 )
             }
