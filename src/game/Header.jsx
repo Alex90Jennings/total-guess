@@ -7,20 +7,19 @@ import "../styles/modal.css";
 import "../styles/landingPage.css";
 import "../styles/game.css";
 import { AppContext } from "../hooks/context";
-import StatisticsModal from "./StatisticsModal";
 
 function Header({
     setShowLoginPage,
     onClose,
     showModal,
     setShowModal,
+    setShowStatisticsModal
 }) {
     const { loggedInUser, isAuthenticated } = useContext(
         AppContext
     );
     const firstName = loggedInUser.firstName || " ";
     const [audio] = useState(new Audio("/Sounds/click.wav"));
-    const [showStatisticsModal, setShowStatisticsModal] = useState(false);
 
     const handleStatisticsClick = () => {
         audio.play();
@@ -96,10 +95,6 @@ function Header({
                     className="mr-m dropdown-icon"
                 />
             </div>
-            <StatisticsModal
-                isOpen={showStatisticsModal}
-                onClose={handleCloseStatisticsModal}
-            />
             {showModal && (
                 <Modal
                     className={"modal"}
