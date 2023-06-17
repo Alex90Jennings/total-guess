@@ -27,6 +27,10 @@ const StatisticsModal = ({ isOpen, onClose }) => {
         return closestScore.toFixed(2);
     }
 
+    if (loggedInUser?.scores?.length === 0) {
+        return <p>Play a game to see your stats!</p>
+    }
+
     return (
         <Modal
             className="modal-stats"
