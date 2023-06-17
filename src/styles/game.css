@@ -41,6 +41,7 @@ body {
     grid-template-areas: "header-left header-middle header-right";
     align-items: center;
     justify-content: center;
+    margin-bottom: 8px;
 }
 
 .header-left {
