@@ -15,7 +15,7 @@ function Header({
     showModal,
     setShowModal,
 }) {
-    const { loggedInUser, isAuthenticated, setHideHeaders } = useContext(
+    const { loggedInUser, isAuthenticated } = useContext(
         AppContext
     );
     const firstName = loggedInUser.firstName || " ";
@@ -44,7 +44,6 @@ function Header({
     const handleSignUpClick = () => {
         audio.play();
         setShowLoginPage(true);
-        setHideHeaders(true);
     };
 
     const handleCloseStatisticsModal = () => {

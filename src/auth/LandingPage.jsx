@@ -7,7 +7,8 @@ import { AppContext } from '../hooks/context';
 
 function LandingPage({ setShowModal }) {
 
-    const { isAuthenticated, setHideHeaders, loggedInUser } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser } = useContext(AppContext);
+    const [ hideHeaders, setHideHeaders ] = useState(false)
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false);
     const [ showLoginPage, setShowLoginPage ] = useState(false);
     const [ showLandingPageContent, setShowLandingPageContent ] = useState(true); 
@@ -39,6 +40,7 @@ function LandingPage({ setShowModal }) {
             <LandingPageHeader 
                 setShowLoginPage={setShowLoginPage} 
                 setShowLandingPageContent={setShowLandingPageContent} 
+                hideHeaders={hideHeaders}
             />
             <div></div>
             {
@@ -54,7 +56,10 @@ function LandingPage({ setShowModal }) {
             {
                 showLoginPage && (
                     <LoginForm
+                        setShowLandingPageContent={setShowLandingPageContent}
                         setShowLoginPage={setShowLoginPage}
+                        hideHeaders={hideHeaders}
+                        setHideHeaders={setHideHeaders}
                     />
                 )
             }

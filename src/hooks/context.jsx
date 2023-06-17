@@ -5,8 +5,6 @@ export const AppContext = createContext({
     setLoggedInUser: () => {},
     isAuthenticated: false,
     setIsAuthenticated: () => {},
-    hideHeaders: false,
-    setHideHeaders: () => {},
     gameDate: '',
     setGameDate: () => {}
 });
@@ -17,7 +15,6 @@ export const AppProvider = ({ children }) => {
 
     const [ loggedInUser, setLoggedInUser ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
-    const [ hideHeaders, setHideHeaders ] = useState(false)
     const [ gameDate, setGameDate ] = useState('')
 
     const value = {
@@ -25,8 +22,6 @@ export const AppProvider = ({ children }) => {
         setLoggedInUser,
         isAuthenticated,
         setIsAuthenticated,
-        hideHeaders,
-        setHideHeaders,
         gameDate,
         setGameDate
     };

@@ -3,9 +3,9 @@ import '../styles/landingPage.css';
 import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 
-function LoginForm({ setShowLoginPage }) {
+function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders, }) {
 
-    const { isAuthenticated, setIsAuthenticated, hideHeaders, setHideHeaders, setLoggedInUser } = useContext(AppContext);
+    const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         email: '',
@@ -60,6 +60,12 @@ function LoginForm({ setShowLoginPage }) {
             console.log(err);
             setError('Error registering user. Please check your information.'); 
         }
+    }
+
+    const handleReturnToMainMenu = () => {
+        setShowLoginPage(false)
+        setHideHeaders(false)
+        setShowLandingPageContent(true)
     }
 
 
@@ -139,7 +145,7 @@ function LoginForm({ setShowLoginPage }) {
                 </form>
                 <div className='three-columns-expand-one-three'>
                     <div></div>
-                    <button className="other-btn" onClick={() => setShowLoginPage(false)}>Return to menu</button>
+                    <button className="other-btn" onClick={() => handleReturnToMainMenu()}>Return to menu</button>
                     <div></div>
                 </div>
             </div>
