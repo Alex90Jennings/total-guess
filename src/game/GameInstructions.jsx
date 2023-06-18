@@ -7,7 +7,7 @@ return (
         <div className='pl-l pr-l'>
             <div className='two-columns-expand-one'>
                 <div></div>
-                <button className="close-btn" onClick={() => {onClose();}}>
+                <button className="close-btn" onClick={() => onClose()}>
                     X
                 </button>
             </div>
