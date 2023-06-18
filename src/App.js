@@ -1,5 +1,5 @@
+import { useState, useContext, useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useState, useContext } from "react";
 import "./styles/App.css";
 import "./styles/modal.css";
 import LandingPage from "./auth/LandingPage.jsx";
@@ -37,7 +37,17 @@ function App() {
         audio.play().catch((error) => console.log(error));
     };
 
+    const closeModal = () => {
+        playSound()
+        setModalToDisplay('');
+    };
 
+    useEffect(
+        () => {
+            Modal.setAppElement("#root");
+        }, 
+        []
+    );
 
     return (
         <div>
@@ -57,52 +67,49 @@ function App() {
                         <Route path="/share" element={<Share />} />
                     </Routes>
                 </BrowserRouter>
-                <Modal
-                    className={"modal"}
-                    isOpen={modalToDisplay === ModalToDisplay.INSTRUCTIONS}
-                    onRequestClose={() => setModalToDisplay('')}
-                >
-                    <GameInstructions onClose={() => setModalToDisplay('')} />
-                </Modal>
-                <Modal
-                    className={"modal"}
-                    isOpen={modalToDisplay === ModalToDisplay.STATISTICS}
-                    onRequestClose={() => setModalToDisplay('')}
-                >
-                    <StatisticsModal onClose={() => setModalToDisplay('')} />
-                </Modal>
-                <Modal
-                    className={"modal"}
-                    isOpen={modalToDisplay === ModalToDisplay.ABOUT_US}
-                    onRequestClose={() => setModalToDisplay('')}
-                    playSound={playSound}
-                >
-                    <AboutUs onClose={() => setModalToDisplay('')} playSound={playSound}/>
-                </Modal>
-                <Modal
-                    className={"modal"}
-                    isOpen={modalToDisplay === ModalToDisplay.FAQ}
-                    onRequestClose={() => setModalToDisplay('')}
-                    playSound={playSound}
-                >
-                    <FAQ onClose={() => setModalToDisplay('')} playSound={playSound}/>
-                </Modal>
-                <Modal
-                    className={"modal"}
-                    isOpen={modalToDisplay === ModalToDisplay.ADVERTISE}
-                    onRequestClose={() => setModalToDisplay('')}
-                    playSound={playSound}
-                >
-                    <Advertise onClose={() => setModalToDisplay('')} playSound={playSound}/>
-                </Modal>
-                <Modal
-                    className={"modal"}
-                    isOpen={modalToDisplay === ModalToDisplay.CONTACT_US}
-                    onRequestClose={() => setModalToDisplay('')}
-                    playSound={playSound}
-                >
-                    <ContactUsModal onClose={() => setModalToDisplay('')} playSound={playSound}/>
-                </Modal>
+                {
+                    Object.values(ModalToDisplay).map(
+                        (modal) => (
+                            <Modal
+                                key={modal}
+                                className="modal"
+                                isOpen={modalToDisplay === modal}
+                                onRequestClose={closeModal}
+                            >
+                                {
+                                    modal === ModalToDisplay.INSTRUCTIONS && (
+                                        <GameInstructions onClose={closeModal} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.STATISTICS && (
+                                        <StatisticsModal onClose={closeModal} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.ABOUT_US && (
+                                        <AboutUs onClose={closeModal} playSound={playSound} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.FAQ && (
+                                        <FAQ onClose={closeModal} playSound={playSound} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.ADVERTISE && (
+                                        <Advertise onClose={closeModal} playSound={playSound} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.CONTACT_US && (
+                                        <ContactUsModal onClose={closeModal} playSound={playSound} />
+                                    )
+                                }
+                            </Modal>
+                        )
+                    )
+                }
                 <Footer />
             </div>
             <ContactUs />
