@@ -1,5 +1,5 @@
+import { useState, useContext, useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useState } from "react";
 import "./styles/App.css";
 import "./styles/modal.css";
 import LandingPage from "./auth/LandingPage.jsx";
@@ -12,72 +12,99 @@ import ContactUs from "./ContactUs";
 import Results from "./game/Results";
 import Share from "./game/Share.jsx";
 import StatisticsModal from "./game/StatisticsModal";
+import AboutUs from './game/AboutUs';
+import FAQ from './game/FAQ'
+import Advertise from './game/Advertise';
+import ContactUsModal from './game/ContactUsModal';
+import { AppContext } from './hooks/context';
+
+export const ModalToDisplay = {
+    INSTRUCTIONS: 'INSTRUCTIONS',
+    FAQ: 'FAQ',
+    STATISTICS: 'STATISTICS',
+    CONTACT_US: 'CONTACT_US',
+    ABOUT_US: 'ABOUT_US',
+    ADVERTISE: 'ADVERTISE'
+};
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [guess, setGuess] = useState(0);
-  const [showStatisticsModal, setShowStatisticsModal] = useState(false);
 
-  const handleCloseModal = () => setShowModal(false);
-  const handleCloseStatisticsModal = () => setShowStatisticsModal(false);
+    const [guess, setGuess] = useState(0);
+    const { modalToDisplay, setModalToDisplay } = useContext(AppContext);
 
-  return (
-    <div>
-      <div className="app">
-        <Header
-          isAuthenticated={isAuthenticated}
-          onClose={handleCloseModal}
-          showModal={showModal}
-          setShowModal={setShowModal}
-          setShowStatisticsModal={setShowStatisticsModal}
-        />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <LandingPage
-                  isAuthenticated={isAuthenticated}
-                  setIsAuthenticated={setIsAuthenticated}
-                  setShowModal={setShowModal}
-                  setShowStatisticsModal={setShowStatisticsModal}
-                  onClose={handleCloseModal}
-                  onCloseStatisticsModal={handleCloseStatisticsModal}
-                />
-              }
-            />
-            <Route
-              path="/play"
-              element={<MainGamePage guess={guess} setGuess={setGuess} />}
-            />
-            <Route path="/results" element={<Results guess={guess} />} />
-            <Route path="/share" element={<Share />} />
-          </Routes>
-        </BrowserRouter>
-        {showModal && (
-          <Modal
-            className={"modal"}
-            isOpen={showModal}
-            onRequestClose={handleCloseModal}
-          >
-            <GameInstructions onClose={handleCloseModal} />
-          </Modal>
-        )}
-        {showStatisticsModal && (
-          <Modal
-            className={"modal"}
-            isOpen={showStatisticsModal}
-            onRequestClose={handleCloseStatisticsModal}
-          >
-            <StatisticsModal onClose={handleCloseStatisticsModal} />
-          </Modal>
-        )}
-        <Footer />
-      </div>
-      <ContactUs />
-    </div>
-  );
+    useEffect(
+        () => {
+            Modal.setAppElement("#root");
+        }, 
+        []
+    );
+
+    return (
+        <div>
+            <div className="app">
+                <Header />
+                <BrowserRouter>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<LandingPage />}
+                        />
+                        <Route
+                            path="/play"
+                            element={<MainGamePage guess={guess} setGuess={setGuess} />}
+                        />
+                        <Route path="/results" element={<Results guess={guess} />} />
+                        <Route path="/share" element={<Share />} />
+                    </Routes>
+                </BrowserRouter>
+                {
+                    Object.values(ModalToDisplay).map(
+                        (modal) => (
+                            <Modal
+                                key={modal}
+                                className="modal"
+                                isOpen={modalToDisplay === modal}
+                                onRequestClose={() => setModalToDisplay('')}
+                            >
+                                {
+                                    modal === ModalToDisplay.INSTRUCTIONS && (
+                                        <GameInstructions onClose={() => setModalToDisplay('')} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.STATISTICS && (
+                                        <StatisticsModal onClose={() => setModalToDisplay('')} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.ABOUT_US && (
+                                        <AboutUs onClose={() => setModalToDisplay('')} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.FAQ && (
+                                        <FAQ onClose={() => setModalToDisplay('')} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.ADVERTISE && (
+                                        <Advertise onClose={() => setModalToDisplay('')} />
+                                    )
+                                }
+                                {
+                                    modal === ModalToDisplay.CONTACT_US && (
+                                        <ContactUsModal onClose={() => setModalToDisplay('')} />
+                                    )
+                                }
+                            </Modal>
+                        )
+                    )
+                }
+                <Footer />
+            </div>
+            <ContactUs />
+        </div>
+    );
 }
 
 export default App;

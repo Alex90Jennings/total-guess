@@ -1,26 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import '../styles/game.css';
-import Feedback from './Feedback';
-import Modal from "react-modal";
+import { ModalToDisplay } from '../App';
+import { AppContext } from '../hooks/context';
 
 function Results() {
     
+    const { setModalToDisplay } = useContext(AppContext);
     const location = useLocation();
     const difference = location.state.difference;
     const percentageError = location.state.percentageError;
     const correctPrice = location.state.correctPrice;
-    const [showFeedbackModal, setShowFeedbackModal] = useState(false);
-
-    const handleFeedbackClick = (e) => {
-        e.preventDefault();
-        setShowFeedbackModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowFeedbackModal(false)
-    };
 
     return (
         <div className="main--layout--results">
@@ -41,7 +32,7 @@ function Results() {
                     <p>{percentageError.toFixed(1)}%</p>
                 </div>
                 <div className="statistics-results">
-                    <a className='statistics-button-styling' href="/statistics">Statistics</a>
+                    <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
                 </div>
                 {/*
                 <div className="share-results">
@@ -49,18 +40,7 @@ function Results() {
                 </div>
                 */}
                 <div className="feedback-results">
-                    {
-                        showFeedbackModal && (
-                            <Modal
-                                className={"modal"}
-                                isOpen={showFeedbackModal}
-                                onRequestClose={handleCloseModal}
-                            >
-                                <Feedback onClose={handleCloseModal} />
-                            </Modal>
-                        )
-                    }
-                    <a className='feedback-button-styling' onClick={handleFeedbackClick} href="/feedback">Feedback</a>
+                    {/*<a className='feedback-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.FEEDBACK)} href="/feedback">Feedback</a>*/}
                     <Link to="/" className='feedback-button-styling'>Home Page</Link>
                 </div>
             </div>

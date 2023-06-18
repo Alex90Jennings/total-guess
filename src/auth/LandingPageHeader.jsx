@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../styles/landingPage.css';
-import { AppContext } from '../hooks/context';
 
-function LandingPageHeader() {
-
-    const { hideHeaders } = useContext(AppContext);
+function LandingPageHeader({ hideHeaders }) {
 
     return (
         <div id='login-header'>

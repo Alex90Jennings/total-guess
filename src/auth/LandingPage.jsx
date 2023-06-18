@@ -5,10 +5,10 @@ import LandingPageMenu from './LandingPageMenu';
 import LoginForm from './LoginForm';
 import { AppContext } from '../hooks/context';
 
-function LandingPage({ setShowModal }) {
+function LandingPage() {
 
-    const { isAuthenticated, setHideHeaders, loggedInUser } = useContext(AppContext);
-    const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false);
+    const { isAuthenticated } = useContext(AppContext);
+    const [ hideHeaders, setHideHeaders ] = useState(false)
     const [ showLoginPage, setShowLoginPage ] = useState(false);
     const [ showLandingPageContent, setShowLandingPageContent ] = useState(true); 
 
@@ -22,23 +22,13 @@ function LandingPage({ setShowModal }) {
         }, 
         [isAuthenticated, setHideHeaders]
     );
-
-    useEffect(
-        () => {
-            const today = new Date();
-            today.setUTCHours(0, 0, 0, 0);
-            const formattedToday = today.toISOString();
-            const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
-            setHasPlayedDaily(isGameAlreadyInArray);
-        }, 
-        [loggedInUser?.gamesPlayed],
-    );
     
     return (
         <div className='landing-page three-rows-expand-two'>
             <LandingPageHeader 
                 setShowLoginPage={setShowLoginPage} 
                 setShowLandingPageContent={setShowLandingPageContent} 
+                hideHeaders={hideHeaders}
             />
             <div></div>
             {
@@ -46,15 +36,16 @@ function LandingPage({ setShowModal }) {
                     <LandingPageMenu
                         setShowLoginPage={setShowLoginPage}
                         setShowLandingPageContent={setShowLandingPageContent}
-                        setShowModal={setShowModal}
-                        hasPlayedDaily={hasPlayedDaily}
                     />
                 )
             }
             {
                 showLoginPage && (
                     <LoginForm
+                        setShowLandingPageContent={setShowLandingPageContent}
                         setShowLoginPage={setShowLoginPage}
+                        hideHeaders={hideHeaders}
+                        setHideHeaders={setHideHeaders}
                     />
                 )
             }

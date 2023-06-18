@@ -14,9 +14,7 @@ function Share() {
                     <img src="/ShareImages/whatsappbutton.svg" alt="Whatsapp Button" className="whatsapp-button share-image" />
                     <img src="/ShareImages/twitterbutton.svg" alt="Twitter Button" className="twitter-button share-image" />
                     <img src="/ShareImages/redditbutton.svg" alt="Reddit Button" className="reddit-button share-image" />
-                    <a className="feedback-button-share" href="/feedback">
-                        Feedback
-                    </a>
+                    {/*<a className='feedback-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.FEEDBACK)} href="/feedback">Feedback</a>*/}
                 </div>
             </div>
         </div>

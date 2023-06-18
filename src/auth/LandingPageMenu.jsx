@@ -4,19 +4,29 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
-import GameInstructions from '../game/GameInstructions';
 import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
-function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowModal, onClose, hasPlayedDaily }) {
+function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
-    const { isAuthenticated } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser } = useContext(AppContext);
+    const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
-    const [showModal, setModalState] = useState(false); 
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const playSound = () => {
         audio.play()
     };
+
+    useEffect(
+        () => {
+            const today = new Date();
+            today.setUTCHours(0, 0, 0, 0);
+            const formattedToday = today.toISOString();
+            const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
+            setHasPlayedDaily(isGameAlreadyInArray);
+        }, 
+        [loggedInUser?.gamesPlayed],
+    );
 
     const handleStartGameSubmit = () => {
         playSound();
@@ -31,27 +41,10 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
         }
     };
 
-    const handlePracticeGameSubmit = () => {
-        playSound();
-        navigate('/play');
-    };
-
-    const handleCloseModal = () => {
-        playSound().catch(error => console.log('Error playing sound:', error));
-        onClose();
-    };
-
-    const handleModalOpen = () => {
-        playSound();
-        setModalState(true); 
-        setShowModal(true); 
-    };
-
-    useEffect(() => {
-        if (!showModal) {
-            audio.play();
-        }
-    }, [showModal]);
+    //const handlePracticeGameSubmit = () => {
+    //    playSound();
+    //    navigate('/play');
+    //};
 
     return (
         <div id='landing-page-menu'>
@@ -91,9 +84,6 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, setShowM
                     <div></div>
                 </li>
             </ul>
-            {showModal && (
-                <GameInstructions onClose={handleCloseModal} playSound={playSound} />
-            )}
         </div>
     );
 }

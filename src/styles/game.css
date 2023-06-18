@@ -41,6 +41,7 @@ body {
     grid-template-areas: "header-left header-middle header-right";
     align-items: center;
     justify-content: center;
+    margin-bottom: 8px;
 }
 
 .header-left {
@@ -1196,7 +1197,8 @@ input[type='number']::-webkit-outer-spin-button {
         visibility: hidden;
     }
 
-    .header-right-wide-screen {
+    .header-right-wide-screen,
+    .footer-wide-screen {
         display: none;
     }
 
