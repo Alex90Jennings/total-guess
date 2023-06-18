@@ -34,11 +34,11 @@ function Submit({ guess, setGuess, correctPrice }) {
         const percentageError = correctPrice >= numericGuess ? 
             -(difference / correctPrice) * 100 : 
             (difference / correctPrice) * 100 
-        // if (loggedInUser) {
-        //     const updatedUser = clientApi.submitResult(loggedInUser.email, gameDate, percentageError)
-        //     setLoggedInUser(updatedUser)
-        //     audioCoins.play()
-        // }
+        if (loggedInUser) {
+            const updatedUser = clientApi.submitResult(loggedInUser.email, gameDate, percentageError)
+            setLoggedInUser(updatedUser)
+            audioCoins.play()
+        }
         navigate('/results', { state: { difference, percentageError, correctPrice } });
     };
 
