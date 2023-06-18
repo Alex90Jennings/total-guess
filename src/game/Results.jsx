@@ -32,7 +32,7 @@ function Results() {
                     <p>{percentageError.toFixed(1)}%</p>
                 </div>
                 <div className="statistics-results">
-                    <button className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</button>
+                    <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
                 </div>
                 {/*
                 <div className="share-results">

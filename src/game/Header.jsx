@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/modal.css";
 import "../styles/landingPage.css";
 import "../styles/game.css";
@@ -8,46 +8,22 @@ import { ModalToDisplay } from "../App";
 
 function Header({ setShowLoginPage }) {
 
-    const { loggedInUser, isAuthenticated, setModalToDisplay } = useContext(AppContext);
+    const { loggedInUser, isAuthenticated, setModalToDisplay, handleSignOut } = useContext(AppContext);
     const firstName = loggedInUser.firstName || " ";
     const [audio] = useState(new Audio("/Sounds/click.wav"));
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const handleStatisticsImageClick = () => {
+    const handleDropDownClick = () => {
         audio.play();
-        setModalToDisplay(ModalToDisplay.STATISTICS);
+        setShowDropdown(!showDropdown)
     };
 
-    const handleInstructionsImageClick = () => {
-        audio.play();
-        setModalToDisplay(ModalToDisplay.INSTRUCTIONS);
-    };
-
-    const handleDropDownClick = (event) => {
-        event.stopPropagation();
-        audio.play();
-        setShowDropdown((prevState) => !prevState);
-    };
-
+    //TODO: this won't work unless the current page is /
     const handleSignUpClick = () => {
         audio.play();
         setShowLoginPage(true);
     };
 
-    useEffect(
-        () => {
-            const closeMenu = () => {
-                setShowDropdown(false);
-            };
-            if (showDropdown) {
-                window.addEventListener('click', closeMenu);
-            }
-            return () => {
-                window.removeEventListener('click', closeMenu);
-            };
-        },
-        [showDropdown]
-    );
 
     return (
         <header id="header">
@@ -55,8 +31,8 @@ function Header({ setShowLoginPage }) {
                 {
                     !isAuthenticated ? (
                         <>
-                            <div className="signup" onClick={handleSignUpClick}>Sign up</div>
-                            <div className="signin">Sign in</div>
+                            <div className="signup" onClick={() => handleSignUpClick()}>Sign up</div>
+                            <div className="signin" onClick={() => handleSignUpClick()}>Sign in</div>
                         </>
                     ) : (
                         <>
@@ -72,53 +48,53 @@ function Header({ setShowLoginPage }) {
                     src={"/icons/instructionsnew.svg"}
                     alt="i icon"
                     className="icon"
-                    onClick={() => handleInstructionsImageClick()}
+                    onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}
                 />
                 <img
                     src={"/icons/statsnew.svg"}
                     alt="stats icon"
                     className="stats-icon"
-                    onClick={() => handleStatisticsImageClick()}
+                    onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}
                 />
             </div>
             <div className="header-right-narrow-screen">
-            <img
-                src={"/icons/dropdown.png"}
-                alt="dropdown"
-                className="mr-m dropdown-icon"
-                onClick={() => handleDropDownClick()}
-            />
-            {
-                showDropdown && (
-                    <div className="dropdown-menu">
-                    {
-                        !isAuthenticated ? (
-                            <>
-                                <div className="dropdown-item" onClick={handleSignUpClick}>
-                                    Sign up
-                                </div>
-                                <div className="dropdown-item">
-                                    Sign in
-                                </div>
-                            </>
-                        ) : (
-                            <div className="dropdown-item">
-                                Sign out
+                <img
+                    src={"/icons/dropdown.png"}
+                    alt="dropdown"
+                    className="mr-m dropdown-icon"
+                    onClick={() => handleDropDownClick()}
+                />
+                {
+                    showDropdown && (
+                        <div className="dropdown-menu">
+                            {
+                                !isAuthenticated ? (
+                                    <>
+                                        <div className="dropdown-item" onClick={handleSignUpClick}>
+                                            Sign up
+                                        </div>
+                                        <div className="dropdown-item">
+                                            Sign in
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="dropdown-item" onClick={() => handleSignOut()}>
+                                        Sign out
+                                    </div>
+                                )
+                            }     
+                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>
+                                Statistics
                             </div>
-                        )
-                    }     
-                    <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>
-                        Statistics
-                    </div>
-                    <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}>
-                        Instructions
-                    </div>
-                    <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.ABOUT_US)}>About Us</div>
-                    <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.FAQ)}>FAQs</div>
-                    <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.ADVERTISE)}>Advertise With Us</div>
-                    </div>
-                )
-            }
+                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}>
+                                Instructions
+                            </div>
+                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.ABOUT_US)}>About Us</div>
+                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.FAQ)}>FAQs</div>
+                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.ADVERTISE)}>Advertise With Us</div>
+                        </div>
+                    )
+                }
             </div>
         </header>
     );

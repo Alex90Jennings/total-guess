@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { clientApi } from "../api/clientApi";
 
@@ -7,7 +8,8 @@ export const AppContext = createContext({
     isAuthenticated: false,
     setIsAuthenticated: () => {},
     gameDate: '',
-    setGameDate: () => {}
+    setGameDate: () => {},
+    handleSignOut: () => {}
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -18,6 +20,12 @@ export const AppProvider = ({ children }) => {
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ gameDate, setGameDate ] = useState('')
     const [ modalToDisplay, setModalToDisplay ] = useState('');
+    const [audio] = useState(new Audio("/Sounds/click.wav"));
+
+    const handleSignOut = () => {
+        setLoggedInUser({})
+        setIsAuthenticated(false)
+    }
 
     const getLoggedInUser = async () => {
         try {
@@ -39,6 +47,12 @@ export const AppProvider = ({ children }) => {
         [loggedInUser?._id]
     );
 
+    useEffect(
+        () => {
+            audio.play()
+        }, 
+        [modalToDisplay]
+    );
 
     const value = {
         loggedInUser,
@@ -49,6 +63,7 @@ export const AppProvider = ({ children }) => {
         setGameDate,
         modalToDisplay,
         setModalToDisplay,
+        handleSignOut
     };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

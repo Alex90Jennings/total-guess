@@ -62,7 +62,7 @@ function App() {
                         <Route
                             path="/play"
                             element={<MainGamePage guess={guess} setGuess={setGuess} />}
-                            />
+                        />
                         <Route path="/results" element={<Results guess={guess} />} />
                         <Route path="/share" element={<Share />} />
                     </Routes>
