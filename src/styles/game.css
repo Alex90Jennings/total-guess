@@ -404,6 +404,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .h1-submit,
@@ -443,9 +444,10 @@ body {
     width: 150px;
     border-color: #0070c0;
     color: black;
-    font-size: 2.5rem;
+    font-size: 3rem;
     justify-content: center;
     text-align: center;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .blue-box {
@@ -463,7 +465,7 @@ body {
 .guess-amount>.blue-box {
     background-color: #0070c0;
     color: white;
-    font-size: 4rem;
+    font-size: 5rem;
     height: 100px;
     width: 120px;
     text-align: center;
@@ -481,10 +483,11 @@ body {
     height: 100px;
     width: 300px;
     border-radius: 8%;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 0 auto;
     text-align: center;
     text-decoration: none;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .submit-button {
@@ -515,6 +518,7 @@ input[type='number']::-webkit-outer-spin-button {
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .guess-results,
@@ -587,7 +591,7 @@ input[type='number']::-webkit-outer-spin-button {
 .guess-results>.guessed-box {
     background-color: #0070c0;
     color: white;
-    font-size: 3rem;
+    font-size: 5rem;
     height: 100px;
     width: 200px;
     text-align: center;
@@ -793,6 +797,34 @@ input[type='number']::-webkit-outer-spin-button {
     border: 2px solid white;
     padding: 2px;
     border-radius: 4px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color:#0070c0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    top: 50px;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #FFFFFF;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu .dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f1f1f1;
 }
 
 .narrow-screen-arrows,
@@ -1155,6 +1187,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 1100px) {
+
     .box img {
         max-height: 250px;
     }
@@ -1347,10 +1380,15 @@ input[type='number']::-webkit-outer-spin-button {
         min-width: 350px;
     }
 
-    .guess-results>.guessed-box,
+    .guess-results>.guessed-box {
+        font-size: 2rem;
+        height: 60px;
+        width: 120px;
+    }
+
     .error-results>.error-box,
     .percentile-results>.percentile-box {
-        font-size: 2rem;
+        font-size: 1.25rem;
         height: 60px;
         width: 120px;
     }
