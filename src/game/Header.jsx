@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import GameInstructions from "./GameInstructions";
-import { useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/modal.css";
 import "../styles/landingPage.css";
@@ -21,6 +20,13 @@ function Header({
     const firstName = loggedInUser.firstName || " ";
     const [audio] = useState(new Audio("/Sounds/click.wav"));
     const [showStatisticsModal, setShowStatisticsModal] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleDropDownClick = (event) => {
+        event.stopPropagation();
+        audio.play();
+        setShowDropdown((prevState) => !prevState);
+    };
 
     const handleStatisticsClick = () => {
         audio.play();
@@ -58,14 +64,30 @@ function Header({
         }
     }, [showModal]);
 
+    useEffect(() => {
+        const closeMenu = () => {
+            setShowDropdown(false);
+        };
+        if (showDropdown) {
+            window.addEventListener('click', closeMenu);
+        }
+        return () => {
+            window.removeEventListener('click', closeMenu);
+        };
+    }, [showDropdown]);
+
     return (
         <header id="header">
             <div className="header-left">
                 {
                     !isAuthenticated ? (
                     <>
-                        <div className="signup" onClick={handleSignUpClick}>Sign up</div>
-                        <div className="signin">Sign in</div>
+                        <div className="signup" onClick={handleSignUpClick}>
+                            Sign up
+                        </div>
+                        <div className="signin">
+                            Sign in
+                        </div>
                     </>
                     ) : (
                     <>
@@ -91,11 +113,41 @@ function Header({
                 />
             </div>
             <div className="header-right-narrow-screen">
-                <img
-                    src={"/icons/dropdown.png"}
-                    alt="dropdown"
-                    className="mr-m dropdown-icon"
-                />
+            <img
+                src={"/icons/dropdown.png"}
+                alt="dropdown"
+                className="mr-m dropdown-icon"
+                onClick={handleDropDownClick}
+            />
+            {showDropdown && (
+                <div className="dropdown-menu">
+                {!isAuthenticated ? (
+                    <>
+                    <div className="dropdown-item" onClick={handleSignUpClick}>
+                        Sign up
+                    </div>
+                    <div className="dropdown-item">
+                        Sign in
+                    </div>
+                    </>
+                ) : (
+                    <>
+                    <div className="dropdown-item">
+                        Sign out
+                    </div>
+                    </>
+                )}
+                <div className="dropdown-item" onClick={handleStatisticsClick}>
+                    Statistics
+                </div>
+                <div className="dropdown-item" onClick={handleImageClick}>
+                    Instructions
+                </div>
+                <div className="dropdown-item">About Us</div>
+                <div className="dropdown-item">FAQs</div>
+                <div className="dropdown-item">Advertise With Us</div>
+                </div>
+            )}
             </div>
             <StatisticsModal
                 isOpen={showStatisticsModal}

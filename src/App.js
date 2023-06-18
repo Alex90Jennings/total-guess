@@ -14,7 +14,6 @@ import Share from "./game/Share.jsx";
 import StatisticsModal from "./game/StatisticsModal";
 
 function App() {
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [guess, setGuess] = useState(0);

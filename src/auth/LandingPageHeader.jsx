@@ -18,7 +18,7 @@ function LandingPageHeader() {
                 <div>
                     <div className='three-columns-expand-one-three'>
                         <div></div>
-                        <div className='logo-landing'>Total-GuEss!</div>
+                        <div className='logo-landing'>Total-GuEss</div>
                         <div></div>
                     </div>
                     <div className='three-columns-expand-one-three'>
