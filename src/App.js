@@ -24,23 +24,13 @@ export const ModalToDisplay = {
     STATISTICS: 'STATISTICS',
     CONTACT_US: 'CONTACT_US',
     ABOUT_US: 'ABOUT_US',
-    ADVERTISE: 'ADVERTISE',
+    ADVERTISE: 'ADVERTISE'
 };
 
 function App() {
 
     const [guess, setGuess] = useState(0);
-    const [audio] = useState(new Audio("/Sounds/click.wav"));
     const { modalToDisplay, setModalToDisplay } = useContext(AppContext);
-
-    const playSound = () => {
-        audio.play().catch((error) => console.log(error));
-    };
-
-    const closeModal = () => {
-        playSound()
-        setModalToDisplay('');
-    };
 
     useEffect(
         () => {
@@ -74,36 +64,36 @@ function App() {
                                 key={modal}
                                 className="modal"
                                 isOpen={modalToDisplay === modal}
-                                onRequestClose={closeModal}
+                                onRequestClose={() => setModalToDisplay('')}
                             >
                                 {
                                     modal === ModalToDisplay.INSTRUCTIONS && (
-                                        <GameInstructions onClose={closeModal} />
+                                        <GameInstructions onClose={() => setModalToDisplay('')} />
                                     )
                                 }
                                 {
                                     modal === ModalToDisplay.STATISTICS && (
-                                        <StatisticsModal onClose={closeModal} />
+                                        <StatisticsModal onClose={() => setModalToDisplay('')} />
                                     )
                                 }
                                 {
                                     modal === ModalToDisplay.ABOUT_US && (
-                                        <AboutUs onClose={closeModal} playSound={playSound} />
+                                        <AboutUs onClose={() => setModalToDisplay('')} />
                                     )
                                 }
                                 {
                                     modal === ModalToDisplay.FAQ && (
-                                        <FAQ onClose={closeModal} playSound={playSound} />
+                                        <FAQ onClose={() => setModalToDisplay('')} />
                                     )
                                 }
                                 {
                                     modal === ModalToDisplay.ADVERTISE && (
-                                        <Advertise onClose={closeModal} playSound={playSound} />
+                                        <Advertise onClose={() => setModalToDisplay('')} />
                                     )
                                 }
                                 {
                                     modal === ModalToDisplay.CONTACT_US && (
-                                        <ContactUsModal onClose={closeModal} playSound={playSound} />
+                                        <ContactUsModal onClose={() => setModalToDisplay('')} />
                                     )
                                 }
                             </Modal>
