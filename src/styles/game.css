@@ -1075,8 +1075,8 @@ input[type='number']::-webkit-outer-spin-button {
 
 /*M&S*/
 .mands-header-css {
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     font-family: "Overpass ExtraLight", "Arial", sans-serif;
 }
 

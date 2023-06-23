@@ -193,6 +193,10 @@ body::-webkit-scrollbar {
   padding: 16px;
 }
 
+.pt-s {
+  padding-top: 8px;
+}
+
 .mt-m {
   margin-top: 16px;
 }

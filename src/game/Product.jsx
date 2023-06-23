@@ -110,7 +110,7 @@ function Product({ setReadyToSubmit, products, date }) {
                             <div></div>
                             {
                                 currentShop === "mands" ?
-                                    <h1 className='normal-font'>M<span className='mands-accent-css'>&</span>S</h1> :
+                                    <h1 className='normal-font pt-s'>M<span className='mands-accent-css'>&</span>S</h1> :
                                     <h1 className={shouldBeBold.includes(currentShop) ? 'bold' : 'normal-font'}>{correctShopName(`${currentShop}`)}</h1>
                             }
                             <div></div>
