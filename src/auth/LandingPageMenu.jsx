@@ -8,7 +8,7 @@ import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
-    const { isAuthenticated, loggedInUser, isMuted } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser, setLoggedInUser, isMuted, setIsAuthenticated } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
     const [audio] = useState(new Audio('/Sounds/click.wav'));
@@ -74,13 +74,24 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                 </li> */}
                 <li className='three-columns-expand-one-three'>
                     <div></div>
-                    <button className='signin-button-styling' onClick={() => {
-                        playSound();
-                        setShowLandingPageContent(false);
-                        setShowLoginPage(true);
-                    }}>
-                        Sign In
-                    </button>
+                    {
+                        loggedInUser?._id ?
+                            <button className='signin-button-styling' onClick={() => {
+                                if(!isMuted) playSound();
+                                localStorage.setItem("tgJwtToken", "")
+                                setIsAuthenticated(false)
+                                setLoggedInUser({});
+                            }}>
+                                Sign Out
+                            </button> :
+                            <button className='signin-button-styling' onClick={() => {
+                                if(!isMuted)playSound();
+                                setShowLandingPageContent(false);
+                                setShowLoginPage(true);
+                            }}>
+                                Sign In
+                            </button>
+                    }
                     <div></div>
                 </li>
             </ul>

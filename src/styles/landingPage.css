@@ -64,23 +64,6 @@
   margin-top: 8px;
 }
 
-.form button {
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  padding: 16px;
-  font-size: 1rem;
-  min-width: 150px;
-  border-radius: 10px;
-  border: none;
-  color: #fff;
-  margin-bottom: 4px;
-  margin-top: 4px;
-}
-
-.form button:hover {
-  background-color: #005693;
-}
-
 .trolley-image {
   margin-bottom: 10px;
   width: 175px;

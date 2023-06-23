@@ -129,7 +129,7 @@ body::-webkit-scrollbar {
 
 .play-button-styling:hover,
 .login-button-styling:hover {
-  background-color: #262829;
+  background-color: #262829 !important;
 }
 
 .play-button-styling,
@@ -145,10 +145,9 @@ body::-webkit-scrollbar {
   width: 200px;
   border-radius: 8%;
   font-size: 1.5rem;
-  margin: 0 auto;
+  margin-top: 12px;
   text-align: center;
   text-decoration: none;
-  margin-bottom: 5px;
   font-family: 'Luckiest Guy', cursive;
 }
 
@@ -159,7 +158,7 @@ body::-webkit-scrollbar {
 
 .signin-button-styling:hover,
 .return-button-styling:hover {
-  background-color: #0070c0;
+  background-color: #0070c0 !important;
 }
 
 .footer-row {
