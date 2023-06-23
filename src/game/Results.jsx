@@ -12,6 +12,9 @@ function Results() {
     const difference = location.state.difference;
     const percentageError = location.state.percentageError;
     const correctPrice = location.state.correctPrice;
+    const playerGuess = location.state.numericGuess;
+
+    console.log(difference < 0)
 
     return (
         <div className="main--layout--results">
@@ -19,17 +22,25 @@ function Results() {
                 <div className="h1-results">
                     <h1>The actual cost of the groceries</h1>
                 </div>
-                <div className="guess-results">
-                    <div className="guessed-box">£</div>
+                <div className="percentile-results">
+                    <div className="percentile-box">TOTAL COST</div>
                     <p>£{correctPrice?.toFixed(2)}</p>
                 </div>
                 <div className="percentile-results">
-                    <div className="percentile-box">DIFFERENCE</div>
-                    <p>£{difference.toFixed(2)}</p>
+                    <div className="percentile-box">TOTAL GUESS</div>
+                    <p>£{playerGuess}</p>
                 </div>
-                <div className="error-results">
-                    <div className="error-box">ERROR</div>
-                    <p>{percentageError.toFixed(1)}%</p>
+                <div className="percentile-results">
+                    <div className="percentile-box">DIFFERENCE</div>
+                    {
+                        difference < 0 ?
+                            <p className={difference < 0 ? "red-text" : ""}>{`-£${(difference * -1).toFixed(2)}`}</p> :
+                            <p>£{difference.toFixed(2)}</p>
+                    }
+                </div>
+                <div className="percentile-results">
+                    <div  className="percentile-box">ERROR</div>
+                    <p className={difference < 0 ? "red-text" : ""}>{percentageError.toFixed(1)}%</p>
                 </div>
                 <div className="statistics-results">
                     <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
