@@ -30,12 +30,9 @@ function Submit({ guess, setGuess, correctPrice }) {
 
     const handleGuessSubmit = async () => {
         const numericGuess = parseFloat(guess).toFixed(2);
-        const difference = numericGuess > correctPrice
-            ? numericGuess - correctPrice
-            : correctPrice - numericGuess;
-        let percentageError = correctPrice >= numericGuess
-            ? -(difference / correctPrice) * 100
-            : (difference / correctPrice) * 100;
+        const difference = numericGuess - correctPrice;
+        let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? 1 : -1);
+        
         
         if (percentageError > 50) {
             percentageError = 50;
@@ -43,7 +40,7 @@ function Submit({ guess, setGuess, correctPrice }) {
         if (percentageError < -50) {
             percentageError = -50;
         }
-        
+
         if (loggedInUser) {
             const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError);
             setLoggedInUser(response.data);
