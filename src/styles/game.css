@@ -185,6 +185,7 @@ body {
     background-color: #FFFFFF;
     justify-content: center;
     align-items: center;
+    max-width: 100vw;
 }
 
 .arrow {
@@ -198,11 +199,11 @@ body {
 }
 
 .arrow-left {
-    margin-right: 80px;
+    margin-right: 40px;
 }
 
 .arrow-right {
-    margin-left: 80px;
+    margin-left: 40px;
 }
 
 .arrow-left,
