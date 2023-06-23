@@ -40,7 +40,13 @@ function Results() {
                 </div>
                 <div className="percentile-results">
                     <div  className="percentile-box">ERROR</div>
-                    <p className={difference < 0 ? "red-text" : ""}>{percentageError.toFixed(1)}%</p>
+                    <p className={difference < 0 ? "red-text" : ""}>
+                        {
+                            percentageError >= 50 || percentageError <= -50 ? 
+                                `${percentageError.toFixed(0)}+%` : 
+                                `${percentageError.toFixed(2)}%`
+                        }
+                    </p>
                 </div>
                 <div className="statistics-results">
                     <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
