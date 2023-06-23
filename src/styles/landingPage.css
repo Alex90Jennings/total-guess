@@ -64,36 +64,6 @@
   margin-top: 8px;
 }
 
-#landing-page-menu button,
-.form button {
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  padding: 16px;
-  font-size: 1rem;
-  min-width: 150px;
-  border-radius: 10px;
-  border: none;
-  color: #fff;
-  margin-bottom: 4px;
-  margin-top: 4px;
-}
-
-#landing-page-menu button:hover,
-.form button:hover {
-  background-color: #005693;
-}
-
-.play-btn,
-.login-btn {
-  font-family: 'Luckiest Guy', cursive;
-  background-color: #0070c0;
-}
-
-.other-btn {
-  font-family: 'Luckiest Guy', cursive;
-  background-color: #3f3f3f;
-}
-
 .trolley-image {
   margin-bottom: 10px;
   width: 175px;

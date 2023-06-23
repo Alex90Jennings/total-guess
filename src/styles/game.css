@@ -185,6 +185,7 @@ body {
     background-color: #FFFFFF;
     justify-content: center;
     align-items: center;
+    max-width: 100vw;
 }
 
 .arrow {
@@ -198,11 +199,11 @@ body {
 }
 
 .arrow-left {
-    margin-right: 80px;
+    margin-right: 40px;
 }
 
 .arrow-right {
-    margin-left: 80px;
+    margin-left: 40px;
 }
 
 .arrow-left,
@@ -270,6 +271,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .info-column.store {
@@ -521,6 +523,10 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: 'Luckiest Guy', cursive;
 }
 
+.red-text {
+    color: red;
+}
+
 .guess-results,
 .error-results,
 .percentile-results,
@@ -643,7 +649,6 @@ input[type='number']::-webkit-outer-spin-button {
     height: 96px;
     width: 150px;
     border-color: #0070c0;
-    color: black;
     font-size: 2.5rem;
     justify-content: center;
     text-align: center;
@@ -734,10 +739,18 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .share-button-styling {
+    background-color: #0070c0;
+}
+
+.share-button-styling:hover {
+    background-color: #262829;
+}
+
+.share-button-styling,
+.feedback-button-share {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0070c0;
     color: #fff;
     height: 55px;
     width: 200px;
@@ -747,10 +760,7 @@ input[type='number']::-webkit-outer-spin-button {
     text-align: center;
     text-decoration: none;
     margin-bottom: 5px;
-}
-
-.share-button-styling:hover {
-    background-color: #262829;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .share-results {
@@ -1068,8 +1078,8 @@ input[type='number']::-webkit-outer-spin-button {
 
 /*M&S*/
 .mands-header-css {
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     font-family: "Overpass ExtraLight", "Arial", sans-serif;
 }
 
@@ -1124,13 +1134,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .lidl-roman-numeral-before {
-    border: 6px solid #e8e838;
+    border: 3px solid #e8e838;
     color: #e8e838;
     margin: 3px;
 }
 
 .lidl-roman-numeral-after {
-    border: 6px solid #e8e838;
+    border: 3px solid #e8e838;
     color: #1a2e91;
     background-color: #e8e838;
     margin: 3px;
@@ -1193,7 +1203,7 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .header-left {
-        width: 40px;
+        width: 80px;
         visibility: hidden;
     }
 
@@ -1204,7 +1214,7 @@ input[type='number']::-webkit-outer-spin-button {
 
     .header-right-narrow-screen {
         display: grid;
-        width: 40px;
+        width: 80px;
         grid-area: header-right;
     }
 
@@ -1282,11 +1292,12 @@ input[type='number']::-webkit-outer-spin-button {
     .guess-amount>.blue-box {
         height: 50px;
         width: 70px;
-        font-size: 2rem;
+        font-size: 2.4rem;
     }
 
     .guess-amount>input {
         height: auto;
+        font-size: 2.3rem;
     }
 
     .box-submit {
@@ -1330,6 +1341,18 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 530px) {
+    .logo{
+        font-size: 24px !important;
+    }
+
+    .header-left {
+        width: 70px;
+    }
+
+    .header-right-narrow-screen {
+        width: 70px;
+    }
+
     #login-header {
         max-width: 280px !important;
     }
@@ -1458,6 +1481,10 @@ input[type='number']::-webkit-outer-spin-button {
     .guess-amount>.blue-box {
         height: 40px;
         width: 60px;
+        font-size: 1.8rem;
+    }
+
+    .guess-amount> input {
         font-size: 1.8rem;
     }
 

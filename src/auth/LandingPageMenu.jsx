@@ -8,13 +8,13 @@ import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
-    const { isAuthenticated, loggedInUser } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser, handleSignOut, isMuted } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const playSound = () => {
-        audio.play()
+        if(!isMuted) audio.play()
     };
 
     useEffect(
@@ -56,7 +56,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                         :
                         <li className='three-columns-expand-one-three'>
                             <div></div>
-                            <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
+                            <button className='play-button-styling' onClick={handleStartGameSubmit}>Play</button>
                             <div></div>
                         </li>
                 }
@@ -74,13 +74,19 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                 </li> */}
                 <li className='three-columns-expand-one-three'>
                     <div></div>
-                    <button className='landing-page-menu-btn other-btn' onClick={() => {
-                        playSound();
-                        setShowLandingPageContent(false);
-                        setShowLoginPage(true);
-                    }}>
-                        Sign In
-                    </button>
+                    {
+                        loggedInUser?._id ?
+                            <button className='signin-button-styling' onClick={() => handleSignOut()}>
+                                Sign Out
+                            </button> :
+                            <button className='signin-button-styling' onClick={() => {
+                                if(!isMuted)playSound();
+                                setShowLandingPageContent(false);
+                                setShowLoginPage(true);
+                            }}>
+                                Sign In
+                            </button>
+                    }
                     <div></div>
                 </li>
             </ul>
