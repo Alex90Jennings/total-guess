@@ -37,27 +37,27 @@ function Product({ setReadyToSubmit, products, date }) {
     const currentDescription = currentProduct.description;
     const currentImage = currentProduct.image;
 
-    const handleSwipe = (direction) => {
-        let newIndex;
-        if (direction === 'left') {
-            newIndex = currentShopIndex + 1;
-        } else if (direction === 'right') {
-            newIndex = currentShopIndex - 1;
+    const handleItemIndexChange = (direction) => {
+        let newIndex = currentShopIndex;
+        if (direction === 'right' && newIndex === 0) {
+            return
         }
-        if (newIndex >= 0 && newIndex < products.length) {
-            setCurrentShopIndex(newIndex);
+        if (direction === 'right') {
             if(!isMuted) audio.play()
-        }
-    };
-
-    const handleArrowRightClick = () => {
-        if (currentShopIndex === products.length - 1) {
+            newIndex--
+            setCurrentShopIndex(newIndex)
+            return
+        } 
+        if (direction === 'left' && currentShopIndex === products.length - 1) {
             setReadyToSubmit(true);
             if(!isMuted) audioCoins.play()
-        } else {
-            handleSwipe('left');
+            return
         }
-    };
+        if(!isMuted) audio.play()
+        newIndex++
+        setCurrentShopIndex(newIndex)
+        return
+    }
 
     function getDateString(date) {
         const d = new Date(date);
@@ -95,7 +95,7 @@ function Product({ setReadyToSubmit, products, date }) {
                 }
                 <div className='three-rows-expand-one-three'>
                     <div></div>
-                    <button className={getBrandClassname("arrow-left nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
+                    <button className={getBrandClassname("arrow-left nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange('right')}>
                         {`<`}
                     </button>
                     <div></div>
@@ -103,8 +103,8 @@ function Product({ setReadyToSubmit, products, date }) {
                 {currentProduct && (
                 <TinderCard
                     className="tinder--card"
-                    preventSwipe={['up', 'down']}
-                    onSwipe={(dir) => handleSwipe(dir)}
+                    preventSwipe={currentShopIndex === 0 ? ['right', 'up', 'down'] : ['up', 'down']}
+                    onSwipe={(dir) => handleItemIndexChange(dir)}
                     key={currentShopIndex}
                 >
                     <div className={getBrandClassname("box {brand}-box-css")}>
@@ -121,7 +121,7 @@ function Product({ setReadyToSubmit, products, date }) {
                         <div className="image-row">
                             <div className='three-rows-expand-one-three'>
                                 <div></div>
-                                <button className={getBrandClassname("arrow-left nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleSwipe('right')}>
+                                <button className={getBrandClassname("arrow-left nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange('right')}>
                                     {`<`}
                                 </button>
                                 <div></div>
@@ -152,7 +152,7 @@ function Product({ setReadyToSubmit, products, date }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
+                                    <button className={getBrandClassname("arrow-right nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange("left")}>
                                         {`>`}
                                     </button>
                                     <div></div>
@@ -192,7 +192,7 @@ function Product({ setReadyToSubmit, products, date }) {
                     <div></div>
                     <div className='three-rows-expand-one-three'>
                         <div></div>
-                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleArrowRightClick()}>
+                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange("left")}>
                             {`>`}
                         </button>
                         <div></div>
