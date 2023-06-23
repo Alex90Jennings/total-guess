@@ -55,12 +55,16 @@ const StatisticsModal = () => {
 
             <div className="grid-container2">
                 <div className="grid-item2">
-                    <div className='bg-number'>{getBestGuess(loggedInUser?.scores)}</div>
+                    <div className='bg-number'>{getBestGuess(loggedInUser?.scores)}%</div>
                     <div className='best-guess'>BEST GUESS</div>
                 </div>
                 <div className="grid-item2">
-                    <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + score, 0)/loggedInUser.scores.length).toFixed(2) : 'N/A'}</div>
-                    <div className='average-guess'>AVERAGE GUESS</div>
+                    <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + Math.abs(score), 0) / loggedInUser.scores.length).toFixed(2) : 'N/A'}%</div>
+                    <div className='average-guess'>AVERAGE</div>
+                </div>
+                <div className="grid-item2">
+                    <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + score, 0) / loggedInUser.scores.length).toFixed(2) : 'N/A'}%</div>
+                    <div className='average-guess'>BIAS</div>
                 </div>
             </div>
 

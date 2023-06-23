@@ -53,7 +53,7 @@ function Product({ setReadyToSubmit, products, date }) {
     const handleArrowRightClick = () => {
         if (currentShopIndex === products.length - 1) {
             setReadyToSubmit(true);
-            audioCoins.play()
+            if(!isMuted) audio.play()
         } else {
             handleSwipe('left');
         }

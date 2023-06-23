@@ -9,8 +9,8 @@ function Submit({ guess, setGuess, correctPrice }) {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const [inputValid, setInputValid] = useState(false);
-    const { loggedInUser, setLoggedInUser, gameDate } = useContext(AppContext);
-    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
+    const { loggedInUser, setLoggedInUser, gameDate, isMuted } = useContext(AppContext);
+    const [audio] = useState(new Audio('/Sounds/coins.mp3'));
 
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
@@ -30,9 +30,8 @@ function Submit({ guess, setGuess, correctPrice }) {
 
     const handleGuessSubmit = async () => {
         const numericGuess = parseFloat(guess).toFixed(2);
-        const difference = numericGuess - correctPrice;
-        let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? 1 : -1);
-        
+        const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
+        let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
         
         if (percentageError > 50) {
             percentageError = 50;
@@ -44,7 +43,7 @@ function Submit({ guess, setGuess, correctPrice }) {
         if (loggedInUser) {
             const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError);
             setLoggedInUser(response.data);
-            audioCoins.play();
+            if(!isMuted) audio.play();
         }
 
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
