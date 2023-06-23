@@ -8,19 +8,19 @@ import { ModalToDisplay } from "../App";
 
 function Header({ setShowLoginPage }) {
 
-    const { loggedInUser, isAuthenticated, setModalToDisplay, handleSignOut } = useContext(AppContext);
+    const { loggedInUser, isAuthenticated, setModalToDisplay, handleSignOut, isMuted, setIsMuted } = useContext(AppContext);
     const firstName = loggedInUser.firstName || " ";
     const [audio] = useState(new Audio("/Sounds/click.wav"));
     const [showDropdown, setShowDropdown] = useState(false);
 
     const handleDropDownClick = () => {
-        audio.play();
+        if(!isMuted) audio.play()
         setShowDropdown(!showDropdown)
     };
 
     //TODO: this won't work unless the current page is /
     const handleSignUpClick = () => {
-        audio.play();
+        if(!isMuted) audio.play()
         setShowLoginPage(true);
     };
 
@@ -45,6 +45,12 @@ function Header({ setShowLoginPage }) {
             <div className="header-middle logo">Total🤷‍♂️GuEss</div>
             <div className="header-right header-right-wide-screen">
                 <img
+                    src={isMuted ? "/icons/muted.png" : "/icons/unmuted.png"}
+                    alt="mute"
+                    className="icon"
+                    onClick={() => setIsMuted(!isMuted)}
+                />
+                <img
                     src={"/icons/instructionsnew.svg"}
                     alt="i icon"
                     className="icon"
@@ -58,12 +64,20 @@ function Header({ setShowLoginPage }) {
                 />
             </div>
             <div className="header-right-narrow-screen">
-                <img
-                    src={"/icons/dropdown.png"}
-                    alt="dropdown"
-                    className="mr-m dropdown-icon"
-                    onClick={() => handleDropDownClick()}
-                />
+                <div className="two-columns-expand-one">
+                    <img
+                        src={isMuted ? "/icons/muted.png" : "/icons/unmuted.png"}
+                        alt="mute"
+                        className={isMuted ? "mr-m dropdown-icon pd-s" : "mr-m dropdown-icon"}
+                        onClick={() => setIsMuted(!isMuted)}
+                    />
+                    <img
+                        src={"/icons/dropdown.png"}
+                        alt="dropdown"
+                        className="mr-m dropdown-icon ml-xs"
+                        onClick={() => handleDropDownClick()}
+                    />
+                </div>
                 {
                     showDropdown && (
                         <div className="dropdown-menu">

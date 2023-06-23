@@ -9,7 +9,9 @@ export const AppContext = createContext({
     setIsAuthenticated: () => {},
     gameDate: '',
     setGameDate: () => {},
-    handleSignOut: () => {}
+    handleSignOut: () => {},
+    isMuted: false,
+    setIsMuted: () => {}
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -20,6 +22,7 @@ export const AppProvider = ({ children }) => {
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ gameDate, setGameDate ] = useState('')
     const [ modalToDisplay, setModalToDisplay ] = useState('');
+    const [ isMuted, setIsMuted ] = useState(false);
     const [audio] = useState(new Audio("/Sounds/click.wav"));
 
     const handleSignOut = () => {
@@ -49,7 +52,7 @@ export const AppProvider = ({ children }) => {
 
     useEffect(
         () => {
-            audio.play()
+            if(!isMuted) audio.play()
         }, 
         [modalToDisplay]
     );
@@ -63,7 +66,9 @@ export const AppProvider = ({ children }) => {
         setGameDate,
         modalToDisplay,
         setModalToDisplay,
-        handleSignOut
+        handleSignOut,
+        isMuted,
+        setIsMuted
     };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

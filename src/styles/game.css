@@ -1203,7 +1203,7 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .header-left {
-        width: 40px;
+        width: 80px;
         visibility: hidden;
     }
 
@@ -1214,7 +1214,7 @@ input[type='number']::-webkit-outer-spin-button {
 
     .header-right-narrow-screen {
         display: grid;
-        width: 40px;
+        width: 80px;
         grid-area: header-right;
     }
 
@@ -1340,6 +1340,18 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 530px) {
+    .logo{
+        font-size: 24px !important;
+    }
+
+    .header-left {
+        width: 70px;
+    }
+
+    .header-right-narrow-screen {
+        width: 70px;
+    }
+
     #login-header {
         max-width: 280px !important;
     }

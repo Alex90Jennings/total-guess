@@ -205,6 +205,10 @@ body::-webkit-scrollbar {
   margin-bottom: 16px;
 }
 
+.ml-xs {
+  margin-left: 4px;
+}
+
 .mb-xxl {
   margin-bottom: 46px;
 }

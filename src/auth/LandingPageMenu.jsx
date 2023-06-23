@@ -8,13 +8,13 @@ import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
-    const { isAuthenticated, loggedInUser } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser, isMuted } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
     const [audio] = useState(new Audio('/Sounds/click.wav'));
 
     const playSound = () => {
-        audio.play()
+        if(!isMuted) audio.play()
     };
 
     useEffect(

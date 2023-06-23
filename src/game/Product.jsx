@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import TinderCard from 'react-tinder-card';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
 import ImageCount from './ImageCount';
+import { AppContext } from "../hooks/context";
 
 function Product({ setReadyToSubmit, products, date }) {
 
+    const { isMuted } = useContext(AppContext);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
@@ -44,7 +46,7 @@ function Product({ setReadyToSubmit, products, date }) {
         }
         if (newIndex >= 0 && newIndex < products.length) {
             setCurrentShopIndex(newIndex);
-            audio.play();
+            if(!isMuted) audio.play()
         }
     };
 
