@@ -1131,13 +1131,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .lidl-roman-numeral-before {
-    border: 6px solid #e8e838;
+    border: 3px solid #e8e838;
     color: #e8e838;
     margin: 3px;
 }
 
 .lidl-roman-numeral-after {
-    border: 6px solid #e8e838;
+    border: 3px solid #e8e838;
     color: #1a2e91;
     background-color: #e8e838;
     margin: 3px;
