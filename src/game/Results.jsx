@@ -14,8 +14,6 @@ function Results() {
     const correctPrice = location.state.correctPrice;
     const playerGuess = location.state.numericGuess;
 
-    console.log(difference < 0)
-
     return (
         <div className="main--layout--results">
             <div className="box-results">
