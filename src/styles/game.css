@@ -1292,12 +1292,12 @@ input[type='number']::-webkit-outer-spin-button {
     .guess-amount>.blue-box {
         height: 50px;
         width: 70px;
-        font-size: 2rem;
+        font-size: 2.4rem;
     }
 
     .guess-amount>input {
         height: auto;
-        font-size: 2rem;
+        font-size: 2.3rem;
     }
 
     .box-submit {
