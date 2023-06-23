@@ -39,13 +39,13 @@ function Submit({ guess, setGuess, correctPrice }) {
         if (percentageError < -50) {
             percentageError = -50;
         }
-
+/*
         if (loggedInUser) {
             const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError);
             setLoggedInUser(response.data);
             if(!isMuted) audio.play();
         }
-
+*/
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
     };
 

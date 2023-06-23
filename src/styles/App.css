@@ -116,10 +116,50 @@ body::-webkit-scrollbar {
 
 .timer-to-midnight {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: bold;
   color: #0070C0;
   margin-bottom: 6px;
+}
+
+.play-button-styling,
+.login-button-styling {
+  background-color: #0070c0;
+}
+
+.play-button-styling:hover,
+.login-button-styling:hover {
+  background-color: #262829;
+}
+
+.play-button-styling,
+.signin-button-styling,
+.login-button-styling,
+.return-button-styling {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border: none;
+  height: 55px;
+  width: 200px;
+  border-radius: 8%;
+  font-size: 1.5rem;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 5px;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.signin-button-styling,
+.return-button-styling {
+  background-color: #262829;
+}
+
+.signin-button-styling:hover,
+.return-button-styling:hover {
+  background-color: #0070c0;
 }
 
 .footer-row {

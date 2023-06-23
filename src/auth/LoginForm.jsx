@@ -137,13 +137,13 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                     </div>
                     <div className='three-columns-expand-one-three'>
                         <div></div>
-                        <button type="submit" className="play-btn">{formData.isRegistered ? 'Login' : 'Register'}</button>
+                        <button type="submit" className="login-button-styling">{formData.isRegistered ? 'Login' : 'Register'}</button>
                         <div></div>
                     </div>
                 </form>
                 <div className='three-columns-expand-one-three'>
                     <div></div>
-                    <button className="other-btn" onClick={() => handleReturnToMainMenu()}>Return to menu</button>
+                    <button className="return-button-styling" onClick={() => handleReturnToMainMenu()}>Menu</button>
                     <div></div>
                 </div>
             </div>

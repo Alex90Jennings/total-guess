@@ -56,7 +56,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                         :
                         <li className='three-columns-expand-one-three'>
                             <div></div>
-                            <button className='landing-page-menu-btn play-btn' onClick={handleStartGameSubmit}>Play</button>
+                            <button className='play-button-styling' onClick={handleStartGameSubmit}>Play</button>
                             <div></div>
                         </li>
                 }
@@ -74,7 +74,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                 </li> */}
                 <li className='three-columns-expand-one-three'>
                     <div></div>
-                    <button className='landing-page-menu-btn other-btn' onClick={() => {
+                    <button className='signin-button-styling' onClick={() => {
                         playSound();
                         setShowLandingPageContent(false);
                         setShowLoginPage(true);
