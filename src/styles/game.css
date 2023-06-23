@@ -736,10 +736,18 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .share-button-styling {
+    background-color: #0070c0;
+}
+
+.share-button-styling:hover {
+    background-color: #262829;
+}
+
+.share-button-styling,
+.feedback-button-share {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0070c0;
     color: #fff;
     height: 55px;
     width: 200px;
@@ -749,10 +757,7 @@ input[type='number']::-webkit-outer-spin-button {
     text-align: center;
     text-decoration: none;
     margin-bottom: 5px;
-}
-
-.share-button-styling:hover {
-    background-color: #262829;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .share-results {
