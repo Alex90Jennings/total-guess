@@ -9,7 +9,7 @@ function FAQ({ onClose }) {
                 <div></div>
                 <button className='close-btn' onClick={onClose}>X</button>
             </div>
-            <h1>Frequently-asked questions</h1>
+            <h1>FAQs</h1>
             <div className='list-reset pl-m'>
                 <h2>What is Cantab?</h2>
                 <p>Easy! It's a simple skill game that rates your guessing ability of grocery prices and adding up.</p></div>
