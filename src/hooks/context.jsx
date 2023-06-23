@@ -26,8 +26,10 @@ export const AppProvider = ({ children }) => {
     const [audio] = useState(new Audio("/Sounds/click.wav"));
 
     const handleSignOut = () => {
-        setLoggedInUser({})
+        if(!isMuted) audio.play();
+        localStorage.setItem("tgJwtToken", "")
         setIsAuthenticated(false)
+        setLoggedInUser({});
     }
 
     const getLoggedInUser = async () => {

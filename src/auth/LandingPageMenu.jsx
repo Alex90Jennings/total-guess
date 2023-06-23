@@ -8,7 +8,7 @@ import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
-    const { isAuthenticated, loggedInUser, setLoggedInUser, isMuted, setIsAuthenticated } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser, handleSignOut, isMuted } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
     const [audio] = useState(new Audio('/Sounds/click.wav'));
@@ -76,12 +76,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                     <div></div>
                     {
                         loggedInUser?._id ?
-                            <button className='signin-button-styling' onClick={() => {
-                                if(!isMuted) playSound();
-                                localStorage.setItem("tgJwtToken", "")
-                                setIsAuthenticated(false)
-                                setLoggedInUser({});
-                            }}>
+                            <button className='signin-button-styling' onClick={() => handleSignOut()}>
                                 Sign Out
                             </button> :
                             <button className='signin-button-styling' onClick={() => {

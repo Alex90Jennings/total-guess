@@ -19,7 +19,7 @@ function Header({ setShowLoginPage }) {
     };
 
     //TODO: this won't work unless the current page is /
-    const handleSignUpClick = () => {
+    const handleSignInClick = () => {
         if(!isMuted) audio.play()
         setShowLoginPage(true);
     };
@@ -31,8 +31,8 @@ function Header({ setShowLoginPage }) {
                 {
                     !isAuthenticated ? (
                         <>
-                            <div className="signup" onClick={() => handleSignUpClick()}>Sign up</div>
-                            <div className="signin" onClick={() => handleSignUpClick()}>Sign in</div>
+                            <div className="signup" onClick={() => handleSignInClick()}>Sign up</div>
+                            <div className="signin" onClick={() => handleSignInClick()}>Sign in</div>
                         </>
                     ) : (
                         <>
@@ -83,14 +83,9 @@ function Header({ setShowLoginPage }) {
                         <div className="dropdown-menu">
                             {
                                 !isAuthenticated ? (
-                                    <>
-                                        <div className="dropdown-item" onClick={handleSignUpClick}>
-                                            Sign up
-                                        </div>
-                                        <div className="dropdown-item">
+                                        <div className="dropdown-item" onClick={() =>  handleSignInClick()}>
                                             Sign in
                                         </div>
-                                    </>
                                 ) : (
                                     <div className="dropdown-item" onClick={() => handleSignOut()}>
                                         Sign out
