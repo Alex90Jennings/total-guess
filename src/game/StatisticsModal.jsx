@@ -5,7 +5,7 @@ import '../styles/share.css';
 import { AppContext } from "../hooks/context";
 import { useContext } from "react";
 
-const StatisticsModal = () => {
+const StatisticsModal = ({ className, onClose }) => {
 
     const { loggedInUser } = useContext(AppContext)
 
@@ -33,7 +33,11 @@ const StatisticsModal = () => {
     }
 
     return (
+        <div className={className}>
         <div className="pl-l pr-l">
+            <button className="close-btn" onClick={() => {
+                    onClose();
+                }}>X</button>
             <div className="h1-statistics">Statistics</div>
 
             <div className="grid-container">
@@ -82,6 +86,7 @@ const StatisticsModal = () => {
             <a className="feedback-button-share" href="/feedback">
                 Feedback
             </a>
+        </div>
         </div>
     );
 };

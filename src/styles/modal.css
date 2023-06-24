@@ -6,9 +6,11 @@
     color: #0070c0;
     background-color: #d8d8d8;
     max-width: 80vw;
+    min-width: 70vw;
     max-height: 90vh;
     border-radius: 24px;
     border: 2px solid #0070c0;
+    padding: 20px;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -27,8 +29,8 @@
 .close-btn {
     background-color: inherit;
     padding: 0;
-    margin-top: 12px;
-    margin-right: 12px;
+    margin-top: 18px;
+    margin-right: 18px;
     border: none;
     font-size: 1rem;
     font-weight: bolder;
@@ -119,10 +121,19 @@
     transform: translate(-50%, -50%);
     color: #0070c0;
     background-color: #d8d8d8;
-    width: 500px;
     max-height: 82vh;
     border-radius: 24px;
     border: 2px solid #000000;
+    max-width: 55vw;
+    min-width: 40vw;
+    padding: 20px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.modal-stats::-webkit-scrollbar {
+    display: none;
 }
 
 .grid-container {

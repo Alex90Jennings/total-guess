@@ -101,6 +101,19 @@ body {
     background-color: #d8dbde;
 }
 
+.icon-mute {
+    margin-right: 10px;
+    height: 45x;
+    width: 45px;
+    border-radius: 25%;
+    border: 1px solid #FFFFFF;
+    padding: 9px;
+}
+
+.icon-mute:hover {
+    background-color: #d8dbde;
+}
+
 .stats-icon {
     height: 70px;
     width: 70px;

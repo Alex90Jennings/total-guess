@@ -17,7 +17,7 @@ function Advertise({ onClose }) {
                 <p>We offer a fun and engaging experience, which would be ideal association for many retail brands.</p>
             </div>
             <div className='list-reset pl-m'>
-                <p>If you would like to learn more about opportunities to collaborate with Cantab, please let us know.  totalguessgame@gmail.com</p>
+                <p>If you would like to learn more about opportunities to collaborate with us at Total Guess, please let us know.  totalguessgame@gmail.com</p>
             </div>
         </div>
     );
