@@ -37,18 +37,20 @@ function Product({ setReadyToSubmit, products, date }) {
     const currentDescription = currentProduct.description;
     const currentImage = currentProduct.image;
 
+    console.log(isMuted)
+
     const handleItemIndexChange = (direction) => {
         let newIndex = currentShopIndex;
-        if (direction === 'right' && newIndex === 0) {
+        if (direction === 'left' && newIndex === 0) {
             return
         }
-        if (direction === 'right') {
+        if (direction === 'left') {
             if(!isMuted) audio.play()
             newIndex--
             setCurrentShopIndex(newIndex)
             return
         } 
-        if (direction === 'left' && currentShopIndex === products.length - 1) {
+        if (direction === 'right' && currentShopIndex === products.length - 1) {
             setReadyToSubmit(true);
             if(!isMuted) audioCoins.play()
             return
@@ -95,7 +97,7 @@ function Product({ setReadyToSubmit, products, date }) {
                 }
                 <div className='three-rows-expand-one-three'>
                     <div></div>
-                    <button className={getBrandClassname("arrow-left nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange('right')}>
+                    <button className={getBrandClassname("arrow-left nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange('left')}>
                         {`<`}
                     </button>
                     <div></div>
@@ -103,7 +105,7 @@ function Product({ setReadyToSubmit, products, date }) {
                 {currentProduct && (
                 <TinderCard
                     className="tinder--card"
-                    preventSwipe={currentShopIndex === 0 ? ['right', 'up', 'down'] : ['up', 'down']}
+                    preventSwipe={currentShopIndex === 0 ? ['left', 'up', 'down'] : ['up', 'down']}
                     onSwipe={(dir) => handleItemIndexChange(dir)}
                     key={currentShopIndex}
                 >
@@ -121,7 +123,7 @@ function Product({ setReadyToSubmit, products, date }) {
                         <div className="image-row">
                             <div className='three-rows-expand-one-three'>
                                 <div></div>
-                                <button className={getBrandClassname("arrow-left nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange('right')}>
+                                <button className={getBrandClassname("arrow-left nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange('left')}>
                                     {`<`}
                                 </button>
                                 <div></div>
@@ -152,7 +154,7 @@ function Product({ setReadyToSubmit, products, date }) {
                                 <div></div>
                                 <div className='three-rows-expand-one-three'>
                                     <div></div>
-                                    <button className={getBrandClassname("arrow-right nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange("left")}>
+                                    <button className={getBrandClassname("arrow-right nedian-bold narrow-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange("right")}>
                                         {`>`}
                                     </button>
                                     <div></div>
@@ -192,7 +194,7 @@ function Product({ setReadyToSubmit, products, date }) {
                     <div></div>
                     <div className='three-rows-expand-one-three'>
                         <div></div>
-                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange("left")}>
+                        <button className={getBrandClassname("arrow-right nedian-bold wide-screen-arrows {brand}-arrow clear-button")} onClick={() => handleItemIndexChange("right")}>
                             {`>`}
                         </button>
                         <div></div>
