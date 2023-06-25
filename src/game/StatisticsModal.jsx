@@ -25,10 +25,11 @@ const StatisticsModal = () => {
     }
 
     function getCurrentStreak() {
+        if(gamesPlayed?.length === 0) return 0
         const today = new Date().setUTCHours(0, 0, 0, 0);
         let streak = 0;
 
-        for (let i = gamesPlayed?.length - 1; i >= 0; i--) {
+        for (let i = gamesPlayed?.length; i > 0; i--) {
             const gameDate = new Date(gamesPlayed[i]).setUTCHours(0, 0, 0, 0);
             const diffInTime = today - gameDate;
             const diffInDays = diffInTime / (1000 * 3600 * 24);
@@ -74,13 +75,9 @@ const StatisticsModal = () => {
     }
 
 
-    if (!loggedInUser?._id) {
-        return <p>Please log in to see your stats!</p>
-    }
+    if (!loggedInUser?._id) return <p>Please log in to see your stats!</p>
 
-    if (scoresArray?.length === 0) {
-        return <p>Play a game to see your stats!</p>
-    }
+    if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
     return (
         <div className="pl-l pr-l">
