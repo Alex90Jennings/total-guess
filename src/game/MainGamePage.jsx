@@ -15,9 +15,7 @@ function MainGamePage({ guess, setGuess }) {
 
     const fetchGame = async () => {
         try {
-            const currentDate = new Date();
-            const formattedDate = currentDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('/').join('-');
-            const response = await clientApi.fetchTodayGame(formattedDate);
+            const response = await clientApi.fetchTodayGame();
             setGame(response.data);
             setGameDate(response.data.date)
         } catch (error) {
