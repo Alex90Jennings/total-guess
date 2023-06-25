@@ -64,11 +64,11 @@ const StatisticsModal = ({ className, onClose }) => {
                 </div>
                 <div className="grid-item2">
                     <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + Math.abs(score), 0) / loggedInUser.scores.length).toFixed(2) : 'N/A'}%</div>
-                    <div className='average-guess'>AVERAGE</div>
+                    <div className='average-guess'>AVERAGE ERROR</div>
                 </div>
                 <div className="grid-item2">
                     <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + score, 0) / loggedInUser.scores.length).toFixed(2) : 'N/A'}%</div>
-                    <div className='average-guess'>BIAS</div>
+                    <div className='average-guess'>ERROR BIAS</div>
                 </div>
             </div>
 
@@ -82,10 +82,10 @@ const StatisticsModal = ({ className, onClose }) => {
                     {/* <div className='players'>PLAYERS</div> */}
                 </div>
             </div>
-            <a className='share-button-styling' href="/share">Share</a>
-            <a className="feedback-button-share" href="/feedback">
+            {/* <a className='share-button-styling' href="/share">Share</a> */}
+            {/* <a className="feedback-button-share" href="/feedback">
                 Feedback
-            </a>
+            </a> */}
         </div>
         </div>
     );

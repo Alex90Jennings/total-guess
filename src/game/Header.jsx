@@ -45,7 +45,7 @@ function Header({ setShowLoginPage }) {
             <div className="header-middle logo">Total🤷‍♂️GuEss</div>
             <div className="header-right header-right-wide-screen">
                 <img 
-                    src={isMuted ? "/icons/muted.png" : "/icons/unmuted.png"}
+                    src={isMuted ? "/icons/volumemute.png" : "/icons/volume.png"}
                     alt="mute"
                     className="icon-mute"
                     onClick={() => setIsMuted(!isMuted)}
@@ -92,15 +92,21 @@ function Header({ setShowLoginPage }) {
             </div>
         )
     }     
-    <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.STATISTICS); handleDropDownClick(); }}>
-        Statistics
-    </div>
-    <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.INSTRUCTIONS); handleDropDownClick(); }}>
-        Instructions
-    </div>
-    <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ABOUT_US); handleDropDownClick(); }}>About Us</div>
-    <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.FAQ); handleDropDownClick(); }}>FAQs</div>
-    <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ADVERTISE); handleDropDownClick(); }}>Advertise With Us</div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.STATISTICS); handleDropDownClick(); }}>
+         Statistics
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.INSTRUCTIONS); handleDropDownClick(); }}>
+            Instructions
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ABOUT_US); handleDropDownClick(); }}>
+            About Us
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.FAQ); handleDropDownClick(); }}>
+            FAQs
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ADVERTISE); handleDropDownClick(); }}>
+            Advertise With Us
+        </div>
 </div>
                     )
                 }
