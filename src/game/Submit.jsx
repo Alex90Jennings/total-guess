@@ -33,11 +33,11 @@ function Submit({ guess, setGuess, correctPrice }) {
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
         let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
         
-        if (percentageError > 50) {
-            percentageError = 50;
+        if (percentageError > 35) {
+            percentageError = 35;
         } 
-        if (percentageError < -50) {
-            percentageError = -50;
+        if (percentageError < -35) {
+            percentageError = -35;
         }
 
         if (loggedInUser) {

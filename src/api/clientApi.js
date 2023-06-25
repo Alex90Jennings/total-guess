@@ -11,8 +11,8 @@ const register = async (email, firstName, lastName, password) => {
     return await authClient.post(route, { email, firstName, lastName, password })
 }
 
-const fetchTodayGame = async (date) => {
-    const route = `/games/${date}`
+const fetchTodayGame = async () => {
+    const route = '/games/gameOfTheDay'
     return await client.get(route)
 }
 
