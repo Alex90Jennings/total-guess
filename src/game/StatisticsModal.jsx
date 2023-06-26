@@ -81,59 +81,60 @@ const StatisticsModal = ({ className, onClose }) => {
 
     return (
         <div className={className}>
-        <div className="pl-l pr-l">
-            <button className="close-btn" onClick={() => {
-                    onClose();
-                }}>X</button>
-            <div className="h1-statistics">Statistics</div>
+            <div className="pl-l pr-l">
+                <button className="close-btn" onClick={() => {
+                        onClose();
+                    }}>X</button>
+                <div className="h1-statistics">Statistics</div>
 
-            <div className="grid-container">
-                <div className="grid-item">
-                    <div className="gp-number">{gamesPlayed?.length}</div>
-                    <div className='games-played'>GAMES PLAYED</div>
+                <div className="grid-container">
+                    <div className="grid-item">
+                        <div className="gp-number">{gamesPlayed?.length}</div>
+                        <div className='games-played'>GAMES PLAYED</div>
+                    </div>
+                    <div className="grid-item">
+                        <div className="cs-number">{getCurrentStreak()}</div>
+                        <div className='current-streak'>CURRENT STREAK</div>
+                    </div>
+                    <div className="grid-item">
+                        <div className="bs-number">{getBestStreak()}</div>
+                        <div className='best-streak'>BEST STREAK</div>
+                    </div>
                 </div>
-                <div className="grid-item">
-                    <div className="cs-number">{getCurrentStreak()}</div>
-                    <div className='current-streak'>CURRENT STREAK</div>
+
+                <Statistics />
+
+                <div className="grid-container2">
+                    <div className="grid-item2">
+                        <div className='bg-number'>{getBestGuess()}%</div>
+                        <div className='best-guess'>BEST GUESS</div>
+                    </div>
+                    <div className="grid-item2">
+                        <div className='ag-number'>{(scoresArray?.reduce((total, score) => total + Math.abs(score), 0) / scoresArray?.length).toFixed(2)}%</div>
+                        <div className='average-guess'>AVERAGE ERROR</div>
+                    </div>
+                    <div className="grid-item2">
+                        <div className='ag-number'>{(scoresArray?.reduce((total, score) => total + score, 0) / scoresArray?.length).toFixed(2)}%</div>
+                        <div className='average-guess'>ERROR BIAS</div>
+                    </div>
                 </div>
-                <div className="grid-item">
-                    <div className="bs-number">{getBestStreak()}</div>
-                    <div className='best-streak'>BEST STREAK</div>
+                {/* 
+                <div className="grid-container3">
+                    <div className="grid-item3">
+                        <div className='rank-number'>#565</div> 
+                        <div className='ranking'>RANKING</div> 
+                    </div>
+                    <div className="grid-item3">
+                        <div className='players-number'>15,855</div> 
+                        <div className='players'>PLAYERS</div> 
+                    </div>
                 </div>
+                <a className='share-button-styling' href="/share">Share</a> 
+                <a className="feedback-button-share" href="/feedback">
+                    Feedback
+                </a> 
+                */}
             </div>
-
-            <Statistics />
-
-            <div className="grid-container2">
-                <div className="grid-item2">
-                    <div className='bg-number'>{getBestGuess()}%</div>
-                    <div className='best-guess'>BEST GUESS</div>
-                </div>
-                <div className="grid-item2">
-                    <div className='ag-number'>scoresArray?.reduce((total, score) => total + Math.abs(score), 0) / loggedInUser.scores.length}%</div>
-                    <div className='average-guess'>AVERAGE ERROR</div>
-                </div>
-                <div className="grid-item2">
-                    <div className='ag-number'>{scoresArray?.reduce((total, score) => total + score, 0) / loggedInUser.scores.length}%</div>
-                    <div className='average-guess'>ERROR BIAS</div>
-                </div>
-            </div>
-
-            <div className="grid-container3">
-                <div className="grid-item3">
-                    {/* <div className='rank-number'>#565</div> */}
-                    {/* <div className='ranking'>RANKING</div> */}
-                </div>
-                <div className="grid-item3">
-                    {/* <div className='players-number'>15,855</div> */}
-                    {/* <div className='players'>PLAYERS</div> */}
-                </div>
-            </div>
-            {/* <a className='share-button-styling' href="/share">Share</a> */}
-            {/* <a className="feedback-button-share" href="/feedback">
-                Feedback
-            </a> */}
-        </div>
         </div>
     );
 };
