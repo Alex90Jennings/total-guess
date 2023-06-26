@@ -5,7 +5,7 @@ import '../styles/share.css';
 import { AppContext } from "../hooks/context";
 import { useContext } from "react";
 
-const StatisticsModal = () => {
+const StatisticsModal = ({ className, onClose }) => {
 
     const { loggedInUser } = useContext(AppContext)
     const scoresArray = loggedInUser?.scores
@@ -80,7 +80,11 @@ const StatisticsModal = () => {
     if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
     return (
+        <div className={className}>
         <div className="pl-l pr-l">
+            <button className="close-btn" onClick={() => {
+                    onClose();
+                }}>X</button>
             <div className="h1-statistics">Statistics</div>
 
             <div className="grid-container">
@@ -106,12 +110,12 @@ const StatisticsModal = () => {
                     <div className='best-guess'>BEST GUESS</div>
                 </div>
                 <div className="grid-item2">
-                    <div className='ag-number'>{scoresArray?.length > 0 ? (scoresArray.reduce((total, score) => total + Math.abs(score), 0) / scoresArray.length).toFixed(2) : 'N/A'}%</div>
-                    <div className='average-guess'>AVERAGE</div>
+                    <div className='ag-number'>scoresArray?.reduce((total, score) => total + Math.abs(score), 0) / loggedInUser.scores.length}%</div>
+                    <div className='average-guess'>AVERAGE ERROR</div>
                 </div>
                 <div className="grid-item2">
-                    <div className='ag-number'>{scoresArray?.length > 0 ? (scoresArray.reduce((total, score) => total + score, 0) / scoresArray.length).toFixed(2) : 'N/A'}%</div>
-                    <div className='average-guess'>BIAS</div>
+                    <div className='ag-number'>{scoresArray?.reduce((total, score) => total + score, 0) / loggedInUser.scores.length}%</div>
+                    <div className='average-guess'>ERROR BIAS</div>
                 </div>
             </div>
 
@@ -125,10 +129,11 @@ const StatisticsModal = () => {
                     {/* <div className='players'>PLAYERS</div> */}
                 </div>
             </div>
-            <a className='share-button-styling' href="/share">Share</a>
-            <a className="feedback-button-share" href="/feedback">
+            {/* <a className='share-button-styling' href="/share">Share</a> */}
+            {/* <a className="feedback-button-share" href="/feedback">
                 Feedback
-            </a>
+            </a> */}
+        </div>
         </div>
     );
 };

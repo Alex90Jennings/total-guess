@@ -44,10 +44,10 @@ function Header({ setShowLoginPage }) {
             </div>
             <div className="header-middle logo">Total🤷‍♂️GuEss</div>
             <div className="header-right header-right-wide-screen">
-                <img
-                    src={isMuted ? "/icons/muted.png" : "/icons/unmuted.png"}
+                <img 
+                    src={isMuted ? "/icons/volumemute.png" : "/icons/volume.png"}
                     alt="mute"
-                    className="icon"
+                    className="icon-mute"
                     onClick={() => setIsMuted(!isMuted)}
                 />
                 <img
@@ -80,28 +80,34 @@ function Header({ setShowLoginPage }) {
                 </div>
                 {
                     showDropdown && (
-                        <div className="dropdown-menu">
-                            {
-                                !isAuthenticated ? (
-                                        <div className="dropdown-item" onClick={() =>  handleSignInClick()}>
-                                            Sign in
-                                        </div>
-                                ) : (
-                                    <div className="dropdown-item" onClick={() => handleSignOut()}>
-                                        Sign out
-                                    </div>
-                                )
-                            }     
-                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>
-                                Statistics
-                            </div>
-                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}>
-                                Instructions
-                            </div>
-                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.ABOUT_US)}>About Us</div>
-                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.FAQ)}>FAQs</div>
-                            <div className="dropdown-item" onClick={() => setModalToDisplay(ModalToDisplay.ADVERTISE)}>Advertise With Us</div>
-                        </div>
+                       <div className="dropdown-menu">
+    {
+        !isAuthenticated ? (
+            <div className="dropdown-item" onClick={() =>  { handleSignInClick(); handleDropDownClick(); }}>
+                Sign in
+            </div>
+        ) : (
+            <div className="dropdown-item" onClick={() => { handleSignOut(); handleDropDownClick(); }}>
+                Sign out
+            </div>
+        )
+    }     
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.STATISTICS); handleDropDownClick(); }}>
+         Statistics
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.INSTRUCTIONS); handleDropDownClick(); }}>
+            Instructions
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ABOUT_US); handleDropDownClick(); }}>
+            About Us
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.FAQ); handleDropDownClick(); }}>
+            FAQs
+        </div>
+        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ADVERTISE); handleDropDownClick(); }}>
+            Advertise With Us
+        </div>
+</div>
                     )
                 }
             </div>

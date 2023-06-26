@@ -11,7 +11,7 @@ function FAQ({ onClose }) {
             </div>
             <h1>FAQs</h1>
             <div className='list-reset pl-m'>
-                <h2>What is Cantab?</h2>
+                <h2>What is Total Guess?</h2>
                 <p>Easy! It's a simple skill game that rates your guessing ability of grocery prices and adding up.</p></div>
             <div className='list-reset pl-m'>
                 <h2>How many grocery items are there?</h2>
