@@ -30,18 +30,14 @@ function Results() {
                 </div>
                 <div className="percentile-results">
                     <div className="percentile-box">DIFFERENCE</div>
-                    {
-                        difference < 0 ?
-                            <p className={difference < 0 ? "red-text" : ""}>{`-£${(difference * -1).toFixed(2)}`}</p> :
-                            <p>£{difference.toFixed(2)}</p>
-                    }
+                    <p>£{difference.toFixed(2)}</p>
                 </div>
                 <div className="percentile-results">
                     <div  className="percentile-box">ERROR</div>
-                    <p className={difference < 0 ? "red-text" : ""}>
+                    <p>
                         {
-                            percentageError >= 50 || percentageError <= -50 ? 
-                                `${percentageError.toFixed(0)}+%` : 
+                            percentageError >= 35 || percentageError <= -35 ? 
+                                `${percentageError.toFixed(0)}%+` : 
                                 `${percentageError.toFixed(2)}%`
                         }
                     </p>

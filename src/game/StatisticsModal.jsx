@@ -8,29 +8,76 @@ import { useContext } from "react";
 const StatisticsModal = ({ className, onClose }) => {
 
     const { loggedInUser } = useContext(AppContext)
+    const scoresArray = loggedInUser?.scores
+    const gamesPlayed = loggedInUser?.gamesPlayed
 
-    function getBestGuess(scores) {
-        if (!scores || scores.length === 0) {
-            return 'N/A';
-        }
+    function getBestGuess() {
+        if (!scoresArray || scoresArray?.length === 0) return 'N/A';
       
-        let closestScore = scores[0];
-        for (let i = 1; i < scores.length; i++) {
-            if (Math.abs(scores[i] - 0) < Math.abs(closestScore - 0)) {
-                closestScore = scores[i];
+        let closestScore = scoresArray[0];
+        for (let i = 1; i < scoresArray?.length; i++) {
+            if (Math.abs(scoresArray[i] - 0) < Math.abs(closestScore - 0)) {
+                closestScore = scoresArray[i];
             }
         }
       
         return closestScore.toFixed(2);
     }
 
-    if (!loggedInUser?._id) {
-        return <p>Please log in to see your stats!</p>
+    function getCurrentStreak() {
+        if(gamesPlayed?.length === 0) return 0
+        const today = new Date().setUTCHours(0, 0, 0, 0);
+        let streak = 0;
+
+        for (let i = gamesPlayed?.length; i > 0; i--) {
+            const gameDate = new Date(gamesPlayed[i]).setUTCHours(0, 0, 0, 0);
+            const diffInTime = today - gameDate;
+            const diffInDays = diffInTime / (1000 * 3600 * 24);
+
+            if (diffInDays === streak) {
+                streak++;
+            } else if (diffInDays > streak) {
+                break;
+            }
+        }
+
+        return streak;
     }
 
-    if (loggedInUser?.scores?.length === 0) {
-        return <p>Play a game to see your stats!</p>
+    function getBestStreak() {
+        if(gamesPlayed?.length === 0) return 0
+        let currentStreak = 0;
+        let bestStreak = 0;
+        let previousDate = null;
+
+        for (let i = 0; i < gamesPlayed.length; i++) {
+            const currentDate = new Date(gamesPlayed[i]);
+
+            if (previousDate) {
+                const diffInTime = currentDate - previousDate;
+                const diffInDays = diffInTime / (1000 * 3600 * 24);
+
+                if (diffInDays === 1) {
+                    currentStreak++;
+                } else if (diffInDays > 1) {
+                    currentStreak = 0;
+                }
+            }
+
+            previousDate = currentDate;
+
+            if (currentStreak > bestStreak) {
+                bestStreak = currentStreak;
+            }
+        }
+
+        return bestStreak + 1;
     }
+
+
+    if (!loggedInUser?._id) return <p>Please log in to see your stats!</p>
+
+    if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
     return (
         <div className={className}>
@@ -42,15 +89,15 @@ const StatisticsModal = ({ className, onClose }) => {
 
             <div className="grid-container">
                 <div className="grid-item">
-                    <div className="gp-number">{loggedInUser?.gamesPlayed?.length}</div>
+                    <div className="gp-number">{gamesPlayed?.length}</div>
                     <div className='games-played'>GAMES PLAYED</div>
                 </div>
                 <div className="grid-item">
-                    <div className="cs-number">{loggedInUser?.gamesPlayed?.length}</div>
+                    <div className="cs-number">{getCurrentStreak()}</div>
                     <div className='current-streak'>CURRENT STREAK</div>
                 </div>
                 <div className="grid-item">
-                    <div className="bs-number">{loggedInUser?.gamesPlayed?.length}</div>
+                    <div className="bs-number">{getBestStreak()}</div>
                     <div className='best-streak'>BEST STREAK</div>
                 </div>
             </div>
@@ -59,15 +106,15 @@ const StatisticsModal = ({ className, onClose }) => {
 
             <div className="grid-container2">
                 <div className="grid-item2">
-                    <div className='bg-number'>{getBestGuess(loggedInUser?.scores)}%</div>
+                    <div className='bg-number'>{getBestGuess()}%</div>
                     <div className='best-guess'>BEST GUESS</div>
                 </div>
                 <div className="grid-item2">
-                    <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + Math.abs(score), 0) / loggedInUser.scores.length).toFixed(2) : 'N/A'}%</div>
+                    <div className='ag-number'>scoresArray?.reduce((total, score) => total + Math.abs(score), 0) / loggedInUser.scores.length}%</div>
                     <div className='average-guess'>AVERAGE ERROR</div>
                 </div>
                 <div className="grid-item2">
-                    <div className='ag-number'>{loggedInUser?.scores?.length > 0 ? (loggedInUser.scores.reduce((total, score) => total + score, 0) / loggedInUser.scores.length).toFixed(2) : 'N/A'}%</div>
+                    <div className='ag-number'>{scoresArray?.reduce((total, score) => total + score, 0) / loggedInUser.scores.length}%</div>
                     <div className='average-guess'>ERROR BIAS</div>
                 </div>
             </div>
