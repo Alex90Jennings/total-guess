@@ -19,11 +19,20 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
     useEffect(
         () => {
-            const today = new Date();
-            today.setUTCHours(0, 0, 0, 0);
-            const formattedToday = today.toISOString();
-            const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
-            setHasPlayedDaily(isGameAlreadyInArray);
+            if(loggedInUser?.isAdmin) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setUTCHours(0, 0, 0, 0);
+                const formattedTomorrow = tomorrow.toISOString();
+                const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedTomorrow);
+                setHasPlayedDaily(isGameAlreadyInArray);
+            } else {
+                const today = new Date();
+                today.setUTCHours(0, 0, 0, 0);
+                const formattedToday = today.toISOString();
+                const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
+                setHasPlayedDaily(isGameAlreadyInArray);
+            }
         }, 
         [loggedInUser?.gamesPlayed],
     );
@@ -51,7 +60,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
             <div></div>
             <ul className='list-reset pl-none'>
                 {
-                    hasPlayedDaily ? 
+                    hasPlayedDaily && loggedInUser ? 
                         <TimerToUkMidnight />
                         :
                         <li className='three-columns-expand-one-three'>
