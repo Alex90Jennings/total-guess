@@ -1381,13 +1381,7 @@ input[type='number']::-webkit-outer-spin-button {
     .logo-landing {
       font-size: 40px !important;
     }
-
-    .guess-amount>.blue-box {
-        height: 50px;
-        width: 70px;
-        font-size: 2.6rem;
-    }
-
+    
     .guess-amount>input {
         height: auto;
     }
