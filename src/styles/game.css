@@ -1,24 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
 @font-face {
     font-family: 'MT Bold Arial Rounded';
     src: url('/public/fonts/mt-bold-arial-rounded.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Nunito Bold';
     src: url('/public/fonts/Nunito-Bold.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Nedian Bold';
     src: url('/public/fonts/Nedian-Bold.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Overpass ExtraLight';
     src: url('/public/fonts/Overpass-ExtraLight.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Gold Magnum';
     src: url('/public/fonts/Gold-Magnum.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Avenir Next';
     src: url('/public/fonts/Avenir-Next.ttc') format('truetype');
@@ -75,7 +81,7 @@ body {
     height: 100%;
 }
 
-.header-right-narrow-screen{
+.header-right-narrow-screen {
     display: none;
 }
 
@@ -158,7 +164,8 @@ body {
     color: #0070c0;
 }
 
-.signup, .signin {
+.signup,
+.signin {
     cursor: pointer;
 }
 
@@ -166,7 +173,7 @@ body {
     padding: 5px;
     font-size: 50px;
     grid-area: header-middle;
-    grid-column-start: 2; 
+    grid-column-start: 2;
     grid-column-end: 3;
     justify-self: center;
 }
@@ -824,7 +831,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .dropdown-menu {
     position: absolute;
-    background-color:#0070c0;
+    background-color: #0070c0;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -962,7 +969,7 @@ input[type='number']::-webkit-outer-spin-button {
     font-family: "Century Gothic", "Arial", sans-serif;
 }
 
-.waitrose-info, 
+.waitrose-info,
 .waitrose-arrow {
     color: #5C8018;
 }
@@ -991,12 +998,12 @@ input[type='number']::-webkit-outer-spin-button {
 /*MORRISONS*/
 .morrisons-header-css {
     background-color: #00762D;
-    color:  #FCBD00;
+    color: #FCBD00;
     font-family: 'MT Bold Arial Rounded', Arial, sans-serif;
 }
 
-.morrisons-info, 
-.morrisons-arrow  {
+.morrisons-info,
+.morrisons-arrow {
     color: #00762D;
 }
 
@@ -1016,7 +1023,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .morrisons-roman-numeral-after {
     border: 6px solid #00762D;
-    color:  #FCBD00;
+    color: #FCBD00;
     background-color: #00762D;
     margin: 3px;
 }
@@ -1024,7 +1031,7 @@ input[type='number']::-webkit-outer-spin-button {
 /*ALDI*/
 .aldi-header-css {
     background-color: #14215a;
-    color:  white;
+    color: white;
     font-family: "Nunito Bold", "Arial", sans-serif;
 }
 
@@ -1051,7 +1058,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .aldi-roman-numeral-after {
     border: 6px solid #14215a;
-    color:  white;
+    color: white;
     background-color: #14215a;
     margin: 3px;
 }
@@ -1059,12 +1066,12 @@ input[type='number']::-webkit-outer-spin-button {
 /*SPAR*/
 .spar-header-css {
     background-color: red;
-    color:  white;
+    color: white;
     font-family: "Nedian Bold", "Arial", sans-serif;
 }
 
-.spar-info, 
-.spar-arrow{
+.spar-info,
+.spar-arrow {
     color: red;
 }
 
@@ -1084,7 +1091,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .spar-roman-numeral-after {
     border: 6px solid red;
-    color:  white;
+    color: white;
     background-color: red;
     margin: 3px;
 }
@@ -1121,7 +1128,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .mands-roman-numeral-after {
     border: 6px solid black;
-    color:  white;
+    color: white;
     background-color: black;
     margin: 3px;
 }
@@ -1231,12 +1238,12 @@ input[type='number']::-webkit-outer-spin-button {
         grid-area: header-right;
     }
 
-    .narrow-screen-count{
+    .narrow-screen-count {
         display: grid;
         grid-template-columns: repeat(10, auto);
     }
 
-    .wide-screen-count{
+    .wide-screen-count {
         display: none;
     }
 
@@ -1252,7 +1259,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 850px) {
     .logo {
-      font-size: 40px !important;
+        font-size: 40px !important;
     }
 
     .icon {
@@ -1286,7 +1293,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 650px) {
     .logo {
-      font-size: 30px !important;
+        font-size: 30px !important;
     }
 
     .h1-submit {
@@ -1354,7 +1361,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 530px) {
-    .logo{
+    .logo {
         font-size: 24px !important;
     }
 
@@ -1379,7 +1386,7 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .logo-landing {
-      font-size: 40px !important;
+        font-size: 40px !important;
     }
     
     .guess-amount>input {
@@ -1491,7 +1498,7 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 2.4rem;
     }
 
-    .guess-amount> input {
+    .guess-amount>input {
         font-size: 1.8rem;
     }
 
