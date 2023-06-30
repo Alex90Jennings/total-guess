@@ -884,13 +884,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .sainsburys-roman-numeral-before {
-    border: 6px solid #f18213;
+    border: 3px solid #f18213;
     color: #f18213;
     margin: 3px;
 }
 
 .sainsburys-roman-numeral-after {
-    border: 6px solid #f18213;
+    border: 3px solid #f18213;
     color: white;
     background-color: #f18213;
     margin: 3px;
@@ -917,13 +917,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .tesco-roman-numeral-before {
-    border: 6px solid #00539F;
+    border: 3px solid #00539F;
     color: #00539F;
     margin: 3px;
 }
 
 .tesco-roman-numeral-after {
-    border: 6px solid #00539F;
+    border: 3px solid #00539F;
     color: #EE1C2E;
     background-color: #00539F;
     margin: 3px;
@@ -950,13 +950,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .asda-roman-numeral-before {
-    border: 6px solid #68a51c;
+    border: 3px solid #68a51c;
     color: #68a51c;
     margin: 3px;
 }
 
 .asda-roman-numeral-after {
-    border: 6px solid #68a51c;
+    border: 3px solid #68a51c;
     color: white;
     background-color: #68a51c;
     margin: 3px;
@@ -983,13 +983,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .waitrose-roman-numeral-before {
-    border: 6px solid #5C8018;
+    border: 3px solid #5C8018;
     color: #5C8018;
     margin: 3px;
 }
 
 .waitrose-roman-numeral-after {
-    border: 6px solid #5C8018;
+    border: 3px solid #5C8018;
     color: white;
     background-color: #5C8018;
     margin: 3px;
@@ -1016,13 +1016,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .morrisons-roman-numeral-before {
-    border: 6px solid #00762D;
+    border: 3px solid #00762D;
     color: #00762D;
     margin: 3px;
 }
 
 .morrisons-roman-numeral-after {
-    border: 6px solid #00762D;
+    border: 3px solid #00762D;
     color: #FCBD00;
     background-color: #00762D;
     margin: 3px;
@@ -1051,13 +1051,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .aldi-roman-numeral-before {
-    border: 6px solid #14215a;
+    border: 3px solid #14215a;
     color: #14215a;
     margin: 3px;
 }
 
 .aldi-roman-numeral-after {
-    border: 6px solid #14215a;
+    border: 3px solid #14215a;
     color: white;
     background-color: #14215a;
     margin: 3px;
@@ -1084,13 +1084,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .spar-roman-numeral-before {
-    border: 6px solid red;
+    border: 3px solid red;
     color: white;
     margin: 3px;
 }
 
 .spar-roman-numeral-after {
-    border: 6px solid red;
+    border: 3px solid red;
     color: white;
     background-color: red;
     margin: 3px;
@@ -1121,13 +1121,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .mands-roman-numeral-before {
-    border: 6px solid black;
+    border: 3px solid black;
     color: white;
     margin: 3px;
 }
 
 .mands-roman-numeral-after {
-    border: 6px solid black;
+    border: 3px solid black;
     color: white;
     background-color: black;
     margin: 3px;
@@ -1187,13 +1187,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .coop-roman-numeral-before {
-    border: 6px solid #0ba7db;
+    border: 3px solid #0ba7db;
     color: #0ba7db;
     margin: 3px;
 }
 
 .coop-roman-numeral-after {
-    border: 6px solid #0ba7db;
+    border: 3px solid #0ba7db;
     color: white;
     background-color: #0ba7db;
     margin: 3px;
