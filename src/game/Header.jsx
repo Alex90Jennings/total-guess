@@ -107,6 +107,9 @@ function Header({ setShowLoginPage }) {
         <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ADVERTISE); handleDropDownClick(); }}>
             Advertise With Us
         </div>
+        <div className="dropdown-item">
+            totalguessgame@gmail.com
+        </div>
 </div>
                     )
                 }
