@@ -5,11 +5,12 @@ import "../styles/landingPage.css";
 import "../styles/game.css";
 import { AppContext } from "../hooks/context";
 import { ModalToDisplay } from "../App";
+import { useNavigate } from 'react-router-dom';
 
 function Header({ setShowLoginPage }) {
 
     const { loggedInUser, isAuthenticated, setModalToDisplay, handleSignOut, isMuted, setIsMuted } = useContext(AppContext);
-    const firstName = loggedInUser.firstName || " ";
+    const navigate = useNavigate();
     const [audio] = useState(new Audio("/Sounds/click.wav"));
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -19,23 +20,35 @@ function Header({ setShowLoginPage }) {
         setShowLoginPage(true);
     };
 
+    const getInitials = () => {
+        if (loggedInUser?.firstName && loggedInUser?.lastName) return `${loggedInUser?.firstName.charAt(0)}${loggedInUser?.lastName.charAt(0)}`;
+        return "??";
+    };
+
 
     return (
         <header id="header">
-            <div className="header-left">
-                {
-                    !isAuthenticated ? (
-                        <>
-                            <div className="signup" onClick={() => handleSignInClick()}>Sign up</div>
-                            <div className="signin" onClick={() => handleSignInClick()}>Sign in</div>
-                        </>
-                    ) : (
-                        <>
-                            <img src="/icons/userwhite.svg" alt="User icon" />
-                            <div className="users-first-name">{firstName}</div>
-                        </>
-                    )
-                }
+            <div className="header-left header-left-wide-screen">
+                <img
+                    src={"/icons/home.png"}
+                    alt="home icon"
+                    className="icon-mute"
+                    onClick={() => navigate('/')}
+                />
+                <div className={loggedInUser?.firstName ? "user-initials ml-xs mr-s" : "user-initials hide-text ml-xs mr-s"}>
+                    {getInitials()}
+                </div>
+            </div>
+            <div className="header-left header-left-narrow-screen">
+                <img
+                    src={"/icons/home.png"}
+                    alt="home icon"
+                    className="dropdown-icon"
+                    onClick={() => navigate('/')}
+                />
+                <div className={loggedInUser?.firstName ? "user-initials ml-xs" : "user-initials hide-text ml-xs"}>
+                    {getInitials()}
+                </div>
             </div>
             <div className="header-middle logo">Total🤷‍♂️GuEss</div>
             <div className="header-right header-right-wide-screen">
@@ -87,6 +100,7 @@ function Header({ setShowLoginPage }) {
                                 ) : (
                                     <div className="dropdown-item" onClick={() => { 
                                             handleSignOut() 
+                                            navigate('/')
                                             setShowDropdown(!showDropdown)
                                         }}>
                                         Sign out

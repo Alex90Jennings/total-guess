@@ -57,11 +57,19 @@ body {
     grid-column-start: 1;
     grid-column-end: 2;
     width: 250px;
-    margin-left: 10px;
     font-family: 'Luckiest Guy', cursive;
-    font-size: 26px !important;
     color: #FFFFFF;
-    text-shadow: 1px 1px 2px #000000;
+}
+
+.user-initials {
+    border-radius: 100%;
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 34px;
+}
+
+.hide-text {
+    color: #0070c0 !important;
 }
 
 .signup,
@@ -81,7 +89,8 @@ body {
     height: 100%;
 }
 
-.header-right-narrow-screen {
+.header-right-narrow-screen,
+.header-left-narrow-screen {
     display: none;
 }
 
@@ -103,7 +112,8 @@ body {
     border-radius: 30%;
 }
 
-.icon:hover {
+.icon:hover,
+.user-initials:hover {
     background-color: #d8dbde;
 }
 
@@ -128,18 +138,6 @@ body {
 
 .stats-icon:hover {
     background-color: #d8dbde;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 24px;
-    grid-area: header-left;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    width: 250px;
-    margin-left: 10px;
 }
 
 .signup {
@@ -1222,20 +1220,23 @@ input[type='number']::-webkit-outer-spin-button {
         max-height: 250px;
     }
 
-    .header-left {
-        width: 80px;
-        visibility: hidden;
+    .user-initials {
+        padding: 6px;
+        font-size: 20px;
+        border: 2px solid white
     }
 
     .header-right-wide-screen,
-    .footer-wide-screen {
+    .footer-wide-screen,
+    .header-left-wide-screen {
         display: none;
     }
 
-    .header-right-narrow-screen {
+    .header-right-narrow-screen,
+    .header-left-narrow-screen {
         display: grid;
+        grid-template-columns: auto auto;
         width: 80px;
-        grid-area: header-right;
     }
 
     .narrow-screen-count {
@@ -1294,6 +1295,11 @@ input[type='number']::-webkit-outer-spin-button {
 @media screen and (max-width: 650px) {
     .logo {
         font-size: 30px !important;
+    }
+
+    .user-initials {
+        padding: 6px;
+        font-size: 20px;
     }
 
     .h1-submit {
@@ -1365,12 +1371,18 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 24px !important;
     }
 
-    .header-left {
-        width: 70px;
+    .user-initials {
+        padding: 4px;
+        font-size: 18px;
     }
 
-    .header-right-narrow-screen {
-        width: 70px;
+    .header-left {
+        width: 80px;
+    }
+
+    .header-right-narrow-screen,
+    .header-left-narrow-screen {
+        width: 80px;
     }
 
     #login-header {
@@ -1476,6 +1488,10 @@ input[type='number']::-webkit-outer-spin-button {
         height: 20px;
         width: 20px;
         font-size: 14px;
+    }
+
+    #header {
+        padding: 0 5px !important;
     }
 }
 

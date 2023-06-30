@@ -252,6 +252,10 @@ body::-webkit-scrollbar {
   margin-bottom: 46px;
 }
 
+.mr-s {
+  margin-right: 8px;
+}
+
 .mt-s {
   margin-top: 8px;
 }

@@ -44,8 +44,8 @@ function App() {
   return (
     <div>
         <div className="app">
-            <Header />
             <BrowserRouter>
+                <Header />
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route
