@@ -1305,7 +1305,7 @@ input[type='number']::-webkit-outer-spin-button {
     .guess-amount>.blue-box {
         height: 50px;
         width: 70px;
-        font-size: 2.4rem;
+        font-size: 3rem;
     }
 
     .guess-amount>input {
@@ -1385,7 +1385,7 @@ input[type='number']::-webkit-outer-spin-button {
     .guess-amount>.blue-box {
         height: 50px;
         width: 70px;
-        font-size: 2rem;
+        font-size: 2.6rem;
     }
 
     .guess-amount>input {
@@ -1494,7 +1494,7 @@ input[type='number']::-webkit-outer-spin-button {
     .guess-amount>.blue-box {
         height: 40px;
         width: 60px;
-        font-size: 1.8rem;
+        font-size: 2.4rem;
     }
 
     .guess-amount> input {
