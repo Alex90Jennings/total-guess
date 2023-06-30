@@ -65,7 +65,11 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                         :
                         <li className='three-columns-expand-one-three'>
                             <div></div>
-                            <button className='play-button-styling' onClick={handleStartGameSubmit}>Play</button>
+                            <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
+                                <div></div>
+                                <div>Play</div>
+                                <div></div>
+                            </button>
                             <div></div>
                         </li>
                 }
@@ -85,15 +89,19 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                     <div></div>
                     {
                         loggedInUser?._id ?
-                            <button className='signin-button-styling' onClick={() => handleSignOut()}>
-                                Sign Out
+                            <button className='signin-button-styling three-rows-expand-one-three' onClick={() => handleSignOut()}>
+                                <div></div>
+                                <p>Sign Out</p>
+                                <div></div>
                             </button> :
-                            <button className='signin-button-styling' onClick={() => {
+                            <button className='signin-button-styling three-rows-expand-one-three' onClick={() => {
                                 if(!isMuted)playSound();
                                 setShowLandingPageContent(false);
                                 setShowLoginPage(true);
                             }}>
-                                Sign In
+                                <div></div>
+                                <div>Sign In</div>
+                                <div></div>
                             </button>
                     }
                     <div></div>

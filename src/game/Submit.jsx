@@ -64,8 +64,14 @@ function Submit({ guess, setGuess, correctPrice }) {
                 />
             </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button className={`submit-button sub-button-styling ${inputValid ? 'valid-input' : ''}`} onClick={handleGuessSubmit} disabled={!inputValid}>
-                Submit
+            <button 
+                className={`submit-button sub-button-styling ${inputValid ? 'valid-input three-rows-expand-one-three' : 'three-rows-expand-one-three'}`} 
+                onClick={handleGuessSubmit} 
+                disabled={!inputValid}
+            >
+                <div></div>
+                <div>Submit</div>
+                <div></div>
             </button>
         </div>
     );
