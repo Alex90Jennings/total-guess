@@ -37,8 +37,6 @@ function Product({ setReadyToSubmit, products, date }) {
     const currentDescription = currentProduct.description;
     const currentImage = currentProduct.image;
 
-    console.log(isMuted)
-
     const handleItemIndexChange = (direction) => {
         let newIndex = currentShopIndex;
         if (direction === 'left' && newIndex === 0) {
@@ -70,7 +68,7 @@ function Product({ setReadyToSubmit, products, date }) {
     }
 
     function getDaysSince() {
-        const targetDate = new Date('2023-06-09');
+        const targetDate = new Date('2023-07-01');
         const givenDate = new Date(date);
         
         if (isNaN(givenDate)) {
@@ -178,10 +176,14 @@ function Product({ setReadyToSubmit, products, date }) {
                             <div className="info-column">
                                 <p className="date">{getDateString(currentProduct.date)}</p>
                             </div>
-                            <div className='space3'></div>
-                                <div className="info-column text-center">
-                                <p className="store">Portsmouth</p>
-                            </div>
+                            {
+                                /*
+                                    <div className='space3'></div>
+                                        <div className="info-column text-center">
+                                        <p className="store">Portsmouth</p>
+                                    </div>
+                                */
+                            }
                             <div className='space4'></div>
                                 <div className="info-column text-right">
                                 <p className="game">#{getDaysSince()}</p>
