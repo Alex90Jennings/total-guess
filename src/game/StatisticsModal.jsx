@@ -26,12 +26,29 @@ const StatisticsModal = ({ className, onClose }) => {
 
     function getCurrentStreak() {
         if(gamesPlayed?.length === 0) return 0
-        const today = new Date().setUTCHours(0, 0, 0, 0);
+        const today = new Date();
+        today.setUTCHours(0, 0, 0, 0);
         let streak = 0;
+        if(loggedInUser.isAdmin) {
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            if(gamesPlayed.includes(new Date(tomorrow).toISOString())) {
+                console.log("has played daily as admin")
+                streak++
+            }
+            return calculateStreak(tomorrow, streak)
+        }
+        if(gamesPlayed.includes(new Date(today).toISOString())) {
+            console.log("played daily yesterday")
+            streak++
+        }
+        return calculateStreak(today, streak)
+    }
 
+    function calculateStreak(date, streak) {
         for (let i = gamesPlayed?.length; i > 0; i--) {
             const gameDate = new Date(gamesPlayed[i]).setUTCHours(0, 0, 0, 0);
-            const diffInTime = today - gameDate;
+            const diffInTime = date - gameDate;
             const diffInDays = diffInTime / (1000 * 3600 * 24);
 
             if (diffInDays === streak) {
