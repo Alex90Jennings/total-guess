@@ -33,7 +33,7 @@ function Results() {
                     <p>£{difference.toFixed(2)}</p>
                 </div>
                 <div className="percentile-results">
-                    <div  className="percentile-box">ERROR</div>
+                    <div  className="percentile-box">GUESS ERROR</div>
                     <p>
                         {
                             percentageError >= 35 || percentageError <= -35 ? 

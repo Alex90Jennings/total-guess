@@ -51,7 +51,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                 formData.lastName,
                 formData.password
             );
-            localStorage.setItem("tgJwtToken", response.data.jwtToken);
+            localStorage.setItem("tgJwtToken", response.data.token);
             setLoggedInUser(response.data.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);
