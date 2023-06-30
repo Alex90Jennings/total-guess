@@ -32,16 +32,10 @@ const StatisticsModal = ({ className, onClose }) => {
         if(loggedInUser.isAdmin) {
             const tomorrow = new Date(today);
             tomorrow.setDate(today.getDate() + 1);
-            if(gamesPlayed.includes(new Date(tomorrow).toISOString())) {
-                console.log("has played daily as admin")
-                streak++
-            }
+            if(gamesPlayed.includes(new Date(tomorrow).toISOString())) streak++
             return calculateStreak(tomorrow, streak)
         }
-        if(gamesPlayed.includes(new Date(today).toISOString())) {
-            console.log("played daily yesterday")
-            streak++
-        }
+        if(gamesPlayed.includes(new Date(today).toISOString())) streak++
         return calculateStreak(today, streak)
     }
 

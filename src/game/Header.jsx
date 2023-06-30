@@ -13,11 +13,6 @@ function Header({ setShowLoginPage }) {
     const [audio] = useState(new Audio("/Sounds/click.wav"));
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const handleDropDownClick = () => {
-        if(!isMuted) audio.play()
-        setShowDropdown(!showDropdown)
-    };
-
     //TODO: this won't work unless the current page is /
     const handleSignInClick = () => {
         if(!isMuted) audio.play()
@@ -75,42 +70,63 @@ function Header({ setShowLoginPage }) {
                         src={"/icons/dropdown.png"}
                         alt="dropdown"
                         className="mr-m dropdown-icon ml-xs"
-                        onClick={() => handleDropDownClick()}
+                        onClick={() => setShowDropdown(!showDropdown)}
                     />
                 </div>
                 {
                     showDropdown && (
-                       <div className="dropdown-menu">
-    {
-        !isAuthenticated ? (
-            <div className="dropdown-item" onClick={() =>  { handleSignInClick(); handleDropDownClick(); }}>
-                Sign in
-            </div>
-        ) : (
-            <div className="dropdown-item" onClick={() => { handleSignOut(); handleDropDownClick(); }}>
-                Sign out
-            </div>
-        )
-    }     
-        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.STATISTICS); handleDropDownClick(); }}>
-         Statistics
-        </div>
-        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.INSTRUCTIONS); handleDropDownClick(); }}>
-            Instructions
-        </div>
-        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ABOUT_US); handleDropDownClick(); }}>
-            About Us
-        </div>
-        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.FAQ); handleDropDownClick(); }}>
-            FAQs
-        </div>
-        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ADVERTISE); handleDropDownClick(); }}>
-            Advertise With Us
-        </div>
-        <div className="dropdown-item">
-            totalguessgame@gmail.com
-        </div>
-</div>
+                        <div className="dropdown-menu">
+                            {
+                                !isAuthenticated ? (
+                                    <div className="dropdown-item" onClick={() =>  { 
+                                            handleSignInClick(); 
+                                            setShowDropdown(!showDropdown) 
+                                        }}>
+                                        Sign in
+                                    </div>
+                                ) : (
+                                    <div className="dropdown-item" onClick={() => { 
+                                            handleSignOut() 
+                                            setShowDropdown(!showDropdown)
+                                        }}>
+                                        Sign out
+                                    </div>
+                                )
+                            }     
+                                <div className="dropdown-item" onClick={() => { 
+                                        setModalToDisplay(ModalToDisplay.STATISTICS); 
+                                        setShowDropdown(!showDropdown) 
+                                    }}>
+                                    Statistics
+                                </div>
+                                <div className="dropdown-item" onClick={() => { 
+                                        setModalToDisplay(ModalToDisplay.INSTRUCTIONS); 
+                                        setShowDropdown(!showDropdown) 
+                                    }}>
+                                    Instructions
+                                </div>
+                                <div className="dropdown-item" onClick={() => { 
+                                        setModalToDisplay(ModalToDisplay.ABOUT_US); 
+                                        setShowDropdown(!showDropdown) 
+                                    }}>
+                                    About Us
+                                </div>
+                                <div className="dropdown-item" onClick={() => { 
+                                        setModalToDisplay(ModalToDisplay.FAQ); 
+                                        setShowDropdown(!showDropdown) 
+                                    }}>
+                                    FAQs
+                                </div>
+                                <div className="dropdown-item" onClick={() => { 
+                                        setModalToDisplay(ModalToDisplay.ADVERTISE); 
+                                        setShowDropdown(!showDropdown) 
+                                    }}>
+                                    Advertise With Us
+                                </div>
+                                <div className="dropdown-item">
+                                    totalguessgame@gmail.com
+                                </div>
+                        </div>
                     )
                 }
             </div>
