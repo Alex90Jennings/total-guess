@@ -10,10 +10,14 @@ function AboutUs({ onClose }) {
                 <button className='close-btn' onClick={onClose}>X</button>
             </div>
             <h1>About us</h1>
+            <h2 className='instructions-h2'>WHO ARE WE?</h2>
             <div className='list-reset pl-m'>
-             <p>We are a team of makers who create quick and engaging games that are designed to entertain, test guessing and arithmetic skills.</p></div>
-             <div className='list-reset pl-m'>
-             <p>Our goal is to provide busy people with an opportunity for a short break to focus on something fun that feeds their curiosity.</p></div>
+                <p>We are a team of makers who create quick and engaging games that are designed to entertain, test guessing and arithmetic skills.</p>
+            </div>
+            <h2 className='instructions-h2'>OUR AIMS</h2>
+            <div className='list-reset pl-m'>
+                <p>Our goal is to provide busy people with an opportunity for a short break to focus on something fun that feeds their curiosity.</p>
+            </div>
         </div>
     );
 }
