@@ -12,6 +12,7 @@ function MainGamePage({ guess, setGuess }) {
     const [readyToSubmit, setReadyToSubmit] = useState(false); 
     const [game, setGame] = useState({});
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
+    const totalAmount = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0).toFixed(2);
 
     const fetchGame = async () => {
         try {
@@ -34,8 +35,8 @@ function MainGamePage({ guess, setGuess }) {
         <main id="main">
             {
                 readyToSubmit ?
-                    <Submit guess={guess} setGuess={setGuess} correctPrice={correctPrice} /> :
-                    <Product products={game.items} date={game.date} setReadyToSubmit={setReadyToSubmit} /> 
+                    <Submit guess={guess} setGuess={setGuess} correctPrice={correctPrice} totalAmount={totalAmount} itemPrices={readyToSubmit.itemPrices}/> :
+                    <Product products={game.items} date={game.date} setReadyToSubmit={setReadyToSubmit} totalAmount={totalAmount}/> 
             }
         </main>        
     );

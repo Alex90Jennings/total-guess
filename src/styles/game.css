@@ -705,6 +705,25 @@ input[type='number']::-webkit-outer-spin-button {
     background-color: #262829;
 }
 
+.breakdown-button-styling {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0070c0;
+    color: #fff;
+    height: 55px;
+    width: 200px;
+    border-radius: 8%;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.breakdown-button-styling:hover {
+    background-color: #262829;
+}
+
 .home-button-styling {
     display: flex;
     justify-content: center;
