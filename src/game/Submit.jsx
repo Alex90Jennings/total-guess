@@ -11,8 +11,8 @@ function Submit({ correctPrice, itemPrices, guess }) {
 
     const handleGuessSubmit = async () => {
         const numericGuess = (itemPrices.concat(Number(guess || 0))).reduce((sum, price) => sum + price, 0).toFixed(2);
-        const difference = Math.abs(correctPrice - numericGuess);
-        let percentageError = ((difference / correctPrice) * 100).toFixed(2);
+        const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
+        let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
 
         if (percentageError > 35) {
             percentageError = 35;

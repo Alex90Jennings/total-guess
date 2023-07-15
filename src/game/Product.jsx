@@ -63,6 +63,7 @@ function Product({ setReadyToSubmit, products, date }) {
         setCurrentShopIndex(newIndex);
     };
 
+    //TODO: refactor these functions to one function
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
@@ -160,14 +161,6 @@ function Product({ setReadyToSubmit, products, date }) {
                                     end={10}
                                 />
                             </div>
-                            <div className='three-rows-expand-one-three'>
-                                <div></div>
-                                <div className='three-rows-expand-one-three'>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div></div>
-                            </div>
                         </div>
                         <div className='narrow-screen-count three-columns-expand-one-three'>
                             <div></div>
@@ -197,13 +190,6 @@ function Product({ setReadyToSubmit, products, date }) {
                         </div>
                     </div>
                 )}
-                <div className='three-rows-expand-one-three'>
-                    <div></div>
-                    <div className='three-rows-expand-one-three'>
-                        <div></div>
-                    </div>
-                    <div></div>
-                </div>
             </div>
             <div></div>
             <div className="input-container">
