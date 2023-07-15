@@ -12,7 +12,6 @@ import ContactUs from "./ContactUs";
 import Results from "./game/Results";
 import Share from "./game/Share.jsx";
 import StatisticsModal from "./game/StatisticsModal";
-import BreakdownModal from "./game/BreakdownModal";
 import AboutUs from "./game/AboutUs";
 import FAQ from "./game/FAQ";
 import Advertise from "./game/Advertise";
@@ -22,7 +21,6 @@ export const ModalToDisplay = {
   INSTRUCTIONS: "INSTRUCTIONS",
   FAQ: "FAQ",
   STATISTICS: "STATISTICS",
-  BREAKDOWN: "BREAKDOWN",
   ABOUT_US: "ABOUT_US",
   ADVERTISE: "ADVERTISE",
 };
@@ -30,21 +28,6 @@ export const ModalToDisplay = {
 function App() {
   const [guess, setGuess] = useState(0);
   const { modalToDisplay, setModalToDisplay } = useContext(AppContext);
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch("/api/items");
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error("Error fetching items:", error);
-      }
-    };
-
-    fetchItems();
-  }, []);
 
   useEffect(() => {
     Modal.setAppElement("#root");
@@ -85,12 +68,6 @@ function App() {
             )}
             {modal === ModalToDisplay.STATISTICS && (
               <StatisticsModal onClose={() => setModalToDisplay("")} />
-            )}
-            {modal === ModalToDisplay.BREAKDOWN && (
-              <BreakdownModal
-                onClose={() => setModalToDisplay("")}
-                items={items}
-              />
             )}
             {modal === ModalToDisplay.ABOUT_US && (
               <AboutUs onClose={() => setModalToDisplay("")} />

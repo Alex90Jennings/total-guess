@@ -7,9 +7,8 @@ import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 
 function MainGamePage({ guess, setGuess }) {
-    
     const { setGameDate } = useContext(AppContext);
-    const [readyToSubmit, setReadyToSubmit] = useState(false); 
+    const [readyToSubmit, setReadyToSubmit] = useState(false);
     const [game, setGame] = useState({});
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
     const totalAmount = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0).toFixed(2);
@@ -18,27 +17,34 @@ function MainGamePage({ guess, setGuess }) {
         try {
             const response = await clientApi.fetchTodayGame();
             setGame(response.data);
-            setGameDate(response.data.date)
+            setGameDate(response.data.date);
         } catch (error) {
             console.error('Error fetching game:', error);
         }
     };
 
-    useEffect(
-        () => {
-            fetchGame();
-        }, 
-        [],
-    );
+    useEffect(() => {
+        fetchGame();
+    }, []);
 
     return (
         <main id="main">
-            {
-                readyToSubmit ?
-                    <Submit guess={guess} setGuess={setGuess} correctPrice={correctPrice} totalAmount={totalAmount} itemPrices={readyToSubmit.itemPrices}/> :
-                    <Product products={game.items} date={game.date} setReadyToSubmit={setReadyToSubmit} totalAmount={totalAmount}/> 
-            }
-        </main>        
+            {readyToSubmit ? (
+                <Submit
+                    guess={guess}
+                    setGuess={setGuess}
+                    correctPrice={correctPrice}
+                    itemPrices={readyToSubmit.itemPrices}
+                />
+            ) : (
+                <Product
+                    products={game.items}
+                    date={game.date}
+                    setReadyToSubmit={setReadyToSubmit}
+                    totalAmount={totalAmount}
+                />
+            )}
+        </main>
     );
 }
 
