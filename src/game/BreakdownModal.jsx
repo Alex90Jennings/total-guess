@@ -21,23 +21,6 @@ const BreakdownModal = ({ onClose, items }) => {
                         <div className="ItemDifference">Item Price Difference</div>
                     </div>
                 </div>
-
-                {items.map((item, index) => (
-                    <div className="grid-container" key={index}>
-                        <div className="grid-item">
-                            <div className="itemNo">{index + 1}</div>
-                            <div className="itemImg"></div>
-                            <div className="itemDesc">{item.description}</div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="itemCorrectPrice">£{item.price.toFixed(2)}</div>
-                            <div className="usersItemGuess">£{item.guess.toFixed(2)}</div>
-                            <div className="ItemDifference">
-                                £{(item.guess - item.price).toFixed(2)}
-                            </div>
-                        </div>
-                    </div>
-                ))}
             </div>
         </div>
     );

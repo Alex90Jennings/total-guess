@@ -15,12 +15,14 @@ import StatisticsModal from "./game/StatisticsModal";
 import AboutUs from "./game/AboutUs";
 import FAQ from "./game/FAQ";
 import Advertise from "./game/Advertise";
+import BreakdownModal from "./game/BreakdownModal";
 import { AppContext } from "./hooks/context";
 
 export const ModalToDisplay = {
   INSTRUCTIONS: "INSTRUCTIONS",
   FAQ: "FAQ",
   STATISTICS: "STATISTICS",
+  BREAKDOWN: "BREAKDOWN",
   ABOUT_US: "ABOUT_US",
   ADVERTISE: "ADVERTISE",
 };
@@ -68,6 +70,9 @@ function App() {
             )}
             {modal === ModalToDisplay.STATISTICS && (
               <StatisticsModal onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.BREAKDOWN && (
+              <BreakdownModal onClose={() => setModalToDisplay("")} />
             )}
             {modal === ModalToDisplay.ABOUT_US && (
               <AboutUs onClose={() => setModalToDisplay("")} />
