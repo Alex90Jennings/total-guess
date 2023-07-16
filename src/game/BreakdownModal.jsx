@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/modal.css';
 import '../styles/share.css';
 
-const BreakdownModal = ({ onClose, items }) => {
+const BreakdownModal = ({ onClose }) => {
     return (
         <div className="modal-display">
             <div className="pl-l pr-l">

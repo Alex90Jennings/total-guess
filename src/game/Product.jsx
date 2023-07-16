@@ -116,10 +116,6 @@ function Product({ setReadyToSubmit, products, date }) {
         <div className="three-rows-expand-one-three">
             <div></div>
             <div className="main--layout">
-                <div className='three-rows-expand-one-three'>
-                    <div></div>
-                    <div></div>
-                </div>
                 {currentProduct && (
                     <div className={getBrandClassname("box {brand}-box-css")}>
                         <div className={getBrandClassname("shop--css {brand}-header-css three-rows-expand-one-three")}>
