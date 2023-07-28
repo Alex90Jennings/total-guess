@@ -64,12 +64,13 @@ body {
 
 .user-initials {
     border-radius: 100%;
-    padding: 10px;
+    padding: 11px;
     font-size: 34px;
     border-radius: 50%;
     border: 2px solid #36454F;
     box-sizing: content-box;
     background-color: #36454F;
+    color: #40E0D0;
 }
 
 .hide-text {
@@ -91,6 +92,12 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
+}
+
+.logo {
+    font-family: 'Luckiest Guy', cursive;
+    color: #36454F;
+    text-shadow: 2px 2px 4px #40E0D0;
 }
 
 .header-right-narrow-screen,
@@ -117,6 +124,7 @@ body {
     border: 2px solid #36454F;
     box-sizing: content-box;
     background-color: #36454F;
+    padding: 2px;
 }
 
 .icon:hover,
@@ -146,6 +154,7 @@ body {
     border: 2px solid #36454F;
     box-sizing: content-box;
     background-color: #36454F;
+    padding: 2px;
 }
 
 .stats-icon:hover {
@@ -842,13 +851,6 @@ input[type='number']::-webkit-outer-spin-button {
     display: grid;
     justify-content: center;
     align-items: center;
-}
-
-
-.logo {
-    font-family: 'Luckiest Guy', cursive;
-    color: #40E0D0;
-    text-shadow: 2px 2px 4px #000000;
 }
 
 .dropdown-icon {
