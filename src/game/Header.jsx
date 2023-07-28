@@ -30,7 +30,7 @@ function Header({ setShowLoginPage }) {
         <header id="header">
             <div className="header-left header-left-wide-screen">
                 <img
-                    src={"/icons/home.png"}
+                    src={"/icons/thome.png"}
                     alt="home icon"
                     className="icon-mute"
                     onClick={() => navigate('/')}
@@ -41,7 +41,7 @@ function Header({ setShowLoginPage }) {
             </div>
             <div className="header-left header-left-narrow-screen">
                 <img
-                    src={"/icons/home.png"}
+                    src={"/icons/thome.png"}
                     alt="home icon"
                     className="dropdown-icon"
                     onClick={() => navigate('/')}
@@ -50,22 +50,22 @@ function Header({ setShowLoginPage }) {
                     {getInitials()}
                 </div>
             </div>
-            <div className="header-middle logo">Total🤷‍♂️GuEss</div>
+            <div className="header-middle logo">Total GuEss</div>
             <div className="header-right header-right-wide-screen">
                 <img 
-                    src={isMuted ? "/icons/volumemute.png" : "/icons/volume.png"}
+                    src={isMuted ? "/icons/tmute.png" : "/icons/tvolume.png"}
                     alt="mute"
                     className="icon-mute"
                     onClick={() => setIsMuted(!isMuted)}
                 />
                 <img
-                    src={"/icons/instructionsnew.svg"}
+                    src={"/icons/ti.png"}
                     alt="i icon"
                     className="icon"
                     onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}
                 />
                 <img
-                    src={"/icons/statsnew.svg"}
+                    src={"/icons/tchart64.png"}
                     alt="stats icon"
                     className="stats-icon"
                     onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}
