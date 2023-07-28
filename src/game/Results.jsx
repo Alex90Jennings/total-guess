@@ -45,6 +45,9 @@ function Results() {
                 <div className="statistics-results">
                     <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
                 </div>
+                 <div className="breakdown-results">
+                    <div className='breakdown-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.BREAKDOWN)}>Breakdown</div>
+                </div>
                 {/*
                 <div className="share-results">
                     <a className='share-button-styling' href="/share">Share</a>

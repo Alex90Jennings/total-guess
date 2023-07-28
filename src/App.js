@@ -15,12 +15,14 @@ import StatisticsModal from "./game/StatisticsModal";
 import AboutUs from "./game/AboutUs";
 import FAQ from "./game/FAQ";
 import Advertise from "./game/Advertise";
+import BreakdownModal from "./game/BreakdownModal";
 import { AppContext } from "./hooks/context";
 
 export const ModalToDisplay = {
   INSTRUCTIONS: "INSTRUCTIONS",
   FAQ: "FAQ",
   STATISTICS: "STATISTICS",
+  BREAKDOWN: "BREAKDOWN",
   ABOUT_US: "ABOUT_US",
   ADVERTISE: "ADVERTISE",
 };
@@ -43,47 +45,51 @@ function App() {
 
   return (
     <div>
-        <div className="app">
-            <BrowserRouter>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route
-                        path="/play"
-                        element={<MainGamePage guess={guess} setGuess={setGuess} />}
-                    />
-                    <Route path="/results" element={<Results guess={guess} />} />
-                    <Route path="/share" element={<Share />} />
-                </Routes>
-            </BrowserRouter>
-            {Object.values(ModalToDisplay).map((modal) => (
-                <Modal
-                    key={modal}
-                    className={getModalClassName(modal)}
-                    isOpen={modalToDisplay === modal}
-                    onRequestClose={() => setModalToDisplay("")}
-                >
-                    {modal === ModalToDisplay.INSTRUCTIONS && (
-                        <GameInstructions onClose={() => setModalToDisplay("")} />
-                    )}
-                    {modal === ModalToDisplay.STATISTICS && (
-                        <StatisticsModal onClose={() => setModalToDisplay("")} />
-                    )}
-                    {modal === ModalToDisplay.ABOUT_US && (
-                        <AboutUs onClose={() => setModalToDisplay("")} />
-                    )}
-                    {modal === ModalToDisplay.FAQ && (
-                        <FAQ onClose={() => setModalToDisplay("")} />
-                    )}
-                    {modal === ModalToDisplay.ADVERTISE && (
-                        <Advertise onClose={() => setModalToDisplay("")} />
-                    )}
-                </Modal>
-            ))}
-            <Footer />
-        </div>
-        <ContactUs />
+      <div className="app">
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/play"
+              element={<MainGamePage guess={guess} setGuess={setGuess} />}
+            />
+            <Route path="/results" element={<Results guess={guess} />} />
+            <Route path="/share" element={<Share />} />
+          </Routes>
+        </BrowserRouter>
+        {Object.values(ModalToDisplay).map((modal) => (
+          <Modal
+            key={modal}
+            className={getModalClassName(modal)}
+            isOpen={modalToDisplay === modal}
+            onRequestClose={() => setModalToDisplay("")}
+          >
+            {modal === ModalToDisplay.INSTRUCTIONS && (
+              <GameInstructions onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.STATISTICS && (
+              <StatisticsModal onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.BREAKDOWN && (
+              <BreakdownModal onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.ABOUT_US && (
+              <AboutUs onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.FAQ && (
+              <FAQ onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.ADVERTISE && (
+              <Advertise onClose={() => setModalToDisplay("")} />
+            )}
+          </Modal>
+        ))}
+        <Footer />
+      </div>
+      <ContactUs />
     </div>
-)}
+  );
+}
 
 export default App;
