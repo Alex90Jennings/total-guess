@@ -77,41 +77,140 @@ body::-webkit-scrollbar {
   }
 }
 
+/* CSS for the Footer layout */
+
 .footer--layout {
   display: grid;
-  grid-template-rows: auto auto;
-  justify-content: center;
-}
-
-.footer--top {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto auto 1fr;
-  width: 100vw;
-  height: 50px;
-  gap: 10px;
-  place-content: center;
-  background-color: #0070C0;
-  margin-top: 8px;
-}
-
-.footer--bottom {
-  background-color: #3F3F3F;
-  height: 150px;
-}
-
-.footer--list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
   align-items: center;
+  background-color: #36454F;
+  padding: 20px;
+}
+
+.left-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.icon--inst {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-sizing: content-box;
+  background-color: #ffffff;
+  height: 39px;
+  width: 39px;
+  text-align: center;
+  line-height: 39px;
+  padding: 4px;
+}
+
+.icon--inst img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.icon--inst:hover {
+  background-color: #36454F;
+}
+
+.icon--linked {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-sizing: content-box;
+  background-color: #ffffff;
+  height: 39px;
+  width: 39px;
+  text-align: center;
+  line-height: 39px;
+  padding: 4px;
+}
+
+.icon--linked img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.icon--linked:hover {
+  background-color: #36454F;
+}
+
+.icon--twitter {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-sizing: content-box;
+  background-color: #ffffff;
+  height: 39px;
+  width: 39px;
+  text-align: center;
+  line-height: 39px;
+  padding: 4px;
+  }
+
+.icon--twitter img {
+  max-height: 100%;
+  max-width: 100%;
+  }
+
+.icon--twitter:hover {
+  background-color: #36454F;
+    }
+
+.icon--facebook {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-sizing: content-box;
+  background-color: #ffffff;
+  height: 39px;
+  width: 39px;
+  text-align: center;
+  line-height: 39px;
+  padding: 4px;
+}
+
+.icon--facebook img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.icon--facebook:hover {
+  background-color: #36454F;
+}
+
+.middle-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.icon-mail img {
+  margin-top: 8px;
+  height: 20px;
+  width: 20px;
 }
 
 .contact {
-  color: #0070C0;
+  font-size: 18px;
+  color: #ffffff;
 }
 
-.text-center {
-  text-align: center;
+.right-content {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.footer-row {
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff;
 }
 
 .timer-to-midnight {
