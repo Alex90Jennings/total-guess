@@ -1,7 +1,7 @@
 :root {
   --primary-colour-charcoal: #36454F;
   --primary-colour-accent: #40E0D0;
-  --primary-colour-off-white: #f7f7f7;
+  --primary-colour-off-white: #cbced0;
   --primary-colour-white: #fff;
 }
 
@@ -213,18 +213,20 @@ body::-webkit-scrollbar {
   font-family: 'Courier New', Courier, monospace;
   font-size: 2.2rem;
   font-weight: bold;
-  color: #0070C0;
+  color: var(--primary-colour-charcoal);
   margin-bottom: 6px;
 }
 
 .play-button-styling,
 .login-button-styling {
-  background-color: #0070c0;
+  background-color: var(--primary-colour-charcoal);
+  color: var(--primary-colour-white) !important;
 }
 
 .play-button-styling:hover,
 .login-button-styling:hover {
-  background-color: #262829 !important;
+  background-color: var(--primary-colour-white) !important;
+  color: var(--primary-colour-charcoal) !important;
 }
 
 .play-button-styling,
@@ -237,23 +239,27 @@ body::-webkit-scrollbar {
   color: #fff;
   border: none;
   height: 55px;
-  width: 200px;
-  border-radius: 8%;
+  width: 330px;
+  border-radius: 12px;
   font-size: 1.5rem;
   margin-top: 12px;
   text-align: center;
   text-decoration: none;
-  font-family: 'Luckiest Guy', cursive;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 800;
+  border: 2px solid var(--primary-colour-charcoal);
 }
 
 .signin-button-styling,
 .return-button-styling {
-  background-color: #262829;
+  background-color: var(--primary-colour-white) !important;
+  color: var(--primary-colour-charcoal) !important;
 }
 
 .signin-button-styling:hover,
 .return-button-styling:hover {
-  background-color: #0070c0 !important;
+  background-color: var(--primary-colour-charcoal) !important;
+  color: var(--primary-colour-white) !important;
 }
 
 .footer-row {
@@ -357,6 +363,10 @@ body::-webkit-scrollbar {
 
 .mt-s {
   margin-top: 8px;
+}
+
+.mt-xl {
+  margin-top: 40px;
 }
 
 .mg-m {

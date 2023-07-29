@@ -75,57 +75,32 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
     return (
         !isAuthenticated && (
             <div className='form'>
-                <form onSubmit={handleSubmit} className={`${formData.isRegistered ? 'five-rows-expand-three' : 'eight-rows-expand-six'}`}>
+                <form onSubmit={handleSubmit} className={`${formData.isRegistered ? 'five-rows-expand-three' : 'eight-rows-expand-six mt-xl'}`}>
                     <label>
                         {error && <p className="error">{error}</p>}
-                        <div className='three-columns-expand-one-three'>
-                            <div></div>
-                            <span className="label-container bold">Email:</span>
-                            <div></div>
-                        </div>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                        <input type="email" id="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} required />
                     </label>
                     {
                         !formData.isRegistered && (
                             <label>
-                                <div className='three-columns-expand-one-three'>
-                                    <div></div>
-                                    <span className="label-container bold">First Name:</span>
-                                    <div></div>
-                                </div>
-                                <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                                <input type="text" id="firstName" name="firstName" placeholder='First Name' value={formData.firstName} onChange={handleChange} required />
                             </label>
                         )
                     }
                     {
                         !formData.isRegistered && (
                             <label>
-                                <div className='three-columns-expand-one-three'>
-                                    <div></div>
-                                    <span className="label-container bold">Last Name:</span>
-                                    <div></div>
-                                </div>
-                                <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                                <input type="text" id="lastName" name="lastName" placeholder='Last Name' value={formData.lastName} onChange={handleChange} required />
                             </label>
                         )
                     }
                     <label>
-                        <div className='three-columns-expand-one-three'>
-                            <div></div>
-                            <span className="label-container bold">Password:</span>
-                            <div></div>
-                        </div>
-                        <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+                        <input type="password" id="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} required />
                     </label>
                     {
                         !formData.isRegistered && (
                             <label>
-                                <div className='three-columns-expand-one-three'>
-                                    <div></div>
-                                    <span className="label-container bold">Confirm Password:</span>
-                                    <div></div>
-                                </div>
-                                <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+                                <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} required />
                             </label>
                         )
                     }

@@ -91,7 +91,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                         loggedInUser?._id ?
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => handleSignOut()}>
                                 <div></div>
-                                <p>Sign Out</p>
+                                <div>Sign Out</div>
                                 <div></div>
                             </button> :
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => {
