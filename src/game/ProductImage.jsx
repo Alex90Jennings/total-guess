@@ -11,7 +11,7 @@ function ProductImage({ currentImage }) {
             <img 
                 src={currentImage} 
                 alt="product" 
-                className="product-image pd-m"
+                className="product-image"
                 onError={(event) => {
                     event.target.src = '/icons/not-found.png';
                 }} 

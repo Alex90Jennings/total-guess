@@ -4,7 +4,6 @@ import ProductImage from './ProductImage';
 import { AppContext } from "../hooks/context";
 
 function Product({ setReadyToSubmit, products, date }) {
-    //TODO: combine these states into one to reduce rerenders
     const { isMuted } = useContext(AppContext);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
@@ -49,13 +48,29 @@ function Product({ setReadyToSubmit, products, date }) {
     }
 
     const handleInputChange = (event) => {
-        setInputValue(event.target.value);
+        let inputValue = event.target.value;
+
+        inputValue = inputValue.replace(/[^0-9.]/g, '');
+    
+        if (!inputValue.startsWith('£')) {
+            inputValue = '£' + inputValue;
+        }
+    
+        const numericValue = parseFloat(inputValue.substring(1));
+    
+        if (!isNaN(numericValue) && numericValue > 99) {
+            inputValue = '£99.99';
+        }
+
+        setInputValue(inputValue);
     };
 
     const handleItemWorthSubmit = () => {
-        const itemWorth = parseFloat(inputValue);
+        const itemWorth = parseFloat(inputValue.replace(/[^0-9.]/g, ''));
+
         if (!isNaN(itemWorth)) {
-            setItemPrices((prevPrices) => [...prevPrices, itemWorth]);
+            const roundedItemWorth = parseFloat(itemWorth.toFixed(2));
+            setItemPrices((prevPrices) => [...prevPrices, roundedItemWorth]);
             setInputValue("");
         }
         if (currentShopIndex === products.length - 1) {
@@ -110,27 +125,29 @@ function Product({ setReadyToSubmit, products, date }) {
                         </div>
                         <div className="description--css mt-s">{currentDescription}</div>
                         <ProductImage currentImage={currentImage} />
-                        <div className="info-container">
-                            <div className="info-column">
-                                <p className="cumulative-total">Sub Total: £{cumulativeTotal}</p>
+                        <p className='item-count'><span className='item-count-accent'>{currentShopIndex + 1}</span>/{products.length}</p>
+                        <p className='sub-total'>Sub Total: £{cumulativeTotal}</p>
+                        <div className="input-container mt-s">
+                            <div></div>
+                            <div className='five-columns-expand-two-four'>
+                                <button id='back-item-button' disabled={currentShopIndex === 0} onClick={() => decrementItemIndex()}>Back</button>
+                                <div></div>
+                                <input
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={handleInputChange}
+                                    onKeyDown={handleInputKeyDown}
+                                    placeholder="Enter £ value"
+                                    className='value-input'
+                                />
+                                <div></div>
+                                <button id={currentShopIndex === products.length - 1 ? 'submit-final-item-button' : 'submit-item-button'} onClick={() => handleItemWorthSubmit()}>Submit</button>
                             </div>
                         </div>
-                        <div className="input-container">
-                            <input
-                                type="text"
-                                value={inputValue}
-                                onChange={handleInputChange}
-                                onKeyDown={handleInputKeyDown}
-                                placeholder="Enter item worth"
-                            />
-                            <button onClick={() => handleItemWorthSubmit()}>Enter</button>
-                            {currentShopIndex !== 0 && <button onClick={() => decrementItemIndex()}>Back</button>}
-                        </div>
-                        <div className={"info-container"}>
+                        <div className="info-container">
                             <div className="info-column">
                                 <p className="date">{getDateString(currentProduct.date)}</p>
                             </div>
-                            <div className='space4'></div>
                             <div className="info-column text-right">
                                 <p className="game">#{getDaysSince()}</p>
                             </div>
