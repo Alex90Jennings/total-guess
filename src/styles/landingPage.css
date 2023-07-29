@@ -107,6 +107,10 @@
   font-size: 50px;
 }
 
+.error {
+  max-width: 330px;
+  text-align: center;
+}
 
 @media screen and (max-width: 800px) {
   .landing-page {
