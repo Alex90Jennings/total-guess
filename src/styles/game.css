@@ -65,6 +65,7 @@ body {
 .user-initials {
     font-size: 28px;
     padding-top: 6px;
+    color: var(--primary-colour-accent);
 }
 
 .hide-text {

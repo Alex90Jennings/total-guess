@@ -32,7 +32,13 @@ const TimerToUkMidnight = () => {
         return () => clearInterval(interval);
     }, []);
 
-    return <div className='text-center timer-to-midnight'>{countdown}</div>;
+    return (
+        <div className='three-columns-expand-one-three'>
+            <div></div>
+            <div className='timer-to-midnight'>{countdown}</div>
+            <div></div>
+        </div>
+    );
 };
 
 export default TimerToUkMidnight;
