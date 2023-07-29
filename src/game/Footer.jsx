@@ -17,6 +17,7 @@ function Footer() {
                             alt="instagram icon"
                             height="35px"
                             width="35px"
+                            className='pt-xs'
                         />
                     </div>
                 </div>
@@ -27,6 +28,7 @@ function Footer() {
                             alt="linkedin icon"
                             height="35px"
                             width="35px"
+                            className='pt-xs'
                         />
                     </div>
                 </div>
@@ -37,6 +39,7 @@ function Footer() {
                             alt="twitter icon"
                             height="35px"
                             width="35px"
+                            className='pt-xs'
                         />
                     </div>
                 </div>
@@ -47,6 +50,7 @@ function Footer() {
                             alt="facebook icon"
                             height="35px"
                             width="35px"
+                            className='pt-xs'
                         />
                     </div>
                 </div>
@@ -56,8 +60,6 @@ function Footer() {
                     <img
                         src={'/icons/mail.png'}
                         alt="icon"
-                        height="35px"
-                        width="35px"
                     />
                 </div>
                 <div className="contact">totalguessgame@gmail.com</div>

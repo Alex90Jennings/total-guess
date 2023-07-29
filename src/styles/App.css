@@ -190,8 +190,7 @@ body::-webkit-scrollbar {
 }
 
 .icon-mail img {
-  margin-top: 8px;
-  height: 20px;
+  margin-top: 4px;
   width: 20px;
 }
 
@@ -313,6 +312,10 @@ body::-webkit-scrollbar {
 /*PADDING AND MARGINS*/
 .pl-none {
   padding-left: 0;
+}
+
+.pt-xs {
+  padding-top: 2px;
 }
 
 .pl-m {
