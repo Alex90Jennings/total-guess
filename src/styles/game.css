@@ -63,18 +63,12 @@ body {
 }
 
 .user-initials {
-    border-radius: 100%;
-    padding: 11px;
-    font-size: 34px;
-    border-radius: 50%;
-    border: 2px solid #36454F;
-    box-sizing: content-box;
-    background-color: #36454F;
-    color: #40E0D0;
+    font-size: 28px;
+    padding-top: 6px;
 }
 
 .hide-text {
-    color: #40E0D0 !important;
+    color: var(--primary-colour-accent) !important;
 }
 
 .signup,
@@ -96,8 +90,9 @@ body {
 
 .logo {
     font-family: 'Luckiest Guy', cursive;
-    color: #36454F;
-    text-shadow: 2px 2px 4px #40E0D0;
+    color: var(--primary-colour-charcoal);
+    text-shadow: 2px 2px 4px var(--primary-colour-accent);
+    margin: auto;
 }
 
 .header-right-narrow-screen,
@@ -121,9 +116,9 @@ body {
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    border: 2px solid #36454F;
+    border: 2px solid var(--primary-colour-charcoal);
     box-sizing: content-box;
-    background-color: #36454F;
+    background-color: var(--primary-colour-charcoal);
     padding: 2px;
 }
 
@@ -132,18 +127,25 @@ body {
     background-color: #d8dbde;
 }
 
-.icon-mute {
-    margin-right: 10px;
-    height: 45px;
+.icon-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 45px;
-    padding: 9px;
+    height: 45px;
     border-radius: 50%;
-    border: 2px solid #36454F;
-    box-sizing: content-box;
-    background-color: #36454F;
+    border: 2px solid var(--primary-colour-charcoal);
+    background-color: var(--primary-colour-charcoal);
 }
 
-.icon-mute:hover {
+.icon-header img,
+.user-initials {
+    max-width: 60%;
+    max-height: 60%;
+}
+
+
+.icon-header:hover {
     background-color: #d8dbde;
 }
 
@@ -151,9 +153,9 @@ body {
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    border: 2px solid #36454F;
+    border: 2px solid var(--primary-colour-charcoal);
     box-sizing: content-box;
-    background-color: #36454F;
+    background-color: var(--primary-colour-charcoal);
     padding: 2px;
 }
 
