@@ -34,7 +34,7 @@
   border: 1px solid #ccc;
   width: 100%;
   box-sizing: border-box;
-  height: 24px
+  height: 40px
 }
 
 .form button[type="submit"]:hover {
@@ -45,17 +45,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
 }
 
 .switch-text {
-  color: #0070c0;
+  color: var(--primary-colour-charcoal);
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .switch-text:hover {
-  color: #004d99;
+  color: black;
 }
 
 #login-header h2 {
