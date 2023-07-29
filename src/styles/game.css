@@ -68,7 +68,7 @@ body {
 }
 
 .hide-text {
-    color: #40E0D0 !important;
+    color: var(--primary-colour-accent) !important;
 }
 
 .signup,
@@ -90,8 +90,8 @@ body {
 
 .logo {
     font-family: 'Luckiest Guy', cursive;
-    color: #36454F;
-    text-shadow: 2px 2px 4px #40E0D0;
+    color: var(--primary-colour-charcoal);
+    text-shadow: 2px 2px 4px var(--primary-colour-accent);
     margin: auto;
 }
 
@@ -116,9 +116,9 @@ body {
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    border: 2px solid #36454F;
+    border: 2px solid var(--primary-colour-charcoal);
     box-sizing: content-box;
-    background-color: #36454F;
+    background-color: var(--primary-colour-charcoal);
     padding: 2px;
 }
 
@@ -134,8 +134,8 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    border: 2px solid #36454F;
-    background-color: #36454F;
+    border: 2px solid var(--primary-colour-charcoal);
+    background-color: var(--primary-colour-charcoal);
 }
 
 .icon-header img,
@@ -153,9 +153,9 @@ body {
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    border: 2px solid #36454F;
+    border: 2px solid var(--primary-colour-charcoal);
     box-sizing: content-box;
-    background-color: #36454F;
+    background-color: var(--primary-colour-charcoal);
     padding: 2px;
 }
 

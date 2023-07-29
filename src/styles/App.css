@@ -1,11 +1,8 @@
 :root {
-  --primary-colour-blue: #0070C0;
-  --primary-colour-grey: #f0ebf8;
-  --primary-colour-orange: #f18213;
+  --primary-colour-charcoal: #36454F;
+  --primary-colour-accent: #40E0D0;
   --primary-colour-off-white: #f7f7f7;
   --primary-colour-white: #fff;
-  --primary-colour-blue-hover: #5eeac5;
-  --primary-colour-grey-hover: #303443;
 }
 
 .App {
@@ -84,7 +81,7 @@ body::-webkit-scrollbar {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   align-items: center;
-  background-color: #36454F;
+  background-color: var(--primary-colour-charcoal);
   padding: 20px;
 }
 
@@ -113,7 +110,7 @@ body::-webkit-scrollbar {
 }
 
 .icon--inst:hover {
-  background-color: #36454F;
+  background-color: var(--primary-colour-charcoal);
 }
 
 .icon--linked {
@@ -135,7 +132,7 @@ body::-webkit-scrollbar {
 }
 
 .icon--linked:hover {
-  background-color: #36454F;
+  background-color: var(--primary-colour-charcoal);
 }
 
 .icon--twitter {
@@ -157,7 +154,7 @@ body::-webkit-scrollbar {
   }
 
 .icon--twitter:hover {
-  background-color: #36454F;
+  background-color: var(--primary-colour-charcoal);
     }
 
 .icon--facebook {
@@ -179,7 +176,7 @@ body::-webkit-scrollbar {
 }
 
 .icon--facebook:hover {
-  background-color: #36454F;
+  background-color: var(--primary-colour-charcoal);
 }
 
 .middle-content {
