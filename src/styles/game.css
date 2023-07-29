@@ -258,10 +258,13 @@ body {
     text-align: center;
     width: 100%;
     padding: 8px 0;
+    background-color: var(--primary-colour-charcoal);
+    border-radius: 20px 20px 0 0;
+    color: var(--primary-colour-white);
 }
 
 .description--css {
-    color: #f18213;
+    color: var(--primary-colour-charcoal);
     text-align: center;
     margin: 0;
     font-size: 32px;
@@ -279,6 +282,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 1350px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px var(--primary-colour-charcoal);
 }
 
 .clear-button {

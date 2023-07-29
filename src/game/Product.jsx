@@ -1,28 +1,33 @@
 import React, { useState, useContext } from 'react';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
-import ImageCount from './ImageCount';
 import { AppContext } from "../hooks/context";
 
 function Product({ setReadyToSubmit, products, date }) {
+    //TODO: combine these states into one to reduce rerenders
     const { isMuted } = useContext(AppContext);
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
     const [inputValue, setInputValue] = useState("");
     const [itemPrices, setItemPrices] = useState([]);
+    const cumulativeTotal = itemPrices.reduce((sum, price) => sum + price, 0).toFixed(2);
+    const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop'];
+    const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl'];
 
+    //TODO: get loading spinner
     if (!products) {
         return <div>Loading...</div>;
     }
 
-    const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop'];
-    const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl'];
     const currentProduct = products[currentShopIndex];
+    const currentShop = currentProduct.store;
+    const currentDescription = currentProduct.description;
+    const currentImage = currentProduct.image;
 
-    const getBrandClassname = (classNames) => {
-        return classNames.replace('{brand}', currentProduct.store);
-    };
+    // const getBrandClassname = (classNames) => {
+    //     return classNames.replace('{brand}', currentProduct.store);
+    // };
 
     const correctShopName = (shopName) => {
         if (shopName === 'coop') return shopName;
@@ -33,37 +38,16 @@ function Product({ setReadyToSubmit, products, date }) {
         return nameToReturn;
     };
 
-    const currentShop = currentProduct.store;
-    const currentDescription = currentProduct.description;
-    const currentImage = currentProduct.image;
-
-    const handleItemIndexChange = (direction) => {
-        let newIndex = currentShopIndex;
-
-        if (direction === 'left' && newIndex === 0) {
-            return;
-        }
-
-        if (direction === 'left') {
-            if (!isMuted) audio.play();
-            newIndex--;
-            setCurrentShopIndex(newIndex);
-            setItemPrices((prevPrices) => prevPrices.slice(0, prevPrices.length - 1));
-            return;
-        }
-
-        if (direction === 'right' && currentShopIndex === products.length - 1) {
-            setReadyToSubmit({ itemPrices });
-            if (!isMuted) audioCoins.play();
-            return;
-        }
+    const decrementItemIndex = () => {
+        if (currentShopIndex === 0) return
 
         if (!isMuted) audio.play();
-        newIndex++;
+        const newIndex = currentShopIndex - 1;
         setCurrentShopIndex(newIndex);
-    };
+        setItemPrices((prevPrices) => prevPrices.slice(0, prevPrices.length - 1));
+        return;
+    }
 
-    //TODO: refactor these functions to one function
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
@@ -78,13 +62,14 @@ function Product({ setReadyToSubmit, products, date }) {
             setReadyToSubmit({ itemPrices: [...itemPrices, itemWorth] });
             if (!isMuted) audioCoins.play();
         } else {
-            handleItemIndexChange('right');
+            if (!isMuted) audio.play();
+            const newIndex = currentShopIndex + 1
+            setCurrentShopIndex(newIndex);
         }
     };
 
     const handleInputKeyDown = (event) => {
         if (event.key === 'Enter') {
-            handleItemIndexChange('right');
             handleItemWorthSubmit();
         }
     };
@@ -101,24 +86,18 @@ function Product({ setReadyToSubmit, products, date }) {
         const targetDate = new Date('2023-07-01');
         const givenDate = new Date(date);
 
-        if (isNaN(givenDate)) {
-            throw new Error("Invalid date format. Cannot calculate days since.");
-        }
-
         const timeDiff = Math.abs(givenDate.getTime() - targetDate.getTime());
         const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
         return daysDiff;
     }
-
-    const cumulativeTotal = itemPrices.reduce((sum, price) => sum + price, 0).toFixed(2);
 
     return (
         <div className="three-rows-expand-one-three">
             <div></div>
             <div className="main--layout">
                 {currentProduct && (
-                    <div className={getBrandClassname("box {brand}-box-css")}>
-                        <div className={getBrandClassname("shop--css {brand}-header-css three-rows-expand-one-three")}>
+                    <div className="box">
+                        <div className="shop--css three-rows-expand-one-three">
                             <div></div>
                             {currentShop === "mands" ? (
                                 <h1 className='normal-font pt-s'>M<span className='mands-accent-css'>&</span>S</h1>
@@ -129,48 +108,25 @@ function Product({ setReadyToSubmit, products, date }) {
                             )}
                             <div></div>
                         </div>
-                        <div className={getBrandClassname("description--css {brand}-description-css mt-s")}>{currentDescription}</div>
-                        <div className="image-row">
-                            <div className='three-rows-expand-one-three'>
-                                <div></div>
-                                <div></div>
-                            </div>
-                            <div className='wide-screen-count'>
-                                <ImageCount
-                                    currentShopIndex={currentShopIndex}
-                                    totalAmount={cumulativeTotal}
-                                    getBrandClassname={getBrandClassname}
-                                    start={1}
-                                    end={5}
-                                />
-                            </div>
-                            <div className='space1'></div>
-                            <ProductImage currentImage={currentImage} />
-                            <div className='space2'></div>
-                            <div className='wide-screen-count'>
-                                <ImageCount
-                                    className='wide-screen-count'
-                                    currentShopIndex={currentShopIndex}
-                                    totalAmount={cumulativeTotal}
-                                    getBrandClassname={getBrandClassname}
-                                    start={6}
-                                    end={10}
-                                />
+                        <div className="description--css mt-s">{currentDescription}</div>
+                        <ProductImage currentImage={currentImage} />
+                        <div className="info-container">
+                            <div className="info-column">
+                                <p className="cumulative-total">Sub Total: £{cumulativeTotal}</p>
                             </div>
                         </div>
-                        <div className='narrow-screen-count three-columns-expand-one-three'>
-                            <div></div>
-                            <ImageCount
-                                currentShopIndex={currentShopIndex}
-                                alignment={"horizontal"}
-                                totalAmount={cumulativeTotal}
-                                getBrandClassname={getBrandClassname}
-                                start={1}
-                                end={10}
+                        <div className="input-container">
+                            <input
+                                type="text"
+                                value={inputValue}
+                                onChange={handleInputChange}
+                                onKeyDown={handleInputKeyDown}
+                                placeholder="Enter item worth"
                             />
-                            <div></div>
+                            <button onClick={() => handleItemWorthSubmit()}>Enter</button>
+                            {currentShopIndex !== 0 && <button onClick={() => decrementItemIndex()}>Back</button>}
                         </div>
-                        <div className={getBrandClassname("info-container {brand}-info")}>
+                        <div className={"info-container"}>
                             <div className="info-column">
                                 <p className="date">{getDateString(currentProduct.date)}</p>
                             </div>
@@ -179,26 +135,10 @@ function Product({ setReadyToSubmit, products, date }) {
                                 <p className="game">#{getDaysSince()}</p>
                             </div>
                         </div>
-                        <div className="info-container">
-                            <div className="info-column">
-                                <p className="cumulative-total">Sub Total: £{cumulativeTotal}</p>
-                            </div>
-                        </div>
                     </div>
                 )}
             </div>
             <div></div>
-            <div className="input-container">
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleInputKeyDown}
-                    placeholder="Enter item worth"
-                />
-                <button onClick={handleItemWorthSubmit}>Enter</button>
-                <button onClick={() => handleItemIndexChange('left')}>Back</button>
-            </div>
         </div>
     );
 }
