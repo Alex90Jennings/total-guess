@@ -218,13 +218,17 @@ body::-webkit-scrollbar {
 }
 
 .play-button-styling,
-.login-button-styling {
+.login-button-styling,
+.statistics-button-styling,
+.breakdown-button-styling {
   background-color: var(--primary-colour-charcoal);
   color: var(--primary-colour-white) !important;
 }
 
 .play-button-styling:hover,
-.login-button-styling:hover {
+.login-button-styling:hover,
+.statistics-button-styling:hover,
+.breakdown-button-styling:hover {
   background-color: var(--primary-colour-white) !important;
   color: var(--primary-colour-charcoal) !important;
 }
@@ -232,7 +236,10 @@ body::-webkit-scrollbar {
 .play-button-styling,
 .signin-button-styling,
 .login-button-styling,
-.return-button-styling {
+.return-button-styling,
+.statistics-button-styling,
+.breakdown-button-styling,
+.feedback-button-styling {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,13 +258,15 @@ body::-webkit-scrollbar {
 }
 
 .signin-button-styling,
-.return-button-styling {
+.return-button-styling,
+.feedback-button-styling {
   background-color: var(--primary-colour-white) !important;
   color: var(--primary-colour-charcoal) !important;
 }
 
 .signin-button-styling:hover,
-.return-button-styling:hover {
+.return-button-styling:hover,
+.feedback-button-styling:hover {
   background-color: var(--primary-colour-charcoal) !important;
   color: var(--primary-colour-white) !important;
 }

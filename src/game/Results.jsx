@@ -17,6 +17,11 @@ function Results() {
     return (
         <div className="main--layout--results">
             <div className="box-results">
+                <div className='three-columns-expand-one-three trolley-icon'>
+                    <div></div>
+                    <img src="/icons/trolleywhite.svg" alt="trolley"/>
+                    <div></div>
+                </div>
                 <div className="h1-results">
                     <h1>The actual cost of the groceries</h1>
                 </div>
@@ -42,20 +47,22 @@ function Results() {
                         }
                     </p>
                 </div>
-                <div className="statistics-results">
-                    <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
-                </div>
-                 <div className="breakdown-results">
-                    <div className='breakdown-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.BREAKDOWN)}>Breakdown</div>
-                </div>
-                {/*
-                <div className="share-results">
-                    <a className='share-button-styling' href="/share">Share</a>
-                </div>
-                */}
-                <div className="feedback-results">
-                    {/*<a className='feedback-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.FEEDBACK)} href="/feedback">Feedback</a>*/}
-                    <Link to="/" className='feedback-button-styling'>Home Page</Link>
+                <div className='result-buttons'>
+                    <div className="statistics-results">
+                        <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
+                    </div>
+                    <div className="statistics-results">
+                        <div className='breakdown-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.BREAKDOWN)}>Breakdown</div>
+                    </div>
+                    {/*
+                    <div className="share-results">
+                        <a className='share-button-styling' href="/share">Share</a>
+                    </div>
+                    */}
+                    <div className="statistics-results">
+                        {/*<a className='feedback-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.FEEDBACK)} href="/feedback">Feedback</a>*/}
+                        <Link to="/" className='feedback-button-styling'>Home Page</Link>
+                    </div>
                 </div>
             </div>
         </div>
