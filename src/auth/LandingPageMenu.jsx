@@ -85,7 +85,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                     <button className='landing-page-menu-btn other-btn' onClick={handleModalOpen}>Instructions</button>
                     <div></div>
                 </li> */}
-                <li className='three-columns-expand-one-three'>
+                <li className='three-columns-expand-one-three mt-s'>
                     <div></div>
                     {
                         loggedInUser?._id ?
