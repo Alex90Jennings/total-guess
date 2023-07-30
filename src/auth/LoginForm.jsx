@@ -110,7 +110,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                             {formData.isRegistered ? "Need to register?" : "Already registered?"}
                         </span>
                     </div>
-                    <div className='three-columns-expand-one-three'>
+                    <div className='three-columns-expand-one-three mt-s'>
                         <div></div>
                         <button type="submit" className="login-button-styling three-rows-expand-one-three">
                             <div></div>
@@ -120,7 +120,7 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                         <div></div>
                     </div>
                 </form>
-                <div className='three-columns-expand-one-three'>
+                <div className='three-columns-expand-one-three mt-s'>
                     <div></div>
                     <button className="return-button-styling three-rows-expand-one-three" onClick={() => handleReturnToMainMenu()}>
                         <div></div>

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/modal.css";
@@ -27,7 +27,6 @@ export const ModalToDisplay = {
 };
 
 function App() {
-    const [guess, setGuess] = useState(0);
     const { modalToDisplay, setModalToDisplay } = useContext(AppContext);
 
     useEffect(() => {
@@ -50,9 +49,9 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route
                     path="/play"
-                    element={<MainGamePage guess={guess} setGuess={setGuess} />}
+                    element={<MainGamePage />}
                 />
-                <Route path="/results" element={<Results guess={guess} />} />
+                <Route path="/results" element={<Results />} />
                 <Route path="/share" element={<Share />} />
             </Routes>
         </BrowserRouter>
