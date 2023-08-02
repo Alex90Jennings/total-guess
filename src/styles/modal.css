@@ -3,13 +3,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #0070c0;
-    background-color: #d8d8d8;
+    color: rgb(255, 255, 255);
+    background-color: var(--primary-colour-charcoal);
     max-width: 80vw;
     min-width: 70vw;
     max-height: 90vh;
     border-radius: 24px;
-    border: 2px solid #0070c0;
+    border: 2px solid var(--primary-colour-accent);
     padding: 20px;
     overflow-y: auto;
     scrollbar-width: none;
@@ -28,21 +28,24 @@
 
 .close-btn {
     background-color: inherit;
-    padding: 0;
+    padding: 5px;
     margin-top: 18px;
     margin-right: 18px;
     border: none;
     font-size: 1rem;
     font-weight: bolder;
-    color: #0070c0;
+    color: var(--primary-colour-accent);
     position: absolute;
     top: 0;
     right: 0;
+    border-radius: 50%;
+    border: 2px solid var(--primary-colour-charcoal);
+    background-color: #FFFFFF;
 }
 
 .modal h1 {
     font-size: 2rem;
-    color: #0070c0;
+    color: var(--primary-colour-accent);
 }
 
 .instructions-h1 {
@@ -52,7 +55,7 @@
 .modal h2 {
     font-size: 1.2rem;
     padding-bottom: 4px;
-    color: black;
+    color: var(--primary-colour-accent);
 }
 
 .modal ul {
@@ -119,11 +122,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #0070c0;
-    background-color: #d8d8d8;
+    color: var(--primary-colour-accent);
+    background-color: var(--primary-colour-charcoal);
     max-height: 90vh;
     border-radius: 24px;
-    border: 2px solid #000000;
+    border: 2px solid var(--primary-colour-accent);
     max-width: 55vw;
     min-width: 50vw;
     padding: 20px;
