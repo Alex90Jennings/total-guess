@@ -59,23 +59,20 @@ function Header({ setShowLoginPage }) {
                     />
                 </div>
             </div>
-            <div className="header-right-narrow-screen">
-                <div className="two-columns-expand-one">
-                    <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
-                        <img
-                            src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
-                            alt="mute"
-                        />
-                    </div>
-                    <div className="icon-header mr-m" onClick={() => setIsMuted(!isMuted)}>
-                        <img
-                            src={"/icons/tdropdown.png"}
-                            alt="dropdown"
-                            className="mr-m"
-                            onClick={() => setShowDropdown(!showDropdown)}
-                        />
-                    </div>
-
+            <div className="header-right header-right-narrow-screen">
+                <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
+                    <img
+                        src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
+                        alt="mute"
+                    />
+                </div>
+                <div className="icon-header mr-m" onClick={() => setIsMuted(!isMuted)}>
+                    <img
+                        src={"/icons/tdropdown.png"}
+                        alt="dropdown"
+                        className="mr-m"
+                        onClick={() => setShowDropdown(!showDropdown)}
+                    />
                 </div>
                 {showDropdown && (
                     <div className="dropdown-menu">

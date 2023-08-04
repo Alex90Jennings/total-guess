@@ -82,7 +82,8 @@ body::-webkit-scrollbar {
   gap: 20px;
   align-items: center;
   background-color: var(--primary-colour-charcoal);
-  padding: 20px;
+  padding: 0 8px;
+  height: 70px;
 }
 
 .left-icons {
@@ -113,7 +114,7 @@ body::-webkit-scrollbar {
   background-color: var(--primary-colour-charcoal);
 }
 
-.icon--linked {
+.icon--footer {
   display: inline-block;
   border-radius: 50%;
   border: 2px solid #ffffff;
@@ -126,12 +127,13 @@ body::-webkit-scrollbar {
   padding: 4px;
 }
 
-.icon--linked img {
+.icon--footer img {
+  padding-top: 2px;
   max-height: 100%;
   max-width: 100%;
 }
 
-.icon--linked:hover {
+.icon--footer:hover {
   background-color: var(--primary-colour-charcoal);
 }
 

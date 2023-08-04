@@ -11,58 +11,23 @@ function Footer() {
         <footer className="footer--layout">
             <div className='footer-narrow-screen'></div>
             <div className="left-icons">
-                <div className="icon--inst">
-                    <div>
-                        <img
-                            src="/icons/tinstagram.png"
-                            alt="instagram icon"
-                            height="35px"
-                            width="35px"
-                            className='pt-xs'
-                        />
-                    </div>
+                <div className="icon-footer">
+                    <img src="/icons/tinstagram.png" alt="instagram icon" />
                 </div>
-                <div className="icon--linked">
-                    <div>
-                        <img
-                            src={'/icons/tlinkedin.png'}
-                            alt="linkedin icon"
-                            height="35px"
-                            width="35px"
-                            className='pt-xs'
-                        />
-                    </div>
+                <div className="icon-footer">
+                    <img src={'/icons/tlinkedin.png'} alt="linkedin icon" />
                 </div>
-                <div className="icon--twitter">
-                    <div>
-                        <img
-                            src={'/icons/ttwitter.png'}
-                            alt="twitter icon"
-                            height="35px"
-                            width="35px"
-                            className='pt-xs'
-                        />
-                    </div>
+                <div className="icon-footer">
+                    <img src={'/icons/ttwitter.png'} alt="twitter icon" />
                 </div>
-                <div className="icon--facebook">
-                    <div>
-                        <img
-                            src={'/icons/tfacebook.png'}
-                            alt="facebook icon"
-                            height="35px"
-                            width="35px"
-                            className='pt-xs'
-                        />
-                    </div>
+                <div className="icon-footer">
+                    <img src={'/icons/tfacebook.png'} alt="facebook icon" />
                 </div>
             </div>
             <div className='footer-narrow-screen'></div>
             <div className="middle-content footer-wide-screen">
                 <div className="icon-mail">
-                    <img
-                        src={'/icons/mail.png'}
-                        alt="icon"
-                    />
+                    <img src={'/icons/mail.png'} alt="icon" />
                 </div>
                 <div className="contact">totalguessgame@gmail.com</div>
             </div>
