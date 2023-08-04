@@ -67,7 +67,7 @@ const Statistics = () => {
             {
                 label: 'Percentage',
                 data: bins,
-                backgroundColor: '#545050',
+                backgroundColor: '#40E0D0',
                 borderWidth: 1,
                 barThickness: width / (binCount * 2) * 0.8,
             },
@@ -100,7 +100,7 @@ const Statistics = () => {
                             display: false,
                         },
                         ticks: {
-                            color: '#0070c0',
+                            color: '#fffffF',
                         },
                         grid: {
                             display: false,
@@ -118,7 +118,7 @@ const Statistics = () => {
                             const { ctx } = chartInstanceRef.current;
                 
                             ctx.font = 'bold 12px Arial';
-                            ctx.fillStyle = '#000000';
+                            ctx.fillStyle = '#fffffF';
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'bottom';
                 
@@ -151,8 +151,13 @@ const Statistics = () => {
     }, [loggedInUser?.scores, width]);
 
     return (
-        <div className="chartContainer">
-            <canvas id="histogramChart" ref={chartRef} className="myChart"></canvas>
+        <div className="chartContainer" style={{ backgroundColor: '#36454F' }}>
+            <canvas
+                id="histogramChart"
+                ref={chartRef}
+                className="myChart"
+                style={{ backgroundColor: '#36454F' }} 
+            ></canvas>
         </div>
     );
 };
