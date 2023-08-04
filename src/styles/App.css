@@ -213,7 +213,7 @@ body::-webkit-scrollbar {
   font-family: 'Courier New', Courier, monospace;
   font-size: 2.2rem;
   font-weight: bold;
-  color: var(--primary-colour-charcoal);
+  color: var(--primary-colour-accent);
   margin-bottom: 6px;
 }
 

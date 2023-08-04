@@ -30,10 +30,12 @@ function Header({ setShowLoginPage }) {
                 <div className="icon-header mr-s" onClick={() => navigate('/')}>
                     <img src={"/icons/thome.png"} alt="home icon" />
                 </div>
-                <div className='icon-header'>
+                <div className='icon-header three-rows-expand-one-three'>
+                    <div></div>
                     <div className={loggedInUser?.firstName ? 'user-initials ml-xs mr-s' : 'user-initials hide-text ml-xs mr-s'}>
                         {getInitials()}
                     </div>
+                    <div></div>
                 </div>
             </div>
             <div className="header-left header-left-narrow-screen">
