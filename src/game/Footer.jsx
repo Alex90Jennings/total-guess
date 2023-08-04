@@ -9,6 +9,7 @@ function Footer() {
 
     return (
         <footer className="footer--layout">
+            <div className='footer-narrow-screen'></div>
             <div className="left-icons">
                 <div className="icon--inst">
                     <div>
@@ -55,7 +56,8 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="middle-content">
+            <div className='footer-narrow-screen'></div>
+            <div className="middle-content footer-wide-screen">
                 <div className="icon-mail">
                     <img
                         src={'/icons/mail.png'}
@@ -64,7 +66,7 @@ function Footer() {
                 </div>
                 <div className="contact">totalguessgame@gmail.com</div>
             </div>
-            <div className="right-content">
+            <div className="right-content footer-wide-screen">
                 <div
                     className="footer-row"
                     onClick={() => setModalToDisplay(ModalToDisplay.ABOUT_US)}

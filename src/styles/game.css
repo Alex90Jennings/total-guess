@@ -143,6 +143,10 @@ body {
     max-height: 60%;
 }
 
+.footer-narrow-screen {
+    display: none;
+}
+
 .user-initials {
     margin: auto !important;
 }
@@ -1267,6 +1271,10 @@ input[type='number']::-webkit-outer-spin-button {
         display: none;
     }
 
+    .footer-narrow-screen {
+        display: grid;
+    }
+
     .header-right-narrow-screen,
     .header-left-narrow-screen {
         display: grid;
@@ -1473,10 +1481,6 @@ input[type='number']::-webkit-outer-spin-button {
         height: 50px;
         width: 180px;
         font-size: 1.5rem;
-    }
-
-    .footer-icon {
-        display: none;
     }
 
     .main--layout--results h1 {
