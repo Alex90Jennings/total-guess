@@ -38,17 +38,6 @@ function Header({ setShowLoginPage }) {
                     <div></div>
                 </div>
             </div>
-            <div className="header-left header-left-narrow-screen">
-                <img
-                    src={"/icons/thome.png"}
-                    alt="home icon"
-                    className="icon-header mr-s"
-                    onClick={() => navigate('/')}
-                />
-                <div className={loggedInUser?.firstName ? 'user-initials ml-xs' : 'user-initials hide-text ml-xs'}>
-                    {getInitials()}
-                </div>
-            </div>
             <h1 className="header-middle logo">Total GuEss</h1>
             <div className="header-right header-right-wide-screen">
                 <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
@@ -72,18 +61,21 @@ function Header({ setShowLoginPage }) {
             </div>
             <div className="header-right-narrow-screen">
                 <div className="two-columns-expand-one">
-                    <img
-                        src={isMuted ? '/icons/muted.png' : '/icons/unmuted.png'}
-                        alt="mute"
-                        className={isMuted ? 'mr-m icon-header mr-s pd-s' : 'mr-m icon-header mr-s'}
-                        onClick={() => setIsMuted(!isMuted)}
-                    />
-                    <img
-                        src={"/icons/dropdown.png"}
-                        alt="dropdown"
-                        className="mr-m dropdown-icon ml-xs"
-                        onClick={() => setShowDropdown(!showDropdown)}
-                    />
+                    <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
+                        <img
+                            src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
+                            alt="mute"
+                        />
+                    </div>
+                    <div className="icon-header mr-m" onClick={() => setIsMuted(!isMuted)}>
+                        <img
+                            src={"/icons/tdropdown.png"}
+                            alt="dropdown"
+                            className="mr-m"
+                            onClick={() => setShowDropdown(!showDropdown)}
+                        />
+                    </div>
+
                 </div>
                 {showDropdown && (
                     <div className="dropdown-menu">
