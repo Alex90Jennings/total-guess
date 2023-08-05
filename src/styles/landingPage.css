@@ -116,11 +116,6 @@
   .landing-page {
     padding: 10px;
   }
-
-  .eight-rows-expand-six,
-  .five-rows-expand-three {
-    display: block;
-  }
 }
 @media screen and (max-height: 700px) {
   .landing-page {
