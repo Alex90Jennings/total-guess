@@ -138,7 +138,7 @@ function MainGamePage() {
         if (loggedInUser) {
             const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError);
             setLoggedInUser(response.data);
-            await clientApi.updateItemsGuess(itemPricesRef.current)
+            //await clientApi.updateItemsGuess(itemPricesRef.current)
             setBreakdown(itemPricesRef.current)
             if (!isMuted) audio.play();
         }
