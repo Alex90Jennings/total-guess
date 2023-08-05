@@ -623,6 +623,7 @@ input[type='number']::-webkit-outer-spin-button {
 .percentile-results,
 .statistics-results {
     max-width: 400px;
+    margin: 0 auto;
 }
 
 .main--layout--results {
@@ -643,6 +644,11 @@ input[type='number']::-webkit-outer-spin-button {
 .h1-results h1,
 .result-buttons {
     margin: 8px 0;
+}
+
+.result-buttons {
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 
 .guess-results {
@@ -1237,6 +1243,11 @@ input[type='number']::-webkit-outer-spin-button {
         max-height: 250px;
     }
 
+    .result-buttons {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
     .user-initials {
         font-size: 20px;
     }
@@ -1493,7 +1504,7 @@ input[type='number']::-webkit-outer-spin-button {
 
     .error-results>.error-box,
     .percentile-results>.percentile-box {
-        font-size: 1.25rem;
+        font-size: 0.9rem;
         height: 60px;
         width: 120px;
     }
@@ -1508,7 +1519,8 @@ input[type='number']::-webkit-outer-spin-button {
 
     .feedback-button-styling,
     .share-button-styling,
-    .statistics-button-styling {
+    .statistics-button-styling,
+    .breakdown-button-styling {
         height: 50px;
         width: 180px;
         font-size: 1.5rem;
@@ -1517,8 +1529,7 @@ input[type='number']::-webkit-outer-spin-button {
     .play-button-styling, 
     .signin-button-styling, 
     .login-button-styling, 
-    .return-button-styling, 
-    .breakdown-button-styling {
+    .return-button-styling {
         width: 250px;
     }
 

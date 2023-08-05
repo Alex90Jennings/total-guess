@@ -31,7 +31,7 @@ function Results() {
                 </div>
                 <div className="percentile-results">
                     <div className="percentile-box">TOTAL GUESS</div>
-                    <p>£{playerGuess}</p>
+                    <p>£{playerGuess?.toFixed(2)}</p>
                 </div>
                 <div className="percentile-results">
                     <div className="percentile-box">DIFFERENCE</div>
@@ -43,13 +43,17 @@ function Results() {
                         {
                             percentageError >= 35 || percentageError <= -35 ? 
                                 `${percentageError.toFixed(0)}%+` : 
-                                `${percentageError.toFixed(2)}%`
+                                `${percentageError.toFixed(0)}%`
                         }
                     </p>
                 </div>
                 <div className='result-buttons'>
                     <div className="statistics-results">
                         <div className='statistics-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>Statistics</div>
+                    </div>
+                    <div className="statistics-results">
+                        {/*<a className='feedback-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.FEEDBACK)} href="/feedback">Feedback</a>*/}
+                        <Link to="/" className='feedback-button-styling'>Home Page</Link>
                     </div>
                     <div className="statistics-results">
                         <div className='breakdown-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.BREAKDOWN)}>Breakdown</div>
@@ -59,10 +63,6 @@ function Results() {
                         <a className='share-button-styling' href="/share">Share</a>
                     </div>
                     */}
-                    <div className="statistics-results">
-                        {/*<a className='feedback-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.FEEDBACK)} href="/feedback">Feedback</a>*/}
-                        <Link to="/" className='feedback-button-styling'>Home Page</Link>
-                    </div>
                 </div>
             </div>
         </div>

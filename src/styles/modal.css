@@ -38,6 +38,11 @@
     right: 0;
 }
 
+.table-row-breakdown {
+    border-bottom: 2px dotted var(--primary-colour-accent);
+    padding: 8px 0 8px 4px;
+}
+
 .modal h1 {
     font-size: 2rem;
     color: var(--primary-colour-accent);
@@ -128,6 +133,14 @@
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+.modal-display {
+    color: var(--primary-colour-accent);
+}
+
+.dotted-border {
+    border-bottom: 2px dotted var(--primary-colour-accent);
 }
 
 @media (max-width: 785px) {

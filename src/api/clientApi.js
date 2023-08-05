@@ -27,10 +27,16 @@ const getUser = async () => {
     return await client.get(route)
 }
 
+const updateItemsGuess = async (itemsGuessArray) => {
+    const route = `/item/submitResult`
+    await client.post(route, itemsGuessArray)
+}
+
 export const clientApi = {
     login,
     register,
     fetchTodayGame,
     submitResult,
-    getUser
+    getUser,
+    updateItemsGuess
 }

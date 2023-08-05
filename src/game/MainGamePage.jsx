@@ -7,7 +7,7 @@ import { AppContext } from "../hooks/context";
 import { clientApi } from '../api/clientApi';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, gameDate, isMuted, setGameDate } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, gameDate, isMuted, setGameDate, setBreakdown } = useContext(AppContext);
     const navigate = useNavigate();
     const [game, setGame] = useState({});
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
@@ -15,7 +15,7 @@ function MainGamePage() {
     const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
     const [inputValue, setInputValue] = useState("");
     const itemPricesRef = useRef([]);
-    const cumulativeTotal = itemPricesRef.current.reduce((sum, price) => sum + price, 0);
+    const cumulativeTotal = itemPricesRef.current.reduce((sum, item) => sum + item.guess, 0);
     const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop'];
     const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl'];
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
@@ -35,8 +35,8 @@ function MainGamePage() {
     }, []);
     
     //TODO: get loading spinner
-    if (!game?.items) {
-        return <div>Loading...</div>;
+    if (!game?.items || itemPricesRef.current.length === 10) {
+        return <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     }
 
     const currentProduct = game?.items[currentShopIndex];
@@ -56,7 +56,7 @@ function MainGamePage() {
             : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase();
         return nameToReturn;
     };
-
+    
     const decrementItemIndex = () => {
         if (currentShopIndex === 0) return
 
@@ -90,7 +90,12 @@ function MainGamePage() {
 
         if (!isNaN(itemWorth)) {
             const roundedItemWorth = parseFloat(itemWorth.toFixed(2));
-            itemPricesRef.current = [...itemPricesRef.current, roundedItemWorth];
+            itemPricesRef.current = [...itemPricesRef.current, { 
+                itemId: game.items[currentShopIndex]._id, 
+                guess: roundedItemWorth,
+                correctPrice: game.items[currentShopIndex].price,
+                description: game.items[currentShopIndex].description
+            }];
             setInputValue("");
         }
         if (currentShopIndex === game?.items?.length - 1) {
@@ -118,7 +123,7 @@ function MainGamePage() {
     }
 
     const handleGuessSubmit = async () => {
-        const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price, 0));
+        const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
         let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
 
@@ -133,6 +138,8 @@ function MainGamePage() {
         if (loggedInUser) {
             const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError);
             setLoggedInUser(response.data);
+            await clientApi.updateItemsGuess(itemPricesRef.current)
+            setBreakdown(itemPricesRef.current)
             if (!isMuted) audio.play();
         }
 

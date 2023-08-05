@@ -11,18 +11,18 @@ function Footer() {
         <footer className="footer--layout">
             <div className='footer-narrow-screen'></div>
             <div className="left-icons">
-                <div className="icon-footer">
+                <a href="https://www.instagram.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src="/icons/tinstagram.png" alt="instagram icon" />
-                </div>
-                <div className="icon-footer">
+                </a>
+                <a href="https://www.linkedin.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/tlinkedin.png'} alt="linkedin icon" />
-                </div>
-                <div className="icon-footer">
+                </a>
+                <a href="https://www.twitter.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/ttwitter.png'} alt="twitter icon" />
-                </div>
-                <div className="icon-footer">
+                </a>
+                <a href="https://www.facebook.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/tfacebook.png'} alt="facebook icon" />
-                </div>
+                </a>
             </div>
             <div className='footer-narrow-screen'></div>
             <div className="middle-content footer-wide-screen">

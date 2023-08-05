@@ -11,7 +11,9 @@ export const AppContext = createContext({
     setGameDate: () => {},
     handleSignOut: () => {},
     isMuted: false,
-    setIsMuted: () => {}
+    setIsMuted: () => {},
+    breakdown: {},
+    setBreakdown: () => {}
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -19,6 +21,7 @@ export const useAppContext = () => useContext(AppContext);
 export const AppProvider = ({ children }) => {
 
     const [ loggedInUser, setLoggedInUser ] = useState({});
+    const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ gameDate, setGameDate ] = useState('')
     const [ modalToDisplay, setModalToDisplay ] = useState('');
@@ -70,7 +73,9 @@ export const AppProvider = ({ children }) => {
         setModalToDisplay,
         handleSignOut,
         isMuted,
-        setIsMuted
+        setIsMuted,
+        breakdown,
+        setBreakdown
     };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
