@@ -28,19 +28,14 @@
 
 .close-btn {
     background-color: inherit;
-    padding: 5px;
     margin-top: 18px;
     margin-right: 18px;
-    border: none;
     font-size: 1rem;
     font-weight: bolder;
     color: var(--primary-colour-accent);
     position: absolute;
     top: 0;
     right: 0;
-    border-radius: 50%;
-    border: 2px solid var(--primary-colour-charcoal);
-    background-color: #FFFFFF;
 }
 
 .modal h1 {

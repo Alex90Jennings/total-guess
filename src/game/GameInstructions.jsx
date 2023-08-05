@@ -8,8 +8,8 @@ return (
             <div className='two-columns-expand-one'>
                 <div></div>
                 <button className="close-btn" onClick={() => {
-    onClose();
-}}>X</button>
+                    onClose();
+                }}>X</button>
             </div>
             <h1 className='instructions-h1'>Instructions</h1>
             <h2 className='instructions-h2'>GUESS THE TOTAL COST OF THE BASKET OF GROCERIES</h2>

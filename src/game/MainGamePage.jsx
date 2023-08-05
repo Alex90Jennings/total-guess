@@ -169,7 +169,7 @@ function MainGamePage() {
                             <div className="description--css mt-s">{currentDescription}</div>
                             <ProductImage currentImage={currentImage} />
                             <p className='item-count'><span className='item-count-accent'>{currentShopIndex + 1}</span>/{game?.items?.length}</p>
-                            <p className='sub-total'>Sub Total: £{cumulativeTotal}</p>
+                            <p className='sub-total'>Sub Total: £{cumulativeTotal.toFixed(2)}</p>
                             <div className="input-container mt-s">
                                 <div></div>
                                 <div className='five-columns-expand-two-four'>

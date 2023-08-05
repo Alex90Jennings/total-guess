@@ -117,17 +117,11 @@
     padding: 10px;
   }
 }
-@media screen and (max-height: 700px) {
-  .landing-page {
-    margin: 10px auto;
-  }
-}
 
 @media screen and (max-width: 530px) {
   #landing-page-menu button, 
   .form button {
-    padding: 8px;
-    margin-bottom: 8px !important;
-    margin-top: 8px !important;
+    padding: 4px;
+    margin-top: 0px !important;
   }
 }
