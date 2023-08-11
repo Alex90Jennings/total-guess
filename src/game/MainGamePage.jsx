@@ -201,7 +201,7 @@ function MainGamePage() {
                             <div className="shop--css three-rows-expand-one-three">
                                 <div></div>
                                 {currentShop === "mands" ? (
-                                    <h1 className='normal-font pt-s'>M<span className='mands-accent-css'>&</span>S</h1>
+                                    <h1 className='normal-font pt-s'>M&S</h1>
                                 ) : (
                                     <h1 className={shouldBeBold.includes(currentShop) ? 'bold' : 'normal-font'}>
                                         {correctShopName(`${currentShop}`)}
