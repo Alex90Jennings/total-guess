@@ -50,8 +50,7 @@ body {
     margin: auto;
 }
 
-.header-right-narrow-screen,
-.header-left-narrow-screen {
+.header-right-narrow-screen {
     display: none;
 }
 
@@ -109,20 +108,6 @@ body {
 }
 
 .icon-header:hover {
-    background-color: #d8dbde;
-}
-
-.stats-icon {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    border: 2px solid var(--primary-colour-charcoal);
-    box-sizing: content-box;
-    background-color: var(--primary-colour-charcoal);
-    padding: 2px;
-}
-
-.stats-icon:hover {
     background-color: #d8dbde;
 }
 
@@ -190,26 +175,6 @@ body {
     justify-content: center;
     align-items: center;
     max-width: 100vw;
-}
-
-.arrow {
-    height: 30px;
-    width: 30px;
-    background: none;
-}
-
-.arrow-left {
-    margin-right: 40px;
-}
-
-.arrow-right {
-    margin-left: 40px;
-}
-
-.arrow-left,
-.arrow-right {
-    font-weight: bold;
-    font-size: 100px;
 }
 
 .shop--css {
@@ -436,180 +401,10 @@ body {
     margin: 0 auto;
 }
 
-.img-count-left {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    margin-top: 15px;
-}
-
-.img-count-right {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    margin-top: 15px;
-}
-
-.image-counter img {
-    width: 55px;
-    height: 55px;
-    margin: 0 5px;
-}
-
-.image-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
-}
-
-.prev-product-button {
-    width: 200px;
-    height: 80px;
-    font-size: 30px;
-    padding: 10px 20px;
-    background-color: #f18213;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 20px
-}
-
-.next-product-button {
-    width: 200px;
-    height: 80px;
-    font-size: 30px;
-    padding: 10px 20px;
-    background-color: #f18213;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 20px
-}
-
-.submit-guess-button {
-    margin-top: 8px;
-    background-color: rgb(5, 175, 5);
-}
-
-.result {
-    margin: 0;
-    font-size: 18px;
-    color: #f00;
-}
-
-.box-submit {
-    margin: 10px;
-    border: 2px solid #0070c0;
-    padding: 20px;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.h1-submit,
-.guess-amount,
-.submit-button {
-    max-width: 400px;
-    width: 100%;
-}
-
-.main--layout--submit {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 500px;
-}
-
-.h1-submit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #0070c0;
-    font-size: 1.75rem;
-}
-
-.guess-amount {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-row: 2;
-    grid-column: 1;
-    margin-bottom: 10px;
-}
-
-.guess-amount>input {
-    height: 93px;
-    width: 150px;
-    border-color: #0070c0;
-    color: black;
-    font-size: 3rem;
-    justify-content: center;
-    text-align: center;
-}
-
-.blue-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: blue;
-    color: white;
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-.guess-amount>.blue-box {
-    background-color: #0070c0;
-    color: white;
-    font-size: 5rem;
-    height: 100px;
-    width: 120px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sub-button-styling {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0070c0;
-    color: #ffffff;
-    height: 100px;
-    width: 300px;
-    border-radius: 8%;
-    font-size: 2.5rem;
-    margin: 0 auto;
-    text-align: center;
-    text-decoration: none;
-}
-
-.submit-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0070c0;
-    padding: 0;
-    margin-top: 30px;
-}
-
-.valid-input {
-    background-color: rgb(5, 175, 5);
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -628,27 +423,13 @@ input[type='number']::-webkit-outer-spin-button {
     text-align: center;
 }
 
-.red-text {
-    color: red;
-}
-
-.guess-results,
-.error-results,
 .percentile-results,
 .statistics-results,
-.share-results,
-.feedback-results {
+.share-results {
     padding: 4px;
 }
 
-.error-message {
-    font-weight: bold;
-    margin: 24px;
-}
-
 .h1-results,
-.guess-results,
-.error-results,
 .percentile-results,
 .statistics-results {
     max-width: 400px;
@@ -680,77 +461,10 @@ input[type='number']::-webkit-outer-spin-button {
     grid-template-columns: auto auto auto;
 }
 
-.guess-results {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-row: 2;
-    grid-column: 1;
-}
-
-.guess-results>p {
-    height: 96px;
-    width: 150px;
-    border-color: #0070c0;
-    color: black;
-    font-size: 2.5rem;
-    justify-content: center;
-    text-align: center;
-    margin: 0;
-    border: 2px solid #0070c0;
-}
-
-.guess-results p,
-.error-results p,
 .percentile-results p {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-}
-
-.guess-results>.guessed-box {
-    background-color: #0070c0;
-    color: white;
-    font-size: 5rem;
-    height: 100px;
-    width: 200px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.error-results {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-row: 3;
-    grid-column: 1;
-    margin-bottom: 5px;
-}
-
-.error-results>p {
-    height: 96px;
-    width: 150px;
-    border-color: #0070c0;
-    color: rgb(249, 7, 7);
-    font-size: 2.5rem;
-    justify-content: center;
-    text-align: center;
-    margin: 0;
-    border: 2px solid #0070c0;
-}
-
-.error-results>.error-box {
-    background-color: #0070c0;
-    color: white;
-    font-size: 2rem;
-    height: 100px;
-    width: 200px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .percentile-results {
@@ -784,26 +498,6 @@ input[type='number']::-webkit-outer-spin-button {
     align-items: center;
 }
 
-.home-button-styling {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #262829;
-    color: #fff;
-    height: 55px;
-    width: 200px;
-    border-radius: 8%;
-    font-size: 1.5rem;
-    margin: 0 auto;
-    text-align: center;
-    text-decoration: none;
-    margin-bottom: 5px;
-}
-
-.home-button-styling:hover {
-    background-color: #0070c0;
-}
-
 .statistics-results {
     display: flex;
     justify-content: center;
@@ -822,18 +516,6 @@ input[type='number']::-webkit-outer-spin-button {
     font-size: 55px;
     margin: 0;
     height: auto;
-}
-
-.number-box {
-    height: 40px;
-    width: 40px;
-    font-size: 24px;
-    border-radius: 5px;
-}
-
-.roman-numerals {
-    font-weight: bolder;
-    margin: 0;
 }
 
 .share-button-styling {
@@ -866,19 +548,6 @@ input[type='number']::-webkit-outer-spin-button {
     align-items: center;
 }
 
-.feedback-results {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-
-.dropdown-icon {
-    height: 30px;
-    border: 2px solid white;
-    padding: 2px;
-    border-radius: 4px;
-}
-
 .dropdown-menu {
     position: absolute;
     background-color: var(--primary-colour-charcoal);
@@ -907,359 +576,8 @@ input[type='number']::-webkit-outer-spin-button {
     background-color: #f1f1f1;
 }
 
-.narrow-screen-arrows,
-.narrow-screen-count {
-    display: none;
-}
-
-/*BRANDS*/
-/*SAINSBURY*/
-.sainsburys-header-css {
-    background-color: #f18213;
-    color: #FFFFFF;
-    font-family: "Century Gothic", "Arial", sans-serif;
-}
-
-.sainsburys-info,
-.sainsburys-arrow {
-    color: #f18213;
-}
-
-.sainsburys-box-css {
-    border: 2px solid #f18213;
-}
-
-.sainsburys-description-css {
-    color: #f18213;
-}
-
-.sainsburys-roman-numeral-before {
-    border: 3px solid #f18213;
-    color: #f18213;
-    margin: 3px;
-}
-
-.sainsburys-roman-numeral-after {
-    border: 3px solid #f18213;
-    color: white;
-    background-color: #f18213;
-    margin: 3px;
-}
-
-/*TESCO*/
-.tesco-header-css {
-    background-color: #00539F;
-    color: #EE1C2E;
-    font-family: "Candara Bold", "Arial", sans-serif;
-}
-
-.tesco-info,
-.tesco-arrow {
-    color: #00539F;
-}
-
-.tesco-box-css {
-    border: 2px solid #00539F;
-}
-
-.tesco-description-css {
-    color: #00539F;
-}
-
-.tesco-roman-numeral-before {
-    border: 3px solid #00539F;
-    color: #00539F;
-    margin: 3px;
-}
-
-.tesco-roman-numeral-after {
-    border: 3px solid #00539F;
-    color: #EE1C2E;
-    background-color: #00539F;
-    margin: 3px;
-}
-
-/*ASDA*/
-.asda-header-css {
-    background-color: #68a51c;
-    color: white;
-    font-family: "Century Gothic", "Arial", sans-serif;
-}
-
-.asda-info,
-.asda-arrow {
-    color: #68a51c;
-}
-
-.asda-box-css {
-    border: 2px solid #68a51c;
-}
-
-.asda-description-css {
-    color: #68a51c;
-}
-
-.asda-roman-numeral-before {
-    border: 3px solid #68a51c;
-    color: #68a51c;
-    margin: 3px;
-}
-
-.asda-roman-numeral-after {
-    border: 3px solid #68a51c;
-    color: white;
-    background-color: #68a51c;
-    margin: 3px;
-}
-
-/*WAITROSE*/
-.waitrose-header-css {
-    background-color: #68a51c;
-    color: white;
-    font-family: "Century Gothic", "Arial", sans-serif;
-}
-
-.waitrose-info,
-.waitrose-arrow {
-    color: #5C8018;
-}
-
-.waitrose-box-css {
-    border: 2px solid #5C8018;
-}
-
-.waitrose-description-css {
-    color: #5C8018;
-}
-
-.waitrose-roman-numeral-before {
-    border: 3px solid #5C8018;
-    color: #5C8018;
-    margin: 3px;
-}
-
-.waitrose-roman-numeral-after {
-    border: 3px solid #5C8018;
-    color: white;
-    background-color: #5C8018;
-    margin: 3px;
-}
-
-/*MORRISONS*/
-.morrisons-header-css {
-    background-color: #00762D;
-    color: #FCBD00;
-    font-family: 'MT Bold Arial Rounded', Arial, sans-serif;
-}
-
-.morrisons-info,
-.morrisons-arrow {
-    color: #00762D;
-}
-
-.morrisons-box-css {
-    border: 2px solid #00762D;
-}
-
-.morrisons-description-css {
-    color: #00762D;
-}
-
-.morrisons-roman-numeral-before {
-    border: 3px solid #00762D;
-    color: #00762D;
-    margin: 3px;
-}
-
-.morrisons-roman-numeral-after {
-    border: 3px solid #00762D;
-    color: #FCBD00;
-    background-color: #00762D;
-    margin: 3px;
-}
-
-/*ALDI*/
-.aldi-header-css {
-    background-color: #14215a;
-    color: white;
-    font-family: "Nunito Bold", "Arial", sans-serif;
-}
-
-.aldi-info,
-.aldi-arrow {
-    color: #14215a;
-}
-
-.aldi-box-css {
-    box-shadow: inset 0 0 0 3px #fdc300, inset 0 0 0 6px #ef7701, inset 0 0 0 9px #da0812;
-    outline: 2px solid transparent;
-    padding: 9px;
-}
-
-.aldi-description-css {
-    color: #14215a;
-}
-
-.aldi-roman-numeral-before {
-    border: 3px solid #14215a;
-    color: #14215a;
-    margin: 3px;
-}
-
-.aldi-roman-numeral-after {
-    border: 3px solid #14215a;
-    color: white;
-    background-color: #14215a;
-    margin: 3px;
-}
-
-/*SPAR*/
-.spar-header-css {
-    background-color: red;
-    color: white;
-    font-family: "Nedian Bold", "Arial", sans-serif;
-}
-
-.spar-info,
-.spar-arrow {
-    color: red;
-}
-
-.spar-box-css {
-    border: 2px solid red;
-}
-
-.spar-description-css {
-    color: red;
-}
-
-.spar-roman-numeral-before {
-    border: 3px solid red;
-    color: white;
-    margin: 3px;
-}
-
-.spar-roman-numeral-after {
-    border: 3px solid red;
-    color: white;
-    background-color: red;
-    margin: 3px;
-}
-
-/*M&S*/
-.mands-header-css {
-    background-color: black;
-    color: white;
-    font-family: "Overpass ExtraLight", "Arial", sans-serif;
-}
-
-.mands-info,
-.mands-arrow {
-    color: black;
-}
-
-.mands-box-css {
-    border: 2px solid black;
-}
-
-.mands-description-css {
-    color: black;
-}
-
-.mands-accent-css {
-    color: #c6ce23;
-}
-
-.mands-roman-numeral-before {
-    border: 3px solid black;
-    color: white;
-    margin: 3px;
-}
-
-.mands-roman-numeral-after {
-    border: 3px solid black;
-    color: white;
-    background-color: black;
-    margin: 3px;
-}
-
-/*LIDL*/
-.lidl-header-css {
-    background-color: #e8e838;
-    color: #1a2e91;
-    font-family: "Gold Magnum", "Arial", sans-serif;
-}
-
-.lidl-info,
-.lidl-arrow {
-    color: #e8e838;
-}
-
-.lidl-box-css {
-    border: 2px solid #e8e838;
-}
-
-.lidl-description-css {
-    color: #e8e838;
-}
-
-.lidl-roman-numeral-before {
-    border: 3px solid #e8e838;
-    color: #e8e838;
-    margin: 3px;
-}
-
-.lidl-roman-numeral-after {
-    border: 3px solid #e8e838;
-    color: #1a2e91;
-    background-color: #e8e838;
-    margin: 3px;
-}
-
-/*COOP*/
-.coop-header-css {
-    background-color: #0ba7db;
-    color: white;
-    font-family: "Avenir Next", "Arial", sans-serif;
-}
-
-.coop-info,
-.coop-arrow {
-    color: #0ba7db;
-}
-
-.coop-box-css {
-    border: 2px solid #0ba7db;
-}
-
-.coop-description-css {
-    color: #0ba7db;
-}
-
-.coop-roman-numeral-before {
-    border: 3px solid #0ba7db;
-    color: #0ba7db;
-    margin: 3px;
-}
-
-.coop-roman-numeral-after {
-    border: 3px solid #0ba7db;
-    color: white;
-    background-color: #0ba7db;
-    margin: 3px;
-}
-
-
 /*MEDIA QUERIES*/
 @media screen and (max-width: 1600px) {
-    .narrow-screen-arrows {
-        display: grid;
-    }
-
-    .wide-screen-arrows {
-        display: none;
-    }
-
     .box,
     .info-container-wide-screen {
         width: 1100px;
@@ -1332,16 +650,6 @@ input[type='number']::-webkit-outer-spin-button {
         width: 120px;
     }
 
-    .header-left-narrow-screen {
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-area: header-left;
-        grid-column-start: 0;
-        grid-column-end: 1;
-        flex-grow: 1;
-        width: 120px;
-    }
-
     .header-left-wide-screen {
         width: 120px;
     }
@@ -1355,23 +663,8 @@ input[type='number']::-webkit-outer-spin-button {
         width: 650px;
     }
 
-    .image-row {
-        width: 600px;
-    }
-
     .box img {
         max-height: 200px;
-    }
-
-    .image-counter img {
-        height: 40px;
-        width: 40px;
-    }
-
-    .number-box {
-        height: 26px;
-        width: 26px;
-        font-size: 18px;
     }
 
     #header,
@@ -1435,10 +728,6 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 20px;
     }
 
-    .h1-submit {
-        max-width: 250px;
-    }
-
     .main--layout h1 {
         font-size: 40px;
         margin: 0;
@@ -1448,57 +737,11 @@ input[type='number']::-webkit-outer-spin-button {
         height: 40px !important;
     }
 
-    .guess-amount>.blue-box {
-        height: 50px;
-        width: 70px;
-        font-size: 3rem;
-    }
-
-    .guess-amount>input {
-        height: auto;
-        font-size: 2.3rem;
-    }
-
-    .box-submit {
-        padding: 0px;
-    }
-
-    .sub-button-styling {
-        height: 60px;
-        width: 200px;
-        border-radius: 15px;
-        font-size: 2rem;
-    }
-
-    .submit-button {
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-
-    .h1-submit {
-        font-size: 1.5em !important;
-    }
-
     .box,
     .info-container-wide-screen {
         width: 530px;
     }
 
-    .image-row {
-        width: 500px;
-    }
-
-    .arrow-right {
-        margin-left: 30px;
-        font-size: 60px;
-    }
-
-    .arrow-left {
-        margin-right: 30px;
-        font-size: 60px;
-    }
-
-    
     #submit-item-button, 
     #back-item-button, 
     #submit-final-item-button {
@@ -1524,7 +767,6 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .header-right-narrow-screen,
-    .header-left-narrow-screen,
     .header-left,
     .header-right {
         width: 100px !important;
@@ -1545,50 +787,13 @@ input[type='number']::-webkit-outer-spin-button {
     .logo-landing {
         font-size: 32px !important;
     }
-    
-    .guess-amount>input {
-        height: auto;
-    }
 
-    .box-submit {
-        padding: 0px;
-    }
-
-    .sub-button-styling {
-        height: 60px;
-        width: 200px;
-        border-radius: 15px;
-        font-size: 2rem;
-    }
-
-    .submit-button {
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-
-    .h1-submit {
-        font-size: 1.5em !important;
-    }
-
-    .main--layout--submit {
-        min-width: 350px;
-    }
-
-    .guess-results>.guessed-box {
-        font-size: 2rem;
-        height: 60px;
-        width: 120px;
-    }
-
-    .error-results>.error-box,
     .percentile-results>.percentile-box {
         font-size: 0.9rem;
         height: 60px;
         width: 120px;
     }
 
-    .guess-results>p,
-    .error-results>p,
     .percentile-results>p {
         font-size: 2rem;
         height: 56px;
@@ -1620,23 +825,8 @@ input[type='number']::-webkit-outer-spin-button {
         width: 375px;
     }
 
-    .image-row {
-        width: 350px;
-    }
-
     .box img {
         max-height: 150px;
-    }
-
-    .image-counter img {
-        height: 25px;
-        width: 25px;
-    }
-
-    .number-box {
-        height: 20px;
-        width: 20px;
-        font-size: 14px;
     }
 
     .footer--layout {
@@ -1665,10 +855,6 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 400px) {
-    .h1-submit {
-        max-width: 200px;
-    }
-
     .main--layout h1 {
         font-size: 30px;
     }
@@ -1677,39 +863,9 @@ input[type='number']::-webkit-outer-spin-button {
         height: 30px !important;
     }
 
-    .guess-amount>.blue-box {
-        height: 40px;
-        width: 60px;
-        font-size: 2.4rem;
-    }
-
-    .guess-amount>input {
-        font-size: 1.8rem;
-    }
-
-    .sub-button-styling {
-        height: 50px;
-        width: 180px;
-        font-size: 1.8rem;
-    }
-
-    .h1-submit {
-        font-size: 1.2em !important;
-    }
-
     .box,
     .info-container-wide-screen {
         width: 350px;
-    }
-
-    .image-row {
-        width: 350px;
-    }
-
-    .number-box {
-        height: 16px;
-        width: 16px;
-        font-size: 11px;
     }
 
     .logo {

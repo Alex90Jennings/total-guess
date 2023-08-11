@@ -9,7 +9,6 @@ import Modal from "react-modal";
 import Header from "./game/Header";
 import Footer from "./game/Footer";
 import Results from "./game/Results";
-import Share from "./game/Share.jsx";
 import StatisticsModal from "./game/StatisticsModal";
 import AboutUs from "./game/AboutUs";
 import FAQ from "./game/FAQ";
@@ -54,7 +53,7 @@ function App() {
                     element={<MainGamePage />}
                 />
                 <Route path="/results" element={<Results />} />
-                <Route path="/share" element={<Share />} />
+                {/*<Route path="/share" element={<Share />} />*/}
             </Routes>
         </BrowserRouter>
         {Object.values(ModalToDisplay).map((modal) => (

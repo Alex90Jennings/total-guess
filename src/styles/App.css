@@ -34,23 +34,8 @@ body::-webkit-scrollbar {
   /* Chrome, Safari, Opera */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .center-wrapper {
   margin: 0 auto;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 .list-reset {
@@ -90,95 +75,6 @@ body::-webkit-scrollbar {
   display: flex;
   gap: 10px;
   justify-content: flex-start;
-}
-
-.icon--inst {
-  display: inline-block;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  box-sizing: content-box;
-  background-color: #ffffff;
-  height: 39px;
-  width: 39px;
-  text-align: center;
-  line-height: 39px;
-  padding: 4px;
-}
-
-.icon--inst img {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.icon--inst:hover {
-  background-color: var(--primary-colour-charcoal);
-}
-
-.icon--footer {
-  display: inline-block;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  box-sizing: content-box;
-  background-color: #ffffff;
-  height: 39px;
-  width: 39px;
-  text-align: center;
-  line-height: 39px;
-  padding: 4px;
-}
-
-.icon--footer img {
-  padding-top: 2px;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.icon--footer:hover {
-  background-color: var(--primary-colour-charcoal);
-}
-
-.icon--twitter {
-  display: inline-block;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  box-sizing: content-box;
-  background-color: #ffffff;
-  height: 39px;
-  width: 39px;
-  text-align: center;
-  line-height: 39px;
-  padding: 4px;
-  }
-
-.icon--twitter img {
-  max-height: 100%;
-  max-width: 100%;
-  }
-
-.icon--twitter:hover {
-  background-color: var(--primary-colour-charcoal);
-    }
-
-.icon--facebook {
-  display: inline-block;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  box-sizing: content-box;
-  background-color: #ffffff;
-  height: 39px;
-  width: 39px;
-  text-align: center;
-  line-height: 39px;
-  padding: 4px;
-}
-
-.icon--facebook img {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.icon--facebook:hover {
-  background-color: var(--primary-colour-charcoal);
 }
 
 .middle-content {
@@ -273,11 +169,6 @@ body::-webkit-scrollbar {
 .footer-row {
   padding: 5px 0;
   color: #f7f7f7;
-}
-
-.footer-icon {
-  margin: 43px 30px;
-  justify-self: end;
 }
 
 .lds-roller {
