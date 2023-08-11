@@ -26,10 +26,10 @@ const BreakdownModal = ({ onClose }) => {
                 <tbody>
                     {breakdown.map((item, index) => (
                         <tr key={index}>
-                            <td style={{ textAlign: 'left' }} className='table-row-breakdown'>{item.description}</td>
-                            <td style={{ textAlign: 'center' }} className='table-row-breakdown'>£{item.correctPrice.toFixed(2)}</td>
-                            <td style={{ textAlign: 'center' }} className='table-row-breakdown'>£{item.guess.toFixed(2)}</td>
-                            <td style={{ textAlign: 'center'  }} className='table-row-breakdown'>
+                            <td style={{ textAlign: 'left', color: 'white' }} className='table-row-breakdown'>{item.description}</td>
+                            <td style={{ textAlign: 'center', color: 'white' }} className='table-row-breakdown'>£{item.correctPrice.toFixed(2)}</td>
+                            <td style={{ textAlign: 'center', color: 'white' }} className='table-row-breakdown'>£{item.guess.toFixed(2)}</td>
+                            <td style={{ textAlign: 'center', color: 'white'  }} className='table-row-breakdown'>
                                 {(((item.guess - item.correctPrice) / item.correctPrice) * 100).toFixed(0)}%
                             </td>
                         </tr>

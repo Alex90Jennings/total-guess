@@ -411,6 +411,11 @@ body::-webkit-scrollbar {
   grid-template-columns: repeat(10, auto);
 }
 
+.three-columns-auto {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
 .three-rows-expand-two {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -483,6 +488,10 @@ body::-webkit-scrollbar {
 
 .mr-s {
   margin-right: 8px;
+}
+
+.ml-s {
+  margin-left: 8px;
 }
 
 .mt-s {

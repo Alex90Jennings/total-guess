@@ -32,7 +32,7 @@ function Header({ setShowLoginPage }) {
                 </div>
                 <div className='icon-header three-rows-expand-one-three'>
                     <div></div>
-                    <div className={loggedInUser?.firstName ? 'user-initials ml-xs mr-s' : 'user-initials hide-text ml-xs mr-s'}>
+                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'}>
                         {getInitials()}
                     </div>
                     <div></div>
