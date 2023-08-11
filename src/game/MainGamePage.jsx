@@ -33,8 +33,7 @@ function MainGamePage() {
     useEffect(() => {
         fetchGame();
     }, []);
-    
-    //TODO: get loading spinner
+
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     }

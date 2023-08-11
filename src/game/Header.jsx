@@ -38,7 +38,7 @@ function Header({ setShowLoginPage }) {
                     <div></div>
                 </div>
             </div>
-            <h1 className="header-middle logo">Total GuEss</h1>
+            <h1 className="header-middle logo">TOTAL GUESS</h1>
             <div className="header-right header-right-wide-screen">
                 <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
                     <img

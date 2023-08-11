@@ -212,7 +212,6 @@ body::-webkit-scrollbar {
 }
 
 .timer-to-midnight {
-  font-family: 'Courier New', Courier, monospace;
   font-size: 2.2rem;
   font-weight: bold;
   color: var(--primary-colour-accent);
@@ -254,8 +253,6 @@ body::-webkit-scrollbar {
   margin-top: 12px;
   text-align: center;
   text-decoration: none;
-  font-family: 'Comfortaa', sans-serif;
-  font-weight: 800;
   border: 2px solid var(--primary-colour-charcoal);
 }
 

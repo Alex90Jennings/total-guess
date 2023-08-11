@@ -26,7 +26,7 @@ export const ModalToDisplay = {
     ADVERTISE: "ADVERTISE",
 };
 
-//TODO: breakdown modal styling, numpad for ipad/phone, fonts, data
+//TODO: breakdown modal styling, fonts, data
 
 function App() {
     const { modalToDisplay, setModalToDisplay } = useContext(AppContext);

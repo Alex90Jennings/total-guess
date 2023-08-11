@@ -1,38 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
-
-@font-face {
-    font-family: 'MT Bold Arial Rounded';
-    src: url('/public/fonts/mt-bold-arial-rounded.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Nunito Bold';
-    src: url('/public/fonts/Nunito-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Nedian Bold';
-    src: url('/public/fonts/Nedian-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Overpass ExtraLight';
-    src: url('/public/fonts/Overpass-ExtraLight.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Gold Magnum';
-    src: url('/public/fonts/Gold-Magnum.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Avenir Next';
-    src: url('/public/fonts/Avenir-Next.ttc') format('truetype');
-}
-
-
 body {
-    font-family: "Trebuchet MS", "Lucida Sans", Arial, sans-serif;
+    font-family: 'Comfortaa', sans-serif;
     margin: 0;
 }
 
@@ -58,12 +25,11 @@ body {
     grid-column-start: 1;
     grid-column-end: 2;
     width: 250px;
-    font-family: 'Luckiest Guy', cursive;
     color: #FFFFFF;
 }
 
 .user-initials {
-    font-size: 28px;
+    font-size: 22px;
     color: var(--primary-colour-accent);
     height: auto;
     margin: auto;
@@ -79,7 +45,6 @@ body {
 }
 
 .logo {
-    font-family: 'Luckiest Guy', cursive;
     color: var(--primary-colour-charcoal);
     text-shadow: 2px 2px 4px var(--primary-colour-accent);
     margin: auto;
@@ -233,10 +198,6 @@ body {
     background: none;
 }
 
-.nedian-bold {
-    font-family: "Nedian Bold", "Arial", sans-serif;
-}
-
 .arrow-left {
     margin-right: 40px;
 }
@@ -284,7 +245,6 @@ body {
     font-size: 30px;
     border-radius: 20px;
     cursor: pointer;
-    font-family: 'Comfortaa', sans-serif;
     border: none;
 }
 
@@ -303,7 +263,6 @@ body {
 .item-count,
 .item-count-accent {
     font-weight: 600 !important;
-    font-family: 'Comfortaa', sans-serif;
     font-size: 16px;
     margin: 8px 0;
 }
@@ -557,7 +516,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-family: 'Luckiest Guy', cursive;
 }
 
 .h1-submit,
@@ -600,7 +558,6 @@ body {
     font-size: 3rem;
     justify-content: center;
     text-align: center;
-    font-family: 'Luckiest Guy', cursive;
 }
 
 .blue-box {
@@ -640,7 +597,6 @@ body {
     margin: 0 auto;
     text-align: center;
     text-decoration: none;
-    font-family: 'Luckiest Guy', cursive;
 }
 
 .submit-button {
@@ -670,7 +626,6 @@ input[type='number']::-webkit-outer-spin-button {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-family: 'Comfortaa', sans-serif;
 }
 
 .red-text {
@@ -903,7 +858,6 @@ input[type='number']::-webkit-outer-spin-button {
     text-align: center;
     text-decoration: none;
     margin-bottom: 5px;
-    font-family: 'Luckiest Guy', cursive;
 }
 
 .share-results {
@@ -1313,6 +1267,10 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 1100px) {
+    .logo {
+        font-size: 40px !important;
+    }
+
     .box img {
         max-height: 250px;
     }
@@ -1320,6 +1278,10 @@ input[type='number']::-webkit-outer-spin-button {
     .result-buttons {
         display: grid;
         grid-template-columns: auto;
+    }
+
+    .play-button-styling, .signin-button-styling, .login-button-styling, .return-button-styling, .statistics-button-styling, .breakdown-button-styling, .feedback-button-styling {
+        margin-top: 0;
     }
 
     .user-initials {
@@ -1351,10 +1313,6 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 850px) {
-    .logo {
-        font-size: 40px !important;
-    }
-
     .header-right-wide-screen,
     .footer-wide-screen {
         display: none;
@@ -1427,6 +1385,10 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 650px) {
+    .logo {
+        font-size: 30px !important;
+    }
+
     .shop--css {
         font-size: 30px;
         height: auto;
@@ -1554,7 +1516,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 530px) {
     .logo {
-        font-size: 26px !important;
+        font-size: 20px !important;
     }
 
     .user-initials {
@@ -1751,6 +1713,6 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .logo {
-        font-size: 23px !important;
+        font-size: 18px !important;
     }
 }
