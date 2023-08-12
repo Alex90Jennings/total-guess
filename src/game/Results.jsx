@@ -19,7 +19,7 @@ function Results() {
             <div className="box-results">
                 <div className='three-columns-expand-one-three trolley-icon'>
                     <div></div>
-                    <img src="/icons/trolleywhite.svg" alt="trolley"/>
+                    <img src="/icons/groceries.svg" alt="trolley"/>
                     <div></div>
                 </div>
                 <div className="h1-results">

@@ -25,7 +25,7 @@ export const ModalToDisplay = {
     ADVERTISE: "ADVERTISE",
 };
 
-//TODO: breakdown modal styling, fonts, data
+//TODO: S3 bucket setup, new game modes, data
 
 function App() {
     const { modalToDisplay, setModalToDisplay } = useContext(AppContext);

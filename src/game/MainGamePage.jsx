@@ -7,7 +7,7 @@ import { AppContext } from "../hooks/context";
 import { clientApi } from '../api/clientApi';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, gameDate, isMuted, setGameDate, setBreakdown } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, gameDate, isMuted, setGameDate, setBreakdown, selectedGameMode } = useContext(AppContext);
     const navigate = useNavigate();
     const [game, setGame] = useState({});
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
@@ -22,7 +22,7 @@ function MainGamePage() {
 
     const fetchGame = async () => {
         try {
-            const response = await clientApi.fetchTodayGame();
+            const response = await clientApi.fetchTodayGame(selectedGameMode);
             setGame(response.data);
             setGameDate(response.data.date);
         } catch (error) {
@@ -172,9 +172,9 @@ function MainGamePage() {
         }
 
         if (loggedInUser) {
-            const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError);
+            const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError, game.gameMode);
             setLoggedInUser(response.data);
-            //await clientApi.updateItemsGuess(itemPricesRef.current)
+            await clientApi.updateItemsGuess(itemPricesRef.current)
             setBreakdown(itemPricesRef.current)
             if (!isMuted) audio.play();
         }
