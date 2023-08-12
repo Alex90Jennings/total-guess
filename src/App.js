@@ -15,6 +15,7 @@ import FAQ from "./game/FAQ";
 import Advertise from "./game/Advertise";
 import BreakdownModal from "./game/BreakdownModal";
 import { AppContext } from "./hooks/context";
+import Badges from "./game/BadgesModal";
 
 export const ModalToDisplay = {
     INSTRUCTIONS: "INSTRUCTIONS",
@@ -23,6 +24,7 @@ export const ModalToDisplay = {
     BREAKDOWN: "BREAKDOWN",
     ABOUT_US: "ABOUT_US",
     ADVERTISE: "ADVERTISE",
+    BADGES: "BADGES"
 };
 
 //TODO: S3 bucket setup, new game modes, data
@@ -80,6 +82,9 @@ function App() {
             )}
             {modal === ModalToDisplay.ADVERTISE && (
                 <Advertise onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.BADGES && (
+                <Badges onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

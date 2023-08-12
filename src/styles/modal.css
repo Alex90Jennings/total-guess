@@ -20,6 +20,23 @@
     display: none;
 }
 
+.badge-container {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge {
+    max-width: 100px;
+    height: auto;
+    display: block;
+}
+
+.badge-description {
+    margin-top: 5px;
+}
+
 .list-reset {
     width: 100%;
     padding-left: 0;

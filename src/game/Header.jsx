@@ -32,7 +32,7 @@ function Header({ setShowLoginPage }) {
                 </div>
                 <div className='icon-header three-rows-expand-one-three'>
                     <div></div>
-                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'}>
+                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() => setModalToDisplay(ModalToDisplay.BADGES)}>
                         {getInitials()}
                     </div>
                     <div></div>
