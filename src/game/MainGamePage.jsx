@@ -238,7 +238,7 @@ function MainGamePage() {
                                         <p style={{ margin: '0 0 8px 0' }}>£{cumulativeTotal.toFixed(2)}</p>
                                     </div>
                                 </div>
-                                <div className='three-columns-expand-one-three mb-m'>
+                                <div className='num-pad-container'>
                                     <div></div>
                                     <div className="num-pad">
                                         <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('7')}>7</button>
