@@ -47,13 +47,6 @@ function MainGamePage() {
     //     return classNames.replace('{brand}', currentProduct.store);
     // };
 
-    const numPadLayout = [
-        ['7', '8', '9'],
-        ['4', '5', '6'],
-        ['1', '2', '3'],
-        ['.', '0', '⌫']
-    ];
-
     const correctShopName = (shopName) => {
         if (shopName === 'coop') return shopName;
         if (shopName === 'sainsburys') return "Sainsbury's";
@@ -209,14 +202,6 @@ function MainGamePage() {
                                 )}
                                 <div></div>
                             </div>
-                            <div className="info-container-narrow-screen">
-                                <div className="info-column">
-                                    <p className="date">{getDateString(currentProduct.date)}</p>
-                                </div>
-                                <div className="info-column text-right">
-                                    <p className="game">#{getDaysSince()}</p>
-                                </div>
-                            </div>
                             <div className="description--css mt-s">{currentDescription}</div>
                             <ProductImage currentImage={currentImage} />
                             <p className='input-container-wide-screen item-count'><span className='item-count-accent'>{currentShopIndex + 1}</span>/{game?.items?.length}</p>
@@ -253,46 +238,41 @@ function MainGamePage() {
                                         <p style={{ margin: '0 0 8px 0' }}>£{cumulativeTotal.toFixed(2)}</p>
                                     </div>
                                 </div>
-                                <div className="num-pad">
-                                    {
-                                        numPadLayout.map(
-                                            (row, rowIndex) => (
-                                                <div key={rowIndex} className="num-pad-row">
-                                                    {
-                                                        row.map(
-                                                            (item, colIndex) => (
-                                                                <button
-                                                                    key={colIndex}
-                                                                    className={`num-pad-button ${item === '⌫' ? 'num-pad-button delete-button' : ''} ${item === '.' ? 'num-pad-button decimal-button' : ''}`}
-                                                                    onClick={() => handleNumPadPress(item)}
-                                                                >
-                                                                    {item}
-                                                                </button>
-                                                            )
-                                                        )
-                                                    }
-                                                </div>
-                                            )
-                                        )
-                                    }
-                                </div>
-                                <div className='narrow-screen-buttons'>
-                                    <button 
-                                        id='narrow-back-item-button' 
-                                        disabled={currentShopIndex === 0} 
-                                        onClick={() => decrementItemIndex()}
-                                    >
-                                        Back
-                                    </button>
-                                    <button 
-                                        id={currentShopIndex === game?.items?.length - 1 ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
-                                        onClick={() => handleItemWorthSubmit()}
-                                    >
-                                        Submit
-                                    </button>
+                                <div className='three-columns-expand-one-three mb-m'>
+                                    <div></div>
+                                    <div className="num-pad">
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('7')}>7</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('8')}>8</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('9')}>9</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('4')}>4</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('5')}>5</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('6')}>6</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('1')}>1</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('2')}>2</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('3')}>3</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('.')}>.</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('0')}>0</button>
+                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('⌫')}>⌫</button>
+                                        <button 
+                                            id='enter'
+                                            className={currentShopIndex === game?.items?.length - 1 ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
+                                            onClick={() => handleItemWorthSubmit()}
+                                        >
+                                            {`=>`}
+                                        </button>
+                                        <button 
+                                            id='back' 
+                                            className='narrow-back-item-button'
+                                            disabled={currentShopIndex === 0} 
+                                            onClick={() => decrementItemIndex()}
+                                        >
+                                            BACK
+                                        </button>
+                                    </div>
+                                    <div></div>
                                 </div>
                             </div>
-                            <div className="info-container-wide-screen">
+                            <div className="info-container">
                                 <div className="info-column">
                                     <p className="date">{getDateString(currentProduct.date)}</p>
                                 </div>
