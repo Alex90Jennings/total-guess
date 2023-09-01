@@ -111,6 +111,7 @@ body::-webkit-scrollbar {
 .coming-soon-text {
   font-weight: bold;
   color: var(--primary-colour-accent);
+  margin-top: 8px;
 }
 
 .timer-to-midnight {
@@ -120,7 +121,7 @@ body::-webkit-scrollbar {
 
 .coming-soon-text {
   font-size: 1.8rem;
-  margin-top: 14px;
+  margin-top: 24px !important;
   margin-bottom: 10px;
 }
 
