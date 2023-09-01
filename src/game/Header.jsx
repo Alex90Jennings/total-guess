@@ -32,7 +32,7 @@ function Header({ setShowLoginPage }) {
                 </div>
                 <div className='icon-header three-rows-expand-one-three'>
                     <div></div>
-                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() => setModalToDisplay(ModalToDisplay.BADGES)}>
+                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(loggedInUser?.firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
                         {getInitials()}
                     </div>
                     <div></div>
@@ -66,12 +66,11 @@ function Header({ setShowLoginPage }) {
                         alt="mute"
                     />
                 </div>
-                <div className="icon-header mr-m" onClick={() => setIsMuted(!isMuted)}>
+                <div className="icon-header mr-m"onClick={() => setShowDropdown(!showDropdown)}>
                     <img
                         src={"/icons/tdropdown.png"}
                         alt="dropdown"
                         className="mr-m"
-                        onClick={() => setShowDropdown(!showDropdown)}
                     />
                 </div>
                 {showDropdown && (

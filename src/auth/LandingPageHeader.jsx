@@ -20,7 +20,7 @@ function LandingPageHeader({ hideHeaders }) {
     const subTitleBasedOnGameMode = (gameMode) => {
         if(gameMode === 'groceries') return 'Guess the total cost of the groceries'
         if(gameMode === 'calories') return 'Guess the total calories of the food'
-        if(gameMode === 'football') return 'Guess the total cost of the football transfers'
+        if(gameMode === 'football') return 'Guess the total cost of the transfers'
     }
 
     return (
@@ -37,6 +37,9 @@ function LandingPageHeader({ hideHeaders }) {
                                     () => {
                                         if(selectedModeIndex.current !== 0) {
                                             selectedModeIndex.current--
+                                            setSelectedGameMode(gameModes[selectedModeIndex.current])
+                                        } else {
+                                            selectedModeIndex.current = gameModes.length - 1
                                             setSelectedGameMode(gameModes[selectedModeIndex.current])
                                         }
                                     }
@@ -64,6 +67,9 @@ function LandingPageHeader({ hideHeaders }) {
                                         if(selectedModeIndex.current !== gameModes.length -1) {
                                             selectedModeIndex.current++
                                             setSelectedGameMode(gameModes[selectedModeIndex.current])
+                                        } else {
+                                            selectedModeIndex.current = 0
+                                            setSelectedGameMode(gameModes[selectedModeIndex.current])  
                                         }
                                     }
                                 }
