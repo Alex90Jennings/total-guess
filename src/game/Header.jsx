@@ -13,7 +13,6 @@ function Header({ setShowLoginPage }) {
     const [audio] = useState(new Audio('/Sounds/click.wav'));
     const [showDropdown, setShowDropdown] = useState(false);
 
-    //TODO: this won't work unless the current page is /
     const handleSignInClick = () => {
         if (!isMuted) audio.play();
         setShowLoginPage(true);
