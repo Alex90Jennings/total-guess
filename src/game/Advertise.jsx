@@ -10,14 +10,14 @@ function Advertise({ onClose }) {
                 <button className='close-btn' onClick={onClose}>X</button>
             </div>
             <h1>Advertise with us</h1>
-            <h2 className='instructions-h2'>WHO IS THIS GAME FOR?</h2>
+            <h2>WHO IS THIS GAME FOR?</h2>
             <div className='list-reset pl-m'>
                 <p>Our game platform is an increasingly popular destination for price-conscious shoppers.</p>
             </div>
             <div className='list-reset pl-m'>
                 <p>We offer a fun and engaging experience, which would be ideal association for many retail brands.</p>
             </div>
-            <h2 className='instructions-h2'>HOW DO WE CONTACT YOU?</h2>
+            <h2>HOW DO WE CONTACT YOU?</h2>
             <div className='list-reset pl-m'>
                 <p>If you would like to learn more about opportunities to collaborate with us at Total Guess, please let us know.  totalguessgame@gmail.com</p>
             </div>

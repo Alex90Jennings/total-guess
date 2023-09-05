@@ -13,7 +13,6 @@ function Header({ setShowLoginPage }) {
     const [audio] = useState(new Audio('/Sounds/click.wav'));
     const [showDropdown, setShowDropdown] = useState(false);
 
-    //TODO: this won't work unless the current page is /
     const handleSignInClick = () => {
         if (!isMuted) audio.play();
         setShowLoginPage(true);
@@ -30,24 +29,15 @@ function Header({ setShowLoginPage }) {
                 <div className="icon-header mr-s" onClick={() => navigate('/')}>
                     <img src={"/icons/thome.png"} alt="home icon" />
                 </div>
-                <div className='icon-header'>
-                    <div className={loggedInUser?.firstName ? 'user-initials ml-xs mr-s' : 'user-initials hide-text ml-xs mr-s'}>
+                <div className='icon-header three-rows-expand-one-three'>
+                    <div></div>
+                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(loggedInUser?.firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
                         {getInitials()}
                     </div>
+                    <div></div>
                 </div>
             </div>
-            <div className="header-left header-left-narrow-screen">
-                <img
-                    src={"/icons/thome.png"}
-                    alt="home icon"
-                    className="icon-header mr-s"
-                    onClick={() => navigate('/')}
-                />
-                <div className={loggedInUser?.firstName ? 'user-initials ml-xs' : 'user-initials hide-text ml-xs'}>
-                    {getInitials()}
-                </div>
-            </div>
-            <h1 className="header-middle logo">Total GuEss</h1>
+            <h1 className="header-middle logo">TOTAL GUESS</h1>
             <div className="header-right header-right-wide-screen">
                 <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
                     <img
@@ -68,19 +58,18 @@ function Header({ setShowLoginPage }) {
                     />
                 </div>
             </div>
-            <div className="header-right-narrow-screen">
-                <div className="two-columns-expand-one">
+            <div className="header-right header-right-narrow-screen">
+                <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
                     <img
-                        src={isMuted ? '/icons/muted.png' : '/icons/unmuted.png'}
+                        src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
                         alt="mute"
-                        className={isMuted ? 'mr-m icon-header mr-s pd-s' : 'mr-m icon-header mr-s'}
-                        onClick={() => setIsMuted(!isMuted)}
                     />
+                </div>
+                <div className="icon-header mr-m"onClick={() => setShowDropdown(!showDropdown)}>
                     <img
-                        src={"/icons/dropdown.png"}
+                        src={"/icons/tdropdown.png"}
                         alt="dropdown"
-                        className="mr-m dropdown-icon ml-xs"
-                        onClick={() => setShowDropdown(!showDropdown)}
+                        className="mr-m"
                     />
                 </div>
                 {showDropdown && (

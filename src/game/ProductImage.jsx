@@ -1,15 +1,13 @@
 import React from 'react';
 import '../styles/game.css';
 
-//TODO: Add loading spinning for when product is loading, make the same height and width as the image
-
 function ProductImage({ currentImage }) {
 
     return (
         <div className='three-columns-expand-one-three'>
             <div></div>
             <img 
-                src={currentImage} 
+                src={`${process.env.REACT_APP_S3_URL}/groceries/${currentImage}.jpg`} 
                 alt="product" 
                 className="product-image"
                 onError={(event) => {

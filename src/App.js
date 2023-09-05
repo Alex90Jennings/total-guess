@@ -9,13 +9,13 @@ import Modal from "react-modal";
 import Header from "./game/Header";
 import Footer from "./game/Footer";
 import Results from "./game/Results";
-import Share from "./game/Share.jsx";
 import StatisticsModal from "./game/StatisticsModal";
 import AboutUs from "./game/AboutUs";
 import FAQ from "./game/FAQ";
 import Advertise from "./game/Advertise";
 import BreakdownModal from "./game/BreakdownModal";
 import { AppContext } from "./hooks/context";
+import Badges from "./game/BadgesModal";
 
 export const ModalToDisplay = {
     INSTRUCTIONS: "INSTRUCTIONS",
@@ -24,6 +24,7 @@ export const ModalToDisplay = {
     BREAKDOWN: "BREAKDOWN",
     ABOUT_US: "ABOUT_US",
     ADVERTISE: "ADVERTISE",
+    BADGES: "BADGES"
 };
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
                     element={<MainGamePage />}
                 />
                 <Route path="/results" element={<Results />} />
-                <Route path="/share" element={<Share />} />
+                {/*<Route path="/share" element={<Share />} />*/}
             </Routes>
         </BrowserRouter>
         {Object.values(ModalToDisplay).map((modal) => (
@@ -79,6 +80,9 @@ function App() {
             )}
             {modal === ModalToDisplay.ADVERTISE && (
                 <Advertise onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.BADGES && (
+                <Badges onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

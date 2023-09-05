@@ -11,7 +11,11 @@ export const AppContext = createContext({
     setGameDate: () => {},
     handleSignOut: () => {},
     isMuted: false,
-    setIsMuted: () => {}
+    setIsMuted: () => {},
+    breakdown: {},
+    setBreakdown: () => {},
+    selectedGameMode: '',
+    setSelectedGameMode: () => {},
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -19,10 +23,12 @@ export const useAppContext = () => useContext(AppContext);
 export const AppProvider = ({ children }) => {
 
     const [ loggedInUser, setLoggedInUser ] = useState({});
+    const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ gameDate, setGameDate ] = useState('')
     const [ modalToDisplay, setModalToDisplay ] = useState('');
     const [ isMuted, setIsMuted ] = useState(false);
+    const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
     const [audio] = useState(new Audio("/Sounds/click.wav"));
 
     const handleSignOut = () => {
@@ -70,7 +76,11 @@ export const AppProvider = ({ children }) => {
         setModalToDisplay,
         handleSignOut,
         isMuted,
-        setIsMuted
+        setIsMuted,
+        breakdown,
+        setBreakdown,
+        selectedGameMode,
+        setSelectedGameMode
     };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -8,7 +8,7 @@ import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
 function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
 
-    const { isAuthenticated, loggedInUser, handleSignOut, isMuted } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser, handleSignOut, isMuted, selectedGameMode } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
     const [audio] = useState(new Audio('/Sounds/click.wav'));
@@ -60,18 +60,24 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
             <div></div>
             <ul className='list-reset pl-none'>
                 {
-                    hasPlayedDaily && loggedInUser ? 
-                        <TimerToUkMidnight />
-                        :
-                        <li className='three-columns-expand-one-three'>
-                            <div></div>
-                            <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
+                    selectedGameMode === 'groceries' ?
+                        hasPlayedDaily && loggedInUser ? 
+                            <TimerToUkMidnight />
+                            :
+                            <li className='three-columns-expand-one-three'>
                                 <div></div>
-                                <div>Play</div>
+                                <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
+                                    <div></div>
+                                    <div>Play</div>
+                                    <div></div>
+                                </button>
                                 <div></div>
-                            </button>
+                            </li> :
+                        <div className='three-columns-expand-one-three'>
                             <div></div>
-                        </li>
+                            <p className='coming-soon-text'>COMING SOON</p>
+                            <div></div>
+                        </div>
                 }
                 {/*
                 <li className='three-columns-expand-one-three'>
