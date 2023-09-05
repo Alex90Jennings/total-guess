@@ -7,7 +7,7 @@ function ProductImage({ currentImage }) {
         <div className='three-columns-expand-one-three'>
             <div></div>
             <img 
-                src={currentImage} 
+                src={`${process.env.REACT_APP_S3_URL}/groceries/${currentImage}.jpg`} 
                 alt="product" 
                 className="product-image"
                 onError={(event) => {
