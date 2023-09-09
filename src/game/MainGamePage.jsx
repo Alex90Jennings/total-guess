@@ -3,12 +3,18 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/game.css';
 import ProductImage from './ProductImage';
+import ProductHeader from './ProductHeader';
+import Numpad from './Numpad';
+import NarrowScreenTotals from './NarrowScreenTotals';
+import DateAndGameNumber from './DateAndGameNumber';
+import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
 import { clientApi } from '../api/clientApi';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, gameDate, isMuted, setGameDate, setBreakdown, selectedGameMode } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode } = useContext(AppContext);
     const navigate = useNavigate();
+    const gameDate = useRef('');
     const [game, setGame] = useState({});
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
     const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
@@ -16,48 +22,35 @@ function MainGamePage() {
     const [inputValue, setInputValue] = useState("");
     const itemPricesRef = useRef([]);
     const cumulativeTotal = itemPricesRef.current.reduce((sum, item) => sum + item.guess, 0);
-    const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop'];
-    const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl'];
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
 
     const fetchGame = async () => {
         try {
             const response = await clientApi.fetchTodayGame(selectedGameMode);
+            gameDate.current = response.data.date;
             setGame(response.data);
-            setGameDate(response.data.date);
         } catch (error) {
             console.error('Error fetching game:', error);
         }
     };
-
+    
     useEffect(() => {
         fetchGame();
     }, []);
 
     if (!game?.items || itemPricesRef.current.length === 10) {
-        return <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        return <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     }
 
     const currentProduct = game?.items[currentShopIndex];
     const currentShop = currentProduct.store;
     const currentDescription = currentProduct.description;
     const currentImage = currentProduct.image;
-
-    // const getBrandClassname = (classNames) => {
-    //     return classNames.replace('{brand}', currentProduct.store);
-    // };
-
-    const correctShopName = (shopName) => {
-        if (shopName === 'coop') return shopName;
-        if (shopName === 'sainsburys') return "Sainsbury's";
-        let nameToReturn = shouldBeAllCaps.includes(shopName)
-            ? shopName.toUpperCase()
-            : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase();
-        return nameToReturn;
-    };
+    const lastItem = currentShopIndex === game?.items?.length - 1;
+    const firstItem = currentShopIndex === 0;
     
     const decrementItemIndex = () => {
-        if (currentShopIndex === 0) return
+        if (firstItem) return
 
         if (!isMuted) audio.play();
         const newIndex = currentShopIndex - 1;
@@ -65,54 +58,6 @@ function MainGamePage() {
         itemPricesRef.current = itemPricesRef.current.slice(0, itemPricesRef.current.length - 1);
         return;
     }
-
-    const handleInputChange = (event) => {
-        let inputValue = event?.target?.value || event;
-
-        if(inputValue === '⌫') {
-            if(inputValue.length > 0) setInputValue(inputValue.slice(0, -1))
-            return
-        }
-
-        inputValue = inputValue.replace(/[^0-9.]/g, '');
-    
-        if (!inputValue.startsWith('£')) {
-            inputValue = '£' + inputValue;
-        }
-    
-        const numericValue = parseFloat(inputValue.substring(1));
-    
-        if (!isNaN(numericValue) && numericValue > 99) {
-            inputValue = '£99.99';
-        }
-
-        setInputValue(inputValue);
-    };
-
-    const handleNumPadPress = (num) => {
-        if(num === '⌫') {
-            if(inputValue.length > 0) setInputValue(inputValue.slice(0, -1))
-            return
-        }
-
-        if(inputValue && inputValue.includes('.') && inputValue.split('.')[1].length >= 2) {
-            return
-        }
-
-        let newNumber = `${inputValue}${num}`
-    
-        if (!newNumber.startsWith('£')) {
-            newNumber = '£' + newNumber;
-        }
-    
-        const numericValue = parseFloat(newNumber.substring(1));
-    
-        if (!isNaN(numericValue) && numericValue > 99) {
-            newNumber = '£99.99';
-        }
-
-        setInputValue(newNumber);
-    };
 
     const handleItemWorthSubmit = () => {
         const itemWorth = parseFloat(inputValue.replace(/[^0-9.]/g, ''));
@@ -127,7 +72,7 @@ function MainGamePage() {
             }];
             setInputValue("");
         }
-        if (currentShopIndex === game?.items?.length - 1) {
+        if (lastItem) {
             handleGuessSubmit();
             if (!isMuted) audioCoins.play();
         } else {
@@ -136,20 +81,6 @@ function MainGamePage() {
             setCurrentShopIndex(newIndex);
         }
     };
-
-    const handleInputKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            handleItemWorthSubmit();
-        }
-    };
-
-    function getDateString(date) {
-        const d = new Date(date);
-        const day = ("0" + d.getDate()).slice(-2);
-        const month = ("0" + (d.getMonth() + 1)).slice(-2);
-        const year = d.getFullYear();
-        return `${day}.${month}.${year}`;
-    }
 
     const handleGuessSubmit = async () => {
         const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
@@ -165,7 +96,7 @@ function MainGamePage() {
         }
 
         if (loggedInUser) {
-            const response = await clientApi.submitResult(loggedInUser.email, gameDate, percentageError, game.gameMode);
+            const response = await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode);
             setLoggedInUser(response.data);
             await clientApi.updateItemsGuess(itemPricesRef.current)
             setBreakdown(itemPricesRef.current)
@@ -175,113 +106,42 @@ function MainGamePage() {
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
     };
 
-    function getDaysSince() {
-        const targetDate = new Date('2023-07-01');
-        const givenDate = new Date(gameDate);
-
-        const timeDiff = Math.abs(givenDate.getTime() - targetDate.getTime());
-        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        return daysDiff;
-    }
-
     return (
         <main id="main">
             <div className="three-rows-expand-one-three">
                 <div></div>
                 <div className="main--layout">
-                    {currentProduct && (
-                        <div className="box">
-                            <div className="shop--css three-rows-expand-one-three">
-                                <div></div>
-                                {currentShop === "mands" ? (
-                                    <h1 className='normal-font pt-s'>M&S</h1>
-                                ) : (
-                                    <h1 className={shouldBeBold.includes(currentShop) ? 'bold' : 'normal-font'}>
-                                        {correctShopName(`${currentShop}`)}
-                                    </h1>
-                                )}
-                                <div></div>
-                            </div>
-                            <div className="description--css mt-s">{currentDescription}</div>
-                            <ProductImage currentImage={currentImage} />
-                            <p className='input-container-wide-screen item-count'><span className='item-count-accent'>{currentShopIndex + 1}</span>/{game?.items?.length}</p>
-                            <p className='input-container-wide-screen sub-total'>Sub Total: £{cumulativeTotal.toFixed(2)}</p>
-                            <div className="input-container-wide-screen input-container mt-s">
-                                <div></div>
-                                <div className='five-columns-expand-two-four'>
-                                    <button id='back-item-button' disabled={currentShopIndex === 0} onClick={() => decrementItemIndex()}>Back</button>
-                                    <div></div>
-                                    <input
-                                        type="text"
-                                        value={inputValue}
-                                        onChange={handleInputChange}
-                                        onKeyDown={handleInputKeyDown}
-                                        placeholder="Enter £ value"
-                                        className='value-input'
+                    {
+                        currentProduct && (
+                            <div className="box">
+                                <ProductHeader currentShop={currentShop} />
+                                <div className="description--css mt-s">{currentDescription}</div>
+                                <ProductImage currentImage={currentImage} />
+                                <div className='input-container-wide-screen'>
+                                    <WideScreenInput 
+                                        currentShopIndex={currentShopIndex} 
+                                        gameLength={game?.items?.length} 
+                                        inputValue={inputValue} 
+                                        cumulativeTotal={cumulativeTotal} 
+                                        setInputValue={setInputValue}
+                                        handleItemWorthSubmit={handleItemWorthSubmit}
                                     />
-                                    <div></div>
-                                    <button id={currentShopIndex === game?.items?.length - 1 ? 'submit-final-item-button' : 'submit-item-button'} onClick={() => handleItemWorthSubmit()}>Submit</button>
                                 </div>
+                                <div className='input-container-narrow-screen'>
+                                    <NarrowScreenTotals currentShopIndex={currentShopIndex} gameLength={game?.items?.length} inputValue={inputValue} cumulativeTotal={cumulativeTotal} />
+                                    <Numpad 
+                                        inputValue={inputValue} 
+                                        setInputValue={setInputValue} 
+                                        lastItem={lastItem} 
+                                        firstItem={firstItem} 
+                                        decrementItemIndex={decrementItemIndex} 
+                                        handleItemWorthSubmit={handleItemWorthSubmit}
+                                    />
+                                </div>
+                                <DateAndGameNumber currentProductDate={currentProduct.date} gameDate={gameDate.current} />                 
                             </div>
-                            <div className='input-container-narrow-screen'>
-                                <div className='three-columns-auto'>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p className='input-container-narrow-screen-accent'>Progress</p>
-                                        <p style={{ margin: '0 0 8px 0' }}>{currentShopIndex + 1}/{game?.items?.length}</p>
-                                    </div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p className='input-container-narrow-screen-accent'>Guess</p>
-                                        <p style={{ margin: '0 0 8px 0' }}>{inputValue === '' || inputValue === '£' ? '£0.00' : inputValue}</p>
-                                    </div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p className='input-container-narrow-screen-accent'>Sub Total</p>
-                                        <p style={{ margin: '0 0 8px 0' }}>£{cumulativeTotal.toFixed(2)}</p>
-                                    </div>
-                                </div>
-                                <div className='num-pad-container'>
-                                    <div></div>
-                                    <div className="num-pad">
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('7')}>7</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('8')}>8</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('9')}>9</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('4')}>4</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('5')}>5</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('6')}>6</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('1')}>1</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('2')}>2</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('3')}>3</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('.')}>.</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('0')}>0</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('⌫')}>⌫</button>
-                                        <button 
-                                            id='enter'
-                                            className={currentShopIndex === game?.items?.length - 1 ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
-                                            onClick={() => handleItemWorthSubmit()}
-                                        >
-                                            {`=>`}
-                                        </button>
-                                        <button 
-                                            id='back' 
-                                            className='narrow-back-item-button'
-                                            disabled={currentShopIndex === 0} 
-                                            onClick={() => decrementItemIndex()}
-                                        >
-                                            BACK
-                                        </button>
-                                    </div>
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div className="info-container">
-                                <div className="info-column">
-                                    <p className="date">{getDateString(currentProduct.date)}</p>
-                                </div>
-                                <div className="info-column text-right">
-                                    <p className="game">#{getDaysSince()}</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                        )
+                    }
                 </div>
                 <div></div>
             </div>

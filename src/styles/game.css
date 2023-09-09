@@ -282,8 +282,12 @@ body {
 }
 
 .info-container p {
-    margin: 4px 12px;
-    font-size: 20px;
+    margin: 4px 20px;
+    font-size: 18px;
+}
+
+.accent {
+    color: var(--primary-colour-accent);
 }
 
 .box img {
@@ -396,6 +400,11 @@ body {
 
 .game {
     text-align: right;
+}
+
+.enter-icon {
+    margin: auto;
+    height: 50px;
 }
 
 .timer {
@@ -624,10 +633,6 @@ input[type='number']::-webkit-outer-spin-button {
         width: 850px;
     }
 
-    .info-container p {
-        font-size: 20px !important;
-    }
-
     #submit-item-button, 
     #back-item-button, 
     #submit-final-item-button {
@@ -719,6 +724,11 @@ input[type='number']::-webkit-outer-spin-button {
     .input-container-narrow-screen {
         display: grid;
         width: 100%;
+        font-size: 14px;
+    }
+
+    .info-container p {
+        font-size: 14px;
     }
 
     .num-pad-container {
