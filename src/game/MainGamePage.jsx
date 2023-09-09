@@ -33,7 +33,7 @@ function MainGamePage() {
             console.error('Error fetching game:', error);
         }
     };
-    
+
     useEffect(() => {
         fetchGame();
     }, []);
@@ -51,7 +51,6 @@ function MainGamePage() {
     
     const decrementItemIndex = () => {
         if (firstItem) return
-
         if (!isMuted) audio.play();
         const newIndex = currentShopIndex - 1;
         setCurrentShopIndex(newIndex);
@@ -72,6 +71,7 @@ function MainGamePage() {
             }];
             setInputValue("");
         }
+
         if (lastItem) {
             handleGuessSubmit();
             if (!isMuted) audioCoins.play();
@@ -86,14 +86,8 @@ function MainGamePage() {
         const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
         let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
-
-        if (percentageError > 35) {
-            percentageError = 35;
-        }
-
-        if (percentageError < -35) {
-            percentageError = -35;
-        }
+        if (percentageError > 35) percentageError = 35;
+        if (percentageError < -35) percentageError = -35;
 
         if (loggedInUser) {
             const response = await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode);
@@ -102,7 +96,6 @@ function MainGamePage() {
             setBreakdown(itemPricesRef.current)
             if (!isMuted) audio.play();
         }
-
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
     };
 

@@ -327,6 +327,11 @@ body::-webkit-scrollbar {
   grid-template-columns: repeat(3, auto);
 }
 
+.three-columns-fr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .three-rows-expand-two {
   display: grid;
   grid-template-rows: auto 1fr auto;
