@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import '../styles/modal.css'
+import '../styles/modal.css';
 import { AppContext } from "../hooks/context";
 
 function Badges({ onClose }) {
@@ -32,13 +32,11 @@ function Badges({ onClose }) {
     };
 
     return (
-        <div className='pl-l pr-l'>
-            <div className='two-columns-expand-one'>
-                <div></div>
-                <button className='close-btn' onClick={onClose}>X</button>
-            </div>
-            <h1>Badges</h1>
-            <div className='list-reset pl-m center-wrapper'>
+        <div className='modal-content'>
+            <header>
+                <h1>Badges</h1>
+            </header>
+            <section>
                 <h2>Groceries</h2>
                 {loggedInUser.groceriesBadges.length === 0 && <p>Play a game to earn badges</p>}
                 {
@@ -60,15 +58,16 @@ function Badges({ onClose }) {
                             }
                         </div>
                 }
-            </div>
-            <div className='list-reset pl-m'>
+            </section>
+            <section>
                 <h2>Football Transfers</h2>
                 <p>Coming soon.</p>
-            </div>
-            <div className='list-reset pl-m'>
+            </section>
+            <section>
                 <h2>Calories</h2>
                 <p>Coming soon.</p>
-            </div>
+            </section>
+            <button className='close-btn' onClick={onClose}>X</button>
         </div>
     );
 }

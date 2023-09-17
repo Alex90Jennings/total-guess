@@ -37,10 +37,16 @@
     margin-top: 5px;
 }
 
+.link-email {
+    color: var(--primary-colour-accent);
+    margin-left: 4px;
+}
+
 .list-reset {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+    list-style: none;
 }
 
 .close-btn {

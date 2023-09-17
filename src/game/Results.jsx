@@ -15,7 +15,7 @@ function Results() {
     const playerGuess = location.state.numericGuess;
 
     return (
-        <div className="main--layout--results">
+        <main className="main--layout--results">
             <div className="box-results">
                 <div className='three-columns-expand-one-three trolley-icon'>
                     <div></div>
@@ -65,7 +65,7 @@ function Results() {
                     */}
                 </div>
             </div>
-        </div>
+        </main>
     );
 }
 

@@ -10,7 +10,7 @@ function Footer() {
     return (
         <footer className="footer--layout">
             <div className='footer-narrow-screen'></div>
-            <div className="left-icons">
+            <nav className="left-icons">
                 <a href="https://www.instagram.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src="/icons/tinstagram.png" alt="instagram icon" />
                 </a>
@@ -23,34 +23,34 @@ function Footer() {
                 <a href="https://www.facebook.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/tfacebook.png'} alt="facebook icon" />
                 </a>
-            </div>
+            </nav>
             <div className='footer-narrow-screen'></div>
             <div className="middle-content footer-wide-screen">
                 <div className="icon-mail">
                     <img src={'/icons/mail.png'} alt="icon" />
                 </div>
-                <div className="contact">totalguessgame@gmail.com</div>
+                <a href="mailto:totalguessgame@gmail.com" className='contact'>totalguessgame@gmail.com</a>
             </div>
-            <div className="right-content footer-wide-screen">
-                <div
+            <ul className="right-content footer-wide-screen list-reset">
+                <li
                     className="footer-row"
                     onClick={() => setModalToDisplay(ModalToDisplay.ABOUT_US)}
                 >
                     About Us
-                </div>
-                <div
+                </li>
+                <li
                     className="footer-row"
                     onClick={() => setModalToDisplay(ModalToDisplay.FAQ)}
                 >
                     FAQ
-                </div>
-                <div
+                </li>
+                <li
                     className="footer-row"
                     onClick={() => setModalToDisplay(ModalToDisplay.ADVERTISE)}
                 >
                     Advertise with us
-                </div>
-            </div>
+                </li>
+            </ul>
         </footer>
     );
 }

@@ -25,7 +25,7 @@ function Header({ setShowLoginPage }) {
 
     return (
         <header id="header">
-            <div className="header-left header-left-wide-screen">
+            <nav className="header-left header-left-wide-screen">
                 <div className="icon-header mr-s" onClick={() => navigate('/')}>
                     <img src={"/icons/thome.png"} alt="home icon" />
                 </div>
@@ -36,9 +36,9 @@ function Header({ setShowLoginPage }) {
                     </div>
                     <div></div>
                 </div>
-            </div>
+            </nav>
             <h1 className="header-middle logo">TOTAL GUESS</h1>
-            <div className="header-right header-right-wide-screen">
+            <nav className="header-right header-right-wide-screen">
                 <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
                     <img
                         src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
@@ -57,8 +57,8 @@ function Header({ setShowLoginPage }) {
                         alt="stats icon"
                     />
                 </div>
-            </div>
-            <div className="header-right header-right-narrow-screen">
+            </nav>
+            <nav className="header-right header-right-narrow-screen">
                 <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
                     <img
                         src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
@@ -125,7 +125,7 @@ function Header({ setShowLoginPage }) {
                         </div>
                     </div>
                 )}
-            </div>
+            </nav>
         </header>
     );
 }

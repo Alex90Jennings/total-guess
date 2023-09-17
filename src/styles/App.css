@@ -91,7 +91,8 @@ body::-webkit-scrollbar {
 
 .contact {
   font-size: 18px;
-  color: #ffffff;
+  color: var(--primary-colour-white);
+  text-decoration: none;
 }
 
 .right-content {

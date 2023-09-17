@@ -186,105 +186,42 @@ function MainGamePage() {
 
     return (
         <main id="main">
-            <div className="three-rows-expand-one-three">
+            <section className="three-rows-expand-one-three">
                 <div></div>
-                <div className="main--layout">
-                    {currentProduct && (
-                        <div className="box">
-                            <div className="shop--css three-rows-expand-one-three">
-                                <div></div>
-                                {currentShop === "mands" ? (
-                                    <h1 className='normal-font pt-s'>M&S</h1>
-                                ) : (
-                                    <h1 className={shouldBeBold.includes(currentShop) ? 'bold' : 'normal-font'}>
-                                        {correctShopName(`${currentShop}`)}
-                                    </h1>
-                                )}
-                                <div></div>
-                            </div>
-                            <div className="description--css mt-s">{currentDescription}</div>
-                            <ProductImage currentImage={currentImage} />
-                            <p className='input-container-wide-screen item-count'><span className='item-count-accent'>{currentShopIndex + 1}</span>/{game?.items?.length}</p>
-                            <p className='input-container-wide-screen sub-total'>Sub Total: £{cumulativeTotal.toFixed(2)}</p>
-                            <div className="input-container-wide-screen input-container mt-s">
-                                <div></div>
-                                <div className='five-columns-expand-two-four'>
-                                    <button id='back-item-button' disabled={currentShopIndex === 0} onClick={() => decrementItemIndex()}>Back</button>
-                                    <div></div>
-                                    <input
-                                        type="text"
-                                        value={inputValue}
-                                        onChange={handleInputChange}
-                                        onKeyDown={handleInputKeyDown}
-                                        placeholder="Enter £ value"
-                                        className='value-input'
+                <article className="main--layout">
+                    {
+                        currentProduct && (
+                            <div className="box">
+                                <ProductHeader currentShop={currentShop} />
+                                <div className="description--css mt-s">{currentDescription}</div>
+                                <ProductImage currentImage={currentImage} />
+                                <div className='input-container-wide-screen'>
+                                    <WideScreenInput 
+                                        currentShopIndex={currentShopIndex} 
+                                        gameLength={game?.items?.length} 
+                                        inputValue={inputValue} 
+                                        cumulativeTotal={cumulativeTotal} 
+                                        setInputValue={setInputValue}
+                                        handleItemWorthSubmit={handleItemWorthSubmit}
                                     />
-                                    <div></div>
-                                    <button id={currentShopIndex === game?.items?.length - 1 ? 'submit-final-item-button' : 'submit-item-button'} onClick={() => handleItemWorthSubmit()}>Submit</button>
+                                </div>
+                                <div className='input-container-narrow-screen'>
+                                    <NarrowScreenTotals currentShopIndex={currentShopIndex} gameLength={game?.items?.length} inputValue={inputValue} cumulativeTotal={cumulativeTotal} />
+                                    <Numpad 
+                                        inputValue={inputValue} 
+                                        setInputValue={setInputValue} 
+                                        lastItem={lastItem} 
+                                        firstItem={firstItem} 
+                                        decrementItemIndex={decrementItemIndex} 
+                                        handleItemWorthSubmit={handleItemWorthSubmit}
+                                    />
                                 </div>
                             </div>
-                            <div className='input-container-narrow-screen'>
-                                <div className='three-columns-auto'>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p className='input-container-narrow-screen-accent'>Progress</p>
-                                        <p style={{ margin: '0 0 8px 0' }}>{currentShopIndex + 1}/{game?.items?.length}</p>
-                                    </div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p className='input-container-narrow-screen-accent'>Guess</p>
-                                        <p style={{ margin: '0 0 8px 0' }}>{inputValue === '' || inputValue === '£' ? '£0.00' : inputValue}</p>
-                                    </div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p className='input-container-narrow-screen-accent'>Sub Total</p>
-                                        <p style={{ margin: '0 0 8px 0' }}>£{cumulativeTotal.toFixed(2)}</p>
-                                    </div>
-                                </div>
-                                <div className='num-pad-container'>
-                                    <div></div>
-                                    <div className="num-pad">
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('7')}>7</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('8')}>8</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('9')}>9</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('4')}>4</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('5')}>5</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('6')}>6</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('1')}>1</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('2')}>2</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('3')}>3</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('.')}>.</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('0')}>0</button>
-                                        <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('⌫')}>⌫</button>
-                                        <button 
-                                            id='enter'
-                                            className={currentShopIndex === game?.items?.length - 1 ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
-                                            onClick={() => handleItemWorthSubmit()}
-                                        >
-                                            {`=>`}
-                                        </button>
-                                        <button 
-                                            id='back' 
-                                            className='narrow-back-item-button'
-                                            disabled={currentShopIndex === 0} 
-                                            onClick={() => decrementItemIndex()}
-                                        >
-                                            BACK
-                                        </button>
-                                    </div>
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div className="info-container">
-                                <div className="info-column">
-                                    <p className="date">{getDateString(currentProduct.date)}</p>
-                                </div>
-                                <div className="info-column text-right">
-                                    <p className="game">#{getDaysSince()}</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                        )
+                    }
+                </article>
                 <div></div>
-            </div>
+            </section>
         </main>
     );
 }

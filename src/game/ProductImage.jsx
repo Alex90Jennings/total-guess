@@ -4,7 +4,7 @@ import '../styles/game.css';
 function ProductImage({ currentImage }) {
 
     return (
-        <div className='three-columns-expand-one-three'>
+        <section className='three-columns-expand-one-three'>
             <div></div>
             <img 
                 src={`${process.env.REACT_APP_S3_URL}/groceries/${currentImage}.jpg`} 
@@ -15,7 +15,7 @@ function ProductImage({ currentImage }) {
                 }} 
             />
             <div></div>
-        </div>
+        </section>
     );
 }
 
