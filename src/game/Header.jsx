@@ -26,10 +26,10 @@ function Header({ setShowLoginPage }) {
     return (
         <header id="header">
             <nav className="header-left header-left-wide-screen">
-                <div className="icon-header mr-s" onClick={() => navigate('/')}>
+                <div className="icon-header mr-s cursor" onClick={() => navigate('/')}>
                     <img src={"/icons/thome.png"} alt="home icon" />
                 </div>
-                <div className='icon-header three-rows-expand-one-three'>
+                <div className='icon-header three-rows-expand-one-three cursor'>
                     <div></div>
                     <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(loggedInUser?.firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
                         {getInitials()}
@@ -39,19 +39,19 @@ function Header({ setShowLoginPage }) {
             </nav>
             <h1 className="header-middle logo">TOTAL GUESS</h1>
             <nav className="header-right header-right-wide-screen">
-                <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
+                <div className="icon-header mr-s cursor" onClick={() => setIsMuted(!isMuted)}>
                     <img
                         src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
                         alt="mute"
                     />
                 </div>
-                <div className="icon-header mr-s" onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}>
+                <div className="icon-header mr-s cursor" onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}>
                     <img
                         src={"/icons/ti.png"}
                         alt="i icon"
                     />
                 </div>
-                <div className="icon-header" onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>
+                <div className="icon-header cursor" onClick={() => setModalToDisplay(ModalToDisplay.STATISTICS)}>
                     <img
                         src={"/icons/tchart64.png"}
                         alt="stats icon"
@@ -59,13 +59,13 @@ function Header({ setShowLoginPage }) {
                 </div>
             </nav>
             <nav className="header-right header-right-narrow-screen">
-                <div className="icon-header mr-s" onClick={() => setIsMuted(!isMuted)}>
+                <button className="icon-header mr-s cursor" onClick={() => setIsMuted(!isMuted)}>
                     <img
                         src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
                         alt="mute"
                     />
-                </div>
-                <div className="icon-header mr-m"onClick={() => setShowDropdown(!showDropdown)}>
+                </button>
+                <div className="icon-header mr-m cursor" onClick={() => setShowDropdown(!showDropdown)}>
                     <img
                         src={"/icons/tdropdown.png"}
                         alt="dropdown"
