@@ -131,6 +131,7 @@ function MainGamePage() {
                                         handleItemWorthSubmit={handleItemWorthSubmit}
                                     />
                                 </div>
+                                <DateAndGameNumber currentProductDate={currentProduct.date} gameDate={game.date} />
                             </div>
                         )
                     }
