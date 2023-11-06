@@ -327,6 +327,7 @@ body {
     grid-row: 1 / span 3;
     margin-top: 2px;
     height: 115px;
+    width: 80px;
 }
 
 #back {
@@ -415,6 +416,7 @@ body {
 .enter-icon {
     margin: auto;
     height: 50px;
+    width: 20px;
 }
 
 .timer {
