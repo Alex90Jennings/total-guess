@@ -8,12 +8,12 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
             return
         }
 
-        if(inputValue && inputValue.includes('.') && inputValue.split('.')[1].length >= 2) {
-            return
-        }
+        if(inputValue && inputValue.includes('.') && inputValue.split('.')[1].length >= 2) return
 
         let newNumber = `${inputValue}${num}`
-    
+
+        if(Number(newNumber) > 99.99) return
+
         if (!newNumber.startsWith('£')) {
             newNumber = '£' + newNumber;
         }
@@ -48,7 +48,9 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
                     className={lastItem ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
                     onClick={() => handleItemWorthSubmit()}
                 >
+                    <div></div>
                     <img src={`${lastItem ? '/icons/enter-accent.png' : '/icons/enter.png'}`} alt="enter" className='enter-icon' />
+                    <div></div>
                 </button>
                 <button 
                     id='back' 

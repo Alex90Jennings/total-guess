@@ -355,10 +355,10 @@ body {
     border: 2px solid var(--primary-colour-charcoal);
 }
 
-.narrow-submit-final-item-button,
-.narrow-submit-item-button {
-    font-size: 38px;
-    font-weight: 'bold';
+.narrow-back-item-button,
+.narrow-submit-final-item-button {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
 }
 
 .narrow-submit-item-button {

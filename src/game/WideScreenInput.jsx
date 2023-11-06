@@ -4,23 +4,17 @@ const WideScreenInput = ({ currentShopIndex, gameLength, inputValue, setInputVal
 
     const handleInputChange = (event) => {
         let inputValue = event?.target?.value || event;
-
-        if(inputValue === '⌫') {
+        
+        if(inputValue?.nativeEvent?.inputType === "deleteContentBackward") {
             if(inputValue.length > 0) setInputValue(inputValue.slice(0, -1))
             return
         }
 
         inputValue = inputValue.replace(/[^0-9.]/g, '');
-    
-        if (!inputValue.startsWith('£')) {
-            inputValue = '£' + inputValue;
-        }
-    
-        const numericValue = parseFloat(inputValue.substring(1));
-    
-        if (!isNaN(numericValue) && numericValue > 99) {
-            return;
-        }
+
+        if(Number(inputValue) > 99.99 || Number(inputValue).toString().split('.')[1]?.length > 2) return
+
+        if (!inputValue.startsWith('£')) inputValue = '£' + inputValue;
 
         setInputValue(inputValue);
     };
