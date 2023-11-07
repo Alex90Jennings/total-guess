@@ -39,7 +39,7 @@ function Header({ setShowLoginPage }) {
             </nav>
             <h1 className="header-middle logo">TOTAL GUESS</h1>
             <nav className="header-right header-right-wide-screen">
-                <div className="icon-header mr-s cursor" onClick={() => setIsMuted(!isMuted)}>
+                <div className="icon-header mute-icon mr-s cursor" onClick={() => setIsMuted(!isMuted)}>
                     <img
                         src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
                         alt="mute"

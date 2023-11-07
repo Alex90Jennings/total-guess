@@ -95,7 +95,12 @@ body {
 
 .icon-header img,
 .icon-footer img {
+    max-width: 60%;
     max-height: 60%;
+}
+
+.mute-icon {
+    max-width: none !important;
 }
 
 .footer-narrow-screen {
