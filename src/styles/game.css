@@ -95,12 +95,7 @@ body {
 
 .icon-header img,
 .icon-footer img {
-    max-width: 60%;
-    max-height: 60%;
-}
-
-.mute-icon {
-    max-width: none !important;
+    height: 28px;
 }
 
 .footer-narrow-screen {
@@ -670,6 +665,11 @@ input[type='number']::-webkit-outer-spin-button {
     .header-right-wide-screen,
     .footer-wide-screen {
         display: none;
+    }
+
+    .icon-header img,
+    .icon-footer img {
+        height: 22px;
     }
 
     .footer-narrow-screen {
