@@ -14,10 +14,10 @@ function Footer() {
                 <a href="https://www.instagram.com" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src="/icons/tinstagram.png" alt="instagram icon" />
                 </a>
-                <a href="https://www.linkedin.com" rel="noreferrer" target="_blank" className="icon-footer">
+                <a href="https://www.linkedin.com/company/total-guess/" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/tlinkedin.png'} alt="linkedin icon" />
                 </a>
-                <a href="https://www.twitter.com" rel="noreferrer" target="_blank" className="icon-footer">
+                <a href="https://x.com/total_guess?s=11&t=xGivyh4Xdt8ahYQTieZakw" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/ttwitter.png'} alt="twitter icon" />
                 </a>
                 <a href="https://www.facebook.com" rel="noreferrer" target="_blank" className="icon-footer">

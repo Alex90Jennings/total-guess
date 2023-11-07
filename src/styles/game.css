@@ -95,7 +95,6 @@ body {
 
 .icon-header img,
 .icon-footer img {
-    max-width: 60%;
     max-height: 60%;
 }
 
@@ -336,6 +335,8 @@ body {
     height: 35px;
     margin-top: 2px;
     font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .narrow-screen-buttons {
@@ -355,8 +356,8 @@ body {
     border: 2px solid var(--primary-colour-charcoal);
 }
 
-.narrow-back-item-button,
-.narrow-submit-final-item-button {
+.narrow-submit-final-item-button,
+.narrow-submit-item-button {
     display: grid;
     grid-template-columns: auto 1fr auto;
 }
@@ -616,7 +617,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 1100px) {
     .logo {
-        font-size: 40px !important;
+        font-size: 36px !important;
     }
 
     .coming-soon-text {
@@ -709,7 +710,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 650px) {
     .logo {
-        font-size: 30px !important;
+        font-size: 24px !important;
     }
 
     .shop--css {
@@ -789,7 +790,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 530px) {
     .logo {
-        font-size: 20px !important;
+        font-size: 16px !important;
     }
 
     .user-initials {
@@ -899,6 +900,6 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .logo {
-        font-size: 18px !important;
+        font-size: 14px !important;
     }
 }
