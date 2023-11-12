@@ -118,6 +118,7 @@ function MainGamePage() {
                                         cumulativeTotal={cumulativeTotal} 
                                         setInputValue={setInputValue}
                                         handleItemWorthSubmit={handleItemWorthSubmit}
+                                        decrementItemIndex={decrementItemIndex}
                                     />
                                 </div>
                                 <div className='input-container-narrow-screen'>
