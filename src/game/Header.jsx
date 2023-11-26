@@ -34,6 +34,11 @@ function Header({ setShowLoginPage }) {
         }
     };
 
+    const dropdownMenuPress = (menuChoice) => {
+        setModalToDisplay(menuChoice); 
+        setShowDropdown(!showDropdown); 
+    }
+
     useEffect(() => {
         showDropdown ? document.addEventListener('mousedown', handleClickOutside) : document.removeEventListener('mousedown', handleClickOutside);
         return () => {
@@ -101,19 +106,19 @@ function Header({ setShowLoginPage }) {
                                 Sign out
                             </div>
                         )}
-                        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.STATISTICS); setShowDropdown(!showDropdown); }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.STATISTICS)}}>
                             Statistics
                         </div>
-                        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.INSTRUCTIONS); setShowDropdown(!showDropdown); }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.INSTRUCTIONS)}}>
                             Instructions
                         </div>
-                        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ABOUT_US); setShowDropdown(!showDropdown); }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.ABOUT_US)}}>
                             About Us
                         </div>
-                        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.FAQ); setShowDropdown(!showDropdown); }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.FAQ)}}>
                             FAQs
                         </div>
-                        <div className="dropdown-item" onClick={() => { setModalToDisplay(ModalToDisplay.ADVERTISE); setShowDropdown(!showDropdown); }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.ADVERTISE)}}>
                             Advertise With Us
                         </div>
                         <div className="dropdown-item">
