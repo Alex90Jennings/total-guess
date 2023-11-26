@@ -91,7 +91,7 @@ const StatisticsModal = ({ className, onClose }) => {
     if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
     return (
-        <div className={className}>
+        <section className={className}>
             <div className="pl-l pr-l">
                 <button className="close-btn" onClick={() => {
                         onClose();
@@ -146,7 +146,7 @@ const StatisticsModal = ({ className, onClose }) => {
                 </a> 
                 */}
             </div>
-        </div>
+        </section>
     );
 };
 

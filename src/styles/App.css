@@ -49,6 +49,11 @@ body::-webkit-scrollbar {
   grid-template-rows: auto 1fr auto;
 }
 
+button,
+.cursor {
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -91,7 +96,8 @@ body::-webkit-scrollbar {
 
 .contact {
   font-size: 18px;
-  color: #ffffff;
+  color: var(--primary-colour-white);
+  text-decoration: none;
 }
 
 .right-content {
@@ -325,6 +331,11 @@ body::-webkit-scrollbar {
 .three-columns-auto {
   display: grid;
   grid-template-columns: repeat(3, auto);
+}
+
+.three-columns-fr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .three-rows-expand-two {

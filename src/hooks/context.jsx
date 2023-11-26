@@ -7,8 +7,6 @@ export const AppContext = createContext({
     setLoggedInUser: () => {},
     isAuthenticated: false,
     setIsAuthenticated: () => {},
-    gameDate: '',
-    setGameDate: () => {},
     handleSignOut: () => {},
     isMuted: false,
     setIsMuted: () => {},
@@ -25,7 +23,6 @@ export const AppProvider = ({ children }) => {
     const [ loggedInUser, setLoggedInUser ] = useState({});
     const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
-    const [ gameDate, setGameDate ] = useState('')
     const [ modalToDisplay, setModalToDisplay ] = useState('');
     const [ isMuted, setIsMuted ] = useState(false);
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
@@ -70,8 +67,6 @@ export const AppProvider = ({ children }) => {
         setLoggedInUser,
         isAuthenticated,
         setIsAuthenticated,
-        gameDate,
-        setGameDate,
         modalToDisplay,
         setModalToDisplay,
         handleSignOut,

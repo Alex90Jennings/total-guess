@@ -33,11 +33,11 @@ const TimerToUkMidnight = () => {
     }, []);
 
     return (
-        <div className='three-columns-expand-one-three'>
+        <section className='three-columns-expand-one-three'>
             <div></div>
-            <div className='timer-to-midnight'>{countdown}</div>
+            <p className='timer-to-midnight'>{countdown}</p>
             <div></div>
-        </div>
+        </section>
     );
 };
 

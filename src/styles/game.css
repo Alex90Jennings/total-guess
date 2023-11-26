@@ -95,8 +95,7 @@ body {
 
 .icon-header img,
 .icon-footer img {
-    max-width: 60%;
-    max-height: 60%;
+    height: 28px;
 }
 
 .footer-narrow-screen {
@@ -198,8 +197,17 @@ body {
 
 .input-container {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 14fr 1fr;
     width: 100%;
+}
+
+.input-container-accent {
+    color: var(--primary-colour-accent);
+    font-size: 18px;
+    width: 120px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 12px;
 }
 
 .input-container-narrow-screen {
@@ -248,6 +256,7 @@ body {
 .value-input {
     font-size: 24px;
     width: 180px;
+    height: 40px;
     text-align: center;
 }
 
@@ -282,8 +291,12 @@ body {
 }
 
 .info-container p {
-    margin: 4px 12px;
-    font-size: 20px;
+    margin: 4px 20px;
+    font-size: 18px;
+}
+
+.accent {
+    color: var(--primary-colour-accent);
 }
 
 .box img {
@@ -304,23 +317,26 @@ body {
         '4 5 6 enter'
         '1 2 3 enter'
         '. 0 ⌫ back';
-    grid-template-columns: repeat(4, 60px);
-    grid-template-rows: repeat(4, 30px);
-    gap: 10px;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(4, 40px);
 }
 
 #enter {
     grid-column: 4;
     grid-row: 1 / span 3;
     margin-top: 2px;
-    height: 110px;
+    height: 115px;
+    width: 80px;
 }
 
 #back {
     grid-column: 4;
     grid-row: 4;
-    height: 30px;
+    height: 35px;
     margin-top: 2px;
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .narrow-screen-buttons {
@@ -342,8 +358,8 @@ body {
 
 .narrow-submit-final-item-button,
 .narrow-submit-item-button {
-    font-size: 38px;
-    font-weight: 'bold';
+    display: grid;
+    grid-template-columns: auto 1fr auto;
 }
 
 .narrow-submit-item-button {
@@ -358,13 +374,13 @@ body {
 
 .num-pad-button {
     margin: 2px;
-    height: 30px;
-    width: 60px;
+    height: 35px;
+    width: 70px;
     background-color: var(--primary-colour-white);
     color: var(--primary-colour-charcoal);
     border: 2px solid var(--primary-colour-charcoal);
     border-radius: 3px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .delete-button,
@@ -396,6 +412,12 @@ body {
 
 .game {
     text-align: right;
+}
+
+.enter-icon {
+    margin: auto;
+    height: 50px;
+    width: 20px;
 }
 
 .timer {
@@ -595,7 +617,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 1100px) {
     .logo {
-        font-size: 40px !important;
+        font-size: 36px !important;
     }
 
     .coming-soon-text {
@@ -624,10 +646,6 @@ input[type='number']::-webkit-outer-spin-button {
         width: 850px;
     }
 
-    .info-container p {
-        font-size: 20px !important;
-    }
-
     #submit-item-button, 
     #back-item-button, 
     #submit-final-item-button {
@@ -647,6 +665,11 @@ input[type='number']::-webkit-outer-spin-button {
     .header-right-wide-screen,
     .footer-wide-screen {
         display: none;
+    }
+
+    .icon-header img,
+    .icon-footer img {
+        height: 22px;
     }
 
     .footer-narrow-screen {
@@ -692,7 +715,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 650px) {
     .logo {
-        font-size: 30px !important;
+        font-size: 24px !important;
     }
 
     .shop--css {
@@ -719,6 +742,11 @@ input[type='number']::-webkit-outer-spin-button {
     .input-container-narrow-screen {
         display: grid;
         width: 100%;
+        font-size: 14px;
+    }
+
+    .info-container p {
+        font-size: 14px;
     }
 
     .num-pad-container {
@@ -767,7 +795,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media screen and (max-width: 530px) {
     .logo {
-        font-size: 20px !important;
+        font-size: 16px !important;
     }
 
     .user-initials {
@@ -877,6 +905,6 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .logo {
-        font-size: 18px !important;
+        font-size: 14px !important;
     }
 }

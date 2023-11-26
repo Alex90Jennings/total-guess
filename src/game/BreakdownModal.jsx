@@ -13,7 +13,9 @@ const BreakdownModal = ({ onClose }) => {
             <button className="close-btn" onClick={onClose}>
                 X
             </button>
-            <div className="h1-statistics">Breakdown</div>
+            <header>
+                <h1  className="h1-statistics">Breakdown</h1>
+            </header>
             <table>
                 <thead>
                     <tr>
