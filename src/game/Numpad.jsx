@@ -42,7 +42,7 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
                 <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('3')}>3</button>
                 <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('.')}>.</button>
                 <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('0')}>0</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('⌫')}>⌫</button>
+                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('⌫')}>del</button>
                 <button 
                     id='enter'
                     className={lastItem ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
