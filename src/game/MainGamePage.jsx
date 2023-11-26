@@ -38,6 +38,10 @@ function MainGamePage() {
         fetchGame();
     }, []);
 
+    if (loggedInUser?.hasPlayedDaily) {
+        navigate('/')
+    }
+
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     }
