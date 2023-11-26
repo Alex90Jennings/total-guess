@@ -87,6 +87,10 @@ function MainGamePage() {
     };
 
     const handleGuessSubmit = async () => {
+        if(loggedInUser?.hasPlayedDaily) {
+            return
+        }
+        
         const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
         let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
