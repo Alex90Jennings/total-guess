@@ -192,7 +192,10 @@ body {
     margin: 0;
     font-size: 32px;
     padding: 8px;
-    margin-top: 30px;
+    margin-top: 20px;
+    height: 30px;
+    overflow: auto;
+    margin-bottom: 10px;
 }
 
 .input-container {
@@ -725,6 +728,7 @@ input[type='number']::-webkit-outer-spin-button {
 
     .description--css {
         margin-top: 0px;
+        height: 64px;
     }
 
     #header {
