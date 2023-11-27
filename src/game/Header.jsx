@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import '../styles/modal.css';
 import '../styles/landingPage.css';
 import '../styles/game.css';
@@ -12,6 +12,7 @@ function Header({ setShowLoginPage }) {
     const navigate = useNavigate();
     const [audio] = useState(new Audio('/Sounds/click.wav'));
     const [showDropdown, setShowDropdown] = useState(false);
+    const dropdownRef = useRef(null);
 
     const handleSignInClick = () => {
         if (!isMuted) audio.play();
@@ -22,6 +23,28 @@ function Header({ setShowLoginPage }) {
         if (loggedInUser?.firstName && loggedInUser?.lastName) return `${loggedInUser?.firstName.charAt(0)}${loggedInUser?.lastName.charAt(0)}`;
         return '??';
     };
+
+    const closeDropdown = () => {
+        setShowDropdown(false);
+    };
+
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            closeDropdown();
+        }
+    };
+
+    const dropdownMenuPress = (menuChoice) => {
+        setModalToDisplay(menuChoice); 
+        setShowDropdown(!showDropdown); 
+    }
+
+    useEffect(() => {
+        showDropdown ? document.addEventListener('mousedown', handleClickOutside) : document.removeEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showDropdown]);
 
     return (
         <header id="header">
@@ -65,59 +88,37 @@ function Header({ setShowLoginPage }) {
                         alt="mute"
                     />
                 </button>
-                <div className="icon-header mr-m cursor" onClick={() => setShowDropdown(!showDropdown)}>
+                <button className="icon-header mr-m cursor" onClick={() => setShowDropdown(!showDropdown)}>
                     <img
                         src={"/icons/tdropdown.png"}
                         alt="dropdown"
                         className="mr-m"
                     />
-                </div>
+                </button>
                 {showDropdown && (
-                    <div className="dropdown-menu">
+                    <div ref={dropdownRef} className="dropdown-menu">
                         {!isAuthenticated ? (
-                            <div className="dropdown-item" onClick={() => {
-                                handleSignInClick();
-                                setShowDropdown(!showDropdown);
-                            }}>
+                            <div className="dropdown-item" onClick={() => { handleSignInClick(); setShowDropdown(!showDropdown); }}>
                                 Sign in
                             </div>
                         ) : (
-                            <div className="dropdown-item" onClick={() => {
-                                handleSignOut();
-                                navigate('/');
-                                setShowDropdown(!showDropdown);
-                            }}>
+                            <div className="dropdown-item" onClick={() => { handleSignOut(); navigate('/'); setShowDropdown(!showDropdown); }}>
                                 Sign out
                             </div>
                         )}
-                        <div className="dropdown-item" onClick={() => {
-                            setModalToDisplay(ModalToDisplay.STATISTICS);
-                            setShowDropdown(!showDropdown);
-                        }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.STATISTICS)}}>
                             Statistics
                         </div>
-                        <div className="dropdown-item" onClick={() => {
-                            setModalToDisplay(ModalToDisplay.INSTRUCTIONS);
-                            setShowDropdown(!showDropdown);
-                        }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.INSTRUCTIONS)}}>
                             Instructions
                         </div>
-                        <div className="dropdown-item" onClick={() => {
-                            setModalToDisplay(ModalToDisplay.ABOUT_US);
-                            setShowDropdown(!showDropdown);
-                        }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.ABOUT_US)}}>
                             About Us
                         </div>
-                        <div className="dropdown-item" onClick={() => {
-                            setModalToDisplay(ModalToDisplay.FAQ);
-                            setShowDropdown(!showDropdown);
-                        }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.FAQ)}}>
                             FAQs
                         </div>
-                        <div className="dropdown-item" onClick={() => {
-                            setModalToDisplay(ModalToDisplay.ADVERTISE);
-                            setShowDropdown(!showDropdown);
-                        }}>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.ADVERTISE)}}>
                             Advertise With Us
                         </div>
                         <div className="dropdown-item">

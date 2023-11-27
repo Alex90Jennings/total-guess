@@ -3,14 +3,14 @@ import '../styles/landingPage.css';
 import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 
-function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders }) {
+function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders, needsToRegister }) {
 
     const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        isRegistered: true,
+        isRegistered: needsToRegister.current ? false : true,
         firstName: '',
         lastName: '',
         confirmPassword: ''
@@ -61,8 +61,9 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
     }
 
     const handleReturnToMainMenu = () => {
+        needsToRegister.current = false;
+        setHideHeaders(false);
         setShowLoginPage(false)
-        setHideHeaders(false)
         setShowLandingPageContent(true)
     }
 

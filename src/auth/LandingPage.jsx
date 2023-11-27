@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import '../styles/landingPage.css'
 import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
@@ -8,9 +8,10 @@ import { AppContext } from '../hooks/context';
 function LandingPage() {
 
     const { isAuthenticated } = useContext(AppContext);
-    const [ hideHeaders, setHideHeaders ] = useState(false)
+    const [hideHeaders, setHideHeaders] = useState(false)
     const [ showLoginPage, setShowLoginPage ] = useState(false);
     const [ showLandingPageContent, setShowLandingPageContent ] = useState(true); 
+    const needsToRegister = useRef(false);
 
     useEffect(
         () => {
@@ -22,7 +23,7 @@ function LandingPage() {
         }, 
         [isAuthenticated, setHideHeaders]
     );
-    
+
     return (
         <div className='landing-page three-rows-expand-two'>
             <LandingPageHeader 
@@ -36,6 +37,8 @@ function LandingPage() {
                     <LandingPageMenu
                         setShowLoginPage={setShowLoginPage}
                         setShowLandingPageContent={setShowLandingPageContent}
+                        setHideHeaders={setHideHeaders}
+                        needsToRegister={needsToRegister}
                     />
                 )
             }
@@ -45,6 +48,7 @@ function LandingPage() {
                         setShowLandingPageContent={setShowLandingPageContent}
                         setShowLoginPage={setShowLoginPage}
                         hideHeaders={hideHeaders}
+                        needsToRegister={needsToRegister}
                         setHideHeaders={setHideHeaders}
                     />
                 )

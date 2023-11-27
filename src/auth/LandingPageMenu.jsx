@@ -6,7 +6,7 @@ import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
-function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
+function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, needsToRegister, setHideHeaders }) {
 
     const { isAuthenticated, loggedInUser, handleSignOut, isMuted, selectedGameMode } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
@@ -50,6 +50,13 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
         }
     };
 
+    const handleShowRegistrationForm = () => {
+        setHideHeaders(true);
+        needsToRegister.current = true;
+        setShowLandingPageContent(false);
+        setShowLoginPage(true);
+    };
+
     //const handlePracticeGameSubmit = () => {
     //    playSound();
     //    navigate('/play');
@@ -66,11 +73,21 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                             :
                             <li className='three-columns-expand-one-three'>
                                 <div></div>
-                                <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
-                                    <div></div>
-                                    <div>Play</div>
-                                    <div></div>
-                                </button>
+                                {
+                                    loggedInUser?._id ? (
+                                        <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
+                                            <div></div>
+                                            <div>Play</div>
+                                            <div></div>
+                                        </button>
+                                    ) : (
+                                        <button className='play-button-styling three-rows-expand-one-three' onClick={handleShowRegistrationForm}>
+                                            <div></div>
+                                            <div>Register</div>
+                                            <div></div>
+                                        </button>
+                                    )
+                                }
                                 <div></div>
                             </li> :
                         <div className='three-columns-expand-one-three'>
@@ -102,6 +119,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent }) {
                             </button> :
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => {
                                 if(!isMuted)playSound();
+                                needsToRegister.current = false;
                                 setShowLandingPageContent(false);
                                 setShowLoginPage(true);
                             }}>

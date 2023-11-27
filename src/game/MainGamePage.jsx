@@ -38,6 +38,10 @@ function MainGamePage() {
         fetchGame();
     }, []);
 
+    if (loggedInUser?.hasPlayedDaily) {
+        navigate('/')
+    }
+
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     }
@@ -83,6 +87,10 @@ function MainGamePage() {
     };
 
     const handleGuessSubmit = async () => {
+        if(loggedInUser?.hasPlayedDaily) {
+            return
+        }
+        
         const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
         let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
