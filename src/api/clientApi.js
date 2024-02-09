@@ -6,9 +6,9 @@ const login = async (email, password) => {
     return await authClient.post(route, { email, password })
 }
 
-const register = async (email, firstName, lastName, password) => {
+const register = async (email, firstName, lastName, gender, ageRange, password) => {
     const route = '/auth/register'
-    return await authClient.post(route, { email, firstName, lastName, password })
+    return await authClient.post(route, { email, firstName, lastName, gender, ageRange, password })
 }
 
 const fetchTodayGame = async (gameMode) => {

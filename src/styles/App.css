@@ -298,6 +298,11 @@ button,
   grid-template-columns: 1fr auto;
 }
 
+.two-columns-expand-two {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 .auto-columns {
   display: flex;
   flex-wrap: wrap;

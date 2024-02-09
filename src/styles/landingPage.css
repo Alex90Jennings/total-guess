@@ -27,13 +27,15 @@
 
 .form input[type="email"],
 .form input[type="password"],
-.form input[type="text"] {
+.form input[type="text"],
+.form select {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
   box-sizing: border-box;
-  height: 40px
+  height: 40px;
+  color: #666;
 }
 
 .form button[type="submit"]:hover {
