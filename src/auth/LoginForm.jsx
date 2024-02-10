@@ -119,9 +119,11 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                     <label>
                         <input type="password" id="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} required />
                     </label>
-                    <label>
-                        <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} required />
-                    </label>
+                    {
+                        !formData.isRegistered && <label>
+                            <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} required />
+                        </label>
+                    }
                     <div></div>
                     <div className="switch-container">
                         <span className="switch-text" onClick={handleIsRegisteredClick}>
