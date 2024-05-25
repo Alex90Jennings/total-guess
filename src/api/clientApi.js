@@ -3,12 +3,14 @@ import { client } from "./client";
 
 const login = async (email, password) => {
     const route = '/auth/login'
-    return await authClient.post(route, { email, password })
+    const res = await authClient.post(route, { email, password })
+    return res.data
 }
 
 const register = async (email, firstName, lastName, gender, ageRange, password) => {
     const route = '/auth/register'
-    return await authClient.post(route, { email, firstName, lastName, gender, ageRange, password })
+    const res = await authClient.post(route, { email, firstName, lastName, gender, ageRange, password })
+    return res.data
 }
 
 const fetchTodayGame = async (gameMode) => {
@@ -16,10 +18,11 @@ const fetchTodayGame = async (gameMode) => {
     return await client.get(route)
 }
 
-const submitResult = async (email, date, result, gameMode) => {
-    const reqBody = {email, date, result}
+const submitResult = async (email, date, result, gameMode, itemsGuessArray) => {
+    const reqBody = {email, date, result, itemsGuessArray}
     const route = `/user/submitResult/${gameMode}`
-    return await client.post(route, reqBody)
+    const res = await client.post(route, reqBody)
+    return res.data
 }
 
 const getUser = async () => {
@@ -27,16 +30,10 @@ const getUser = async () => {
     return await client.get(route)
 }
 
-const updateItemsGuess = async (itemsGuessArray) => {
-    const route = `/item/submitResult`
-    await client.post(route, itemsGuessArray)
-}
-
 export const clientApi = {
     login,
     register,
     fetchTodayGame,
     submitResult,
-    getUser,
-    updateItemsGuess
+    getUser
 }

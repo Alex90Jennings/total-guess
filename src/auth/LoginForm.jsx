@@ -2,10 +2,11 @@ import { useState, useContext } from 'react';
 import '../styles/landingPage.css';
 import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
+import { lambda } from '../api/lambda';
 
 function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders, needsToRegister }) {    
 
-    const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
+    const { isAuthenticated, setIsAuthenticated, setLoggedInUser, isLocal } = useContext(AppContext);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         email: '',
@@ -34,9 +35,9 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
 
     const signInUser = async () => {
         try {
-            const response = await clientApi.login(formData.email, formData.password);
-            localStorage.setItem("tgJwtToken", response.data.jwtToken);
-            setLoggedInUser(response.data.user)
+            const response = isLocal ? await clientApi.login(formData.email, formData.password) : await lambda.login(formData.email, formData.password)
+            localStorage.setItem("tgJwtToken", response.jwtToken);
+            setLoggedInUser(response.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);                
         } catch {
@@ -47,16 +48,11 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
 
     async function registerUser() {
         try {
-            const response = await clientApi.register(
-                formData.email,
-                formData.firstName,
-                formData.lastName,
-                formData.gender,
-                formData.ageRange,
-                formData.password
-            );
-            localStorage.setItem("tgJwtToken", response.data.token);
-            setLoggedInUser(response.data.user)
+            const response = isLocal ?
+                await clientApi.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password) : 
+                await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password);
+            localStorage.setItem("tgJwtToken", response.token);
+            setLoggedInUser(response.user)
             setIsAuthenticated(true);
             setShowLoginPage(false);
         } catch {

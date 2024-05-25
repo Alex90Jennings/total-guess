@@ -98,9 +98,8 @@ function MainGamePage() {
         if (percentageError < -35) percentageError = -35;
 
         if (loggedInUser) {
-            const response = await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode);
+            const response = await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current);
             setLoggedInUser(response.data);
-            await clientApi.updateItemsGuess(itemPricesRef.current)
             setBreakdown(itemPricesRef.current)
             if (!isMuted) audio.play();
         }
