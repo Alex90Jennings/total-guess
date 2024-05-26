@@ -28,8 +28,7 @@ export const AppProvider = ({ children }) => {
     const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');
-    //const isLocal = window.location.hostname.includes('localhost');
-    const isLocal = false
+    const isLocal = window.location.hostname.includes('localhost');
     const [ isMuted, setIsMuted ] = useState(false);
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
     const [ fetchingLoggedInUser, setFetchingLoggedInUser ] = useState(false)
