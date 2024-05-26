@@ -15,8 +15,7 @@ export const AppContext = createContext({
     setBreakdown: () => {},
     selectedGameMode: '',
     setSelectedGameMode: () => {},
-    isLocal: false,
-    setIsLocal: () => {}
+    isLocal: false
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -27,7 +26,7 @@ export const AppProvider = ({ children }) => {
     const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');
-    const [ isLocal, setIsLocal ] = useState(window.location.hostname.includes('localhost'))
+    const isLocal = window.location.hostname.includes('localhost');
     const [ isMuted, setIsMuted ] = useState(false);
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
     const [audio] = useState(new Audio("/Sounds/click.wav"));
@@ -80,8 +79,7 @@ export const AppProvider = ({ children }) => {
         setBreakdown,
         selectedGameMode,
         setSelectedGameMode,
-        isLocal,
-        setIsLocal
+        isLocal
     };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
