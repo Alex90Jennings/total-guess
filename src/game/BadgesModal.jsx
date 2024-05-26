@@ -47,9 +47,9 @@ function Badges({ onClose }) {
                                     (badge, index) => ( 
                                         <div className='two-rows'>
                                             <div className='three-columns-expand-one-three'>
-                                                <div></div>
+                                                <div/>
                                                 <img key={index} src={`/icons/${badge.replace(/_/g, '-')}.png`} className='badge' alt={`${badge}`} />
-                                                <div></div>
+                                                <div/>
                                             </div>
                                             <p className='badge-description'>{getDescriptionForBadge(badge)}</p> 
                                         </div>

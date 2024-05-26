@@ -53,11 +53,11 @@ function Header({ setShowLoginPage }) {
                     <img src={"/icons/thome.png"} alt="home icon" />
                 </div>
                 <div className='icon-header three-rows-expand-one-three cursor'>
-                    <div></div>
+                    <div/>
                     <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(loggedInUser?.firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
                         {getInitials()}
                     </div>
-                    <div></div>
+                    <div/>
                 </div>
             </nav>
             <h1 className="header-middle logo">TOTAL GUESS</h1>

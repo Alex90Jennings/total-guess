@@ -26,9 +26,9 @@ function LandingPageHeader({ hideHeaders }) {
     return (
         <div id='login-header'>
             <div className='five-columns-expand-one-five'>
-                <div></div>
+                <div/>
                 <div className='three-rows-expand-one-three mr-s'>
-                    <div></div>
+                    <div/>
                     <div>
                     {
                             <button 
@@ -49,15 +49,15 @@ function LandingPageHeader({ hideHeaders }) {
                             </button>
                         }
                     </div>
-                    <div></div>
+                    <div/>
                 </div>
                 <div className='three-columns-expand-one-three trolley-icon'>
-                    <div></div>
+                    <div/>
                     <img src={`${correctImageFileName(selectedGameMode)}`} alt="trolley"/>
-                    <div></div>
+                    <div/>
                 </div>
                 <div className='three-rows-expand-one-three ml-s'>
-                    <div></div>
+                    <div/>
                     <div>
                         {
                             <button 
@@ -78,22 +78,22 @@ function LandingPageHeader({ hideHeaders }) {
                             </button>
                         }
                     </div>
-                    <div></div>
+                    <div/>
                 </div>
-                <div></div>
+                <div/>
             </div>
             {
                 !hideHeaders && (
                     <div>
                         <div className='three-columns-expand-one-three mt-xl'>
-                            <div></div>
+                            <div/>
                             <div className='logo-landing'>{titleBasedOnGameMode(selectedGameMode)}</div>
-                            <div></div>
+                            <div/>
                         </div>
                         <div className='three-columns-expand-one-three'>
-                            <div></div>
+                            <div/>
                             <h2 className='landing-h2'>{subTitleBasedOnGameMode(selectedGameMode)}</h2>
-                            <div></div>
+                            <div/>
                         </div>
                     </div>
                 )

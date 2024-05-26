@@ -6,7 +6,7 @@ import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import TimerToUkMidnight from '../game/TimerToUkMidnight';
 
-function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, needsToRegister, setHideHeaders }) {
+function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
 
     const { isAuthenticated, loggedInUser, handleSignOut, isMuted, selectedGameMode } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
@@ -45,16 +45,13 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, needsToR
         if (isAuthenticated) {
             navigate('/play');
         } else {
-            setShowLandingPageContent(false);
-            setShowLoginPage(true);
+            setElementToDisplay('loginForm');
         }
     };
 
     const handleShowRegistrationForm = () => {
-        setHideHeaders(true);
-        needsToRegister.current = true;
-        setShowLandingPageContent(false);
-        setShowLoginPage(true);
+        setFormData({ ...formData, isRegistered: false })
+        setElementToDisplay('loginForm');
     };
 
     //const handlePracticeGameSubmit = () => {
@@ -64,7 +61,7 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, needsToR
 
     return (
         <div id='landing-page-menu'>
-            <div></div>
+            <div/>
             <ul className='list-reset pl-none'>
                 {
                     selectedGameMode === 'groceries' ?
@@ -72,63 +69,62 @@ function LandingPageMenu({ setShowLoginPage, setShowLandingPageContent, needsToR
                             <TimerToUkMidnight />
                             :
                             <li className='three-columns-expand-one-three'>
-                                <div></div>
+                                <div/>
                                 {
                                     loggedInUser?._id ? (
                                         <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
-                                            <div></div>
+                                            <div/>
                                             <div>Play</div>
-                                            <div></div>
+                                            <div/>
                                         </button>
                                     ) : (
                                         <button className='play-button-styling three-rows-expand-one-three' onClick={handleShowRegistrationForm}>
-                                            <div></div>
+                                            <div/>
                                             <div>Register</div>
-                                            <div></div>
+                                            <div/>
                                         </button>
                                     )
                                 }
-                                <div></div>
+                                <div/>
                             </li> :
                         <div className='three-columns-expand-one-three'>
-                            <div></div>
+                            <div/>
                             <p className='coming-soon-text'>COMING SOON</p>
-                            <div></div>
+                            <div/>
                         </div>
                 }
                 {/*
                 <li className='three-columns-expand-one-three'>
-                    <div></div>
+                    <div/>
                     <button className='landing-page-menu-btn play-btn' onClick={handlePracticeGameSubmit}>Practice</button>
-                    <div></div>
+                    <div/>
                 </li>
                 */}
                 {/* <li className='three-columns-expand-one-three'>
-                    <div></div>
+                    <div/>
                     <button className='landing-page-menu-btn other-btn' onClick={handleModalOpen}>Instructions</button>
-                    <div></div>
+                    <div/>
                 </li> */}
                 <li className='three-columns-expand-one-three mt-s'>
-                    <div></div>
+                    <div/>
                     {
                         loggedInUser?._id ?
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => handleSignOut()}>
-                                <div></div>
+                                <div/>
                                 <div>Sign Out</div>
-                                <div></div>
+                                <div/>
                             </button> :
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => {
                                 if(!isMuted)playSound();
-                                needsToRegister.current = false;
-                                setShowLandingPageContent(false);
-                                setShowLoginPage(true);
+                                setFormData({ ...formData, isRegistered: true })
+                                setElementToDisplay('loginForm');
                             }}>
-                                <div></div>
+                                <div/>
                                 <div>Sign In</div>
-                                <div></div>
+                                <div/>
                             </button>
                     }
-                    <div></div>
+                    <div/>
                 </li>
             </ul>
         </div>

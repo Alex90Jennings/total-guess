@@ -18,9 +18,9 @@ function Results() {
         <main className="main--layout--results">
             <div className="box-results">
                 <div className='three-columns-expand-one-three trolley-icon'>
-                    <div></div>
+                    <div/>
                     <img src="/icons/groceries.svg" alt="trolley"/>
-                    <div></div>
+                    <div/>
                 </div>
                 <div className="h1-results">
                     <h1>The actual cost of the groceries</h1>

@@ -8,8 +8,12 @@ import { useContext } from "react";
 const StatisticsModal = ({ className, onClose }) => {
 
     const { loggedInUser } = useContext(AppContext)
-    const scoresArray = loggedInUser?.scores
-    const gamesPlayed = loggedInUser?.gamesPlayed
+    const scoresArray = loggedInUser?.scores || []
+    const gamesPlayed = loggedInUser?.gamesPlayed || []
+
+    if (!loggedInUser?._id) return <p>Please log in to see your stats!</p>
+
+    if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
     function getBestGuess() {
         if (!scoresArray || scoresArray?.length === 0) return 'N/A';
@@ -35,7 +39,7 @@ const StatisticsModal = ({ className, onClose }) => {
             if(gamesPlayed.includes(new Date(tomorrow).toISOString())) streak++
             return calculateStreak(tomorrow, streak)
         }
-        if(gamesPlayed.includes(new Date(today).toISOString())) streak++
+        if(gamesPlayed?.includes(new Date(today).toISOString())) streak++
         return calculateStreak(today, streak)
     }
 
@@ -84,11 +88,6 @@ const StatisticsModal = ({ className, onClose }) => {
 
         return bestStreak + 1;
     }
-
-
-    if (!loggedInUser?._id) return <p>Please log in to see your stats!</p>
-
-    if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
     return (
         <section className={className}>

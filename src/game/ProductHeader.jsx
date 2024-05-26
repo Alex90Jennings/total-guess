@@ -16,7 +16,7 @@ const ProductHeader = ({ currentShop }) => {
 
     return (
         <section className="shop--css three-rows-expand-one-three">
-            <div></div>
+            <div/>
             {currentShop === "mands" ? (
                 <h1 className='normal-font pt-s'>M&S</h1>
             ) : (
@@ -24,7 +24,7 @@ const ProductHeader = ({ currentShop }) => {
                     {correctShopName(`${currentShop}`)}
                 </h1>
             )}
-            <div></div>
+            <div/>
         </section>
     );
 };

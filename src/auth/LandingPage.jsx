@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import '../styles/landingPage.css'
 import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
@@ -8,51 +8,36 @@ import { AppContext } from '../hooks/context';
 function LandingPage() {
 
     const { isAuthenticated } = useContext(AppContext);
-    const [hideHeaders, setHideHeaders] = useState(false)
-    const [ showLoginPage, setShowLoginPage ] = useState(false);
-    const [ showLandingPageContent, setShowLandingPageContent ] = useState(true); 
-    const needsToRegister = useRef(false);
+    const [elementToDisplay, setElementToDisplay] = useState('landingPageMenu');
+    const [isLoading, setIsLoading] = useState(false)
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        isRegistered: true,
+        firstName: '',
+        lastName: '',
+        gender: 'PREFER_NOT_TO_SAY',
+        ageRange: 'PREFER_NOT_TO_SAY',
+        confirmPassword: ''
+    });
 
     useEffect(
         () => {
-            if (isAuthenticated) {
-                setShowLoginPage(false);
-                setShowLandingPageContent(true);
-                setHideHeaders(false)
-            }
+            if (isAuthenticated) setElementToDisplay('landingPageMenu')
         }, 
-        [isAuthenticated, setHideHeaders]
+        [isAuthenticated]
     );
+
+    if(isLoading) {
+        return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
+    }
 
     return (
         <div className='landing-page three-rows-expand-two'>
-            <LandingPageHeader 
-                setShowLoginPage={setShowLoginPage} 
-                setShowLandingPageContent={setShowLandingPageContent} 
-                hideHeaders={hideHeaders}
-            />
-            <div></div>
-            {
-                showLandingPageContent && !showLoginPage && (
-                    <LandingPageMenu
-                        setShowLoginPage={setShowLoginPage}
-                        setShowLandingPageContent={setShowLandingPageContent}
-                        setHideHeaders={setHideHeaders}
-                        needsToRegister={needsToRegister}
-                    />
-                )
-            }
-            {
-                showLoginPage && (
-                    <LoginForm
-                        setShowLandingPageContent={setShowLandingPageContent}
-                        setShowLoginPage={setShowLoginPage}
-                        hideHeaders={hideHeaders}
-                        needsToRegister={needsToRegister}
-                        setHideHeaders={setHideHeaders}
-                    />
-                )
-            }
+            <LandingPageHeader hideHeaders={!formData.isRegistered} />
+            <div/>
+            { elementToDisplay === 'landingPageMenu' && <LandingPageMenu setElementToDisplay={setElementToDisplay} setFormData={setFormData} formData={formData} /> }
+            { elementToDisplay === 'loginForm' && <LoginForm setElementToDisplay={setElementToDisplay} setIsLoading={setIsLoading} setFormData={setFormData} formData={formData} /> }
         </div>
     );
 }

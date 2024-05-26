@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { clientApi } from "../api/clientApi";
+import { lambda } from "../api/lambda";
 
 export const AppContext = createContext({
     loggedInUser: {},
@@ -40,8 +41,8 @@ export const AppProvider = ({ children }) => {
 
     const getLoggedInUser = async () => {
         try {
-            const response = await clientApi.getUser()
-            setLoggedInUser(response.data)
+            const res = isLocal ? await clientApi.getUser() : await lambda.getUser()
+            setLoggedInUser(res)
             setIsAuthenticated(true)
         } catch {
             setIsAuthenticated(false)
@@ -60,7 +61,7 @@ export const AppProvider = ({ children }) => {
 
     useEffect(
         () => {
-            if(!isMuted) audio.play()
+            if(!isMuted && modalToDisplay) audio.play()
         }, 
         [modalToDisplay]
     );

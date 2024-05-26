@@ -5,7 +5,7 @@ function ProductImage({ currentImage }) {
 
     return (
         <section className='three-columns-expand-one-three'>
-            <div></div>
+            <div/>
             <img 
                 src={`${process.env.REACT_APP_S3_URL}/groceries/${currentImage}.jpg`} 
                 alt="product" 
@@ -14,7 +14,7 @@ function ProductImage({ currentImage }) {
                     event.target.src = '/icons/not-found.png';
                 }} 
             />
-            <div></div>
+            <div/>
         </section>
     );
 }

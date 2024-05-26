@@ -21,21 +21,21 @@ const WideScreenInput = ({ currentShopIndex, gameLength, inputValue, setInputVal
 
     return (
         <section className="input-container mt-s">
-            <div></div>
+            <div/>
             <div className='five-columns-expand-two-four'>
                 <div className='three-rows-expand-one-three'>
-                    <div></div>
+                    <div/>
                     <button id='back-item-button' disabled={currentShopIndex === 0} onClick={() => decrementItemIndex()}>Back</button>
-                    <div></div>
+                    <div/>
                 </div>
-                <div></div>
+                <div/>
                 <div className='three-columns-fr'>
                     <div style={{ textAlign: 'center' }}>
                         <p className='input-container-accent'>Progress</p>
                         <div style={{height: '45px', margin: '0'}} className='three-rows-expand-one-three'>
-                            <div></div>
+                            <div/>
                             <p>{currentShopIndex + 1}/{gameLength}</p>
-                            <div></div>
+                            <div/>
                         </div>
                     </div>
                     <div style={{ textAlign: 'center' }}>
@@ -52,17 +52,17 @@ const WideScreenInput = ({ currentShopIndex, gameLength, inputValue, setInputVal
                     <div style={{ textAlign: 'center' }}>
                         <p className='input-container-accent'>Sub Total</p>
                         <div style={{height: '45px', margin: '0'}} className='three-rows-expand-one-three'>
-                            <div></div>
+                            <div/>
                             <p>£{cumulativeTotal.toFixed(2)}</p>
-                            <div></div>
+                            <div/>
                         </div>
                     </div>
                 </div>
-                <div></div>
+                <div/>
                 <div className='three-rows-expand-one-three'>
-                    <div></div>
+                    <div/>
                     <button id={currentShopIndex === gameLength - 1 ? 'submit-final-item-button' : 'submit-item-button'} onClick={() => handleItemWorthSubmit()}>Submit</button>
-                    <div></div>
+                    <div/>
                 </div>
             </div>
         </section>

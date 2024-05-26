@@ -15,7 +15,8 @@ const register = async (email, firstName, lastName, gender, ageRange, password) 
 
 const fetchTodayGame = async (gameMode) => {
     const route = `/games/gameOfTheDay/${gameMode}`
-    return await client.get(route)
+    const res = await client.get(route)
+    return res.data
 }
 
 const submitResult = async (email, date, result, gameMode, itemsGuessArray) => {
@@ -27,7 +28,8 @@ const submitResult = async (email, date, result, gameMode, itemsGuessArray) => {
 
 const getUser = async () => {
     const route = '/user'
-    return await client.get(route)
+    const res = await client.get(route)
+    return res.data
 }
 
 export const clientApi = {

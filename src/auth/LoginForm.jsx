@@ -4,20 +4,10 @@ import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 import { lambda } from '../api/lambda';
 
-function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, setHideHeaders, needsToRegister }) {    
+function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading }) {    
 
     const { isAuthenticated, setIsAuthenticated, setLoggedInUser, isLocal } = useContext(AppContext);
     const [error, setError] = useState(null);
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        isRegistered: needsToRegister.current ? false : true,
-        firstName: '',
-        lastName: '',
-        gender: 'PREFER_NOT_TO_SAY',
-        ageRange: 'PREFER_NOT_TO_SAY',
-        confirmPassword: ''
-    });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -34,19 +24,22 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
     };
 
     const signInUser = async () => {
+        setIsLoading(true)
         try {
             const response = isLocal ? await clientApi.login(formData.email, formData.password) : await lambda.login(formData.email, formData.password)
-            localStorage.setItem("tgJwtToken", response.jwtToken);
+            localStorage.setItem("tgJwtToken", response.token);
             setLoggedInUser(response.user)
-            setIsAuthenticated(true);
-            setShowLoginPage(false);                
+            setIsAuthenticated(true);             
         } catch {
             setError('Error signing in. Please check your email and password.'); 
+        } finally {
+            setIsLoading(false)
         }
     };
 
 
     async function registerUser() {
+        setIsLoading(true)
         try {
             const response = isLocal ?
                 await clientApi.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password) : 
@@ -54,22 +47,22 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
             localStorage.setItem("tgJwtToken", response.token);
             setLoggedInUser(response.user)
             setIsAuthenticated(true);
-            setShowLoginPage(false);
+            setFormData({ ...formData, isRegistered: true })
+            setElementToDisplay('landingPageMenu')
         } catch {
             setError('Error registering user. Please check your information.'); 
+        } finally {
+            setIsLoading(false)
         }
     }
 
     const handleReturnToMainMenu = () => {
-        needsToRegister.current = false;
-        setHideHeaders(false);
-        setShowLoginPage(false)
-        setShowLandingPageContent(true)
+        setFormData({ ...formData, isRegistered: true })
+        setElementToDisplay('landingPageMenu')
     }
 
 
     const handleIsRegisteredClick = () => {
-        setHideHeaders(!hideHeaders)
         setFormData({ ...formData, isRegistered: !formData.isRegistered })
     }
 
@@ -120,30 +113,30 @@ function LoginForm({ setShowLoginPage, setShowLandingPageContent, hideHeaders, s
                             <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} required />
                         </label>
                     }
-                    <div></div>
+                    <div/>
                     <div className="switch-container">
                         <span className="switch-text" onClick={handleIsRegisteredClick}>
                             {formData.isRegistered ? "Need to register?" : "Already registered?"}
                         </span>
                     </div>
                     <div className='three-columns-expand-one-three mt-s'>
-                        <div></div>
+                        <div/>
                         <button type="submit" className="login-button-styling three-rows-expand-one-three">
-                            <div></div>
+                            <div/>
                             <div>{formData.isRegistered ? 'Login' : 'Register'}</div>
-                            <div></div>
+                            <div/>
                         </button>
-                        <div></div>
+                        <div/>
                     </div>
                 </form>
                 <div className='three-columns-expand-one-three mt-s'>
-                    <div></div>
+                    <div/>
                     <button className="return-button-styling three-rows-expand-one-three" onClick={() => handleReturnToMainMenu()}>
-                        <div></div>
+                        <div/>
                         <div>Menu</div>
-                        <div></div>
+                        <div/>
                     </button>
-                    <div></div>
+                    <div/>
                 </div>
             </div>
         )

@@ -29,7 +29,7 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
 
     return (
         <section className='num-pad-container'>
-            <div></div>
+            <div/>
             <div className="num-pad">
                 <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('7')}>7</button>
                 <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('8')}>8</button>
@@ -48,9 +48,9 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
                     className={lastItem ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
                     onClick={() => handleItemWorthSubmit()}
                 >
-                    <div></div>
+                    <div/>
                     <img src={`${lastItem ? '/icons/enter-accent.png' : '/icons/enter.png'}`} alt="enter" className='enter-icon' />
-                    <div></div>
+                    <div/>
                 </button>
                 <button 
                     id='back' 
@@ -61,7 +61,7 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
                     BACK
                 </button>
             </div>
-            <div></div>
+            <div/>
         </section>
     );
 };

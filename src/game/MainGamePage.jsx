@@ -10,9 +10,10 @@ import DateAndGameNumber from './DateAndGameNumber';
 import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
 import { clientApi } from '../api/clientApi';
+import { lambda } from '../api/lambda';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, isLocal } = useContext(AppContext);
     const navigate = useNavigate();
     const gameDate = useRef('');
     const [game, setGame] = useState({});
@@ -26,9 +27,9 @@ function MainGamePage() {
 
     const fetchGame = async () => {
         try {
-            const response = await clientApi.fetchTodayGame(selectedGameMode);
-            gameDate.current = response.data.date;
-            setGame(response.data);
+            const response = isLocal ? await clientApi.fetchTodayGame(selectedGameMode) : await lambda.getGameOfTheDay(selectedGameMode)
+            gameDate.current = response.date;
+            setGame(response);
         } catch (error) {
             console.error('Error fetching game:', error);
         }
@@ -43,7 +44,7 @@ function MainGamePage() {
     }
 
     if (!game?.items || itemPricesRef.current.length === 10) {
-        return <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
     }
 
     const currentProduct = game?.items[currentShopIndex];
@@ -109,7 +110,7 @@ function MainGamePage() {
     return (
         <main id="main">
             <section className="three-rows-expand-one-three">
-                <div></div>
+                <div/>
                 <article className="main--layout">
                     {
                         currentProduct && (
@@ -144,7 +145,7 @@ function MainGamePage() {
                         )
                     }
                 </article>
-                <div></div>
+                <div/>
             </section>
         </main>
     );
