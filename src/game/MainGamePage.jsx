@@ -39,10 +39,6 @@ function MainGamePage() {
         fetchGame();
     }, []);
 
-    if (loggedInUser?.hasPlayedDaily) {
-        navigate('/')
-    }
-
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
     }
@@ -89,6 +85,7 @@ function MainGamePage() {
 
     const handleGuessSubmit = async () => {
         if(loggedInUser?.hasPlayedDaily) {
+            //TODO: better error handling
             return
         }
         
@@ -99,8 +96,10 @@ function MainGamePage() {
         if (percentageError < -35) percentageError = -35;
 
         if (loggedInUser) {
-            const response = await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current);
-            setLoggedInUser(response.data);
+            const response = isLocal ? 
+                await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current) :
+                await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
+            setLoggedInUser(response);
             setBreakdown(itemPricesRef.current)
             if (!isMuted) audio.play();
         }

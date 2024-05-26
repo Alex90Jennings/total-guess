@@ -50,8 +50,7 @@ const getUser = async () => {
         if (!response.ok) {
             throw new Error('Failed to fetch user details');
         }
-        const user = await response.json();
-        return user;
+        return await response.json();
     } catch (error) {
         console.error('Error:', error.message);
         throw error;
@@ -59,7 +58,6 @@ const getUser = async () => {
 };
 
 const getGameOfTheDay = async (gameMode) => {
-    console.log(process.env.REACT_APP_LAMBDA + '/get-grocery-game')
     try {
         const response = await fetch(process.env.REACT_APP_LAMBDA + '/get-grocery-game', {
             method: 'GET',
@@ -71,17 +69,37 @@ const getGameOfTheDay = async (gameMode) => {
         if (!response.ok) {
             throw new Error('Failed to fetch user details');
         } 
-        const game = await response.json();
-        return game;
+        return await response.json();
     } catch (error) {
         console.error('Error:', error.message);
         throw error;
     }
 };
 
+const submitResult = async (email, date, result, gameMode, guesses) => {
+    try {
+        const response = await fetch(process.env.REACT_APP_LAMBDA + '/submit-tg-result', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('tgJwtToken')}`
+            },
+            body: JSON.stringify({email, date, result, gameMode, guesses})
+        });
+        if (!response.ok) {
+            throw new Error('Failed to login user');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error:', error.message);
+        throw error;
+    }
+}
+
 export const lambda = {
     login,
     register,
     getUser,
-    getGameOfTheDay
+    getGameOfTheDay,
+    submitResult
 }
