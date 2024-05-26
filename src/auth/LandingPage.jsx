@@ -7,7 +7,7 @@ import { AppContext } from '../hooks/context';
 
 function LandingPage() {
 
-    const { isAuthenticated } = useContext(AppContext);
+    const { isAuthenticated, fetchingLoggedInUser } = useContext(AppContext);
     const [elementToDisplay, setElementToDisplay] = useState('landingPageMenu');
     const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ function LandingPage() {
         [isAuthenticated]
     );
 
-    if(isLoading) {
+    if(isLoading || fetchingLoggedInUser) {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
     }
 

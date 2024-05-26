@@ -9,13 +9,14 @@ import Modal from "react-modal";
 import Header from "./game/Header";
 import Footer from "./game/Footer";
 import Results from "./game/Results";
-import StatisticsModal from "./game/StatisticsModal";
-import AboutUs from "./game/AboutUs";
-import FAQ from "./game/FAQ";
-import Advertise from "./game/Advertise";
-import BreakdownModal from "./game/BreakdownModal";
+import StatisticsModal from "./Modals/StatisticsModal.jsx";
+import AboutUs from "./Modals/AboutUs.jsx";
+import FAQ from "./Modals/FAQ.jsx";
+import Advertise from "./Modals/Advertise.jsx";
+import BreakdownModal from "./Modals/BreakdownModal.jsx";
+import AlreadyPlayed from "./Modals/AlreadyPlayed.jsx";
 import { AppContext } from "./hooks/context";
-import Badges from "./game/BadgesModal";
+import Badges from "./Modals/BadgesModal.jsx";
 
 export const ModalToDisplay = {
     INSTRUCTIONS: "INSTRUCTIONS",
@@ -24,7 +25,8 @@ export const ModalToDisplay = {
     BREAKDOWN: "BREAKDOWN",
     ABOUT_US: "ABOUT_US",
     ADVERTISE: "ADVERTISE",
-    BADGES: "BADGES"
+    BADGES: "BADGES",
+    ALREADY_PLAYED: "ALREADY_PLAYED"
 };
 
 function App() {
@@ -83,6 +85,9 @@ function App() {
             )}
             {modal === ModalToDisplay.BADGES && (
                 <Badges onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.ALREADY_PLAYED && (
+                <AlreadyPlayed onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

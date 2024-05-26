@@ -15,7 +15,9 @@ export const AppContext = createContext({
     setBreakdown: () => {},
     selectedGameMode: '',
     setSelectedGameMode: () => {},
-    isLocal: false
+    isLocal: false,
+    fetchingLoggedInUser: false,
+    setFetchingLoggedInUser: () => {}
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -26,9 +28,11 @@ export const AppProvider = ({ children }) => {
     const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');
-    const isLocal = window.location.hostname.includes('localhost');
+    //const isLocal = window.location.hostname.includes('localhost');
+    const isLocal = false
     const [ isMuted, setIsMuted ] = useState(false);
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
+    const [ fetchingLoggedInUser, setFetchingLoggedInUser ] = useState(false)
     const [audio] = useState(new Audio("/Sounds/click.wav"));
 
     const handleSignOut = () => {
@@ -39,12 +43,15 @@ export const AppProvider = ({ children }) => {
     }
 
     const getLoggedInUser = async () => {
+        setFetchingLoggedInUser(true)
         try {
             const res = isLocal ? await clientApi.getUser() : await lambda.getUser()
             setLoggedInUser(res)
             setIsAuthenticated(true)
         } catch {
             setIsAuthenticated(false)
+        } finally {
+            setFetchingLoggedInUser(false)
         }
     }
 
@@ -79,7 +86,9 @@ export const AppProvider = ({ children }) => {
         setBreakdown,
         selectedGameMode,
         setSelectedGameMode,
-        isLocal
+        isLocal,
+        fetchingLoggedInUser,
+        setFetchingLoggedInUser
     };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

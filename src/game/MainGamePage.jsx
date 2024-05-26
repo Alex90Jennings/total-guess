@@ -11,9 +11,10 @@ import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
 import { clientApi } from '../api/clientApi';
 import { lambda } from '../api/lambda';
+import { ModalToDisplay } from '../App';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, isLocal } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, isLocal, setModalToDisplay } = useContext(AppContext);
     const navigate = useNavigate();
     const gameDate = useRef('');
     const [game, setGame] = useState({});
@@ -32,6 +33,8 @@ function MainGamePage() {
             setGame(response);
         } catch (error) {
             console.error('Error fetching game:', error);
+            navigate('/')
+            setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
         }
     };
 
@@ -85,7 +88,8 @@ function MainGamePage() {
 
     const handleGuessSubmit = async () => {
         if(loggedInUser?.hasPlayedDaily) {
-            //TODO: better error handling
+            navigate('/')
+            setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
             return
         }
         

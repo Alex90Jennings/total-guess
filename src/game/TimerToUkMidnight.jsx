@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const TimerToUkMidnight = () => {
     
-    const [countdown, setCountdown] = useState(null);
+    const [countdown, setCountdown] = useState('loading');
 
     useEffect(
         () => {
