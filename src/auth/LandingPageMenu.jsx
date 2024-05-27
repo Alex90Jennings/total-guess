@@ -124,7 +124,7 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                     }
                 </li>
                 {
-                    !hasPlayedDaily && <li className='three-columns-expand-one-three mt-s'>
+                    !loggedInUser._id && !hasPlayedDaily && <li className='three-columns-expand-one-three mt-s'>
                         <div/>
                         <button className='play-button-styling three-rows-expand-one-three' onClick={() => playAsGuest()}>
                             <div/>
