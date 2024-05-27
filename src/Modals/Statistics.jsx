@@ -9,6 +9,7 @@ const Statistics = () => {
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
     const [width, setWidth] = useState(window.innerWidth);
+    const scoresArray = loggedInUser?.scores || JSON.parse(localStorage.getItem("tgScores")) || [];
 
     useEffect(() => {
         const handleResize = () => {
@@ -24,7 +25,7 @@ const Statistics = () => {
     const binCount = 9;
     const bins = Array(binCount).fill(0);
 
-    loggedInUser?.scores?.forEach((percentage) => {
+    scoresArray?.forEach((percentage) => {
         let binIndex;
         if (percentage >= 35) {
             binIndex = binCount - 1;
