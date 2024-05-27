@@ -40,11 +40,15 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading })
 
     async function registerUser() {
         setIsLoading(true)
+        const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
+        const scores = JSON.parse(localStorage.getItem("tgScores")) || [];
         try {
             const response = isLocal ?
                 await clientApi.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password) : 
-                await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password);
+                await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password, gamesPlayed, scores);
             localStorage.setItem("tgJwtToken", response.token);
+            localStorage.setItem("tgGamesPlayed", '');
+            localStorage.setItem("tgScores", '');
             setLoggedInUser(response.user)
             setIsAuthenticated(true);
             setFormData({ ...formData, isRegistered: true })
