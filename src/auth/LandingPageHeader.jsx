@@ -53,7 +53,7 @@ function LandingPageHeader({ hideHeaders }) {
                 </div>
                 <div className='three-columns-expand-one-three trolley-icon'>
                     <div/>
-                    <img src={`${correctImageFileName(selectedGameMode)}`} alt="trolley"/>
+                    <img src={`${correctImageFileName(selectedGameMode)}`} alt="trolley" loading="lazy" />
                     <div/>
                 </div>
                 <div className='three-rows-expand-one-three ml-s'>
@@ -92,7 +92,7 @@ function LandingPageHeader({ hideHeaders }) {
                         </div>
                         <div className='three-columns-expand-one-three'>
                             <div/>
-                            <h2 className='landing-h2'>{subTitleBasedOnGameMode(selectedGameMode)}</h2>
+                            <h2 style={{ fontSize: '2.4rem', textAlign: 'center', marginTop: '8px', color: 'var(--primary-colour-charcoal)'}}>{subTitleBasedOnGameMode(selectedGameMode)}</h2>
                             <div/>
                         </div>
                     </div>
