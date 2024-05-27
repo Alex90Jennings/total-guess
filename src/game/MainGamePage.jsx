@@ -27,6 +27,11 @@ function MainGamePage() {
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
 
     const fetchGame = async () => {
+        if(!loggedInUser._id) {
+            const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
+            const hasPlayed = hasGuestAlreadyPlayed(gamesPlayed)
+            if(hasPlayed) throw new Error('Guest already played')
+        }
         try {
             const response = isLocal ? await clientApi.fetchTodayGame(selectedGameMode) : await lambda.getGameOfTheDay(selectedGameMode)
             gameDate.current = response.date;
@@ -37,6 +42,17 @@ function MainGamePage() {
             setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
         }
     };
+
+    const hasGuestAlreadyPlayed = (gamesPlayed) => {
+        const today = new Date();
+        today.setUTCHours(0, 0, 0, 0);
+        const yesterday = new Date()
+        yesterday.setDate(today.getDate() - 1);
+        if(gamesPlayed.includes(yesterday)) {
+            return true
+        }
+        return false
+    }
 
     useEffect(() => {
         if(!loggedInUser._id) {
@@ -119,10 +135,18 @@ function MainGamePage() {
         } else {
             const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
             const scores = JSON.parse(localStorage.getItem("tgScores")) || [];
-            gamesPlayed.push(gameDate.current);
-            scores.push(percentageError);
-            localStorage.setItem("tgGamesPlayed", JSON.stringify(gamesPlayed));
-            localStorage.setItem("tgScores", JSON.stringify(scores));
+            const hasPlayed = hasGuestAlreadyPlayed(gamesPlayed)
+            if(hasPlayed) {
+                navigate('/')
+                setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
+                return
+            } else {
+                gamesPlayed.push(gameDate.current);
+                scores.push(percentageError);
+                localStorage.setItem("tgGamesPlayed", JSON.stringify(gamesPlayed));
+                localStorage.setItem("tgScores", JSON.stringify(scores));
+                setBreakdown(itemPricesRef.current)
+            }
         }
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
     };

@@ -32,11 +32,21 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                 const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedTomorrow);
                 setHasPlayedDaily(isGameAlreadyInArray);
             } else {
-                const today = new Date();
-                today.setUTCHours(0, 0, 0, 0);
-                const formattedToday = today.toISOString();
-                const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
-                setHasPlayedDaily(isGameAlreadyInArray);
+                if(loggedInUser?._id) {
+                    const today = new Date();
+                    today.setUTCHours(0, 0, 0, 0);
+                    const formattedToday = today.toISOString();
+                    const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
+                    setHasPlayedDaily(isGameAlreadyInArray);
+                } else {
+                    const yesterday = new Date()
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    yesterday.setUTCHours(0, 0, 0, 0);
+                    const formattedYesterday = yesterday.toISOString();
+                    const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
+                    const isGameAlreadyInArray = gamesPlayed?.includes(formattedYesterday);
+                    setHasPlayedDaily(isGameAlreadyInArray);
+                }
             }
         }, 
         [loggedInUser?.gamesPlayed],
@@ -114,7 +124,7 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                     }
                 </li>
                 {
-                    !loggedInUser._id && <li className='three-columns-expand-one-three mt-s'>
+                    !hasPlayedDaily && <li className='three-columns-expand-one-three mt-s'>
                         <div/>
                         <button className='play-button-styling three-rows-expand-one-three' onClick={() => playAsGuest()}>
                             <div/>
