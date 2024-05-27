@@ -8,10 +8,8 @@ import { useContext } from "react";
 const StatisticsModal = ({ className, onClose }) => {
 
     const { loggedInUser } = useContext(AppContext)
-    const scoresArray = loggedInUser?.scores || []
-    const gamesPlayed = loggedInUser?.gamesPlayed || []
-
-    if (!loggedInUser?._id) return <p>Please log in to see your stats!</p>
+    const scoresArray = loggedInUser?.scores || JSON.parse(localStorage.getItem("tgScores")) || [];
+    const gamesPlayed = loggedInUser?.gamesPlayed || JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
 
     if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
@@ -32,15 +30,26 @@ const StatisticsModal = ({ className, onClose }) => {
         if(gamesPlayed?.length === 0) return 0
         const today = new Date();
         today.setUTCHours(0, 0, 0, 0);
+        const yesterday = new Date()
+        yesterday.setDate(today.getDate() - 1);
         let streak = 0;
-        if(loggedInUser.isAdmin) {
+        let dateOfComparison = today
+        if(loggedInUser?.isAdmin) {
             const tomorrow = new Date(today);
-            tomorrow.setDate(today.getDate() + 1);
+            dateOfComparison = tomorrow.setDate(today.getDate() + 1);
             if(gamesPlayed.includes(new Date(tomorrow).toISOString())) streak++
             return calculateStreak(tomorrow, streak)
+        } else {
+            if(loggedInUser?._id) {
+                if(gamesPlayed?.includes(new Date(today).toISOString())) streak++
+            } else {
+                const yesterday = new Date()
+                yesterday.setDate(today.getDate() + 1);
+                dateOfComparison = yesterday
+                if(gamesPlayed?.includes(new Date(yesterday).toISOString())) streak++
+            }
         }
-        if(gamesPlayed?.includes(new Date(today).toISOString())) streak++
-        return calculateStreak(today, streak)
+        return calculateStreak(dateOfComparison, streak)
     }
 
     function calculateStreak(date, streak) {

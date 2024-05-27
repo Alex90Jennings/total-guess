@@ -17,6 +17,11 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
         if(!isMuted) audio.play()
     };
 
+    const playAsGuest = () => {
+        playSound()
+        navigate('/play')
+    }
+
     useEffect(
         () => {
             if(loggedInUser?.isAdmin) {
@@ -54,11 +59,6 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
         setElementToDisplay('loginForm');
     };
 
-    //const handlePracticeGameSubmit = () => {
-    //    playSound();
-    //    navigate('/play');
-    //};
-
     return (
         <div id='landing-page-menu'>
             <div/>
@@ -93,18 +93,6 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                             <div/>
                         </div>
                 }
-                {/*
-                <li className='three-columns-expand-one-three'>
-                    <div/>
-                    <button className='landing-page-menu-btn play-btn' onClick={handlePracticeGameSubmit}>Practice</button>
-                    <div/>
-                </li>
-                */}
-                {/* <li className='three-columns-expand-one-three'>
-                    <div/>
-                    <button className='landing-page-menu-btn other-btn' onClick={handleModalOpen}>Instructions</button>
-                    <div/>
-                </li> */}
                 <li className='three-columns-expand-one-three mt-s'>
                     <div/>
                     {
@@ -124,6 +112,14 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                                 <div/>
                             </button>
                     }
+                </li>
+                <li className='three-columns-expand-one-three mt-s'>
+                    <div/>
+                     <button className='play-button-styling three-rows-expand-one-three' onClick={() => playAsGuest()}>
+                        <div/>
+                        <div>Play As Guest</div>
+                        <div/>
+                    </button>
                     <div/>
                 </li>
             </ul>

@@ -15,6 +15,7 @@ import FAQ from "./Modals/FAQ.jsx";
 import Advertise from "./Modals/Advertise.jsx";
 import BreakdownModal from "./Modals/BreakdownModal.jsx";
 import AlreadyPlayed from "./Modals/AlreadyPlayed.jsx";
+import NotSignedIn from "./Modals/NotSignedIn.jsx"
 import { AppContext } from "./hooks/context";
 import Badges from "./Modals/BadgesModal.jsx";
 
@@ -26,7 +27,8 @@ export const ModalToDisplay = {
     ABOUT_US: "ABOUT_US",
     ADVERTISE: "ADVERTISE",
     BADGES: "BADGES",
-    ALREADY_PLAYED: "ALREADY_PLAYED"
+    ALREADY_PLAYED: "ALREADY_PLAYED",
+    NOT_SIGNED_IN: "NOT_SIGNED_IN"
 };
 
 function App() {
@@ -89,6 +91,9 @@ function App() {
             )}
             {modal === ModalToDisplay.ALREADY_PLAYED && (
                 <AlreadyPlayed onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.NOT_SIGNED_IN && (
+                <NotSignedIn onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

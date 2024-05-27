@@ -48,6 +48,7 @@ export const AppProvider = ({ children }) => {
             setLoggedInUser(res)
             setIsAuthenticated(true)
         } catch {
+            localStorage.setItem("tgJwtToken", "")
             setIsAuthenticated(false)
         } finally {
             setFetchingLoggedInUser(false)

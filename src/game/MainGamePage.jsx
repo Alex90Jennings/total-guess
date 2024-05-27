@@ -46,6 +46,10 @@ function MainGamePage() {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
     }
 
+    if(!loggedInUser._id) {
+        setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
+    }
+
     const currentProduct = game?.items[currentShopIndex];
     const currentShop = currentProduct.store;
     const currentDescription = currentProduct.description;
@@ -100,12 +104,25 @@ function MainGamePage() {
         if (percentageError < -35) percentageError = -35;
 
         if (loggedInUser) {
-            const response = isLocal ? 
-                await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current) :
-                await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
-            setLoggedInUser(response);
-            setBreakdown(itemPricesRef.current)
-            if (!isMuted) audio.play();
+            try {
+                const response = isLocal ? 
+                    await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current) :
+                    await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
+                setLoggedInUser(response);
+                setBreakdown(itemPricesRef.current)
+                if (!isMuted) audio.play();
+            } catch {
+                navigate('/')
+                setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
+                return
+            } 
+        } else {
+            const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
+            const scores = JSON.parse(localStorage.getItem("tgScores")) || [];
+            gamesPlayed.push(gameDate.current);
+            scores.push(percentageError);
+            localStorage.setItem("tgGamesPlayed", JSON.stringify(gamesPlayed));
+            localStorage.setItem("tgScores", JSON.stringify(scores));
         }
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
     };
