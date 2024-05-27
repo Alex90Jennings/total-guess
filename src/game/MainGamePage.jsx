@@ -41,6 +41,7 @@ function MainGamePage() {
     useEffect(() => {
         if(!loggedInUser._id) {
             setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
+            localStorage.setItem('tgJwtToken', '')
         }
         fetchGame();
     }, []);
@@ -102,7 +103,7 @@ function MainGamePage() {
         if (percentageError > 35) percentageError = 35;
         if (percentageError < -35) percentageError = -35;
 
-        if (loggedInUser) {
+        if (loggedInUser?._id) {
             try {
                 const response = isLocal ? 
                     await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current) :
