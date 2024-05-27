@@ -113,15 +113,17 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                             </button>
                     }
                 </li>
-                <li className='three-columns-expand-one-three mt-s'>
-                    <div/>
-                     <button className='play-button-styling three-rows-expand-one-three' onClick={() => playAsGuest()}>
+                {
+                    !loggedInUser._id && <li className='three-columns-expand-one-three mt-s'>
                         <div/>
-                        <div>Play As Guest</div>
+                        <button className='play-button-styling three-rows-expand-one-three' onClick={() => playAsGuest()}>
+                            <div/>
+                            <div>Play As Guest</div>
+                            <div/>
+                        </button>
                         <div/>
-                    </button>
-                    <div/>
-                </li>
+                    </li>
+                }
             </ul>
         </div>
     );

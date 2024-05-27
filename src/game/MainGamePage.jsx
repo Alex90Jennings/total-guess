@@ -39,15 +39,14 @@ function MainGamePage() {
     };
 
     useEffect(() => {
+        if(!loggedInUser._id) {
+            setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
+        }
         fetchGame();
     }, []);
 
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
-    }
-
-    if(!loggedInUser._id) {
-        setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
     }
 
     const currentProduct = game?.items[currentShopIndex];
