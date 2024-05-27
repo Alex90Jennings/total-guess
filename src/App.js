@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/modal.css";
 import LandingPage from "./auth/LandingPage.jsx";
@@ -55,6 +55,7 @@ function App() {
                     element={<MainGamePage />}
                 />
                 <Route path="/results" element={<Results />} />
+                <Route path="*" element={<Navigate to="/" />} />
                 {/*<Route path="/share" element={<Share />} />*/}
             </Routes>
         </BrowserRouter>
