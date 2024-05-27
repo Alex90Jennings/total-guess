@@ -57,7 +57,7 @@ function MainGamePage() {
     useEffect(() => {
         if(!loggedInUser._id) {
             setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
-            localStorage.setItem('tgJwtToken', '')
+            localStorage.removeItem('tgJwtToken')
         }
         fetchGame();
     }, []);

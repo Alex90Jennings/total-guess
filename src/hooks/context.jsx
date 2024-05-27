@@ -36,7 +36,7 @@ export const AppProvider = ({ children }) => {
 
     const handleSignOut = () => {
         if(!isMuted) audio.play();
-        localStorage.setItem("tgJwtToken", "")
+        localStorage.removeItem("tgJwtToken")
         setIsAuthenticated(false)
         setLoggedInUser({});
     }
@@ -48,7 +48,7 @@ export const AppProvider = ({ children }) => {
             setLoggedInUser(res)
             setIsAuthenticated(true)
         } catch {
-            localStorage.setItem("tgJwtToken", "")
+            localStorage.removeItem("tgJwtToken")
             setIsAuthenticated(false)
         } finally {
             setFetchingLoggedInUser(false)

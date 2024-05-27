@@ -47,8 +47,8 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading })
                 await clientApi.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password) : 
                 await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password, gamesPlayed, scores);
             localStorage.setItem("tgJwtToken", response.token);
-            localStorage.setItem("tgGamesPlayed", '');
-            localStorage.setItem("tgScores", '');
+            localStorage.removeItem("tgGamesPlayed");
+            localStorage.removeItem("tgScores");
             setLoggedInUser(response.user)
             setIsAuthenticated(true);
             setFormData({ ...formData, isRegistered: true })
