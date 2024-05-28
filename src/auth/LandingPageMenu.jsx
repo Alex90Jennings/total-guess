@@ -19,6 +19,7 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
 
     const playAsGuest = () => {
         playSound()
+        localStorage.removeItem('tgJwtToken')
         navigate('/play')
     }
 
