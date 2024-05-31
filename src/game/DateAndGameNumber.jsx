@@ -11,7 +11,7 @@ const DateAndGameNumber = ({ currentProductDate, gameDate }) => {
     }
     
     function getDaysSince() {
-        const targetDate = new Date('2023-07-01');
+        const targetDate = new Date('2024-05-31');
         const givenDate = new Date(gameDate);
 
         const timeDiff = Math.abs(givenDate.getTime() - targetDate.getTime());
@@ -23,7 +23,7 @@ const DateAndGameNumber = ({ currentProductDate, gameDate }) => {
         <div className='info-container'>
             <div style={{ textAlign: 'center' }}>
                 <p className='input-container-narrow-screen-accent accent'>Priced on</p>
-                <p style={{ margin: '0 0 8px 0' }}>{getDateString(currentProductDate || '06/09/2023')}</p>
+                <p style={{ margin: '0 0 8px 0' }}>{getDateString(currentProductDate || '31/05/2024')}</p>
             </div>
             <div style={{ textAlign: 'center' }}>
                 <p className='input-container-narrow-screen-accent accent'>Game</p>
