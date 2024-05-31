@@ -56,7 +56,7 @@ function Results() {
                         <Link to="/" className='feedback-button-styling'>Home Page</Link>
                     </div>
                     <div className="statistics-results">
-                        <div className='breakdown-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.BREAKDOWN)}>Breakdown</div>
+                        <div className='breakdown-button-styling' onClick={() => setModalToDisplay(ModalToDisplay.BREAKDOWN)}>Receipt</div>
                     </div>
                     {/*
                     <div className="share-results">

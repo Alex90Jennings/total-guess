@@ -9,19 +9,19 @@ function FAQ({ onClose }) {
             </header>
             <section>
                 <h2>What is Total Guess?</h2>
-                <p>It's a simple skill game that rates your guessing ability of grocery prices and adding up.</p>
+                <p>It's a simple skill game that rates your ability to guess the price of supermarket groceries.</p>
             </section>
             <section>
                 <h2>How many grocery items are there?</h2>
-                <p>There are only ten grocery items to review in each game.</p>
+                <p> There are ten groceries per game.</p>
             </section>
             <section>
                 <h2>Do the prices include discounts?</h2>
-                <p>Any discounts will be stated clearly in the game.</p>
+                <p>No, you should guess the full price of the groceries, unless a discount is stated in the description.</p>
             </section>
             <section>
                 <h2>Are local price variations included?</h2>
-                <p>Yes, the locality will be stated clearly in the game.</p>
+                <p>No, there are generally no local price variations within the United Kingdom.</p>
             </section>
             <section>
                 <h2>Does the game have a time limit?</h2>
@@ -29,7 +29,7 @@ function FAQ({ onClose }) {
             </section>
             <section>
                 <h2>How often can I play this game?</h2>
-                <p>A new game is released every day.</p>
+                <p>A new game is released every day at midnight UK.</p>
             </section>
             <section>
                 <h2>Can I play with my friends?</h2>

@@ -115,6 +115,9 @@ function Header({ setShowLoginPage }) {
                         <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.ABOUT_US)}}>
                             About Us
                         </div>
+                        <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.PRIVACY)}}>
+                            Privacy
+                        </div>
                         <div className="dropdown-item" onClick={() => {dropdownMenuPress(ModalToDisplay.FAQ)}}>
                             FAQs
                         </div>

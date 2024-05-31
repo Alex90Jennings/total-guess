@@ -6,7 +6,7 @@ import { AppContext } from "../hooks/context";
 const BreakdownModal = ({ onClose }) => {
     const { breakdown } = useContext(AppContext);
 
-    if(breakdown?.length === 0 || !breakdown) return <p>Please a game to see your breakdown!</p>
+    if(breakdown?.length === 0 || !breakdown) return <p>Please a game to see your receipt!</p>
 
     return (
         <div className="modal-display">
@@ -14,7 +14,7 @@ const BreakdownModal = ({ onClose }) => {
                 X
             </button>
             <header>
-                <h1  className="h1-statistics">Breakdown</h1>
+                <h1  className="h1-statistics">Total-Guess Receipt</h1>
             </header>
             <table>
                 <thead>

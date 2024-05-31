@@ -1,12 +1,11 @@
 import { useState, useContext } from 'react';
 import '../styles/landingPage.css';
-import { clientApi } from '../api/clientApi';
 import { AppContext } from '../hooks/context';
 import { lambda } from '../api/lambda';
 
 function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading }) {    
 
-    const { isAuthenticated, setIsAuthenticated, setLoggedInUser, isLocal } = useContext(AppContext);
+    const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
     const [error, setError] = useState(null);
 
     const handleChange = (event) => {
@@ -26,7 +25,7 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading })
     const signInUser = async () => {
         setIsLoading(true)
         try {
-            const response = isLocal ? await clientApi.login(formData.email, formData.password) : await lambda.login(formData.email, formData.password)
+            const response = await lambda.login(formData.email, formData.password)
             localStorage.setItem("tgJwtToken", response.token);
             setLoggedInUser(response.user)
             setIsAuthenticated(true);             
@@ -43,9 +42,7 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading })
         const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
         const scores = JSON.parse(localStorage.getItem("tgScores")) || [];
         try {
-            const response = isLocal ?
-                await clientApi.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password) : 
-                await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password, gamesPlayed, scores);
+            const response = await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password, gamesPlayed, scores);
             localStorage.setItem("tgJwtToken", response.token);
             localStorage.removeItem("tgGamesPlayed");
             localStorage.removeItem("tgScores");

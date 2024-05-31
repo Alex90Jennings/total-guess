@@ -11,8 +11,8 @@ function Footer() {
         <footer className="footer--layout">
             <div className='footer-narrow-screen'></div>
             <nav className="left-icons">
-                <a href="https://www.instagram.com" rel="noreferrer" target="_blank" className="icon-footer">
-                    <img src="/icons/tinstagram.png" alt="instagram icon" />
+                <a href="https://www.tiktok.com/@total.guess?_t=8mmdvsfCFJQ&_r=1" rel="noreferrer" target="_blank" className="icon-footer">
+                    <img src="/icons/tik-tok.png" alt="tik tok icon" />
                 </a>
                 <a href="https://www.linkedin.com/company/total-guess/" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/tlinkedin.png'} alt="linkedin icon" />
@@ -20,7 +20,7 @@ function Footer() {
                 <a href="https://x.com/total_guess?s=11&t=xGivyh4Xdt8ahYQTieZakw" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/ttwitter.png'} alt="twitter icon" />
                 </a>
-                <a href="https://www.facebook.com" rel="noreferrer" target="_blank" className="icon-footer">
+                <a href="https://www.facebook.com/total.guess/" rel="noreferrer" target="_blank" className="icon-footer">
                     <img src={'/icons/tfacebook.png'} alt="facebook icon" />
                 </a>
             </nav>
@@ -32,6 +32,12 @@ function Footer() {
                 <a href="mailto:totalguessgame@gmail.com" className='contact'>totalguessgame@gmail.com</a>
             </div>
             <ul className="right-content footer-wide-screen list-reset">
+                <li
+                    className="footer-row"
+                    onClick={() => setModalToDisplay(ModalToDisplay.PRIVACY)}
+                >
+                    Privacy
+                </li>
                 <li
                     className="footer-row"
                     onClick={() => setModalToDisplay(ModalToDisplay.ABOUT_US)}

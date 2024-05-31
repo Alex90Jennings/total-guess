@@ -18,6 +18,7 @@ import AlreadyPlayed from "./Modals/AlreadyPlayed.jsx";
 import NotSignedIn from "./Modals/NotSignedIn.jsx"
 import { AppContext } from "./hooks/context";
 import Badges from "./Modals/BadgesModal.jsx";
+import Privacy from "./Modals/Privacy.jsx";
 
 export const ModalToDisplay = {
     INSTRUCTIONS: "INSTRUCTIONS",
@@ -28,7 +29,8 @@ export const ModalToDisplay = {
     ADVERTISE: "ADVERTISE",
     BADGES: "BADGES",
     ALREADY_PLAYED: "ALREADY_PLAYED",
-    NOT_SIGNED_IN: "NOT_SIGNED_IN"
+    NOT_SIGNED_IN: "NOT_SIGNED_IN",
+    PRIVACY: "PRIVACY"
 };
 
 function App() {
@@ -94,6 +96,9 @@ function App() {
             )}
             {modal === ModalToDisplay.NOT_SIGNED_IN && (
                 <NotSignedIn onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.PRIVACY && (
+                <Privacy onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

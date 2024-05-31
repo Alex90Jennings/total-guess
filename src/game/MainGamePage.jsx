@@ -9,12 +9,11 @@ import NarrowScreenTotals from './NarrowScreenTotals';
 import DateAndGameNumber from './DateAndGameNumber';
 import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
-import { clientApi } from '../api/clientApi';
 import { lambda } from '../api/lambda';
 import { ModalToDisplay } from '../App';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, isLocal, setModalToDisplay } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, setModalToDisplay } = useContext(AppContext);
     const navigate = useNavigate();
     const gameDate = useRef('');
     const [game, setGame] = useState({});
@@ -33,7 +32,7 @@ function MainGamePage() {
             if(hasPlayed) throw new Error('Guest already played')
         }
         try {
-            const response = isLocal ? await clientApi.fetchTodayGame(selectedGameMode) : await lambda.getGameOfTheDay(selectedGameMode)
+            const response = await lambda.getGameOfTheDay(selectedGameMode)
             gameDate.current = response.date;
             setGame(response);
         } catch (error) {
@@ -83,6 +82,9 @@ function MainGamePage() {
     }
 
     const handleItemWorthSubmit = () => {
+        if(inputValue.trim() === "" || inputValue.trim() === "£") {
+            return
+        }
         const itemWorth = parseFloat(inputValue.replace(/[^0-9.]/g, ''));
 
         if (!isNaN(itemWorth)) {
@@ -121,9 +123,7 @@ function MainGamePage() {
 
         if (loggedInUser?._id) {
             try {
-                const response = isLocal ? 
-                    await clientApi.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current) :
-                    await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
+                const response = await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
                 setLoggedInUser(response);
                 setBreakdown(itemPricesRef.current)
                 if (!isMuted) audio.play();

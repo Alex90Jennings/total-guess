@@ -9,7 +9,7 @@ function AboutUs({ onClose }) {
             </header>
             <section>
                 <h2>WHO ARE WE?</h2>
-                <p>We are a team of makers who create quick and engaging games that are designed to entertain, test guessing, and arithmetic skills.</p>
+                <p>We are a team of makers who create quick and engaging games that are designed to entertain and test guessing skills.</p>
             </section>
             <section>
                 <h2>OUR AIMS</h2>

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { clientApi } from "../api/clientApi";
 import { lambda } from "../api/lambda";
 
 export const AppContext = createContext({
@@ -15,7 +14,6 @@ export const AppContext = createContext({
     setBreakdown: () => {},
     selectedGameMode: '',
     setSelectedGameMode: () => {},
-    isLocal: false,
     fetchingLoggedInUser: false,
     setFetchingLoggedInUser: () => {}
 });
@@ -28,7 +26,6 @@ export const AppProvider = ({ children }) => {
     const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');
-    const isLocal = window.location.hostname.includes('localhost');
     const [ isMuted, setIsMuted ] = useState(false);
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
     const [ fetchingLoggedInUser, setFetchingLoggedInUser ] = useState(false)
@@ -44,7 +41,7 @@ export const AppProvider = ({ children }) => {
     const getLoggedInUser = async () => {
         setFetchingLoggedInUser(true)
         try {
-            const res = isLocal ? await clientApi.getUser() : await lambda.getUser()
+            const res = await lambda.getUser()
             setLoggedInUser(res)
             setIsAuthenticated(true)
         } catch {
@@ -86,7 +83,6 @@ export const AppProvider = ({ children }) => {
         setBreakdown,
         selectedGameMode,
         setSelectedGameMode,
-        isLocal,
         fetchingLoggedInUser,
         setFetchingLoggedInUser
     };
