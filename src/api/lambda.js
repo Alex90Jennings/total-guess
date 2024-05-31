@@ -19,12 +19,12 @@ const login = async (email, password) => {
     }
 }
 
-const register = async (email, firstName, lastName, gender, ageRange, password, gamesArray, scores) => {
+const register = async (email, firstName, lastName, gender, ageRange, password, gamesPlayed, scores) => {
     try {
         const response = await fetch(process.env.REACT_APP_LAMBDA_AUTH, {
             method: 'POST',
             'Content-Type': 'application/json',
-            body: JSON.stringify({email, firstName, lastName, gender, ageRange, password, gamesArray, scores})
+            body: JSON.stringify({email, firstName, lastName, gender, ageRange, password, gamesPlayed, scores})
         });
         if (!response.ok) {
             throw new Error('Failed to register user');
