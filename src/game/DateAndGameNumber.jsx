@@ -23,7 +23,7 @@ const DateAndGameNumber = ({ currentProductDate, gameDate }) => {
         <div className='info-container'>
             <div style={{ textAlign: 'center' }}>
                 <p className='input-container-narrow-screen-accent accent'>Priced on</p>
-                <p style={{ margin: '0 0 8px 0' }}>{getDateString(currentProductDate || '31/05/2024')}</p>
+                <p style={{ margin: '0 0 8px 0' }}>{getDateString(currentProductDate || '05/31/2024')}</p>
             </div>
             <div style={{ textAlign: 'center' }}>
                 <p className='input-container-narrow-screen-accent accent'>Game</p>

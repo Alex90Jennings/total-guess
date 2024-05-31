@@ -117,7 +117,7 @@ function MainGamePage() {
         
         const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
-        let percentageError = (difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1);
+        let percentageError = ((difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1).toFixed(2));
         if (percentageError > 35) percentageError = 35;
         if (percentageError < -35) percentageError = -35;
 

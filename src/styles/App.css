@@ -22,16 +22,11 @@
 
 body {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
-  overflow-y: scroll;
-  /* Chrome, Safari, Opera */
 }
 
 body::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Opera */
 }
 
 .center-wrapper {

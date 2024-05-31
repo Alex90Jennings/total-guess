@@ -54,7 +54,7 @@ function Footer() {
                     className="footer-row"
                     onClick={() => setModalToDisplay(ModalToDisplay.ADVERTISE)}
                 >
-                    Advertise with us
+                    Advertise with us   
                 </li>
             </ul>
         </footer>
