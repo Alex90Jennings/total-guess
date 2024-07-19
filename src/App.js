@@ -19,6 +19,7 @@ import NotSignedIn from "./Modals/NotSignedIn.jsx"
 import { AppContext } from "./hooks/context";
 import Badges from "./Modals/BadgesModal.jsx";
 import Privacy from "./Modals/Privacy.jsx";
+import LoggedOut from "./Modals/LoggedOut.jsx";
 
 export const ModalToDisplay = {
     INSTRUCTIONS: "INSTRUCTIONS",
@@ -30,7 +31,8 @@ export const ModalToDisplay = {
     BADGES: "BADGES",
     ALREADY_PLAYED: "ALREADY_PLAYED",
     NOT_SIGNED_IN: "NOT_SIGNED_IN",
-    PRIVACY: "PRIVACY"
+    PRIVACY: "PRIVACY",
+    LOGGED_OUT: "LOGGED_OUT"
 };
 
 function App() {
@@ -99,6 +101,9 @@ function App() {
             )}
             {modal === ModalToDisplay.PRIVACY && (
                 <Privacy onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.LOGGED_OUT && (
+                <LoggedOut onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

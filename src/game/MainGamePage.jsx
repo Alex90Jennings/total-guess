@@ -13,7 +13,7 @@ import { lambda } from '../api/lambda';
 import { ModalToDisplay } from '../App';
 
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, setModalToDisplay } = useContext(AppContext);
+    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, setModalToDisplay, setIsAuthenticated } = useContext(AppContext);
     const navigate = useNavigate();
     const gameDate = useRef('');
     const [game, setGame] = useState({});
@@ -25,13 +25,32 @@ function MainGamePage() {
     const cumulativeTotal = itemPricesRef.current.reduce((sum, item) => sum + item.guess, 0);
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
 
-    const fetchGame = async () => {
-        if(!loggedInUser._id) {
-            const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
-            const hasPlayed = hasGuestAlreadyPlayed(gamesPlayed)
-            if(hasPlayed) throw new Error('Guest already played')
+    const checkUserIsValid = async () => {
+        if(localStorage.getItem('tgJwtToken')) {
+            try {
+                const res = await lambda.getUser()
+                setLoggedInUser(res)
+                setIsAuthenticated(true)
+                return true
+            } catch {
+                localStorage.removeItem('tgJwtToken')
+                setIsAuthenticated(false)
+                setLoggedInUser({})
+                return false
+            }
         }
+        return true
+    }
+
+    const fetchGame = async () => {
         try {
+            if(!loggedInUser._id) {
+                const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
+                const hasPlayed = hasGuestAlreadyPlayed(gamesPlayed)
+                if(hasPlayed) throw new Error('Guest already played')
+                setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
+                localStorage.removeItem('tgJwtToken')
+            }
             const response = await lambda.getGameOfTheDay(selectedGameMode)
             gameDate.current = response.date;
             setGame(response);
@@ -54,12 +73,17 @@ function MainGamePage() {
     }
 
     useEffect(() => {
-        if(!loggedInUser._id) {
-            setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
-            localStorage.removeItem('tgJwtToken')
-        }
-        fetchGame();
-    }, []);
+        const checkUser = async () => {
+            const isUserValid = await checkUserIsValid();    
+            if (isUserValid) {
+                fetchGame();
+            } else {
+                setModalToDisplay(ModalToDisplay.LOGGED_OUT);
+                navigate('/')
+            }
+        };
+        checkUser();
+    }, []); 
 
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
