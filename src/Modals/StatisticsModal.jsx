@@ -26,45 +26,29 @@ const StatisticsModal = ({ className, onClose }) => {
         return closestScore.toFixed(2);
     }
 
-    function getCurrentStreak() {
-        if(gamesPlayed?.length === 0) return 0
-        const today = new Date();
-        today.setUTCHours(0, 0, 0, 0);
-        const yesterday = new Date()
-        yesterday.setDate(today.getDate() - 1);
-        let streak = 0;
-        let dateOfComparison = today
-        if(loggedInUser?.isAdmin) {
-            const tomorrow = new Date(today);
-            dateOfComparison = tomorrow.setDate(today.getDate() + 1);
-            if(gamesPlayed.includes(new Date(tomorrow).toISOString())) streak++
-            return calculateStreak(tomorrow, streak)
-        } else {
-            if(loggedInUser?._id) {
-                if(gamesPlayed?.includes(new Date(today).toISOString())) streak++
-            } else {
-                const yesterday = new Date()
-                yesterday.setDate(today.getDate() + 1);
-                dateOfComparison = yesterday
-                if(gamesPlayed?.includes(new Date(yesterday).toISOString())) streak++
-            }
+    function getCurrentStreak(gamesPlayed) {
+        if (!gamesPlayed || gamesPlayed.length === 0) return 0;
+        function setToStartOfDay(date) {
+            const newDate = new Date(date);
+            newDate.setUTCHours(0, 0, 0, 0);
+            return newDate;
         }
-        return calculateStreak(dateOfComparison, streak)
-    }
-
-    function calculateStreak(date, streak) {
-        for (let i = gamesPlayed?.length; i > 0; i--) {
-            const gameDate = new Date(gamesPlayed[i]).setUTCHours(0, 0, 0, 0);
-            const diffInTime = date - gameDate;
-            const diffInDays = diffInTime / (1000 * 3600 * 24);
-
-            if (diffInDays === streak) {
+        const today = setToStartOfDay(new Date());
+        const todayISOString = today.toISOString();
+        let streak = 0;
+        if (gamesPlayed.includes(todayISOString)) {
+            streak++;
+        }
+        let currentDate = today;
+        while (true) {
+            currentDate.setDate(currentDate.getDate() - 1);
+            const currentISOString = setToStartOfDay(currentDate).toISOString();
+            if (gamesPlayed.includes(currentISOString)) {
                 streak++;
-            } else if (diffInDays > streak) {
+            } else {
                 break;
             }
         }
-
         return streak;
     }
 
