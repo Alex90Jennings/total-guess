@@ -11,9 +11,8 @@ const BreakdownModal = ({ onClose }) => {
     const generateShareUrl = () => {
         const gameNumber = Math.floor((new Date() - new Date('2024-06-01')) / (1000 * 60 * 60 * 24));
         const date = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
-        const totalError = breakdown.reduce((acc, item) => acc + Math.abs(item.guess - item.correctPrice) / item.correctPrice, 0) / breakdown.length * 100;
-        const totalErrorFormatted = totalError > 35 ? '35+' : totalError.toFixed(0);
-
+        const totalError = breakdown.reduce((acc, item) => acc + ((item.guess - item.correctPrice) / item.correctPrice) * 100, 0) / breakdown.length;
+        const totalErrorFormatted = totalError > 35 ? '35+' : totalError < -35 ? '-35+' :totalError.toFixed(0);
         const emojiMap = breakdown.map(item => {
             const errorPercentage = Math.abs((item.guess - item.correctPrice) / item.correctPrice) * 100;
             if (errorPercentage <= 33) return '🟩';
