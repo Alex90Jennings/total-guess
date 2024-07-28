@@ -26,7 +26,7 @@ const StatisticsModal = ({ className, onClose }) => {
         return closestScore.toFixed(2);
     }
 
-    function getCurrentStreak(gamesPlayed) {
+    function getCurrentStreak() {
         if (!gamesPlayed || gamesPlayed.length === 0) return 0;
         function setToStartOfDay(date) {
             const newDate = new Date(date);

@@ -21,8 +21,7 @@ const BreakdownModal = ({ onClose }) => {
             return '🟥';
         }).join('');
 
-        const hashtags = 'CostOfLiving,Inflation,GuessThePrice,SupermarketGame';
-        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap} ${totalErrorFormatted}pc%0A%0ACan you beat my score in the UK's best supermarket guessing game?%0A%0Ahttps%3A%2F%2Fwww.total-guess.com%0A%0A#${hashtags.replace(/,/g, ' #')}`;
+        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily Total Guess Percent: ${totalErrorFormatted}%0A%0ACheck it out at https%3A%2F%2Fwww.total-guess.com`;
         const url = `https://x.com/intent/post?text=${text}`;
         return url;
     };
