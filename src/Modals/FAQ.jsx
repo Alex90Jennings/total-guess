@@ -24,6 +24,10 @@ function FAQ({ onClose }) {
                 <p>No, there are generally no local price variations within the United Kingdom.</p>
             </section>
             <section>
+                <h2>Can I share my score?</h2>
+                <p> After submitting your guess, head to the receipt tab to see the breakdown of your game. From there, you can press the X logo to share your score on X!</p>
+            </section>
+            <section>
                 <h2>Does the game have a time limit?</h2>
                 <p>No, the time limit is as long as your tea break.</p>
             </section>
