@@ -11,8 +11,12 @@ const BreakdownModal = ({ onClose }) => {
     const generateShareUrl = () => {
         const gameNumber = Math.floor((new Date() - new Date('2024-06-01')) / (1000 * 60 * 60 * 24));
         const date = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
-        const totalError = breakdown.reduce((acc, item) => acc + ((item.guess - item.correctPrice) / item.correctPrice) * 100, 0) / breakdown.length;
-        const totalErrorFormatted = totalError > 35 ? '35+' : totalError < -35 ? '-35+' :totalError.toFixed(0);
+        const numericGuess = breakdown.reduce((sum, item) => sum + item.guess, 0);
+        const correctPrice = breakdown.reduce((sum, item) => sum + item.correctPrice, 0);
+        const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
+        let percentageError = ((difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1)).toFixed(2);
+        if (percentageError > 35) percentageError = 35;
+        if (percentageError < -35) percentageError = -35;
         const emojiMap = breakdown.map(item => {
             const errorPercentage = Math.abs((item.guess - item.correctPrice) / item.correctPrice) * 100;
             if (errorPercentage <= 33) return '🟩';
@@ -21,7 +25,7 @@ const BreakdownModal = ({ onClose }) => {
             return '🟥';
         }).join('');
 
-        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily Total Guess Percent: ${totalErrorFormatted}%0A%0ACheck it out at https%3A%2F%2Fwww.total-guess.com`;
+        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily Total Guess Percent: ${percentageError}%0A%0ACheck it out at https%3A%2F%2Fwww.total-guess.com`;
         const url = `https://x.com/intent/post?text=${text}`;
         return url;
     };
