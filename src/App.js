@@ -20,6 +20,8 @@ import { AppContext } from "./hooks/context";
 import Badges from "./Modals/BadgesModal.jsx";
 import Privacy from "./Modals/Privacy.jsx";
 import LoggedOut from "./Modals/LoggedOut.jsx";
+import GeneralError from "./Modals/GeneralError.jsx";
+import NewBadgeEarned from "./Modals/NewBadgeEarned.jsx";
 
 export const ModalToDisplay = {
     INSTRUCTIONS: "INSTRUCTIONS",
@@ -32,7 +34,9 @@ export const ModalToDisplay = {
     ALREADY_PLAYED: "ALREADY_PLAYED",
     NOT_SIGNED_IN: "NOT_SIGNED_IN",
     PRIVACY: "PRIVACY",
-    LOGGED_OUT: "LOGGED_OUT"
+    LOGGED_OUT: "LOGGED_OUT",
+    GENERAL_ERROR: "GENERAL_ERROR",
+    NEW_BADGE_EARNED: "NEW_BADGE_EARNED"
 };
 
 function App() {
@@ -104,6 +108,12 @@ function App() {
             )}
             {modal === ModalToDisplay.LOGGED_OUT && (
                 <LoggedOut onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.GENERAL_ERROR && (
+                <GeneralError onClose={() => setModalToDisplay("")} />
+            )}
+            {modal === ModalToDisplay.NEW_BADGE_EARNED && (
+                <NewBadgeEarned onClose={() => setModalToDisplay("")} />
             )}
             </Modal>
         ))}

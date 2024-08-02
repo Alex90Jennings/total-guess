@@ -55,9 +55,8 @@ function MainGamePage() {
             gameDate.current = response.date;
             setGame(response);
         } catch (error) {
-            console.error('Error fetching game:', error);
+            error?.statusCode === 400 ? setModalToDisplay(ModalToDisplay.ALREADY_PLAYED) : setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
             navigate('/')
-            setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
         }
     };
 
@@ -132,13 +131,7 @@ function MainGamePage() {
         }
     };
 
-    const handleGuessSubmit = async () => {
-        if(loggedInUser?.hasPlayedDaily) {
-            navigate('/')
-            setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
-            return
-        }
-        
+    const handleGuessSubmit = async () => {        
         const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
         let percentageError = ((difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1).toFixed(2));
@@ -148,12 +141,15 @@ function MainGamePage() {
         if (loggedInUser?._id) {
             try {
                 const response = await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
+                if(loggedInUser?.groceriesBadges?.length < response?.groceriesBadges?.length) {
+                    setModalToDisplay(ModalToDisplay.NEW_BADGE_EARNED)
+                }
                 setLoggedInUser(response);
                 setBreakdown(itemPricesRef.current)
                 if (!isMuted) audio.play();
-            } catch {
+            } catch (error) {
+                error?.statusCode === 400 ? setModalToDisplay(ModalToDisplay.ALREADY_PLAYED) : setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
                 navigate('/')
-                setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
                 return
             } 
         } else {
