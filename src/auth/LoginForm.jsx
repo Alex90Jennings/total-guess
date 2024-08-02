@@ -1,25 +1,22 @@
-import { useState, useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext } from 'react';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import { lambda } from '../api/lambda';
 
-function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading }) {    
+function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, setError,  error}) {    
 
     const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
-    const [error, setError] = useState(null);
-
     const handleChange = (event) => {
+        setError(null)
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (formData.isRegistered) {
-            signInUser();
-        } else {
-            registerUser();
-        }
+        setError(null)
+        formData.isRegistered ? signInUser() : registerUser();
     };
 
     const signInUser = async () => {
@@ -58,12 +55,14 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading })
     }
 
     const handleReturnToMainMenu = () => {
+        setError(null)
         setFormData({ ...formData, isRegistered: true })
         setElementToDisplay('landingPageMenu')
     }
 
 
     const handleIsRegisteredClick = () => {
+        setError(null)
         setFormData({ ...formData, isRegistered: !formData.isRegistered })
     }
 

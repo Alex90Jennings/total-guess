@@ -20,6 +20,7 @@ function LandingPage() {
         ageRange: 'PREFER_NOT_TO_SAY',
         confirmPassword: ''
     });
+    const [error, setError] = useState(null);
 
     useEffect(
         () => {
@@ -37,7 +38,7 @@ function LandingPage() {
             <LandingPageHeader hideHeaders={!formData.isRegistered} />
             <div/>
             { elementToDisplay === 'landingPageMenu' && <LandingPageMenu setElementToDisplay={setElementToDisplay} setFormData={setFormData} formData={formData} /> }
-            { elementToDisplay === 'loginForm' && <LoginForm setElementToDisplay={setElementToDisplay} setIsLoading={setIsLoading} setFormData={setFormData} formData={formData} /> }
+            { elementToDisplay === 'loginForm' && <LoginForm setElementToDisplay={setElementToDisplay} setIsLoading={setIsLoading} setFormData={setFormData} formData={formData} setError={setError} error={error} /> }
         </div>
     );
 }

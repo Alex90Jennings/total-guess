@@ -23,11 +23,11 @@ const BreakdownModal = ({ onClose }) => {
             if (errorPercentage <= 75) return '🟧';
             return '🟥';
         }).join('');
-
-        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily Total Guess Percent: ${percentageError}%0A%0ACheck it out at https%3A%2F%2Fwww.total-guess.com`;
+    
+        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily #totalguess Percent: ${percentageError}%0A%0ACheck it out at www.total-guess.com%0A%0AThe daily game to challenge your #costofliving knowledge`;
         const url = `https://x.com/intent/post?text=${text}`;
         return url;
-    };
+    };    
 
     const handleShareClick = () => {
         const shareUrl = generateShareUrl();
