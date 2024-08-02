@@ -14,14 +14,13 @@ const BreakdownModal = ({ onClose }) => {
         const numericGuess = breakdown.reduce((sum, item) => sum + item.guess, 0);
         const correctPrice = breakdown.reduce((sum, item) => sum + item.correctPrice, 0);
         const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
-        let percentageError = ((difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1)).toFixed(2);
+        let percentageError = ((difference / correctPrice) * 100).toFixed(0);
         if (percentageError > 35) percentageError = 35;
-        if (percentageError < -35) percentageError = -35;
         const emojiMap = breakdown.map(item => {
             const errorPercentage = Math.abs((item.guess - item.correctPrice) / item.correctPrice) * 100;
-            if (errorPercentage <= 33) return '🟩';
-            if (errorPercentage <= 66) return '🟨';
-            if (errorPercentage <= 100) return '🟧';
+            if (errorPercentage <= 25) return '🟩';
+            if (errorPercentage <= 50) return '🟨';
+            if (errorPercentage <= 75) return '🟧';
             return '🟥';
         }).join('');
 
