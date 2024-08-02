@@ -24,7 +24,7 @@ const BreakdownModal = ({ onClose }) => {
             return '🟥';
         }).join('');
     
-        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily #totalguess Percent: ${percentageError}%0A%0ACheck it out at www.total-guess.com%0A%0AThe daily game to challenge your #costofliving knowledge`;
+        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily %23totalguess Percent: ${percentageError}%0A%0ACheck it out at www.total-guess.com%0A%0AThe daily game to challenge your %23costofliving knowledge`;
         const url = `https://x.com/intent/post?text=${text}`;
         return url;
     };    
