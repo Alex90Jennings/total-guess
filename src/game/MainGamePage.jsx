@@ -11,12 +11,13 @@ import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
 import { getGameOfTheDay, isoDate } from '../data/dailyGame';
 import { hasPlayed, saveResult } from '../api/stats';
+import { newlyEarned } from '../data/badges';
 import { ModalToDisplay } from '../App';
 
 const MAX_ERROR = 35;
 
 function MainGamePage() {
-    const { loggedInUser, stats, setStats, setBreakdown, setModalToDisplay } = useContext(AppContext);
+    const { loggedInUser, stats, setStats, setBreakdown, setModalToDisplay, setNewBadges } = useContext(AppContext);
     const navigate = useNavigate();
     const gameDate = useRef('');
     const [game, setGame] = useState({});
@@ -90,15 +91,23 @@ function MainGamePage() {
         percentageError = Math.max(Math.min(percentageError, MAX_ERROR), -MAX_ERROR);
         percentageError = parseFloat(percentageError.toFixed(2));
 
+        let gained = [];
         try {
+            const before = stats?.badges ?? [];
             const updated = await saveResult(loggedInUser?.$id, stats?.$id, gameDate.current, percentageError);
             setStats(updated);
+            gained = newlyEarned(before, updated?.badges ?? []);
         } catch {
             setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
         }
 
         setBreakdown(itemPricesRef.current);
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
+
+        if (gained.length) {
+            setNewBadges(gained);
+            setModalToDisplay(ModalToDisplay.NEW_BADGE_EARNED);
+        }
     };
 
     return (

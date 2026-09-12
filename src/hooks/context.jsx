@@ -13,6 +13,8 @@ export const AppContext = createContext({
     handleSignOut: () => {},
     breakdown: {},
     setBreakdown: () => {},
+    newBadges: [],
+    setNewBadges: () => {},
     selectedGameMode: '',
     setSelectedGameMode: () => {},
     fetchingLoggedInUser: false,
@@ -26,6 +28,7 @@ export const AppProvider = ({ children }) => {
     const [ loggedInUser, setLoggedInUser ] = useState(null);
     const [ stats, setStats ] = useState(getLocalStats());
     const [ breakdown, setBreakdown ] = useState({});
+    const [ newBadges, setNewBadges ] = useState([]);
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
@@ -76,6 +79,8 @@ export const AppProvider = ({ children }) => {
         handleSignOut,
         breakdown,
         setBreakdown,
+        newBadges,
+        setNewBadges,
         selectedGameMode,
         setSelectedGameMode,
         fetchingLoggedInUser,

@@ -45,9 +45,25 @@ Total Guess is that habit turned into a daily game: ten real products, photograp
 | **4** | **Back** lets you redo the item you just guessed if you change your mind. |
 | **5** | After the tenth item you get the verdict: the real total, your total, the difference, and your error as a percentage. |
 | **6** | Open the **Receipt** to see every item priced against your guess, and share the result. |
-| **7** | Come back tomorrow. **One basket a day**, the same one for everyone, rolling over at midnight UTC. |
+| **7** | That's your lot. **One basket a day**, the same ten items for everyone. The Play button is then replaced by a **countdown to the next basket**, ticking down to midnight UTC. |
 
-Scoring is the percentage you were out by, signed: **−12%** means you under-guessed, **+12%** means you over-guessed, and the closer to zero the better. It's capped at ±35%, so one wild guess doesn't wreck your distribution.
+Scoring is the percentage you were out by, signed: **−12%** means you under-guessed, **+12%** means you over-guessed, and the closer to zero the better. Zero is the whole point — the penny-perfect basket.
+
+---
+
+## The shame
+
+> **±35% is the wall.**
+
+Past it, the game stops counting. However spectacularly wrong you were — 60%, 200%, you confidently valued a bag of pasta at fourteen pounds — the score you get is **35%+**, and no worse. Not mercy: there is no number big enough to be worth recording, so everyone who wandered that far off gets filed together.
+
+What it costs you:
+
+- Your result lands in the **`35%+` column at the end of the distribution**, the one you can see from across the room.
+- It sits in your history permanently, dragging your **average error** up and your **error bias** with it.
+- It is the only result on the chart that doesn't tell you how close you got, because you weren't.
+
+Under-guess by 35% and you're the person who thinks food is still 2009 prices. Over-guess by 35% and you're the person who'd have been fine paying it. Neither is a good look. **Stay inside the wall.**
 
 ---
 
@@ -66,7 +82,29 @@ Your history is kept whether or not you sign up:
 - **Signed in** — saved to your Appwrite account, so it follows you between devices.
 - **As a guest** — kept in your browser, and carried across to your account if you register later.
 
-The Statistics panel shows games played, current and best streak, your best guess, average error, error bias, and a distribution of every result you've recorded.
+The Statistics panel shows games played, current and best streak, your best guess, average error, error bias, and a distribution of every result you've recorded — from a dead-centre `±5%` through to the `35%+` columns at either end, where the shame lives.
+
+---
+
+## Badges
+
+Nine to collect — six for turning up, three for actually being good. They're worked out from your history, so they apply to every game you've ever played, not just the ones since you started paying attention.
+
+**For showing up**
+
+| | | | | | |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+| <img src="public/icons/one-game.png" width="46" /> | <img src="public/icons/five-game.png" width="46" /> | <img src="public/icons/ten-game.png" width="46" /> | <img src="public/icons/twenty-game.png" width="46" /> | <img src="public/icons/fifty-game.png" width="46" /> | <img src="public/icons/hundred-game.png" width="46" /> |
+| 1 game | 5 games | 10 games | 20 games | 50 games | 100 games |
+
+**For getting close**
+
+| | | |
+| :--: | :--: | :--: |
+| <img src="public/icons/ten-guess.png" width="52" /> | <img src="public/icons/five-guess.png" width="52" /> | <img src="public/icons/one-guess.png" width="52" /> |
+| Guess under **10%** | Guess under **5%** | Guess under **1%** |
+
+The accuracy three go by your **best ever** basket, so one brilliant day keeps them. Earn one mid-game and it's announced on the spot; the full set lives behind the button with your initials, or under **Badges** in the menu on a phone. Locked ones stay on display, greyed out, with how far you've got — `6/10 games`, `Best so far: 4.9%`.
 
 ---
 

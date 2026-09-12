@@ -7,6 +7,7 @@
  */
 import { ID, Permission, Query, Role } from 'appwrite';
 import { appwriteConfig, isAppwriteConfigured, tablesDB } from '../lib/appwrite';
+import { earnedBadges } from '../data/badges';
 
 const GAMES_KEY = 'tgGamesPlayed';
 const SCORES_KEY = 'tgScores';
@@ -35,11 +36,9 @@ function writeLocal(key, value) {
 
 /** Stats held in the browser, used by guests and as the fallback everywhere. */
 export function getLocalStats() {
-    return {
-        gamesPlayed: readLocal(GAMES_KEY),
-        scores: readLocal(SCORES_KEY).map(Number),
-        badges: [],
-    };
+    const gamesPlayed = readLocal(GAMES_KEY);
+    const scores = readLocal(SCORES_KEY).map(Number);
+    return { gamesPlayed, scores, badges: earnedBadges(gamesPlayed, scores) };
 }
 
 export function saveLocalResult(isoDate, score) {
@@ -47,7 +46,7 @@ export function saveLocalResult(isoDate, score) {
     const scores = [...readLocal(SCORES_KEY), score];
     writeLocal(GAMES_KEY, gamesPlayed);
     writeLocal(SCORES_KEY, scores);
-    return { gamesPlayed, scores, badges: [] };
+    return { gamesPlayed, scores, badges: earnedBadges(gamesPlayed, scores) };
 }
 
 export function clearLocalStats() {
@@ -56,12 +55,16 @@ export function clearLocalStats() {
 }
 
 function toStats(row) {
+    const gamesPlayed = row.gamesPlayed ?? [];
+    const scores = (row.scores ?? []).map(Number);
     return {
         $id: row.$id,
         userId: row.userId,
-        gamesPlayed: row.gamesPlayed ?? [],
-        scores: (row.scores ?? []).map(Number),
-        badges: row.badges ?? [],
+        gamesPlayed,
+        scores,
+        // Derived, not read back from the column: a player who earned nothing
+        // before badges existed picks up their backlog here.
+        badges: earnedBadges(gamesPlayed, scores),
     };
 }
 
@@ -84,7 +87,7 @@ export async function getStats(userId) {
             userId,
             gamesPlayed: local.gamesPlayed,
             scores: local.scores.map(String),
-            badges: [],
+            badges: earnedBadges(local.gamesPlayed, local.scores),
         },
         permissions: [Permission.read(owner), Permission.update(owner), Permission.delete(owner)],
     });
@@ -100,12 +103,16 @@ export async function saveResult(userId, statsRowId, isoDate, score) {
         ? toStats(await tablesDB.getRow({ ...table, rowId: statsRowId }))
         : await getStats(userId);
 
+    const gamesPlayed = [...current.gamesPlayed, isoDate];
+    const scores = [...current.scores, score];
+
     const row = await tablesDB.updateRow({
         ...table,
         rowId: current.$id,
         data: {
-            gamesPlayed: [...current.gamesPlayed, isoDate],
-            scores: [...current.scores, score].map(String),
+            gamesPlayed,
+            scores: scores.map(String),
+            badges: earnedBadges(gamesPlayed, scores),
         },
     });
     return toStats(row);
