@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/demo.gif" alt="Playing Total Guess: the daily basket, guessing each item, the running total, the result and the receipt" width="900" />
+  <img src="docs/demo.gif" alt="Playing Total Guess: the daily basket, guessing each item, the running total, the result, a badge, the receipt and sharing the score" width="900" />
 </p>
 
 ---
@@ -105,6 +105,35 @@ Nine to collect — six for turning up, three for actually being good. They're w
 | Guess under **10%** | Guess under **5%** | Guess under **1%** |
 
 The accuracy three go by your **best ever** basket, so one brilliant day keeps them. Earn one mid-game and it's announced on the spot; the full set lives behind the button with your initials, or under **Badges** in the menu on a phone. Locked ones stay on display, greyed out, with how far you've got — `6/10 games`, `Best so far: 4.9%`.
+
+---
+
+## Sharing your score
+
+Open the **Receipt** after a game and there are two ways out: **Copy result** puts it on your clipboard, and the **X** button opens a post with it ready to go.
+
+What gets shared is the shape of your game, never the prices — so it spoils nothing for anyone who hasn't played:
+
+```
+Game 1227 - 12 September 2026
+
+🟩🟨🟩🟩🟧🟩🟨🟩🟩🟥
+
+My Daily #totalguess Percent: -11
+
+Check it out at www.total-guess.com
+```
+
+One square per item, in the order you guessed them:
+
+| | |
+| :--: | --- |
+| 🟩 | within **25%** of the real price |
+| 🟨 | within **50%** |
+| 🟧 | within **75%** |
+| 🟥 | worse than that |
+
+A row of ten greens and a percent near zero is the thing to aim for. Copy works everywhere, whatever X decides about your login.
 
 ---
 
