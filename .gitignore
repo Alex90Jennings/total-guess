@@ -27,3 +27,12 @@ yarn-error.log*
 .env*
 
 .vercel
+
+# Yarn Berry: keep the config and releases, never the package cache
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
