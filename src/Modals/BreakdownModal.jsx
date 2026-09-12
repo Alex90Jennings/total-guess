@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/modal.css';
 import '../styles/share.css';
 import { AppContext } from "../hooks/context";
@@ -6,10 +6,11 @@ import { gameNumber as getGameNumber } from "../data/dailyGame";
 
 const BreakdownModal = ({ onClose }) => {
     const { breakdown } = useContext(AppContext);
+    const [copied, setCopied] = useState(false);
 
     if (breakdown?.length === 0 || !breakdown) return <p>Please play a game to see your receipt!</p>;
 
-    const generateShareUrl = () => {
+    const generateShareText = () => {
         const gameNumber = getGameNumber();
         const date = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
         const numericGuess = breakdown.reduce((sum, item) => sum + item.guess, 0);
@@ -36,12 +37,32 @@ const BreakdownModal = ({ onClose }) => {
             'The daily game to challenge your #costofliving knowledge',
         ].join('\n\n');
 
-        return `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
-    };    
+        return text;
+    };
 
-    const handleShareClick = () => {
-        const shareUrl = generateShareUrl();
-        window.open(shareUrl, '_blank', 'noopener,noreferrer');
+    const shareText = generateShareText();
+
+    // A plain link, not window.open: passing a features string opens a popup
+    // window rather than a tab, and a stripped referrer makes X more likely to
+    // throw up its login wall.
+    const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+
+    // Copying always works, whatever X decides about your session.
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(shareText);
+        } catch {
+            const field = document.createElement('textarea');
+            field.value = shareText;
+            field.style.position = 'fixed';
+            field.style.opacity = '0';
+            document.body.appendChild(field);
+            field.select();
+            try { document.execCommand('copy'); } catch { /* nothing else to try */ }
+            document.body.removeChild(field);
+        }
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     return (
@@ -74,13 +95,20 @@ const BreakdownModal = ({ onClose }) => {
                     ))}
                 </tbody>
             </table>
-            <p>Share today's score by clicking the button below:</p>
-            <div className='three-columns-expand-one-three'>
-                <div></div>
-                <button className="twitter-share-btn" onClick={handleShareClick}>
-                    <img src={'/icons/ttwitter.png'} alt="twitter icon" />
+            <p>Share today's score:</p>
+            <div className='share-row'>
+                <button className="copy-share-btn" onClick={handleCopy}>
+                    {copied ? 'Copied' : 'Copy result'}
                 </button>
-                <div></div>
+                <a
+                    className="twitter-share-btn"
+                    href={tweetUrl}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Share on X"
+                >
+                    <img src={'/icons/ttwitter.png'} alt="X icon" />
+                </a>
             </div>
         </div>
     );
