@@ -100,6 +100,13 @@ const BreakdownModal = ({ onClose }) => {
                 <button className="copy-share-btn" onClick={handleCopy}>
                     {copied ? 'Copied' : 'Copy result'}
                 </button>
+                {/*
+                  * rel is deliberately "noopener" without "noreferrer": X is more
+                  * likely to show its login wall when the referrer is stripped.
+                  * noopener alone closes the security hole on every current
+                  * browser; the lint rule is about much older ones.
+                  */}
+                {/* eslint-disable-next-line react/jsx-no-target-blank */}
                 <a
                     className="twitter-share-btn"
                     href={tweetUrl}
