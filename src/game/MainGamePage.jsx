@@ -9,80 +9,35 @@ import NarrowScreenTotals from './NarrowScreenTotals';
 import DateAndGameNumber from './DateAndGameNumber';
 import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
-import { lambda } from '../api/lambda';
+import { getGameOfTheDay, isoDate } from '../data/dailyGame';
+import { hasPlayed, saveResult } from '../api/stats';
 import { ModalToDisplay } from '../App';
 
+const MAX_ERROR = 35;
+
 function MainGamePage() {
-    const { loggedInUser, setLoggedInUser, isMuted, setBreakdown, selectedGameMode, setModalToDisplay, setIsAuthenticated } = useContext(AppContext);
+    const { loggedInUser, stats, setStats, setBreakdown, setModalToDisplay } = useContext(AppContext);
     const navigate = useNavigate();
     const gameDate = useRef('');
     const [game, setGame] = useState({});
     const [currentShopIndex, setCurrentShopIndex] = useState(0);
-    const [audio] = useState(new Audio('/Sounds/swoosh.mp3'));
-    const [audioCoins] = useState(new Audio('/Sounds/coins.mp3'));
     const [inputValue, setInputValue] = useState("");
     const itemPricesRef = useRef([]);
     const cumulativeTotal = itemPricesRef.current.reduce((sum, item) => sum + item.guess, 0);
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
 
-    const checkUserIsValid = async () => {
-        if(localStorage.getItem('tgJwtToken')) {
-            try {
-                const res = await lambda.getUser()
-                setLoggedInUser(res)
-                setIsAuthenticated(true)
-                return true
-            } catch {
-                localStorage.removeItem('tgJwtToken')
-                setIsAuthenticated(false)
-                setLoggedInUser({})
-                return false
-            }
-        }
-        return true
-    }
-
-    const fetchGame = async () => {
-        try {
-            if(!loggedInUser._id) {
-                const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
-                const hasPlayed = hasGuestAlreadyPlayed(gamesPlayed)
-                if(hasPlayed) throw new Error('Guest already played')
-                setModalToDisplay(ModalToDisplay.NOT_SIGNED_IN)
-                localStorage.removeItem('tgJwtToken')
-            }
-            const response = await lambda.getGameOfTheDay(selectedGameMode)
-            gameDate.current = response.date;
-            setGame(response);
-        } catch (error) {
-            error?.statusCode === 400 ? setModalToDisplay(ModalToDisplay.ALREADY_PLAYED) : setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
-            navigate('/')
-        }
-    };
-
-    const hasGuestAlreadyPlayed = (gamesPlayed) => {
-        const today = new Date();
-        today.setUTCHours(0, 0, 0, 0);
-        const yesterday = new Date()
-        yesterday.setDate(today.getDate() - 1);
-        if(gamesPlayed.includes(yesterday)) {
-            return true
-        }
-        return false
-    }
-
+    // The basket is generated locally from the date, so there is nothing to fetch.
     useEffect(() => {
-        const checkUser = async () => {
-            const isUserValid = await checkUserIsValid();    
-            if (isUserValid) {
-                fetchGame();
-            } else {
-                setModalToDisplay(ModalToDisplay.LOGGED_OUT);
-                navigate('/')
-            }
-        };
-        checkUser();
-    }, []); 
+        const today = isoDate();
+        if (hasPlayed(stats, today)) {
+            setModalToDisplay(ModalToDisplay.ALREADY_PLAYED);
+            navigate('/');
+            return;
+        }
+        const todaysGame = getGameOfTheDay();
+        gameDate.current = today;
+        setGame(todaysGame);
+    }, []);
 
     if (!game?.items || itemPricesRef.current.length === 10) {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
@@ -94,10 +49,9 @@ function MainGamePage() {
     const currentImage = currentProduct.image;
     const lastItem = currentShopIndex === game?.items?.length - 1;
     const firstItem = currentShopIndex === 0;
-    
+
     const decrementItemIndex = () => {
         if (firstItem) return
-        if (!isMuted) audio.play();
         const newIndex = currentShopIndex - 1;
         setCurrentShopIndex(newIndex);
         itemPricesRef.current = itemPricesRef.current.slice(0, itemPricesRef.current.length - 1);
@@ -112,8 +66,8 @@ function MainGamePage() {
 
         if (!isNaN(itemWorth)) {
             const roundedItemWorth = parseFloat(itemWorth.toFixed(2));
-            itemPricesRef.current = [...itemPricesRef.current, { 
-                itemId: game.items[currentShopIndex]._id, 
+            itemPricesRef.current = [...itemPricesRef.current, {
+                itemId: game.items[currentShopIndex]._id,
                 guess: roundedItemWorth,
                 correctPrice: game.items[currentShopIndex].price,
                 description: game.items[currentShopIndex].description
@@ -123,51 +77,27 @@ function MainGamePage() {
 
         if (lastItem) {
             handleGuessSubmit();
-            if (!isMuted) audioCoins.play();
         } else {
-            if (!isMuted) audio.play();
             const newIndex = currentShopIndex + 1
             setCurrentShopIndex(newIndex);
         }
     };
 
-    const handleGuessSubmit = async () => {        
-        const numericGuess = (itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0));
-        const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
-        let percentageError = ((difference / correctPrice) * 100 * (numericGuess <= correctPrice ? -1 : 1).toFixed(2));
-        if (percentageError > 35) percentageError = 35;
-        if (percentageError < -35) percentageError = -35;
+    const handleGuessSubmit = async () => {
+        const numericGuess = itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0);
+        const difference = Math.abs(correctPrice - numericGuess);
+        let percentageError = (difference / correctPrice) * 100 * (numericGuess < correctPrice ? -1 : 1);
+        percentageError = Math.max(Math.min(percentageError, MAX_ERROR), -MAX_ERROR);
+        percentageError = parseFloat(percentageError.toFixed(2));
 
-        if (loggedInUser?._id) {
-            try {
-                const response = await lambda.submitResult(loggedInUser.email, gameDate.current, percentageError, game.gameMode, itemPricesRef.current)
-                if(loggedInUser?.groceriesBadges?.length < response?.groceriesBadges?.length) {
-                    setModalToDisplay(ModalToDisplay.NEW_BADGE_EARNED)
-                }
-                setLoggedInUser(response);
-                setBreakdown(itemPricesRef.current)
-                if (!isMuted) audio.play();
-            } catch (error) {
-                error?.statusCode === 400 ? setModalToDisplay(ModalToDisplay.ALREADY_PLAYED) : setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
-                navigate('/')
-                return
-            } 
-        } else {
-            const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
-            const scores = JSON.parse(localStorage.getItem("tgScores")) || [];
-            const hasPlayed = hasGuestAlreadyPlayed(gamesPlayed)
-            if(hasPlayed) {
-                navigate('/')
-                setModalToDisplay(ModalToDisplay.ALREADY_PLAYED)
-                return
-            } else {
-                gamesPlayed.push(gameDate.current);
-                scores.push(percentageError);
-                localStorage.setItem("tgGamesPlayed", JSON.stringify(gamesPlayed));
-                localStorage.setItem("tgScores", JSON.stringify(scores));
-                setBreakdown(itemPricesRef.current)
-            }
+        try {
+            const updated = await saveResult(loggedInUser?.$id, stats?.$id, gameDate.current, percentageError);
+            setStats(updated);
+        } catch {
+            setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
         }
+
+        setBreakdown(itemPricesRef.current);
         navigate('/results', { state: { numericGuess, difference, percentageError, correctPrice } });
     };
 
@@ -183,11 +113,11 @@ function MainGamePage() {
                                 <div className="description--css mt-s">{currentDescription}</div>
                                 <ProductImage currentImage={currentImage} />
                                 <div className='input-container-wide-screen'>
-                                    <WideScreenInput 
-                                        currentShopIndex={currentShopIndex} 
-                                        gameLength={game?.items?.length} 
-                                        inputValue={inputValue} 
-                                        cumulativeTotal={cumulativeTotal} 
+                                    <WideScreenInput
+                                        currentShopIndex={currentShopIndex}
+                                        gameLength={game?.items?.length}
+                                        inputValue={inputValue}
+                                        cumulativeTotal={cumulativeTotal}
                                         setInputValue={setInputValue}
                                         handleItemWorthSubmit={handleItemWorthSubmit}
                                         decrementItemIndex={decrementItemIndex}
@@ -195,16 +125,16 @@ function MainGamePage() {
                                 </div>
                                 <div className='input-container-narrow-screen'>
                                     <NarrowScreenTotals currentShopIndex={currentShopIndex} gameLength={game?.items?.length} inputValue={inputValue} cumulativeTotal={cumulativeTotal} />
-                                    <Numpad 
-                                        inputValue={inputValue} 
-                                        setInputValue={setInputValue} 
-                                        lastItem={lastItem} 
-                                        firstItem={firstItem} 
-                                        decrementItemIndex={decrementItemIndex} 
+                                    <Numpad
+                                        inputValue={inputValue}
+                                        setInputValue={setInputValue}
+                                        lastItem={lastItem}
+                                        firstItem={firstItem}
+                                        decrementItemIndex={decrementItemIndex}
                                         handleItemWorthSubmit={handleItemWorthSubmit}
                                     />
                                 </div>
-                                <DateAndGameNumber currentProductDate={currentProduct.date} gameDate={game.date} />
+                                <DateAndGameNumber gameNumber={game.gameNumber} />
                             </div>
                         )
                     }

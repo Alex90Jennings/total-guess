@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { lambda } from "../api/lambda";
+import { getCurrentUser, logout } from "../api/auth";
+import { getLocalStats, getStats } from "../api/stats";
 
 export const AppContext = createContext({
-    loggedInUser: {},
+    loggedInUser: null,
     setLoggedInUser: () => {},
+    stats: { gamesPlayed: [], scores: [], badges: [] },
+    setStats: () => {},
     isAuthenticated: false,
     setIsAuthenticated: () => {},
     handleSignOut: () => {},
-    isMuted: false,
-    setIsMuted: () => {},
     breakdown: {},
     setBreakdown: () => {},
     selectedGameMode: '',
@@ -22,63 +23,57 @@ export const useAppContext = () => useContext(AppContext);
 
 export const AppProvider = ({ children }) => {
 
-    const [ loggedInUser, setLoggedInUser ] = useState({});
+    const [ loggedInUser, setLoggedInUser ] = useState(null);
+    const [ stats, setStats ] = useState(getLocalStats());
     const [ breakdown, setBreakdown ] = useState({});
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');
-    const [ isMuted, setIsMuted ] = useState(false);
     const [ selectedGameMode, setSelectedGameMode ] = useState('groceries')
-    const [ fetchingLoggedInUser, setFetchingLoggedInUser ] = useState(false)
-    const [audio] = useState(new Audio("/Sounds/click.wav"));
+    const [ fetchingLoggedInUser, setFetchingLoggedInUser ] = useState(true)
 
-    const handleSignOut = () => {
-        if(!isMuted) audio.play();
-        localStorage.removeItem("tgJwtToken")
+    const handleSignOut = async () => {
+        await logout();
         setIsAuthenticated(false)
-        setLoggedInUser({});
+        setLoggedInUser(null);
+        setStats(getLocalStats());
     }
 
-    const getLoggedInUser = async () => {
-        setFetchingLoggedInUser(true)
-        try {
-            const res = await lambda.getUser()
-            setLoggedInUser(res)
-            setIsAuthenticated(true)
-        } catch {
-            localStorage.removeItem("tgJwtToken")
-            setIsAuthenticated(false)
-        } finally {
-            setFetchingLoggedInUser(false)
-        }
-    }
-
+    // On load: ask Appwrite who is signed in, then load their stats. A guest
+    // keeps the stats already in localStorage.
     useEffect(
         () => {
-            const jwtToken = localStorage.getItem("tgJwtToken")
-            if (!loggedInUser?._id && jwtToken) {
-                getLoggedInUser()
-            }
-        }, 
-        [loggedInUser?._id]
-    );
-
-    useEffect(
-        () => {
-            if(!isMuted && modalToDisplay) audio.play()
-        }, 
-        [modalToDisplay]
+            let cancelled = false;
+            const restoreSession = async () => {
+                const user = await getCurrentUser();
+                if (cancelled) return;
+                if (user) {
+                    setLoggedInUser(user);
+                    setIsAuthenticated(true);
+                    try {
+                        const saved = await getStats(user.$id);
+                        if (!cancelled) setStats(saved);
+                    } catch {
+                        if (!cancelled) setStats(getLocalStats());
+                    }
+                }
+                if (!cancelled) setFetchingLoggedInUser(false);
+            };
+            restoreSession();
+            return () => { cancelled = true; };
+        },
+        []
     );
 
     const value = {
         loggedInUser,
         setLoggedInUser,
+        stats,
+        setStats,
         isAuthenticated,
         setIsAuthenticated,
         modalToDisplay,
         setModalToDisplay,
         handleSignOut,
-        isMuted,
-        setIsMuted,
         breakdown,
         setBreakdown,
         selectedGameMode,
@@ -89,4 +84,3 @@ export const AppProvider = ({ children }) => {
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-

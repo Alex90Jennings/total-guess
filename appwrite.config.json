@@ -1,0 +1,27 @@
+{
+  "projectId": "total-guess",
+  "projectName": "Total Guess",
+  "endpoint": "https://fra.cloud.appwrite.io/v1",
+  "tablesDB": [
+    { "$id": "totalguess", "name": "Total Guess", "enabled": true }
+  ],
+  "tables": [
+    {
+      "$id": "stats",
+      "$permissions": ["create(\"users\")"],
+      "databaseId": "totalguess",
+      "name": "Stats",
+      "enabled": true,
+      "rowSecurity": true,
+      "columns": [
+        { "key": "userId", "type": "varchar", "size": 36, "required": true },
+        { "key": "gamesPlayed", "type": "varchar", "size": 12, "required": false, "array": true },
+        { "key": "scores", "type": "varchar", "size": 12, "required": false, "array": true },
+        { "key": "badges", "type": "varchar", "size": 40, "required": false, "array": true }
+      ],
+      "indexes": [
+        { "key": "userId_index", "type": "key", "columns": ["userId"], "orders": ["asc"] }
+      ]
+    }
+  ]
+}

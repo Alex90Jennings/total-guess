@@ -3,7 +3,8 @@ import '../styles/modal.css';
 import { AppContext } from "../hooks/context";
 
 function Badges({ onClose }) {
-    const { loggedInUser } = useContext(AppContext);
+    const { stats } = useContext(AppContext);
+    const badges = stats?.badges ?? [];
 
     const replaceWordWithNumber = (word) => {
         const wordToNumber = {
@@ -38,14 +39,14 @@ function Badges({ onClose }) {
             </header>
             <section>
                 <h2>Groceries</h2>
-                {loggedInUser.groceriesBadges.length === 0 && <p>Play a game to earn badges</p>}
+                {badges.length === 0 && <p>Play a game to earn badges</p>}
                 {
-                    loggedInUser.groceriesBadges.length > 0 && 
+                    badges.length > 0 &&
                         <div className='auto-columns badge-container'>
                             {
-                                loggedInUser.groceriesBadges.map(
-                                    (badge, index) => ( 
-                                        <div className='two-rows'>
+                                badges.map(
+                                    (badge, index) => (
+                                        <div className='two-rows' key={badge}>
                                             <div className='three-columns-expand-one-three'>
                                                 <div/>
                                                 <img key={index} src={`/icons/${badge.replace(/_/g, '-')}.png`} className='badge' alt={`${badge}`} />

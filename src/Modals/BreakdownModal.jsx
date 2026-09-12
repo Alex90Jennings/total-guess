@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import '../styles/modal.css';
 import '../styles/share.css';
 import { AppContext } from "../hooks/context";
+import { gameNumber as getGameNumber } from "../data/dailyGame";
 
 const BreakdownModal = ({ onClose }) => {
     const { breakdown } = useContext(AppContext);
@@ -9,7 +10,7 @@ const BreakdownModal = ({ onClose }) => {
     if (breakdown?.length === 0 || !breakdown) return <p>Please play a game to see your receipt!</p>;
 
     const generateShareUrl = () => {
-        const gameNumber = Math.floor((new Date() - new Date('2024-06-01')) / (1000 * 60 * 60 * 24));
+        const gameNumber = getGameNumber();
         const date = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
         const numericGuess = breakdown.reduce((sum, item) => sum + item.guess, 0);
         const correctPrice = breakdown.reduce((sum, item) => sum + item.correctPrice, 0);

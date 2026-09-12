@@ -7,9 +7,9 @@ import { useContext } from "react";
 
 const StatisticsModal = ({ className, onClose }) => {
 
-    const { loggedInUser } = useContext(AppContext)
-    const scoresArray = loggedInUser?.scores || JSON.parse(localStorage.getItem("tgScores")) || [];
-    const gamesPlayed = loggedInUser?.gamesPlayed || JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
+    const { stats } = useContext(AppContext)
+    const scoresArray = stats?.scores ?? [];
+    const gamesPlayed = stats?.gamesPlayed ?? [];
 
     if (scoresArray?.length === 0) return <p>Play a game to see your stats!</p>
 
@@ -26,60 +26,42 @@ const StatisticsModal = ({ className, onClose }) => {
         return closestScore.toFixed(2);
     }
 
+    // Dates are stored as YYYY-MM-DD (UTC), so a day is one step back from today.
+    const dayKey = (date) => date.toISOString().slice(0, 10);
+
     function getCurrentStreak() {
         if (!gamesPlayed || gamesPlayed.length === 0) return 0;
-        function setToStartOfDay(date) {
-            const newDate = new Date(date);
-            newDate.setUTCHours(0, 0, 0, 0);
-            return newDate;
+        const played = new Set(gamesPlayed);
+        const cursor = new Date();
+        cursor.setUTCHours(0, 0, 0, 0);
+
+        // A streak survives until yesterday; today being unplayed does not break it.
+        if (!played.has(dayKey(cursor))) {
+            cursor.setUTCDate(cursor.getUTCDate() - 1);
+            if (!played.has(dayKey(cursor))) return 0;
         }
-        const today = setToStartOfDay(new Date());
-        const todayISOString = today.toISOString();
+
         let streak = 0;
-        if (gamesPlayed.includes(todayISOString)) {
+        while (played.has(dayKey(cursor))) {
             streak++;
-        }
-        let currentDate = today;
-        while (true) {
-            currentDate.setDate(currentDate.getDate() - 1);
-            const currentISOString = setToStartOfDay(currentDate).toISOString();
-            if (gamesPlayed.includes(currentISOString)) {
-                streak++;
-            } else {
-                break;
-            }
+            cursor.setUTCDate(cursor.getUTCDate() - 1);
         }
         return streak;
     }
 
     function getBestStreak() {
-        if(gamesPlayed?.length === 0) return 0
-        let currentStreak = 0;
-        let bestStreak = 0;
-        let previousDate = null;
+        if (!gamesPlayed || gamesPlayed.length === 0) return 0;
+        const days = [...new Set(gamesPlayed)].sort();
+        let best = 1;
+        let run = 1;
 
-        for (let i = 0; i < gamesPlayed.length; i++) {
-            const currentDate = new Date(gamesPlayed[i]);
-
-            if (previousDate) {
-                const diffInTime = currentDate - previousDate;
-                const diffInDays = diffInTime / (1000 * 3600 * 24);
-
-                if (diffInDays === 1) {
-                    currentStreak++;
-                } else if (diffInDays > 1) {
-                    currentStreak = 0;
-                }
-            }
-
-            previousDate = currentDate;
-
-            if (currentStreak > bestStreak) {
-                bestStreak = currentStreak;
-            }
+        for (let i = 1; i < days.length; i++) {
+            const previous = new Date(`${days[i - 1]}T00:00:00Z`);
+            previous.setUTCDate(previous.getUTCDate() + 1);
+            run = dayKey(previous) === days[i] ? run + 1 : 1;
+            if (run > best) best = run;
         }
-
-        return bestStreak + 1;
+        return best;
     }
 
     return (

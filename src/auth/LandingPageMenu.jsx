@@ -5,56 +5,28 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
 import TimerToUkMidnight from '../game/TimerToUkMidnight';
+import { isoDate } from '../data/dailyGame';
+import { hasPlayed } from '../api/stats';
 
 function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
 
-    const { isAuthenticated, loggedInUser, handleSignOut, isMuted, selectedGameMode } = useContext(AppContext);
+    const { isAuthenticated, loggedInUser, handleSignOut, selectedGameMode, stats } = useContext(AppContext);
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
-    const [audio] = useState(new Audio('/Sounds/click.wav'));
-
-    const playSound = () => {
-        if(!isMuted) audio.play()
-    };
 
     const playAsGuest = () => {
-        playSound()
-        localStorage.removeItem('tgJwtToken')
         navigate('/play')
     }
 
+    // One game a day, for everyone: the day rolls over at midnight UTC.
     useEffect(
         () => {
-            if(loggedInUser?.isAdmin) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                tomorrow.setUTCHours(0, 0, 0, 0);
-                const formattedTomorrow = tomorrow.toISOString();
-                const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedTomorrow);
-                setHasPlayedDaily(isGameAlreadyInArray);
-            } else {
-                if(loggedInUser?._id) {
-                    const today = new Date();
-                    today.setUTCHours(0, 0, 0, 0);
-                    const formattedToday = today.toISOString();
-                    const isGameAlreadyInArray = loggedInUser?.gamesPlayed?.includes(formattedToday);
-                    setHasPlayedDaily(isGameAlreadyInArray);
-                } else {
-                    const yesterday = new Date()
-                    yesterday.setDate(yesterday.getDate() - 1);
-                    yesterday.setUTCHours(0, 0, 0, 0);
-                    const formattedYesterday = yesterday.toISOString();
-                    const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
-                    const isGameAlreadyInArray = gamesPlayed?.includes(formattedYesterday);
-                    setHasPlayedDaily(isGameAlreadyInArray);
-                }
-            }
-        }, 
-        [loggedInUser?.gamesPlayed],
+            setHasPlayedDaily(hasPlayed(stats, isoDate()));
+        },
+        [stats?.gamesPlayed],
     );
 
     const handleStartGameSubmit = () => {
-        playSound();
         if(hasPlayedDaily) {
             return
         }
@@ -76,13 +48,13 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
             <ul className='list-reset pl-none'>
                 {
                     selectedGameMode === 'groceries' ?
-                        hasPlayedDaily && loggedInUser ? 
+                        hasPlayedDaily ?
                             <TimerToUkMidnight />
                             :
                             <li className='three-columns-expand-one-three'>
                                 <div/>
                                 {
-                                    loggedInUser?._id ? (
+                                    loggedInUser ? (
                                         <button className='play-button-styling three-rows-expand-one-three' onClick={handleStartGameSubmit}>
                                             <div/>
                                             <div>Play</div>
@@ -107,14 +79,13 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                 <li className='three-columns-expand-one-three mt-s'>
                     <div/>
                     {
-                        loggedInUser?._id ?
+                        loggedInUser ?
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => handleSignOut()}>
                                 <div/>
                                 <div>Sign Out</div>
                                 <div/>
                             </button> :
                             <button className='signin-button-styling three-rows-expand-one-three' onClick={() => {
-                                if(!isMuted)playSound();
                                 setFormData({ ...formData, isRegistered: true })
                                 setElementToDisplay('loginForm');
                             }}>
@@ -125,7 +96,7 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                     }
                 </li>
                 {
-                    !loggedInUser._id && !hasPlayedDaily && <li className='three-columns-expand-one-three mt-s'>
+                    !loggedInUser && !hasPlayedDaily && <li className='three-columns-expand-one-three mt-s'>
                         <div/>
                         <button className='play-button-styling three-rows-expand-one-three' onClick={() => playAsGuest()}>
                             <div/>

@@ -2,11 +2,13 @@
 import { useContext } from 'react';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
-import { lambda } from '../api/lambda';
+import { login, register } from '../api/auth';
+import { getStats } from '../api/stats';
 
-function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, setError,  error}) {    
+function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, setError, error }) {
 
-    const { isAuthenticated, setIsAuthenticated, setLoggedInUser } = useContext(AppContext);
+    const { isAuthenticated, setIsAuthenticated, setLoggedInUser, setStats } = useContext(AppContext);
+
     const handleChange = (event) => {
         setError(null)
         const { name, value } = event.target;
@@ -19,36 +21,41 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, s
         formData.isRegistered ? signInUser() : registerUser();
     };
 
+    /** Sign in, then load the player's saved stats. */
+    const applyUser = async (user) => {
+        setLoggedInUser(user)
+        setIsAuthenticated(true)
+        try {
+            setStats(await getStats(user.$id));
+        } catch {
+            // Stats are a nice-to-have; a failure here should not block sign in.
+        }
+    };
+
     const signInUser = async () => {
         setIsLoading(true)
         try {
-            const response = await lambda.login(formData.email, formData.password)
-            localStorage.setItem("tgJwtToken", response.token);
-            setLoggedInUser(response.user)
-            setIsAuthenticated(true);             
+            await applyUser(await login(formData.email, formData.password));
         } catch {
-            setError('Error signing in. Please check your email and password.'); 
+            setError('Error signing in. Please check your email and password.');
         } finally {
             setIsLoading(false)
         }
     };
 
-
     async function registerUser() {
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match.');
+            return;
+        }
         setIsLoading(true)
-        const gamesPlayed = JSON.parse(localStorage.getItem("tgGamesPlayed")) || [];
-        const scores = JSON.parse(localStorage.getItem("tgScores")) || [];
         try {
-            const response = await lambda.register( formData.email, formData.firstName, formData.lastName, formData.gender, formData.ageRange, formData.password, gamesPlayed, scores);
-            localStorage.setItem("tgJwtToken", response.token);
-            localStorage.removeItem("tgGamesPlayed");
-            localStorage.removeItem("tgScores");
-            setLoggedInUser(response.user)
-            setIsAuthenticated(true);
+            // getStats carries any guest games played on this device across to the account.
+            await applyUser(await register(formData.email, formData.password, formData.firstName, formData.lastName));
             setFormData({ ...formData, isRegistered: true })
             setElementToDisplay('landingPageMenu')
-        } catch {
-            setError('Error registering user. Please check your information.'); 
+        } catch (registerError) {
+            setError(registerError?.message || 'Error registering. Please check your information.');
         } finally {
             setIsLoading(false)
         }
@@ -59,7 +66,6 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, s
         setFormData({ ...formData, isRegistered: true })
         setElementToDisplay('landingPageMenu')
     }
-
 
     const handleIsRegisteredClick = () => {
         setError(null)
@@ -82,35 +88,15 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, s
                             <label>
                                 <input type="text" id="lastName" name="lastName" placeholder='Last Name' value={formData.lastName} onChange={handleChange} required />
                             </label>
-                            <label>
-                                <select name="gender" value={formData.gender} onChange={handleChange}>
-                                    <option value="MALE">Male</option>
-                                    <option value="FEMALE">Female</option>
-                                    <option value="PREFER_NOT_TO_SAY">Gender</option>
-                                </select>
-                            </label>
-                            <label>
-                                <select name="ageRange" value={formData.ageRange} onChange={handleChange}>
-                                    <option value="UNDER_14">Under 14</option>
-                                    <option value="BETWEEN_15_24">Between 15-24</option>
-                                    <option value="BETWEEN_25_34">Between 25-34</option>
-                                    <option value="BETWEEN_35_44">Between 35-44</option>
-                                    <option value="BETWEEN_45_54">Between 45-54</option>
-                                    <option value="BETWEEN_55_64">Between 55-64</option>
-                                    <option value="BETWEEN_65_74">Between 65-74</option>
-                                    <option value="OVER_74">Over 75</option>
-                                    <option value="PREFER_NOT_TO_SAY">Age</option>
-                                </select>
-                            </label>
                         </>
                         )
                     }
                     <label>
-                        <input type="password" id="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} required />
+                        <input type="password" id="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} minLength={8} required />
                     </label>
                     {
                         !formData.isRegistered && <label>
-                            <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} required />
+                            <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} minLength={8} required />
                         </label>
                     }
                     <div/>

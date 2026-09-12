@@ -6,21 +6,23 @@ import '../styles/game.css';
 import { AppContext } from '../hooks/context';
 import { ModalToDisplay } from '../App';
 import { useNavigate } from 'react-router-dom';
+import { splitName } from '../api/auth';
 
 function Header({ setShowLoginPage }) {
-    const { loggedInUser, isAuthenticated, setModalToDisplay, handleSignOut, isMuted, setIsMuted } = useContext(AppContext);
+    const { loggedInUser, isAuthenticated, setModalToDisplay, handleSignOut } = useContext(AppContext);
     const navigate = useNavigate();
-    const [audio] = useState(new Audio('/Sounds/click.wav'));
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
 
     const handleSignInClick = () => {
-        if (!isMuted) audio.play();
         setShowLoginPage(true);
     };
 
+    const { firstName, lastName } = splitName(loggedInUser);
+
     const getInitials = () => {
-        if (loggedInUser?.firstName && loggedInUser?.lastName) return `${loggedInUser?.firstName.charAt(0)}${loggedInUser?.lastName.charAt(0)}`;
+        if (firstName && lastName) return `${firstName.charAt(0)}${lastName.charAt(0)}`;
+        if (firstName) return firstName.charAt(0);
         return '??';
     };
 
@@ -54,7 +56,7 @@ function Header({ setShowLoginPage }) {
                 </div>
                 <div className='icon-header three-rows-expand-one-three cursor'>
                     <div/>
-                    <div className={loggedInUser?.firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(loggedInUser?.firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
+                    <div className={firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
                         {getInitials()}
                     </div>
                     <div/>
@@ -62,12 +64,6 @@ function Header({ setShowLoginPage }) {
             </nav>
             <h1 className="header-middle logo">TOTAL GUESS</h1>
             <nav className="header-right header-right-wide-screen">
-                <div className="icon-header mute-icon mr-s cursor" onClick={() => setIsMuted(!isMuted)}>
-                    <img
-                        src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
-                        alt="mute"
-                    />
-                </div>
                 <div className="icon-header mr-s cursor" onClick={() => setModalToDisplay(ModalToDisplay.INSTRUCTIONS)}>
                     <img
                         src={"/icons/ti.png"}
@@ -82,12 +78,6 @@ function Header({ setShowLoginPage }) {
                 </div>
             </nav>
             <nav className="header-right header-right-narrow-screen">
-                <button className="icon-header mr-s cursor" onClick={() => setIsMuted(!isMuted)}>
-                    <img
-                        src={isMuted ? '/icons/tmute.png' : '/icons/tvolume.png'}
-                        alt="mute"
-                    />
-                </button>
                 <button className="icon-header mr-m cursor" onClick={() => setShowDropdown(!showDropdown)}>
                     <img
                         src={"/icons/tdropdown.png"}

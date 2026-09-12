@@ -5,7 +5,7 @@ import { AppContext } from '../hooks/context';
 
 const Statistics = () => {
 
-    const { loggedInUser } = useContext(AppContext);
+    const { stats } = useContext(AppContext);
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
     const [width, setWidth] = useState(window.innerWidth);
@@ -21,7 +21,7 @@ const Statistics = () => {
     }, []);
 
     useEffect(() => {
-        const scoresArray = loggedInUser?.scores || JSON.parse(localStorage.getItem("tgScores")) || [];
+        const scoresArray = stats?.scores ?? [];
         const binCount = 9;
         const bins = Array(binCount).fill(0);
 
@@ -150,7 +150,7 @@ const Statistics = () => {
                 }
             };
         }, 
-        [loggedInUser?.scores, width]
+        [stats?.scores, width]
     );
 
     return (
