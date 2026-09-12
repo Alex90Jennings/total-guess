@@ -3,6 +3,7 @@ import '../styles/modal.css';
 import '../styles/share.css';
 import { AppContext } from "../hooks/context";
 import { gameNumber as getGameNumber } from "../data/dailyGame";
+import { scoreBasket } from '../game/scoring';
 
 const BreakdownModal = ({ onClose }) => {
     const { breakdown } = useContext(AppContext);
@@ -13,18 +14,8 @@ const BreakdownModal = ({ onClose }) => {
     const generateShareText = () => {
         const gameNumber = getGameNumber();
         const date = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
-        const numericGuess = breakdown.reduce((sum, item) => sum + item.guess, 0);
-        const correctPrice = breakdown.reduce((sum, item) => sum + item.correctPrice, 0);
-        const difference = numericGuess <= correctPrice ? correctPrice - numericGuess : numericGuess - correctPrice;
-        let percentageError = ((difference / correctPrice) * 100).toFixed(0);
-        if (percentageError > 35) percentageError = 35;
-        const emojiMap = breakdown.map(item => {
-            const errorPercentage = Math.abs((item.guess - item.correctPrice) / item.correctPrice) * 100;
-            if (errorPercentage <= 25) return '🟩';
-            if (errorPercentage <= 50) return '🟨';
-            if (errorPercentage <= 75) return '🟧';
-            return '🟥';
-        }).join('');
+        const { percentageError: error, squares: emojiMap } = scoreBasket(breakdown);
+        const percentageError = error.toFixed(0);
     
         // Build the text plainly and encode it once. It used to be hand-encoded
         // (%0A, %23) with raw spaces and colons left in the query string, which

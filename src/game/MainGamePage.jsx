@@ -12,9 +12,9 @@ import { AppContext } from "../hooks/context";
 import { getGameOfTheDay, isoDate } from '../data/dailyGame';
 import { hasPlayed, saveResult } from '../api/stats';
 import { newlyEarned } from '../data/badges';
+import { percentageError as calculateError, totalOf } from './scoring';
 import { ModalToDisplay } from '../App';
 
-const MAX_ERROR = 35;
 
 function MainGamePage() {
     const { loggedInUser, stats, setStats, setBreakdown, setModalToDisplay, setNewBadges } = useContext(AppContext);
@@ -85,11 +85,9 @@ function MainGamePage() {
     };
 
     const handleGuessSubmit = async () => {
-        const numericGuess = itemPricesRef.current.reduce((sum, price) => sum + price.guess, 0);
+        const numericGuess = totalOf(itemPricesRef.current, 'guess');
         const difference = Math.abs(correctPrice - numericGuess);
-        let percentageError = (difference / correctPrice) * 100 * (numericGuess < correctPrice ? -1 : 1);
-        percentageError = Math.max(Math.min(percentageError, MAX_ERROR), -MAX_ERROR);
-        percentageError = parseFloat(percentageError.toFixed(2));
+        const percentageError = calculateError(numericGuess, correctPrice);
 
         let gained = [];
         try {

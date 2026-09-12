@@ -22,7 +22,14 @@ export const BADGES = [
 
 /** The closest a player has ever been, as a positive percentage. */
 export function bestGuess(scores = []) {
-    const errors = scores.map(score => Math.abs(Number(score))).filter(n => Number.isFinite(n));
+    // Number(null) and Number('') are both 0, which would read as a
+    // penny-perfect basket and hand out the under-1% badge for a game that was
+    // never scored. Drop the empties before coercing anything.
+    const errors = scores
+        .filter(score => score !== null && score !== undefined && score !== '')
+        .map(score => Math.abs(Number(score)))
+        .filter(n => Number.isFinite(n));
+
     return errors.length ? Math.min(...errors) : null;
 }
 
