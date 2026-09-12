@@ -9,11 +9,12 @@ function Badges({ onClose }) {
     const played = stats?.gamesPlayed?.length ?? 0;
     const best = bestGuess(stats?.scores ?? []);
 
-    // Locked badges are shown too, so there is something to aim at.
-    const progressFor = (badge) => {
-        if (badge.kind === 'game') return `${played}/${badge.threshold} games`;
-        return best === null ? 'No games yet' : `Best so far: ${best.toFixed(1)}%`;
-    };
+    // Locked badges are shown too, so there is something to aim at. The games
+    // ones differ per badge; the accuracy ones would all repeat the same best
+    // score, so that is stated once below the grid instead.
+    const progressFor = (badge) => (
+        badge.kind === 'game' ? `${played}/${badge.threshold} games` : null
+    );
 
     return (
         <div className='modal-content'>
@@ -39,12 +40,17 @@ function Badges({ onClose }) {
                                         <div/>
                                     </div>
                                     <p className='badge-description'>{badge.label}</p>
-                                    {!unlocked && <p className='badge-progress'>{progressFor(badge)}</p>}
+                                    {!unlocked && progressFor(badge) && (
+                                        <p className='badge-progress'>{progressFor(badge)}</p>
+                                    )}
                                 </div>
                             );
                         })
                     }
                 </div>
+                <p className='badge-best'>
+                    {best === null ? 'No games played yet' : `Best basket so far: ${best.toFixed(1)}%`}
+                </p>
             </section>
             <section>
                 <h2>Football Transfers</h2>

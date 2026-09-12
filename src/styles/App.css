@@ -209,6 +209,13 @@ button { font-family: inherit; }
   margin-top: 18px;
   margin-bottom: 18px;
   letter-spacing: .02em;
+  /* Reserve the width of 00:00:00 up front so nothing shifts when the
+     placeholder is replaced by the real countdown. */
+  min-width: 8ch;
+  display: block;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 .coming-soon-text {

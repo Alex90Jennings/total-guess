@@ -25,14 +25,23 @@ const BreakdownModal = ({ onClose }) => {
             return '🟥';
         }).join('');
     
-        const text = `Game ${gameNumber} - ${date}%0A%0A${emojiMap}%0A%0AMy Daily %23totalguess Percent: ${percentageError}%0A%0ACheck it out at www.total-guess.com%0A%0AThe daily game to challenge your %23costofliving knowledge`;
-        const url = `https://x.com/intent/post?text=${text}`;
-        return url;
+        // Build the text plainly and encode it once. It used to be hand-encoded
+        // (%0A, %23) with raw spaces and colons left in the query string, which
+        // gave X a malformed intent.
+        const text = [
+            `Game ${gameNumber} - ${date}`,
+            emojiMap,
+            `My Daily #totalguess Percent: ${percentageError}`,
+            'Check it out at www.total-guess.com',
+            'The daily game to challenge your #costofliving knowledge',
+        ].join('\n\n');
+
+        return `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
     };    
 
     const handleShareClick = () => {
         const shareUrl = generateShareUrl();
-        window.open(shareUrl, '_blank');
+        window.open(shareUrl, '_blank', 'noopener,noreferrer');
     };
 
     return (

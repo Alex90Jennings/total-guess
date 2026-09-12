@@ -10,13 +10,13 @@ const DateAndGameNumber = ({ gameNumber }) => {
 
     return (
         <div className='info-container'>
-            <div style={{ textAlign: 'center' }}>
+            <div className='info-cell info-cell-left'>
                 <p className='input-container-narrow-screen-accent accent'>Today</p>
-                <p style={{ margin: '0 0 8px 0' }}>{today}</p>
+                <p className='info-value'>{today}</p>
             </div>
-            <div style={{ textAlign: 'center' }}>
+            <div className='info-cell info-cell-right'>
                 <p className='input-container-narrow-screen-accent accent'>Game</p>
-                <p style={{ margin: '0 0 8px 0' }}>#{gameNumber}</p>
+                <p className='info-value'>#{gameNumber}</p>
             </div>
         </div>
     );

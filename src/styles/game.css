@@ -416,7 +416,20 @@
     width: min(1100px, 94vw);
     background: var(--surface-sunk);
     border-top: 1px solid var(--line);
-    padding: 4px 8px;
+    padding: 8px 20px;
+}
+
+/* Both cells sit the same distance from their edge: the label used to inherit
+   a 20px side margin while the value below it was inline-styled to 0. */
+.info-cell-left { text-align: left; }
+.info-cell-right { text-align: right; }
+
+.info-container .info-cell p { margin: 0; }
+
+.info-container .info-value {
+    margin-top: 2px;
+    font-size: 15px;
+    color: var(--ink-soft);
 }
 
 /* ============================================================

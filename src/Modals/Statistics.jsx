@@ -69,8 +69,15 @@ const Statistics = () => {
                     label: 'Percentage',
                     data: bins,
                     backgroundColor: '#40E0D0',
-                    borderWidth: 1,
-                    barThickness: width / (binCount * 2) * 0.8,
+                    borderWidth: 0,
+                    borderRadius: 4,
+                    // Sized from the chart's own width, not window.innerWidth:
+                    // the modal is narrower than the window, so that made the
+                    // bars far too wide. barPercentage/categoryPercentage only
+                    // take effect on the dataset, not under scales.x.
+                    barPercentage: 0.7,
+                    categoryPercentage: 0.8,
+                    maxBarThickness: 34,
                 },
                 ],
             };
@@ -106,8 +113,6 @@ const Statistics = () => {
                             grid: {
                                 display: false,
                             },
-                            barPercentage: 0.8,
-                            categoryPercentage: 0.9,
                         },
                         y: {
                             display: false,
@@ -154,12 +159,11 @@ const Statistics = () => {
     );
 
     return (
-        <div className="chartContainer" style={{ backgroundColor: '#36454F' }}>
+        <div className="chartContainer">
             <canvas
                 id="histogramChart"
                 ref={chartRef}
                 className="myChart"
-                style={{ backgroundColor: '#36454F' }} 
             ></canvas>
         </div>
     );
