@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/demo.gif" alt="Playing Total Guess: the daily basket, guessing each item, the running total, the result, a badge, the receipt and sharing the score" width="900" />
+  <img src="docs/demo.gif" alt="Playing Total Guess: signing in, guessing ten items against the progress bar, earning badges, the result, the receipt and sharing the score on X" width="900" />
 </p>
 
 ---
@@ -88,7 +88,7 @@ The Statistics panel shows games played, current and best streak, your best gues
 
 ## Badges
 
-Nine to collect — six for turning up, three for actually being good. They're worked out from your history, so they apply to every game you've ever played, not just the ones since you started paying attention.
+Ten to collect — six for turning up, three for actually being good, and one for being perfect. They're worked out from your history, so they apply to every game you've ever played, not just the ones since you started paying attention.
 
 **For showing up**
 
@@ -104,7 +104,14 @@ Nine to collect — six for turning up, three for actually being good. They're w
 | <img src="public/icons/ten-guess.png" width="52" /> | <img src="public/icons/five-guess.png" width="52" /> | <img src="public/icons/one-guess.png" width="52" /> |
 | Guess under **10%** | Guess under **5%** | Guess under **1%** |
 
-The accuracy three go by your **best ever** basket, so one brilliant day keeps them. Earn one mid-game and it's announced on the spot; the full set lives behind the button with your initials, or under **Badges** in the menu on a phone. Locked ones stay on display, greyed out, with how far you've got — `6/10 games`, `Best so far: 4.9%`.
+**For getting it exactly right**
+
+| |
+| :--: |
+| <img src="public/icons/penny-perfect.png" width="56" /> |
+| **Penny perfect**: your total matches the real one to the penny |
+
+The accuracy badges go by your **best ever** basket, so one brilliant day keeps them. Penny perfect is the one I got in that Sainsbury's in 2009. Earn one mid-game and it's announced on the spot; the full set lives behind the button with your initials, or under **Badges** in the menu on a phone. Locked ones stay on display, greyed out, with how far you've got — `6/10 games`, `Best so far: 4.9%`.
 
 ---
 
