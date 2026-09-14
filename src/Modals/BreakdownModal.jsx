@@ -9,7 +9,7 @@ const BreakdownModal = ({ onClose }) => {
     const { breakdown } = useContext(AppContext);
     const [copied, setCopied] = useState(false);
 
-    if (breakdown?.length === 0 || !breakdown) return <p>Please play a game to see your receipt!</p>;
+    if (!Array.isArray(breakdown) || breakdown.length === 0) return <p>Please play a game to see your receipt!</p>;
 
     const generateShareText = () => {
         const gameNumber = getGameNumber();

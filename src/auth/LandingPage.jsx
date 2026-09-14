@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import '../styles/landingPage.css'
+import '../styles/screens.css'
 import LandingPageHeader from './LandingPageHeader';
 import LandingPageMenu from './LandingPageMenu';
 import LoginForm from './LoginForm';
@@ -33,13 +34,22 @@ function LandingPage() {
         return <div className="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
     }
 
+    if (elementToDisplay === 'loginForm') {
+        return (
+            <main className="screen">
+                <LoginForm setElementToDisplay={setElementToDisplay} setIsLoading={setIsLoading} setFormData={setFormData} formData={formData} setError={setError} error={error} />
+            </main>
+        );
+    }
+
     return (
-        <div className='landing-page three-rows-expand-two'>
-            <LandingPageHeader hideHeaders={!formData.isRegistered} />
-            <div/>
-            { elementToDisplay === 'landingPageMenu' && <LandingPageMenu setElementToDisplay={setElementToDisplay} setFormData={setFormData} formData={formData} /> }
-            { elementToDisplay === 'loginForm' && <LoginForm setElementToDisplay={setElementToDisplay} setIsLoading={setIsLoading} setFormData={setFormData} formData={formData} setError={setError} error={error} /> }
-        </div>
+        <main className="screen">
+            <div className='landing-page three-rows-expand-two'>
+                <LandingPageHeader />
+                <div/>
+                <LandingPageMenu setElementToDisplay={setElementToDisplay} setFormData={setFormData} formData={formData} />
+            </div>
+        </main>
     );
 }
 

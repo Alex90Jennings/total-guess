@@ -2,6 +2,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/game.css';
+import '../styles/play.css';
 import ProductImage from './ProductImage';
 import ProductHeader from './ProductHeader';
 import Numpad from './Numpad';
@@ -109,45 +110,47 @@ function MainGamePage() {
     };
 
     return (
-        <main id="main">
-            <section className="three-rows-expand-one-three">
-                <div/>
-                <article className="main--layout">
-                    {
-                        currentProduct && (
-                            <div className="box">
-                                <ProductHeader currentShop={currentShop} />
-                                <div className="description--css mt-s">{currentDescription}</div>
-                                <ProductImage currentImage={currentImage} />
-                                <div className='input-container-wide-screen'>
-                                    <WideScreenInput
-                                        currentShopIndex={currentShopIndex}
-                                        gameLength={game?.items?.length}
-                                        inputValue={inputValue}
-                                        cumulativeTotal={cumulativeTotal}
-                                        setInputValue={setInputValue}
-                                        handleItemWorthSubmit={handleItemWorthSubmit}
-                                        decrementItemIndex={decrementItemIndex}
-                                    />
-                                </div>
-                                <div className='input-container-narrow-screen'>
-                                    <NarrowScreenTotals currentShopIndex={currentShopIndex} gameLength={game?.items?.length} inputValue={inputValue} cumulativeTotal={cumulativeTotal} />
-                                    <Numpad
-                                        inputValue={inputValue}
-                                        setInputValue={setInputValue}
-                                        lastItem={lastItem}
-                                        firstItem={firstItem}
-                                        decrementItemIndex={decrementItemIndex}
-                                        handleItemWorthSubmit={handleItemWorthSubmit}
-                                    />
-                                </div>
-                                <DateAndGameNumber gameNumber={game.gameNumber} />
+        <main id="main" className="play-main">
+            {currentProduct && (
+                <div className="play">
+                    <DateAndGameNumber
+                        gameNumber={game.gameNumber}
+                        currentShopIndex={currentShopIndex}
+                        gameLength={game?.items?.length}
+                    />
+                    <div className="play-body">
+                        <div className="play-media">
+                            <ProductImage currentImage={currentImage} description={currentDescription} />
+                        </div>
+                        <div className="play-panel">
+                            <ProductHeader currentShop={currentShop} />
+                            <h1 className="play-title">{currentDescription}</h1>
+                            <div className="play-controls--wide">
+                                <WideScreenInput
+                                    currentShopIndex={currentShopIndex}
+                                    gameLength={game?.items?.length}
+                                    inputValue={inputValue}
+                                    cumulativeTotal={cumulativeTotal}
+                                    setInputValue={setInputValue}
+                                    handleItemWorthSubmit={handleItemWorthSubmit}
+                                    decrementItemIndex={decrementItemIndex}
+                                />
                             </div>
-                        )
-                    }
-                </article>
-                <div/>
-            </section>
+                            <div className="play-controls--narrow">
+                                <NarrowScreenTotals inputValue={inputValue} cumulativeTotal={cumulativeTotal} />
+                                <Numpad
+                                    inputValue={inputValue}
+                                    setInputValue={setInputValue}
+                                    lastItem={lastItem}
+                                    firstItem={firstItem}
+                                    decrementItemIndex={decrementItemIndex}
+                                    handleItemWorthSubmit={handleItemWorthSubmit}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }

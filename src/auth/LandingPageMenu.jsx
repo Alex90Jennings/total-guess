@@ -49,7 +49,23 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                 {
                     selectedGameMode === 'groceries' ?
                         hasPlayedDaily ?
-                            <TimerToUkMidnight />
+                            <>
+                                <TimerToUkMidnight />
+                                {
+                                    // A guest who has already played can still register, and today's game carries across.
+                                    !loggedInUser && (
+                                        <li className='three-columns-expand-one-three'>
+                                            <div/>
+                                            <button className='play-button-styling three-rows-expand-one-three' onClick={handleShowRegistrationForm}>
+                                                <div/>
+                                                <div>Register</div>
+                                                <div/>
+                                            </button>
+                                            <div/>
+                                        </li>
+                                    )
+                                }
+                            </>
                             :
                             <li className='three-columns-expand-one-three'>
                                 <div/>

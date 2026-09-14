@@ -56,7 +56,11 @@ function Header({ setShowLoginPage }) {
                 </div>
                 <div className='icon-header three-rows-expand-one-three cursor'>
                     <div/>
-                    <div className={firstName ? 'user-initials' : 'user-initials hide-text'} onClick={() =>{if(firstName) setModalToDisplay(ModalToDisplay.BADGES)}}>
+                    <div
+                        className={firstName ? 'user-initials' : 'user-initials is-guest'}
+                        title={firstName ? 'Your badges' : 'Not signed in'}
+                        onClick={() =>{if(firstName) setModalToDisplay(ModalToDisplay.BADGES)}}
+                    >
                         {getInitials()}
                     </div>
                     <div/>

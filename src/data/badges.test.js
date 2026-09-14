@@ -1,4 +1,4 @@
-import { BADGES, bestGuess, earnedBadges, newlyEarned } from './badges';
+import { BADGES, bestGuess, earnedBadges, hasPennyPerfect, newlyEarned } from './badges';
 
 const games = n => Array.from({ length: n }, (_, i) => `2024-01-${String(i + 1).padStart(2, '0')}`);
 
@@ -50,8 +50,8 @@ describe('earnedBadges', () => {
         expect(earned.filter(id => id.endsWith('_guess'))).toEqual([]);
     });
 
-    test('every badge is reachable, and the full set is nine', () => {
-        expect(BADGES).toHaveLength(9);
+    test('every badge is reachable, and the full set is ten', () => {
+        expect(BADGES).toHaveLength(10);
         expect(earnedBadges(games(100), [0]).sort()).toEqual(BADGES.map(b => b.id).sort());
     });
 
@@ -96,5 +96,33 @@ describe('the empty-score trap', () => {
     test('a genuine zero still earns it', () => {
         expect(bestGuess([0])).toBe(0);
         expect(earnedBadges(games(1), [0])).toContain('one_guess');
+    });
+});
+
+describe('penny perfect', () => {
+    test('a basket out by exactly nothing earns it', () => {
+        expect(hasPennyPerfect([12, 0, -4])).toBe(true);
+        expect(earnedBadges(games(3), [12, 0, -4])).toContain('penny_perfect');
+    });
+
+    test('scores come back as strings, and "0" still counts', () => {
+        expect(earnedBadges(games(1), ['0'])).toContain('penny_perfect');
+    });
+
+    test('very close is not perfect: under 1% earns one_guess but not this', () => {
+        const earned = earnedBadges(games(1), [0.03]);
+        expect(earned).toContain('one_guess');
+        expect(earned).not.toContain('penny_perfect');
+    });
+
+    test('an unscored game is never a perfect one', () => {
+        expect(hasPennyPerfect([null, '', undefined])).toBe(false);
+    });
+
+    test('it is announced once, like any other badge', () => {
+        // 0.5% already holds every accuracy badge, so only the perfect one is new.
+        const before = earnedBadges(games(1), [0.5]);
+        const after = earnedBadges(games(2), [0.5, 0]);
+        expect(newlyEarned(before, after)).toEqual(['penny_perfect']);
     });
 });

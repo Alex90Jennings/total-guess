@@ -18,7 +18,17 @@ export const BADGES = [
     { id: 'ten_guess', kind: 'guess', threshold: 10, label: 'Guess under 10%' },
     { id: 'five_guess', kind: 'guess', threshold: 5, label: 'Guess under 5%' },
     { id: 'one_guess', kind: 'guess', threshold: 1, label: 'Guess under 1%' },
+    { id: 'penny_perfect', kind: 'perfect', label: 'Penny perfect' },
 ];
+
+/**
+ * A penny-perfect basket is a guess total exactly equal to the real one.
+ * Scores are stored to two decimal places, so a zero score is a basket that was
+ * out by less than 0.005%, which for any basket under £200 is under a penny.
+ */
+export function hasPennyPerfect(scores = []) {
+    return scores.some(score => score !== null && score !== undefined && score !== '' && Number(score) === 0);
+}
 
 /** The closest a player has ever been, as a positive percentage. */
 export function bestGuess(scores = []) {
@@ -38,10 +48,13 @@ export function earnedBadges(gamesPlayed = [], scores = []) {
     const played = gamesPlayed.length;
     const best = bestGuess(scores);
 
-    return BADGES.filter(badge => badge.kind === 'game'
-        ? played >= badge.threshold
-        : best !== null && best < badge.threshold,
-    ).map(badge => badge.id);
+    const perfect = hasPennyPerfect(scores);
+
+    return BADGES.filter(badge => {
+        if (badge.kind === 'game') return played >= badge.threshold;
+        if (badge.kind === 'perfect') return perfect;
+        return best !== null && best < badge.threshold;
+    }).map(badge => badge.id);
 }
 
 /** Badges in `after` that were not already in `before`. */

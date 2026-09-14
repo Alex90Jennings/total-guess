@@ -1,0 +1,340 @@
+/* ============================================================
+   Play screen — flat, full-width layout (no floating card)
+   ============================================================ */
+#main.play-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--surface);
+}
+
+.play {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: clamp(14px, 3vw, 32px) clamp(16px, 4vw, 40px) clamp(20px, 4vw, 40px);
+}
+
+/* ---------- Progress ---------- */
+.play-progress__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+}
+
+.play-progress__meta strong {
+    color: var(--accent-deep);
+    font-weight: 700;
+}
+
+.play-progress__bar {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+}
+
+.play-progress__bar span {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line);
+    transition: background-color var(--t);
+}
+
+.play-progress__bar .is-done { background: var(--primary-colour-accent); }
+.play-progress__bar .is-current { background: var(--accent-deep); }
+
+/* ---------- Body ---------- */
+.play-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(24px, 5vw, 64px);
+    align-items: center;
+    margin-top: clamp(20px, 4vw, 44px);
+}
+
+.play-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+}
+
+.play-image {
+    display: block;
+    max-width: 100%;
+    max-height: 440px;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* photos are shot on white */
+    animation: play-in 260ms var(--ease);
+}
+
+@keyframes play-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.play-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* ---------- Store + title ---------- */
+.store-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.store-tag__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.play-main .play-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin: 10px 0 0;
+    text-wrap: balance;
+}
+
+/* ---------- Read-out ---------- */
+.play-readout {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.play-readout__guess {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 12vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.play-readout__guess.is-empty { color: var(--line-strong); }
+
+.play-readout__subtotal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: var(--ink-faint);
+}
+
+.play-readout__subtotal strong {
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Wide entry ---------- */
+.play-controls--wide { width: 100%; }
+.play-controls--narrow { display: none; width: 100%; }
+
+.play-entry {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.play-entry__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.play-entry__input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 4px 0 8px;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -.03em;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--line);
+    border-radius: 0;
+    font-variant-numeric: tabular-nums;
+    transition: border-color var(--t);
+}
+
+.play-entry__input::placeholder { color: var(--line-strong); }
+
+.play-entry__input:focus {
+    outline: none;
+    border-bottom-color: var(--primary-colour-accent);
+}
+
+.play-entry__hint {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-faint);
+}
+
+/* ---------- Actions ---------- */
+.play-actions {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.play-button {
+    height: 54px;
+    border-radius: 14px;
+    border: none;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--t-fast), color var(--t-fast), transform var(--t-fast), opacity var(--t-fast);
+}
+
+.play-button:active:not(:disabled) { transform: scale(.98); }
+
+.play-button:focus-visible,
+.play-key:focus-visible {
+    outline: 2px solid var(--primary-colour-accent);
+    outline-offset: 2px;
+}
+
+.play-button--primary {
+    background: var(--ink);
+    color: #fff;
+}
+
+.play-button--primary:hover { background: var(--primary-colour-charcoal); }
+
+.play-button--finish {
+    background: var(--primary-colour-accent);
+    color: #fff;
+}
+
+.play-button--finish:hover { background: var(--accent-deep); }
+
+.play-button--ghost {
+    background: var(--canvas);
+    color: var(--ink-soft);
+}
+
+.play-button--ghost:hover:not(:disabled) { background: var(--line); }
+
+.play-button:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+/* ---------- Keypad (narrow) ---------- */
+.play-keypad { width: 100%; margin-top: 18px; }
+
+.play-keypad__keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.play-key {
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color var(--t-fast), transform var(--t-fast);
+}
+
+.play-key:active { background: var(--line); transform: scale(.97); }
+.play-key--muted { color: var(--ink-faint); }
+
+.play-keypad .play-actions { margin-top: 10px; }
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 760px) {
+    .play-body {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .play-media { min-height: 0; }
+    .play-image { max-height: 170px; }
+    .play-key { height: 48px; }
+    .play-keypad { margin-top: 14px; }
+    .play-readout__subtotal { gap: 6px; margin-top: 6px; }
+
+    .play-panel { align-items: stretch; }
+    .play-main .play-title { font-size: clamp(1.25rem, 5.4vw, 1.6rem); }
+
+    .play-controls--wide { display: none; }
+    .play-controls--narrow { display: block; }
+
+    .play-readout { margin-top: 12px; }
+    .play-readout__guess { font-size: clamp(2.6rem, 13vw, 3.4rem); }
+}
+
+@media screen and (max-height: 760px) and (max-width: 760px) {
+    .play { padding-top: 10px; padding-bottom: 12px; }
+    .play-body { margin-top: 6px; gap: 4px; }
+    .play-image { max-height: 100px; }
+    .play-main .play-title { margin-top: 4px; }
+    .play-readout { margin-top: 6px; }
+    .play-readout__guess { font-size: 2.6rem; }
+    .play-keypad__keys { gap: 6px; }
+    .play-key { height: 42px; }
+    .play-button { height: 46px; }
+}
+
+/* iPhone SE and other short screens */
+@media screen and (max-height: 620px) and (max-width: 760px) {
+    .play { padding-top: 6px; padding-bottom: 8px; }
+    .play-progress__meta { margin-bottom: 6px; font-size: 12px; }
+    .play-image { max-height: 84px; }
+    .play-main .play-title { font-size: 1.1rem; }
+    .play-readout__guess { font-size: 2.1rem; }
+    .play-readout__subtotal { font-size: 13px; margin-top: 2px; }
+    .play-keypad { margin-top: 8px; }
+    .play-keypad__keys { gap: 5px; }
+    .play-key { height: 38px; font-size: 1.15rem; }
+    .play-keypad .play-actions { margin-top: 6px; }
+    .play-button { height: 42px; font-size: .95rem; }
+}
+
+@media screen and (max-width: 340px) {
+    .play { padding-left: 12px; padding-right: 12px; }
+    .play-progress__meta { font-size: 11px; }
+}
+
+@media screen and (max-height: 600px) and (max-width: 760px) {
+    .play { padding-bottom: 4px; }
+    .play-keypad__keys { gap: 4px; }
+}

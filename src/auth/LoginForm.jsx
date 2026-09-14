@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext } from 'react';
 import '../styles/landingPage.css';
+import '../styles/screens.css';
 import { AppContext } from '../hooks/context';
 import { login, register } from '../api/auth';
 import { getStats } from '../api/stats';
@@ -72,58 +73,65 @@ function LoginForm({ setElementToDisplay, setFormData, formData, setIsLoading, s
         setFormData({ ...formData, isRegistered: !formData.isRegistered })
     }
 
+    const isLogin = formData.isRegistered;
+
     return (
         !isAuthenticated && (
-            <div className='form'>
-                <form onSubmit={handleSubmit} className={`${formData.isRegistered ? 'five-rows-expand-three' : 'eight-rows-expand-six mt-xl'}`}>
-                    <label>
-                        {error && <p className="error">{error}</p>}
-                        <input type="email" id="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} required />
-                    </label>
-                    {
-                        !formData.isRegistered && ( <>
-                            <label>
-                                <input type="text" id="firstName" name="firstName" placeholder='First Name' value={formData.firstName} onChange={handleChange} required />
+            <div className="screen__inner screen__inner--narrow auth">
+                <button type="button" className="screen-back" onClick={handleReturnToMainMenu}>← Menu</button>
+
+                <p className="screen__eyebrow">{isLogin ? 'Sign in' : 'Create an account'}</p>
+                <h1 className="screen__title">{isLogin ? 'Welcome back' : 'Keep your streak'}</h1>
+                <p className="screen__lede">
+                    {isLogin
+                        ? 'Sign in to play today’s basket and keep your stats.'
+                        : 'Save your scores, earn badges and see how your guessing improves.'}
+                </p>
+
+                <form onSubmit={handleSubmit} className="auth-form" noValidate={false}>
+                    {error && <p className="auth-error" role="alert">{error}</p>}
+
+                    {!isLogin && (
+                        <div className="auth-row">
+                            <label className="auth-field">
+                                <span>First name</span>
+                                <input type="text" name="firstName" autoComplete="given-name" value={formData.firstName} onChange={handleChange} required />
                             </label>
-                            <label>
-                                <input type="text" id="lastName" name="lastName" placeholder='Last Name' value={formData.lastName} onChange={handleChange} required />
+                            <label className="auth-field">
+                                <span>Last name</span>
+                                <input type="text" name="lastName" autoComplete="family-name" value={formData.lastName} onChange={handleChange} required />
                             </label>
-                        </>
-                        )
-                    }
-                    <label>
-                        <input type="password" id="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} minLength={8} required />
+                        </div>
+                    )}
+
+                    <label className="auth-field">
+                        <span>Email</span>
+                        <input type="email" name="email" autoComplete="email" value={formData.email} onChange={handleChange} required />
                     </label>
-                    {
-                        !formData.isRegistered && <label>
-                            <input type="password" id="confirmPassword" name="confirmPassword"  placeholder='Confirm Password' value={formData.confirmPassword} onChange={handleChange} minLength={8} required />
+
+                    <label className="auth-field">
+                        <span>Password</span>
+                        <input type="password" name="password" autoComplete={isLogin ? 'current-password' : 'new-password'} value={formData.password} onChange={handleChange} minLength={8} required />
+                    </label>
+
+                    {!isLogin && (
+                        <label className="auth-field">
+                            <span>Confirm password</span>
+                            <input type="password" name="confirmPassword" autoComplete="new-password" value={formData.confirmPassword} onChange={handleChange} minLength={8} required />
                         </label>
-                    }
-                    <div/>
-                    <div className="switch-container">
-                        <span className="switch-text" onClick={handleIsRegisteredClick}>
-                            {formData.isRegistered ? "Need to register?" : "Already registered?"}
-                        </span>
-                    </div>
-                    <div className='three-columns-expand-one-three mt-s'>
-                        <div/>
-                        <button type="submit" className="login-button-styling three-rows-expand-one-three">
-                            <div/>
-                            <div>{formData.isRegistered ? 'Login' : 'Register'}</div>
-                            <div/>
-                        </button>
-                        <div/>
-                    </div>
-                </form>
-                <div className='three-columns-expand-one-three mt-s'>
-                    <div/>
-                    <button className="return-button-styling three-rows-expand-one-three" onClick={() => handleReturnToMainMenu()}>
-                        <div/>
-                        <div>Menu</div>
-                        <div/>
+                    )}
+
+                    <button type="submit" className="screen-button screen-button--primary">
+                        {isLogin ? 'Sign in' : 'Create account'}
                     </button>
-                    <div/>
-                </div>
+                </form>
+
+                <p className="auth-switch">
+                    {isLogin ? 'New to Total Guess?' : 'Already have an account?'}{' '}
+                    <button type="button" className="screen-link" onClick={handleIsRegisteredClick}>
+                        {isLogin ? 'Create an account' : 'Sign in'}
+                    </button>
+                </p>
             </div>
         )
     );

@@ -11,7 +11,7 @@ export const AppContext = createContext({
     isAuthenticated: false,
     setIsAuthenticated: () => {},
     handleSignOut: () => {},
-    breakdown: {},
+    breakdown: [],
     setBreakdown: () => {},
     newBadges: [],
     setNewBadges: () => {},
@@ -27,7 +27,7 @@ export const AppProvider = ({ children }) => {
 
     const [ loggedInUser, setLoggedInUser ] = useState(null);
     const [ stats, setStats ] = useState(getLocalStats());
-    const [ breakdown, setBreakdown ] = useState({});
+    const [ breakdown, setBreakdown ] = useState([]);
     const [ newBadges, setNewBadges ] = useState([]);
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
     const [ modalToDisplay, setModalToDisplay ] = useState('');

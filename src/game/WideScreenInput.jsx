@@ -4,7 +4,7 @@ const WideScreenInput = ({ currentShopIndex, gameLength, inputValue, setInputVal
 
     const handleInputChange = (event) => {
         let inputValue = event?.target?.value || event;
-        
+
         if(inputValue?.nativeEvent?.inputType === "deleteContentBackward") {
             if(inputValue.length > 0) setInputValue(inputValue.slice(0, -1))
             return
@@ -19,53 +19,45 @@ const WideScreenInput = ({ currentShopIndex, gameLength, inputValue, setInputVal
         setInputValue(inputValue);
     };
 
+    const lastItem = currentShopIndex === gameLength - 1;
+
     return (
-        <section className="input-container mt-s">
-            <div/>
-            <div className='five-columns-expand-two-four'>
-                <div className='three-rows-expand-one-three'>
-                    <div/>
-                    <button id='back-item-button' disabled={currentShopIndex === 0} onClick={() => decrementItemIndex()}>Back</button>
-                    <div/>
-                </div>
-                <div/>
-                <div className='three-columns-fr'>
-                    <div style={{ textAlign: 'center' }}>
-                        <p className='input-container-accent'>Progress</p>
-                        <div style={{height: '45px', margin: '0'}} className='three-rows-expand-one-three'>
-                            <div/>
-                            <p>{currentShopIndex + 1}/{gameLength}</p>
-                            <div/>
-                        </div>
-                    </div>
-                    <div style={{ textAlign: 'center' }}>
-                        <p className='input-container-accent'>Guess</p>
-                        <input
-                            type="text"
-                            value={inputValue}
-                            onChange={handleInputChange}
-                            onKeyDown={(event) => {if(event.key === 'Enter') {handleItemWorthSubmit()}}}
-                            placeholder="Enter £ value"
-                            className='value-input'
-                        />
-                    </div>
-                    <div style={{ textAlign: 'center' }}>
-                        <p className='input-container-accent'>Sub Total</p>
-                        <div style={{height: '45px', margin: '0'}} className='three-rows-expand-one-three'>
-                            <div/>
-                            <p>£{cumulativeTotal.toFixed(2)}</p>
-                            <div/>
-                        </div>
-                    </div>
-                </div>
-                <div/>
-                <div className='three-rows-expand-one-three'>
-                    <div/>
-                    <button id={currentShopIndex === gameLength - 1 ? 'submit-final-item-button' : 'submit-item-button'} onClick={() => handleItemWorthSubmit()}>Submit</button>
-                    <div/>
-                </div>
+        <div className="play-entry">
+            <label className="play-entry__label" htmlFor="guess-input">Your guess</label>
+            <input
+                id="guess-input"
+                type="text"
+                inputMode="decimal"
+                autoComplete="off"
+                autoFocus
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={(event) => {if(event.key === 'Enter') {handleItemWorthSubmit()}}}
+                placeholder="£0.00"
+                className="play-entry__input"
+            />
+            <p className="play-readout__subtotal">
+                Basket so far <strong>£{cumulativeTotal.toFixed(2)}</strong>
+                <span className="play-entry__hint">Press Enter ↵</span>
+            </p>
+            <div className="play-actions">
+                <button
+                    type="button"
+                    className="play-button play-button--ghost"
+                    disabled={currentShopIndex === 0}
+                    onClick={() => decrementItemIndex()}
+                >
+                    Back
+                </button>
+                <button
+                    type="button"
+                    className={`play-button ${lastItem ? 'play-button--finish' : 'play-button--primary'}`}
+                    onClick={() => handleItemWorthSubmit()}
+                >
+                    {lastItem ? 'Finish basket' : 'Next item →'}
+                </button>
             </div>
-        </section>
+        </div>
     );
 };
 

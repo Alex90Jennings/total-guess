@@ -9,7 +9,6 @@
     grid-template-areas: "header-left header-middle header-right";
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
     border-bottom: 1px solid var(--line);
     box-shadow: 0 1px 3px rgba(20, 33, 42, .05);
     position: sticky;
@@ -49,15 +48,9 @@
     box-shadow: var(--shadow-md);
 }
 
-/* No name yet: hide the avatar entirely rather than show an empty ring */
-.hide-text {
-    visibility: hidden;
-}
-
-.icon-header:has(.hide-text) {
-    visibility: hidden;
-    pointer-events: none;
-}
+/* Nobody signed in: keep the bubble and show "??" */
+.user-initials.is-guest { cursor: default; }
+.user-initials.is-guest:hover { transform: none; box-shadow: var(--shadow-sm); }
 
 .signup,
 .signin { cursor: pointer; }
@@ -914,9 +907,16 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media screen and (max-width: 530px) {
+    /* Equal flexible side columns keep the logo centred without the fixed
+       100px widths that pushed the header past 390px-wide phones. */
+    #header {
+        grid-template-columns: 1fr auto 1fr;
+        padding: .5rem .75rem;
+    }
+
     .header-right-narrow-screen,
     .header-left,
-    .header-right { width: 100px !important; }
+    .header-right { width: auto !important; min-width: 0; }
 
     #login-header { max-width: 280px !important; }
     #login-header h2 { font-size: 20px !important; }
@@ -962,4 +962,85 @@ input[type='number']::-webkit-outer-spin-button {
     .num-pad { grid-template-columns: repeat(4, 60px); }
     .num-pad-button { width: 54px; height: 38px; }
     #enter { width: 60px; }
+}
+
+/* ============================================================
+   Header on phones: fixed-size icons so nothing squashes, and a
+   logo sized to leave room either side down to 320px.
+   ============================================================ */
+.icon-header .user-initials {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 530px) {
+    #header { padding: .5rem .75rem; column-gap: 6px; }
+    .header-left { gap: 6px; }
+    .header-left .mr-s,
+    .header-right-narrow-screen .icon-header,
+    .header-right-narrow-screen .icon-header img { margin-right: 0; }
+    .icon-header { width: 36px; height: 36px; flex: none; }
+    .icon-header img { height: 18px; }
+    .user-initials { font-size: 13px; }
+    .header-middle { font-size: 1.3rem; padding: 0; }
+    .header-right-narrow-screen { display: flex; justify-content: flex-end; }
+}
+
+@media screen and (max-width: 360px) {
+    .icon-header { width: 32px; height: 32px; }
+    .user-initials { font-size: 12px; }
+    .header-middle { font-size: 1.1rem; }
+}
+
+/* ============================================================
+   Footer: same layout and content, lighter touch
+   ============================================================ */
+.footer--layout {
+    height: 60px;
+    border-top: 3px solid var(--primary-colour-accent);
+}
+
+/* Borderless icons that only show a shape on hover */
+.icon-footer {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.icon-footer img { height: 18px; opacity: .75; transition: opacity var(--t-fast); }
+
+.icon-footer:hover {
+    background-color: rgba(255, 255, 255, .08);
+    border-color: transparent;
+    transform: none;
+}
+
+.icon-footer:hover img { opacity: 1; }
+
+.left-icons { gap: 4px; }
+
+.icon-mail img { width: 16px; margin-top: 2px; opacity: .75; }
+
+.contact { font-size: 14px; opacity: .75; }
+
+.footer-row {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 8px;
+    opacity: .75;
+}
+
+.footer-row:hover {
+    opacity: 1;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .08);
+}
+
+.right-content { gap: 2px; }
+
+@media screen and (max-width: 850px) {
+    .footer--layout { height: 52px; }
 }

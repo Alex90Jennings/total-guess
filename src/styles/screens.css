@@ -1,0 +1,368 @@
+/* ============================================================
+   Shared flat screen layout: landing, sign in, register, results.
+   Centred in the space between the header and footer, no cards.
+   ============================================================ */
+.screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: clamp(16px, 4vw, 40px) clamp(16px, 5vw, 40px);
+    background: var(--surface);
+}
+
+.screen__inner {
+    width: 100%;
+    max-width: 440px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+}
+
+.screen__inner--narrow { max-width: 400px; }
+
+.screen__eyebrow {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+}
+
+.screen .screen__title {
+    margin: 8px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    color: var(--ink);
+}
+
+.screen__lede {
+    margin: 8px 0 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+}
+
+/* ---------- Buttons ---------- */
+.screen__actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.screen-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 14px;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+
+.screen-button:active { transform: scale(.98); }
+
+.screen-button--primary { background: var(--primary-colour-accent); color: #fff; }
+.screen-button--primary:hover { background: var(--accent-deep); }
+
+.screen-button--dark { background: var(--ink); color: #fff; }
+.screen-button--dark:hover { background: var(--primary-colour-charcoal); }
+
+.screen-button--secondary { background: var(--canvas); color: var(--ink); }
+.screen-button--secondary:hover { background: var(--line); }
+
+.screen-link {
+    justify-self: center;
+    padding: 6px 4px;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-deep);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.screen-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.screen-back {
+    align-self: flex-start;
+    margin: 0 0 20px -4px;
+    padding: 6px 4px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    cursor: pointer;
+}
+
+.screen-back:hover { color: var(--ink); }
+
+/* ---------- Sign in / register ---------- */
+.auth-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.auth-form .screen-button { margin-top: 6px; }
+
+.auth-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.auth-field {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+}
+
+.auth-field span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+
+.auth-field input {
+    width: 100%;
+    height: 50px;
+    padding: 0 14px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--surface);
+    font-family: var(--font-ui);
+    font-size: 16px; /* 16px stops iOS zooming in on focus */
+    color: var(--ink);
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.auth-field input:focus {
+    outline: none;
+    border-color: var(--primary-colour-accent);
+    box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+.auth-error {
+    margin: 0;
+    padding: 10px 12px;
+    border-left: 3px solid var(--band-shame);
+    background: #FDF1F1;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #9B2C2C;
+}
+
+.auth-switch {
+    margin: 18px 0 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-soft);
+}
+
+.auth-switch .screen-link { padding: 0; }
+
+/* ---------- Results ---------- */
+.result-hero {
+    margin-top: 14px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+}
+
+.result-hero__label {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink-faint);
+}
+
+.result-hero__value {
+    margin: 2px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 22vw, 6.5rem);
+    font-weight: 600;
+    line-height: .95;
+    letter-spacing: -.04em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+}
+
+.result-hero--good .result-hero__value { color: var(--accent-deep); }
+.result-hero--ok .result-hero__value { color: var(--ink); }
+.result-hero--off .result-hero__value { color: var(--band-off); }
+.result-hero--shame .result-hero__value { color: var(--band-shame); }
+
+.result-hero__verdict {
+    margin: 10px 0 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+.result-totals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 22px 0 0;
+}
+
+.result-totals div { min-width: 0; }
+
+.result-totals dt {
+    font-size: 13px;
+    color: var(--ink-faint);
+}
+
+.result-totals dd {
+    margin: 4px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Guess as a bar, the real total as a tick */
+.result-meter {
+    position: relative;
+    height: 8px;
+    margin-top: 16px;
+    border-radius: 4px;
+    background: var(--canvas);
+}
+
+.result-meter__guess {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 4px;
+    background: var(--primary-colour-accent);
+}
+
+.result-meter__actual {
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--ink);
+    z-index: 1;
+}
+
+/* ---------- Landing menu, restyled to match ---------- */
+.screen .landing-page {
+    width: min(400px, 100%);
+    padding: 0;
+    margin: auto;
+}
+
+.screen #landing-page-menu ul { margin: 24px 0 0; }
+
+.screen .play-button-styling,
+.screen .signin-button-styling {
+    width: 100%;
+    height: 54px;
+    margin-top: 0;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    box-shadow: none;
+}
+
+.screen .play-button-styling {
+    background: var(--primary-colour-accent);
+}
+
+.screen .play-button-styling:hover {
+    background: var(--accent-deep) !important;
+    transform: none;
+    box-shadow: none;
+}
+
+.screen .signin-button-styling {
+    border: none;
+    background-color: var(--canvas) !important;
+}
+
+.screen .signin-button-styling:hover {
+    background-color: var(--line) !important;
+    color: var(--ink) !important;
+    transform: none;
+    box-shadow: none;
+}
+
+.screen #landing-page-menu ul {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+}
+
+.screen #landing-page-menu li,
+.screen #landing-page-menu li.three-columns-expand-one-three {
+    display: block;
+    margin: 0;
+}
+
+.screen #landing-page-menu li > div:empty { display: none; }
+
+/* Register leads; Play As Guest is the quick way in */
+.screen #landing-page-menu li:last-child .play-button-styling:not(:only-child) { background: var(--ink); }
+
+/* ---------- Small and short screens ---------- */
+@media screen and (max-width: 360px) {
+    .auth-row { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-height: 700px) {
+    .screen__lede { display: none; }
+    .auth-form { gap: 10px; margin-top: 16px; }
+    .auth-field input { height: 46px; }
+    .screen-back { margin-bottom: 10px; }
+    .screen #landing-page-menu ul { margin-top: 16px; }
+    .screen .trolley-icon { height: 84px; width: 84px; }
+    .screen .logo-landing { font-size: 2rem !important; }
+    .screen #login-header h2 { font-size: 1.3rem !important; }
+    .screen #login-header .mt-xl { margin-top: 16px; }
+}
+
+@media screen and (max-height: 620px) {
+    .screen { padding-top: 12px; padding-bottom: 12px; }
+    .screen-back { margin-bottom: 8px; }
+    .screen .screen__title { font-size: 1.6rem; }
+    .screen__lede { font-size: 14px; }
+    .auth-form { gap: 10px; margin-top: 14px; }
+    .auth-field input { height: 44px; }
+    .screen-button { height: 48px; }
+    .screen__actions { margin-top: 18px; gap: 8px; }
+    .result-hero__value { font-size: 3.8rem; }
+    .result-hero { padding-bottom: 14px; }
+    .result-totals { margin-top: 14px; }
+}
+
+/* The landing grid centres and shrinks its children; stretch the menu so
+   every button (Play, Register, Sign In/Out, Play As Guest) is full width. */
+.screen .landing-page { justify-items: stretch; }
+.screen #landing-page-menu,
+.screen #landing-page-menu ul,
+.screen #landing-page-menu li,
+.screen #landing-page-menu li > button { width: 100%; }
+.screen #landing-page-menu .timer-to-midnight { width: 100%; }
+
+/* The old phone rule capped this block at 280px; centre it in the wider column. */
+.screen #login-header { max-width: none !important; margin: 0 auto; width: 100%; }
+
+@media screen and (max-height: 700px) {
+    .auth-form { gap: 8px; }
+}

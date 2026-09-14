@@ -1,31 +1,27 @@
 import React from 'react';
 
-const ProductHeader = ({ currentShop }) => {
+const STORES = {
+    aldi: { name: 'ALDI', colour: '#00205B' },
+    asda: { name: 'ASDA', colour: '#78BE20' },
+    coop: { name: 'Co-op', colour: '#00B1E7' },
+    iceland: { name: 'Iceland', colour: '#D2212E' },
+    lidl: { name: 'LIDL', colour: '#0050AA' },
+    mands: { name: 'M&S', colour: '#1F1F1F' },
+    morrisons: { name: 'Morrisons', colour: '#00563F' },
+    sainsburys: { name: "Sainsbury's", colour: '#F06C00' },
+    tesco: { name: 'TESCO', colour: '#00539F' },
+    waitrose: { name: 'Waitrose', colour: '#5D8A2E' },
+};
 
-    const shouldBeBold = ['asda', 'tesco', 'morrisons', 'aldi', 'spar', 'lidl', 'coop'];
-    const shouldBeAllCaps = ['asda', 'tesco', 'aldi', 'spar', 'mands', 'lidl'];
-    
-    const correctShopName = (shopName) => {
-        if (shopName === 'coop') return shopName;
-        if (shopName === 'sainsburys') return "Sainsbury's";
-        let nameToReturn = shouldBeAllCaps.includes(shopName)
-            ? shopName.toUpperCase()
-            : shopName[0].toUpperCase() + shopName.slice(1).toLowerCase();
-        return nameToReturn;
-    };
+/** A small store tag with the store's own colour as a dot. */
+const ProductHeader = ({ currentShop }) => {
+    const store = STORES[currentShop] ?? { name: currentShop, colour: 'var(--ink-faint)' };
 
     return (
-        <section className="shop--css three-rows-expand-one-three">
-            <div/>
-            {currentShop === "mands" ? (
-                <h1 className='normal-font pt-s'>M&S</h1>
-            ) : (
-                <h1 className={shouldBeBold.includes(currentShop) ? 'bold' : 'normal-font'}>
-                    {correctShopName(`${currentShop}`)}
-                </h1>
-            )}
-            <div/>
-        </section>
+        <span className="store-tag">
+            <span className="store-tag__dot" style={{ background: store.colour }} />
+            {store.name}
+        </span>
     );
 };
 

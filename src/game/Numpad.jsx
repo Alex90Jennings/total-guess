@@ -1,5 +1,7 @@
 import React from 'react';
 
+const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'];
+
 const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemIndex, handleItemWorthSubmit }) => {
 
     const handleNumPadPress = (num) => {
@@ -17,9 +19,9 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
         if (!newNumber.startsWith('£')) {
             newNumber = '£' + newNumber;
         }
-    
+
         const numericValue = parseFloat(newNumber.substring(1));
-    
+
         if (!isNaN(numericValue) && numericValue > 99) {
             newNumber = inputValue;
         }
@@ -28,41 +30,38 @@ const Numpad = ({ inputValue, setInputValue, lastItem, firstItem, decrementItemI
     };
 
     return (
-        <section className='num-pad-container'>
-            <div/>
-            <div className="num-pad">
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('7')}>7</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('8')}>8</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('9')}>9</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('4')}>4</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('5')}>5</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('6')}>6</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('1')}>1</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('2')}>2</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('3')}>3</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('.')}>.</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('0')}>0</button>
-                <button className='num-pad-button' id='9' onClick={() => handleNumPadPress('⌫')}>del</button>
-                <button 
-                    id='enter'
-                    className={lastItem ? 'narrow-submit-final-item-button' : 'narrow-submit-item-button'} 
-                    onClick={() => handleItemWorthSubmit()}
-                >
-                    <div/>
-                    <img src={`${lastItem ? '/icons/enter-accent.png' : '/icons/enter.png'}`} alt="enter" className='enter-icon' />
-                    <div/>
-                </button>
-                <button 
-                    id='back' 
-                    className='narrow-back-item-button'
-                    disabled={firstItem} 
+        <div className="play-keypad">
+            <div className="play-keypad__keys">
+                {KEYS.map((key) => (
+                    <button
+                        key={key}
+                        type="button"
+                        className={`play-key ${key === '⌫' || key === '.' ? 'play-key--muted' : ''}`}
+                        aria-label={key === '⌫' ? 'Delete' : key}
+                        onClick={() => handleNumPadPress(key)}
+                    >
+                        {key}
+                    </button>
+                ))}
+            </div>
+            <div className="play-actions">
+                <button
+                    type="button"
+                    className="play-button play-button--ghost"
+                    disabled={firstItem}
                     onClick={() => decrementItemIndex()}
                 >
-                    BACK
+                    Back
+                </button>
+                <button
+                    type="button"
+                    className={`play-button ${lastItem ? 'play-button--finish' : 'play-button--primary'}`}
+                    onClick={() => handleItemWorthSubmit()}
+                >
+                    {lastItem ? 'Finish basket' : 'Next item →'}
                 </button>
             </div>
-            <div/>
-        </section>
+        </div>
     );
 };
 

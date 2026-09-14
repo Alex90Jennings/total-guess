@@ -108,7 +108,7 @@ h1, h2, h3, .logo, .logo-landing {
   width: 100vw;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: var(--canvas);
+  background-color: var(--surface);
 }
 
 button, .cursor { cursor: pointer; }
