@@ -366,3 +366,21 @@
 @media screen and (max-height: 700px) {
     .auth-form { gap: 8px; }
 }
+
+/* A nudge to confirm an email address. Never a gate: the game still plays. */
+.verify-banner {
+    margin: 0 0 12px;
+    font-size: .8rem;
+    color: var(--ink-faint, #64727a);
+    text-align: center;
+}
+
+.verify-banner__link {
+    background: none;
+    border: 0;
+    padding: 0 0 0 6px;
+    font: inherit;
+    color: var(--accent-deep, #0A8E82);
+    text-decoration: underline;
+    cursor: pointer;
+}

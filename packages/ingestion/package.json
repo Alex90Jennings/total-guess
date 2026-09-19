@@ -30,7 +30,8 @@
     "assistant:ask": "tsx scripts/assistant-ask.ts",
     "assistant:eval": "tsx scripts/assistant-eval.ts",
     "assistant:compare": "tsx scripts/assistant-compare.ts",
-    "games": "tsx scripts/games.ts"
+    "games": "tsx scripts/games.ts",
+    "users:verify": "tsx scripts/verify-existing-users.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.8",

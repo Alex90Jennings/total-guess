@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/modal.css";
 import LandingPage from "./auth/LandingPage.jsx";
+import VerifyEmail from './auth/VerifyEmail';
 import MainGamePage from "./game/MainGamePage.jsx";
 import GameInstructions from "./game/GameInstructions";
 import Modal from "react-modal";
@@ -65,6 +66,7 @@ function App() {
                     element={<MainGamePage />}
                 />
                 <Route path="/results" element={<Results />} />
+                <Route path="/verify" element={<VerifyEmail />} />
                 <Route path="*" element={<Navigate to="/" />} />
                 {/*<Route path="/share" element={<Share />} />*/}
             </Routes>

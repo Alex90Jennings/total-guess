@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
+import VerifyBanner from './VerifyBanner';
 import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
 import { AppContext } from '../hooks/context';
@@ -43,6 +44,8 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
     };
 
     return (
+        <>
+            <VerifyBanner user={loggedInUser} />
         <div id='landing-page-menu'>
             <div/>
             <ul className='list-reset pl-none'>
@@ -124,6 +127,7 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                 }
             </ul>
         </div>
+        </>
     );
 }
 
