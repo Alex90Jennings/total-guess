@@ -1,0 +1,9 @@
+{
+  "frozenAs": "retrieval-evaluation-v1",
+  "frozenOn": "2026-09-18",
+  "note": "Held-out benchmark. Do not edit queries, labels or judgements to improve reported metrics. Tuning needs a separate development set.",
+  "files": {
+    "evaluation/queries.ts": "d0489e6b7a375b2ca926dab54646b43fcf0d1decc91bce1ecce983f41101490c",
+    "evaluation/qrels.json": "b35e50be0aed09af65c0dcab9caf3a9dde9b06d94c5da9dfd9c7f4edd604d893"
+  }
+}

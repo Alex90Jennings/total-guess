@@ -1,0 +1,17 @@
+# Local PostgreSQL 17 with pgvector for the catalogue. Tests do not need it (they use PGlite).
+#   docker compose up -d
+#   export DATABASE_URL=postgres://totalguess:totalguess@127.0.0.1:54329/totalguess
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: total-guess-pg
+    environment:
+      POSTGRES_USER: totalguess
+      POSTGRES_PASSWORD: totalguess   # local development only
+      POSTGRES_DB: totalguess
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - total-guess-pgvector:/var/lib/postgresql/data
+volumes:
+  total-guess-pgvector:
