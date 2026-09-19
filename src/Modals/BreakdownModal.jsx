@@ -5,6 +5,27 @@ import { AppContext } from "../hooks/context";
 import { gameNumber as getGameNumber } from "../data/dailyGame";
 import { scoreBasket } from '../game/scoring';
 
+const SHOP_NAMES = {
+    aldi: 'Aldi', asda: 'ASDA', coop: 'Co-op', iceland: 'Iceland', lidl: 'Lidl',
+    mands: 'M&S', morrisons: 'Morrisons', sainsburys: "Sainsbury's", tesco: 'Tesco', waitrose: 'Waitrose',
+};
+
+/**
+ * Where a price came from. Shown only here, after the answer is revealed: these
+ * are not live prices and must not be presented as today's shelf price.
+ */
+function priceProvenance(item) {
+    if (!item.store) return '';
+    const shop = SHOP_NAMES[item.store] || item.store;
+    if (item.priceKind === 'observed' && item.priceObservedOn) {
+        const seen = new Date(`${item.priceObservedOn}T00:00:00Z`).toLocaleDateString('en-GB', {
+            day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
+        });
+        return `Observed at ${shop} · ${seen}`;
+    }
+    return `${shop} · representative price`;
+}
+
 const BreakdownModal = ({ onClose }) => {
     const { breakdown } = useContext(AppContext);
     const [copied, setCopied] = useState(false);
@@ -76,7 +97,10 @@ const BreakdownModal = ({ onClose }) => {
                 <tbody>
                     {breakdown.map((item, index) => (
                         <tr key={index}>
-                            <td style={{ textAlign: 'left', color: 'white' }} className='table-row-breakdown'>{item.description}</td>
+                            <td style={{ textAlign: 'left', color: 'white' }} className='table-row-breakdown'>
+                                {item.description}
+                                <span className='price-provenance'>{priceProvenance(item)}</span>
+                            </td>
                             <td style={{ textAlign: 'center', color: 'white' }} className='table-row-breakdown'>£{item.correctPrice.toFixed(2)}</td>
                             <td style={{ textAlign: 'center', color: 'white' }} className='table-row-breakdown'>£{item.guess.toFixed(2)}</td>
                             <td style={{ textAlign: 'center', color: 'white' }} className='table-row-breakdown'>

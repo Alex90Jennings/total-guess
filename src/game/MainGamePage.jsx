@@ -10,7 +10,8 @@ import NarrowScreenTotals from './NarrowScreenTotals';
 import DateAndGameNumber from './DateAndGameNumber';
 import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
-import { getGameOfTheDay, isoDate } from '../data/dailyGame';
+import { isoDate } from '../data/dailyGame';
+import { fetchGameOfTheDay } from '../api/dailyGame';
 import { hasPlayed, saveResult } from '../api/stats';
 import { newlyEarned } from '../data/badges';
 import { percentageError as calculateError, totalOf } from './scoring';
@@ -28,17 +29,30 @@ function MainGamePage() {
     const cumulativeTotal = itemPricesRef.current.reduce((sum, item) => sum + item.guess, 0);
     const correctPrice = game?.items?.reduce((sum, item) => sum + (item?.price || 0), 0);
 
-    // The basket is generated locally from the date, so there is nothing to fetch.
+    // The basket is the published game for today, or this browser's cached copy
+    // of it. There is no locally generated alternative: every player on a given
+    // date must get the same ten items.
     useEffect(() => {
+        let cancelled = false;
         const today = isoDate();
         if (hasPlayed(stats, today)) {
             setModalToDisplay(ModalToDisplay.ALREADY_PLAYED);
             navigate('/');
-            return;
+            return undefined;
         }
-        const todaysGame = getGameOfTheDay();
-        gameDate.current = today;
-        setGame(todaysGame);
+        fetchGameOfTheDay().then((todaysGame) => {
+            if (cancelled) return;
+            if (!todaysGame) {
+                // Today's published game could not be reached. Say so rather than
+                // playing a different basket from everybody else.
+                setModalToDisplay(ModalToDisplay.GENERAL_ERROR);
+                navigate('/');
+                return;
+            }
+            gameDate.current = today;
+            setGame(todaysGame);
+        });
+        return () => { cancelled = true; };
     }, []);
 
     if (!game?.items || itemPricesRef.current.length === 10) {
@@ -68,11 +82,16 @@ function MainGamePage() {
 
         if (!isNaN(itemWorth)) {
             const roundedItemWorth = parseFloat(itemWorth.toFixed(2));
+            const scoredItem = game.items[currentShopIndex];
             itemPricesRef.current = [...itemPricesRef.current, {
-                itemId: game.items[currentShopIndex]._id,
+                itemId: scoredItem._id,
                 guess: roundedItemWorth,
-                correctPrice: game.items[currentShopIndex].price,
-                description: game.items[currentShopIndex].description
+                correctPrice: scoredItem.price,
+                description: scoredItem.description,
+                // Where the price came from, shown only after the answer is revealed.
+                store: scoredItem.store,
+                priceKind: scoredItem.priceKind,
+                priceObservedOn: scoredItem.priceObservedOn
             }];
             setInputValue("");
         }
@@ -120,11 +139,18 @@ function MainGamePage() {
                     />
                     <div className="play-body">
                         <div className="play-media">
-                            <ProductImage currentImage={currentImage} description={currentDescription} />
+                            <ProductImage
+                                currentImage={currentImage}
+                                description={currentDescription}
+                                attribution={currentProduct.imageAttribution}
+                            />
                         </div>
                         <div className="play-panel">
                             <ProductHeader currentShop={currentShop} />
                             <h1 className="play-title">{currentDescription}</h1>
+                            {currentProduct.quantity && (
+                                <p className="play-quantity">{currentProduct.quantity}</p>
+                            )}
                             <div className="play-controls--wide">
                                 <WideScreenInput
                                     currentShopIndex={currentShopIndex}

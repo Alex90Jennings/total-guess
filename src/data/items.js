@@ -1,13 +1,16 @@
 /**
- * The grocery catalogue.
+ * The curated grocery catalogue: source data, not game logic.
  *
  * Every item is a real product photographed for the original game; the image
  * filename is its id. Prices are representative UK supermarket prices rather
  * than live data — the game is about judging a total, not tracking inflation.
  *
- * Adding items: drop a photo in public/items/<code>.jpg and add a row here.
- * The daily game picks ten at a time, so the catalogue is used in full before
- * any basket comes round again.
+ * The daily game no longer reads this file. It is imported into the catalogue
+ * database (`yarn workspace @total-guess/ingestion curated:import`), where it
+ * becomes part of the pool that daily games are generated and frozen from.
+ *
+ * Adding items: drop a photo in public/items/<code>.jpg, add a row here, then
+ * re-run curated:import so the new item can appear in future games.
  */
 
 const STORE_NAMES = {

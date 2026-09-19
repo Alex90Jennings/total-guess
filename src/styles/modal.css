@@ -411,3 +411,11 @@ thead .table-row-breakdown {
         width: 100% !important;
     }
 }
+
+/* Where a price came from. Only ever shown after the answer is revealed. */
+.price-provenance {
+    display: block;
+    font-size: 0.65rem;
+    opacity: 0.6;
+    font-weight: normal;
+}

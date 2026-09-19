@@ -338,3 +338,27 @@
     .play { padding-bottom: 4px; }
     .play-keypad__keys { gap: 4px; }
 }
+
+/* The pack size, under the product name and quieter than it. */
+.play-main .play-quantity {
+    margin: 6px 0 0;
+    font-size: .95rem;
+    color: var(--ink);
+    opacity: .55;
+}
+
+/* Image credit, required by the licence on catalogue photographs. */
+.play-image-credit {
+    margin: 8px 0 0;
+    width: 100%;
+    text-align: center;
+    font-size: .65rem;
+    line-height: 1.3;
+    color: var(--ink);
+    opacity: .45;
+}
+
+/* The credit sits under the photograph rather than beside it. */
+.play-media {
+    flex-direction: column;
+}
