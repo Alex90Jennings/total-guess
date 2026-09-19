@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext } from 'react';
+import { useDayRollover } from '../hooks/useDayRollover';
 import { useLocation, Link, Navigate } from 'react-router-dom';
 import '../styles/game.css';
 import '../styles/screens.css';
@@ -24,6 +25,10 @@ function verdictFor(error, difference) {
 }
 
 function Results() {
+    // Left open overnight, this should return to a playable game rather than
+    // keep yesterday's score on screen.
+    useDayRollover();
+
     const { setModalToDisplay, breakdown } = useContext(AppContext);
     const location = useLocation();
 

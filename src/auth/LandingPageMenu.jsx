@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
+import { useDayRollover } from '../hooks/useDayRollover';
 import VerifyBanner from './VerifyBanner';
 import { useNavigate } from 'react-router-dom';
 import '../styles/landingPage.css';
@@ -12,6 +13,9 @@ import { hasPlayed } from '../api/stats';
 function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
 
     const { isAuthenticated, loggedInUser, handleSignOut, selectedGameMode, stats } = useContext(AppContext);
+
+    // A tab left open overnight should show the new day's game, not yesterday's countdown.
+    useDayRollover();
     const [ hasPlayedDaily, setHasPlayedDaily ] = useState(false)
     const navigate = useNavigate();
 

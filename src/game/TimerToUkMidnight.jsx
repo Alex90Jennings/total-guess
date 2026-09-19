@@ -14,7 +14,9 @@ const TimerToUkMidnight = () => {
 
                 if (timeRemaining <= 0) {
                     setCountdown('00:00:00');
-                    return false;
+                    // Keep ticking: the next midnight is a day away, and the
+                    // page around this will be reloading shortly anyway.
+                    return true;
                 }
 
                 const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
