@@ -36,3 +36,20 @@ yarn-error.log*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Retailer captures are third-party data: never commit them
+packages/*/.captures/
+packages/*/node_modules/
+
+# Local database files
+packages/*/.data/
+
+# Downloaded model weights
+packages/*/.models/
+
+# Local secrets. The .env.example templates are committed, since the README
+# tells people to copy them; the ".env*" rule above would otherwise hide them.
+.env
+packages/*/.env
+!.env.example
+!packages/*/.env.example

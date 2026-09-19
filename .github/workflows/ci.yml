@@ -30,6 +30,9 @@ jobs:
         env:
           CI: true
 
+      - name: Run the ingestion tests
+        run: yarn workspace @total-guess/ingestion test
+
       - name: Build
         run: yarn build
         env:
