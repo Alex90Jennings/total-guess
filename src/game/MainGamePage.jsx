@@ -63,6 +63,7 @@ function MainGamePage() {
     const currentShop = currentProduct.store;
     const currentDescription = currentProduct.description;
     const currentImage = currentProduct.image;
+    const nextProduct = game?.items?.[currentShopIndex + 1];
     const lastItem = currentShopIndex === game?.items?.length - 1;
     const firstItem = currentShopIndex === 0;
 
@@ -130,6 +131,15 @@ function MainGamePage() {
 
     return (
         <main id="main" className="play-main">
+            {nextProduct && (
+                <link
+                    rel="preload"
+                    as="image"
+                    href={nextProduct._id?.startsWith('off:')
+                        ? `/off/${nextProduct._id.slice(4)}.jpg`
+                        : `/items/${nextProduct.image}.jpg`}
+                />
+            )}
             {currentProduct && (
                 <div className="play">
                     <DateAndGameNumber
@@ -140,6 +150,7 @@ function MainGamePage() {
                     <div className="play-body">
                         <div className="play-media">
                             <ProductImage
+                                item={currentProduct}
                                 currentImage={currentImage}
                                 description={currentDescription}
                                 attribution={currentProduct.imageAttribution}

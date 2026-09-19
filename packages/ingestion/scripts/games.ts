@@ -3,6 +3,7 @@
  *
  *   yarn games generate [--days 14]   fill any missing day in the rolling window
  *   yarn games publish                copy unpublished games to Appwrite
+ *   yarn games mirror                 copy catalogue photographs onto our own CDN
  *   yarn games check [--min 7]        are there enough games ahead? exits 1 if not
  *   yarn games show [--date YYYY-MM-DD]
  *
@@ -16,10 +17,12 @@ import { openDatabase } from '../src/db/client.js';
 import {
     generateGames, isoDate, markPublished, readGame, readGamesFrom, readiness, utcDay,
 } from '../src/game/dailyGame.js';
+import { mirrorImages, mirroredPath } from '../src/game/mirrorImages.js';
 import { publishGame, publishedFileCount, readPublishedGame } from '../src/game/publish.js';
 
 /** Published games live with the app, so Vercel serves them from the same CDN. */
-const GAMES_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'public', 'games');
+const PUBLIC_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'public');
+const GAMES_DIR = join(PUBLIC_DIR, 'games');
 
 const arg = (name: string) => {
     const i = process.argv.indexOf(`--${name}`);
@@ -57,6 +60,26 @@ async function main() {
             if (created) console.log('commit and deploy them to put them live: git add public/games && git commit && git push');
             if (!salt) console.log('note: GAMES_SALT is not set, so these are readable by anyone who guesses the URL');
             if (failures) process.exitCode = 1;
+            return;
+        }
+
+        if (command === 'mirror') {
+            // Every catalogue product that can appear in a game, whether or not
+            // it has been drawn yet, so a later game never waits on a download.
+            const { rows } = await db.query<{ barcode: string; url: string }>(
+                `SELECT replace(item_id, 'off:', '') AS barcode, image AS url
+                 FROM eligible_game_item WHERE image LIKE 'http%' ORDER BY item_id`);
+            console.log(`${rows.length} catalogue photographs to mirror into public/off/`);
+
+            const result = await mirrorImages(rows, PUBLIC_DIR, {
+                onProgress: (done, total) => {
+                    if (done % 50 === 0 || done === total) process.stderr.write(`  ${done}/${total}\n`);
+                },
+            });
+            console.log(`copied ${result.copied}, already there ${result.alreadyThere}, failed ${result.failed.length}`);
+            console.log(`public/off is now ${(result.bytes / 1024 / 1024).toFixed(1)} MB`);
+            for (const failure of result.failed.slice(0, 10)) console.error(`  ${failure.barcode}: ${failure.reason}`);
+            if (result.failed.length) process.exitCode = 1;
             return;
         }
 
@@ -103,7 +126,7 @@ async function main() {
             return;
         }
 
-        throw new Error(`unknown command "${command}"; expected generate, publish, check or show`);
+        throw new Error(`unknown command "${command}"; expected generate, publish, mirror, check or show`);
     } finally {
         await db.close();
     }
