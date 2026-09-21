@@ -347,6 +347,15 @@
     opacity: .55;
 }
 
+/* Where and when the price was seen. Quieter than the pack size: it is
+   context for the guess, not part of the product. */
+.play-main .play-provenance {
+    margin: 4px 0 0;
+    font-size: .8rem;
+    color: var(--ink);
+    opacity: .45;
+}
+
 /* Image credit, required by the licence on catalogue photographs. */
 .play-image-credit {
     margin: 8px 0 0;

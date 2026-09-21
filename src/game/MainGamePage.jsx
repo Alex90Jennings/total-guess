@@ -11,6 +11,7 @@ import DateAndGameNumber from './DateAndGameNumber';
 import WideScreenInput from './WideScreenInput';
 import { AppContext } from "../hooks/context";
 import { isoDate } from '../data/dailyGame';
+import { provenance } from '../data/stores';
 import { fetchGameOfTheDay } from '../api/dailyGame';
 import { hasPlayed, saveResult } from '../api/stats';
 import { newlyEarned } from '../data/badges';
@@ -162,6 +163,7 @@ function MainGamePage() {
                             {currentProduct.quantity && (
                                 <p className="play-quantity">{currentProduct.quantity}</p>
                             )}
+                            <p className="play-provenance">{provenance(currentProduct)}</p>
                             <div className="play-controls--wide">
                                 <WideScreenInput
                                     currentShopIndex={currentShopIndex}
