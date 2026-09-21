@@ -431,3 +431,15 @@ thead .table-row-breakdown {
     border-radius: 50%;
     flex: none;
 }
+
+
+/* The per-item squares under the receipt's title: the basket at a glance.
+   Sized so ten of them sit on one line on a narrow phone. */
+.modal-display .receipt-squares {
+    margin: 6px 0 0;
+    text-align: center;
+    font-size: clamp(.85rem, 3.4vw, 1.25rem);
+    letter-spacing: .12em;
+    line-height: 1;
+    white-space: nowrap;
+}

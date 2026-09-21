@@ -34,6 +34,10 @@ const BreakdownModal = ({ onClose }) => {
 
     const shareText = generateShareText();
 
+    // The same squares the share text carries, one per item in the order they
+    // were guessed. It is the whole basket at a glance, above the detail.
+    const { squares } = scoreBasket(breakdown);
+
     // A plain link, not window.open: passing a features string opens a popup
     // window rather than a tab, and a stripped referrer makes X more likely to
     // throw up its login wall.
@@ -64,6 +68,9 @@ const BreakdownModal = ({ onClose }) => {
             </button>
             <header>
                 <h1 className="h1-statistics">Total-Guess Receipt</h1>
+                <p className="receipt-squares" aria-label={`How close each of the ${breakdown.length} guesses was`}>
+                    {squares}
+                </p>
             </header>
             <table>
                 <thead>
