@@ -57,7 +57,7 @@ function LandingPageMenu({ setElementToDisplay, setFormData, formData }) {
                     selectedGameMode === 'groceries' ?
                         hasPlayedDaily ?
                             <>
-                                <TimerToUkMidnight />
+                                <TimerToUkMidnight onElapsed={() => window.location.reload()} />
                                 {
                                     // A guest who has already played can still register, and today's game carries across.
                                     !loggedInUser && (
